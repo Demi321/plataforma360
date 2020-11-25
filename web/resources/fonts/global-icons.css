@@ -1,0 +1,638 @@
+@font-face{
+	font-family: 'Icons';
+	src: url('../fonts/icons-global/Myfont-Regular.ttf') format('truetype'), 
+	url(../fonts/icons-global/Myfont-Regular.otf) format('opentype'), 
+	url('../fonts/icons-global/IconsFont-svg.svg') format('svg');
+	
+
+}
+.glbl {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	speak:none;
+	font-family: 'Icons';
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: #40474f;
+	color: #fff;
+	/*border: 3px solid #40474f;*/
+	margin:1px;
+}
+.glbl:hover {
+	background: #061d32;
+}
+
+.nav-tabs .botoneramenu .nav-item.active .glbl{
+    color: #fff;
+    background-color: #283139;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 820px) and (orientation: portrait) {
+  
+	.glbl-home:before{
+		content: 'A';
+		font-size: 34px;	
+	}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 34px;}
+	.glbl-more:before{
+		content: 'C';
+		font-size: 34px;}
+	.glbl-new:before{
+		content: 'D';
+		font-size: 34px;}
+	.glbl-up:before{
+		content: 'E';
+		font-size: 34px;}
+	.glbl-down:before{
+		content: 'F';
+		font-size: 34px;}
+	.glbl-left:before{
+		content: 'G';
+		font-size: 34px;}
+	.glbl-right:before{
+		content: 'H';
+		font-size: 34px;}
+	.glbl-close:before{
+		content: 'I';
+		font-size: 34px;}
+	.glbl-menu:before{
+		content: 'J';
+		font-size: 34px;}
+	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 34px;}
+	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 34px;}
+	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 34px;}
+	.glbl-video:before{
+		content: 'N';
+		font-size: 34px;}
+	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 34px;}
+	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 34px;}
+	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 34px;}
+	.glbl-send:before{
+		content: 'R';
+		font-size: 34px;}
+	.glbl-chat:before{
+		content: 'S';
+		font-size: 34px;}
+	.glbl-novideo:before{
+		content: 'T';
+		font-size: 34px;}
+	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 34px;}
+	.glbl-controles:before{
+		content: 'V';
+		font-size: 34px;}
+}
+
+@media only screen and (min-width: 821px) and (max-width: 982px) and (orientation: portrait){
+    .glbl-home:before{
+		content: 'A';
+		font-size: 35px;	
+	}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 35px;}
+	.glbl-more:before{
+		content: 'C';
+		font-size: 35px;}
+	.glbl-new:before{
+		content: 'D';
+		font-size: 35px;}
+	.glbl-up:before{
+		content: 'E';
+		font-size: 35px;}
+	.glbl-down:before{
+		content: 'F';
+		font-size: 35px;}
+	.glbl-left:before{
+		content: 'G';
+		font-size: 35px;}
+	.glbl-right:before{
+		content: 'H';
+		font-size: 35px;}
+	.glbl-close:before{
+		content: 'I';
+		font-size: 35px;}
+	.glbl-menu:before{
+		content: 'J';
+		font-size: 35px;}
+	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 35px;}
+	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 35px;}
+	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 35px;}
+	.glbl-video:before{
+		content: 'N';
+		font-size: 35px;}
+	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 35px;}
+	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 35px;}
+	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 35px;}
+	.glbl-send:before{
+		content: 'R';
+		font-size: 35px;}
+	.glbl-chat:before{
+		content: 'S';
+		font-size: 35px;}
+	.glbl-novideo:before{
+		content: 'T';
+		font-size: 35px;}
+	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 35px;}
+	.glbl-controles:before{
+		content: 'V';
+		font-size: 35px;}
+
+}
+@media only screen and (min-width: 983px) and (max-width: 996px) and (orientation: portrait){
+
+	.glbl-home:before{
+	content: 'A';
+	font-size: 25px;	
+    }
+   .glbl-search:before{
+	content: 'B';
+	font-size: 25px;} 
+	.glbl-more:before{
+	content: 'C';
+	font-size: 25px;} 
+	.glbl-new:before{
+	content: 'D';
+	font-size: 25px;} 
+	.glbl-up:before{
+	content: 'E';
+	font-size: 25px;} 
+	.glbl-down:before{
+	content: 'F';
+	font-size: 25px;} 
+	.glbl-left:before{
+	content: 'G';
+	font-size: 25px;} 
+	.glbl-right:before{
+	content: 'H';
+	font-size: 25px;} 
+	.glbl-close:before{
+	content: 'I';
+	font-size: 25px;} 
+        .glbl-menu:before{
+	content: 'J';
+	font-size: 25px;} 
+        .glbl-mosaico:before{
+	content: 'K';
+	font-size: 25px;} 
+        .glbl-ubicacion:before{
+	content: 'L';
+	font-size: 25px;} 
+        .glbl-notificacion:before{
+	content: 'M';
+	font-size: 25px;} 
+        .glbl-video:before{
+	content: 'N';
+	font-size: 25px;} 
+        .glbl-graficaBarras:before{
+	content: 'O';
+	font-size: 25px;} 
+        .glbl-graficaLineas:before{
+	content: 'P';
+	font-size: 25px;} 
+        .glbl-llamada:before{
+	content: 'Q';
+	font-size: 25px;}
+        .glbl-send:before{
+	content: 'R';
+	font-size: 25px;} 
+        .glbl-chat:before{
+	content: 'S';
+	font-size: 25px;} 
+        .glbl-novideo:before{
+	content: 'T';
+	font-size: 25px;}
+        .glbl-noaudio:before{
+	content: 'U';
+	font-size: 25px;} 
+        .glbl-controles:before{
+	content: 'V';
+	font-size: 25px;} 
+}
+
+
+@media only screen and (min-width: 997px) and (max-width: 1475px) and (orientation: portrait){
+
+	.glbl-home:before{
+		content: 'A';
+		font-size: 30px;}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 30px;}
+	.glbl-more:before{
+		content: 'C';
+		font-size: 30px;}
+	.glbl-new:before{
+		content: 'D';
+		font-size: 30px;}
+	.glbl-up:before{
+		content: 'E';
+		font-size: 30px;}
+	.glbl-down:before{
+		content: 'F';
+		font-size: 30px;}
+	.glbl-left:before{
+		content: 'G';
+		font-size: 30px;}
+	.glbl-right:before{
+		content: 'H';
+		font-size: 30px;}
+	.glbl-close:before{
+		content: 'I';
+		font-size: 30px;}
+	.glbl-menu:before{
+		content: 'J';
+		font-size: 30px;}
+	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 30px;}
+	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 30px;}
+	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 30px;}
+	.glbl-video:before{
+		content: 'N';
+		font-size: 30px;}
+	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 30px;}
+	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 30px;}
+	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 30px;}
+	.glbl-send:before{
+		content: 'R';
+		font-size: 30px;}
+	.glbl-chat:before{
+		content: 'S';
+		font-size: 30px;}
+	.glbl-novideo:before{
+		content: 'T';
+		font-size: 30px;}
+	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 30px;}
+	.glbl-controles:before{
+		content: 'V';
+		font-size: 30px;}
+
+}
+
+@media only screen and (min-width: 1476px) and (max-width: 2200px) and (orientation: portrait){
+    .glbl-home:before{
+		content: 'A';
+		font-size: 36px;}
+    .glbl-search:before{
+	content: 'B';
+	font-size: 36px;} .glbl-more:before{
+	content: 'C';
+	font-size: 36px;} .glbl-new:before{
+	content: 'D';
+	font-size: 36px;} .glbl-up:before{
+	content: 'E';
+	font-size: 36px;} .glbl-down:before{
+	content: 'F';
+	font-size: 36px;} .glbl-left:before{
+	content: 'G';
+	font-size: 36px;} .glbl-right:before{
+	content: 'H';
+	font-size: 36px;} .glbl-close:before{
+	content: 'I';
+	font-size: 36px;} .glbl-menu:before{
+	content: 'J';
+	font-size: 36px;} .glbl-mosaico:before{
+	content: 'K';
+	font-size: 36px;} .glbl-ubicacion:before{
+	content: 'L';
+	font-size: 36px;} .glbl-notificacion:before{
+	content: 'M';
+	font-size: 36px;} .glbl-video:before{
+	content: 'N';
+	font-size: 36px;} .glbl-graficaBarras:before{
+	content: 'O';
+	font-size: 36px;} .glbl-graficaLineas:before{
+	content: 'P';
+	font-size: 36px;} .glbl-llamada:before{
+	content: 'Q';
+	font-size: 36px;} .glbl-send:before{
+	content: 'R';
+	font-size: 36px;} .glbl-chat:before{
+	content: 'S';
+	font-size: 36px;} .glbl-novideo:before{
+	content: 'T';
+	font-size: 36px;} .glbl-noaudio:before{
+	content: 'U';
+	font-size: 36px;} .glbl-controles:before{
+	content: 'V';
+	font-size: 36px;} 
+}
+/* orientacion hotizantal*/
+@media only screen and (min-width: 0px) and (max-width: 820px) and (orientation: landscape) {
+  
+	.glbl-home:before{
+		content: 'A';
+		font-size: 34px;	
+	}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 34px;}
+	.glbl-more:before{
+		content: 'C';
+		font-size: 34px;}
+	.glbl-new:before{
+		content: 'D';
+		font-size: 34px;}
+	.glbl-up:before{
+		content: 'E';
+		font-size: 34px;}
+	.glbl-down:before{
+		content: 'F';
+		font-size: 34px;}
+	.glbl-left:before{
+		content: 'G';
+		font-size: 34px;}
+	.glbl-right:before{
+		content: 'H';
+		font-size: 34px;}
+	.glbl-close:before{
+		content: 'I';
+		font-size: 34px;}
+	.glbl-menu:before{
+		content: 'J';
+		font-size: 34px;}
+	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 34px;}
+	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 34px;}
+	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 34px;}
+	.glbl-video:before{
+		content: 'N';
+		font-size: 34px;}
+	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 34px;}
+	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 34px;}
+	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 34px;}
+	.glbl-send:before{
+		content: 'R';
+		font-size: 34px;}
+	.glbl-chat:before{
+		content: 'S';
+		font-size: 34px;}
+	.glbl-novideo:before{
+		content: 'T';
+		font-size: 34px;}
+	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 34px;}
+	.glbl-controles:before{
+		content: 'V';
+		font-size: 34px;}
+}
+
+@media only screen and (min-width: 821px) and (max-width: 1134px) and (orientation: landscape){
+    .glbl-home:before{
+		content: 'A';
+		font-size: 30px;}
+    .glbl-search:before{
+	content: 'B';
+	font-size: 30px;} .glbl-more:before{
+	content: 'C';
+	font-size: 30px;} .glbl-new:before{
+	content: 'D';
+	font-size: 30px;} .glbl-up:before{
+	content: 'E';
+	font-size: 30px;} .glbl-down:before{
+	content: 'F';
+	font-size: 30px;} .glbl-left:before{
+	content: 'G';
+	font-size: 30px;} .glbl-right:before{
+	content: 'H';
+	font-size: 30px;} .glbl-close:before{
+	content: 'I';
+	font-size: 30px;} .glbl-menu:before{
+	content: 'J';
+	font-size: 30px;} .glbl-mosaico:before{
+	content: 'K';
+	font-size: 30px;} .glbl-ubicacion:before{
+	content: 'L';
+	font-size: 30px;} .glbl-notificacion:before{
+	content: 'M';
+	font-size: 30px;} .glbl-video:before{
+	content: 'N';
+	font-size: 30px;} .glbl-graficaBarras:before{
+	content: 'O';
+	font-size: 30px;} .glbl-graficaLineas:before{
+	content: 'P';
+	font-size: 30px;} 
+	.glbl-llamada:before{
+	content: 'Q';	
+	font-size: 30px;} 
+	.glbl-send:before{
+	content: 'R';
+	font-size: 30px;} .glbl-chat:before{
+	content: 'S';
+	font-size: 30px;} .glbl-novideo:before{
+	content: 'T';
+	font-size: 30px;} .glbl-noaudio:before{
+	content: 'U';
+	font-size: 30px;} .glbl-controles:before{
+	content: 'V';
+	font-size: 30px;} 
+
+
+}
+@media only screen and (min-width: 1135px) and (max-width: 1475px) and (orientation: landscape){
+
+   .glbl-home:before{
+		content: 'A';
+		font-size: 28px;		}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 28px;}	.glbl-more:before{
+		content: 'C';
+		font-size: 28px;}	.glbl-new:before{
+		content: 'D';
+		font-size: 28px;}	.glbl-up:before{
+		content: 'E';
+		font-size: 28px;}	.glbl-down:before{
+		content: 'F';
+		font-size: 28px;}	.glbl-left:before{
+		content: 'G';
+		font-size: 28px;}	.glbl-right:before{
+		content: 'H';
+		font-size: 28px;}	.glbl-close:before{
+		content: 'I';
+		font-size: 28px;}	.glbl-menu:before{
+		content: 'J';
+		font-size: 28px;}	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 28px;}	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 28px;}	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 28px;}	.glbl-video:before{
+		content: 'N';
+		font-size: 28px;}	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 28px;}	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 28px;}	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 28px;}	.glbl-send:before{
+		content: 'R';
+		font-size: 28px;}	.glbl-chat:before{
+		content: 'S';
+		font-size: 28px;}	.glbl-novideo:before{
+		content: 'T';
+		font-size: 28px;}	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 28px;}	.glbl-controles:before{
+		content: 'V';
+		font-size: 28px;}
+}
+@media only screen and (min-width: 1476px) and (max-width: 2200px) and (orientation: landscape){
+
+	.glbl-home:before{
+		content: 'A';
+		font-size: 29px;		}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 29px;}	.glbl-more:before{
+		content: 'C';
+		font-size: 29px;}	.glbl-new:before{
+		content: 'D';
+		font-size: 29px;}	.glbl-up:before{
+		content: 'E';
+		font-size: 29px;}	.glbl-down:before{
+		content: 'F';
+		font-size: 29px;}	.glbl-left:before{
+		content: 'G';
+		font-size: 29px;}	.glbl-right:before{
+		content: 'H';
+		font-size: 29px;}	.glbl-close:before{
+		content: 'I';
+		font-size: 29px;}	.glbl-menu:before{
+		content: 'J';
+		font-size: 29px;}	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 29px;}	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 29px;}	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 29px;}	.glbl-video:before{
+		content: 'N';
+		font-size: 29px;}	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 29px;}	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 29px;}	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 29px;}	.glbl-send:before{
+		content: 'R';
+		font-size: 29px;}	.glbl-chat:before{
+		content: 'S';
+		font-size: 29px;}	.glbl-novideo:before{
+		content: 'T';
+		font-size: 29px;}	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 29px;}	.glbl-controles:before{
+		content: 'V';
+		font-size: 29px;}
+}
+
+@media only screen and (min-width: 2201px) and (max-width: 4000px) and (orientation: landscape){
+
+	.glbl-home:before{
+		content: 'A';
+		font-size: 32px;		}
+	.glbl-search:before{
+		content: 'B';
+		font-size: 32px;}	.glbl-more:before{
+		content: 'C';
+		font-size: 32px;}	.glbl-new:before{
+		content: 'D';
+		font-size: 32px;}	.glbl-up:before{
+		content: 'E';
+		font-size: 32px;}	.glbl-down:before{
+		content: 'F';
+		font-size: 32px;}	.glbl-left:before{
+		content: 'G';
+		font-size: 32px;}	.glbl-right:before{
+		content: 'H';
+		font-size: 32px;}	.glbl-close:before{
+		content: 'I';
+		font-size: 32px;}	.glbl-menu:before{
+		content: 'J';
+		font-size: 32px;}	.glbl-mosaico:before{
+		content: 'K';
+		font-size: 32px;}	.glbl-ubicacion:before{
+		content: 'L';
+		font-size: 32px;}	.glbl-notificacion:before{
+		content: 'M';
+		font-size: 32px;}	.glbl-video:before{
+		content: 'N';
+		font-size: 32px;}	.glbl-graficaBarras:before{
+		content: 'O';
+		font-size: 32px;}	.glbl-graficaLineas:before{
+		content: 'P';
+		font-size: 32px;}	.glbl-llamada:before{
+		content: 'Q';
+		font-size: 32px;}	.glbl-send:before{
+		content: 'R';
+		font-size: 32px;}	.glbl-chat:before{
+		content: 'S';
+		font-size: 32px;}	.glbl-novideo:before{
+		content: 'T';
+		font-size: 32px;}	.glbl-noaudio:before{
+		content: 'U';
+		font-size: 32px;}	.glbl-controles:before{
+		content: 'V';
+		font-size: 32px;}
+}
+
