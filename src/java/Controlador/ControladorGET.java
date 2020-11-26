@@ -1903,7 +1903,7 @@ public class ControladorGET {
     @ResponseBody
     private JSONArray catalogo_lineamientos() throws ParseException, IOException {
         JSONParser parser = new JSONParser();
-        return (JSONArray) parser.parse(request.GET("https://seguridadsanitaria360.ml/lineamientos/API/GET/reporte_evidencias/categorias"));
+        return (JSONArray) parser.parse(request.GET("https://seguridadsanitaria.claro360.com/lineamientos/API/GET/reporte_evidencias/categorias"));
     }
 
     @RequestMapping(value = "/API/empresas360/info_empresa/{tipo_usuario}", method = RequestMethod.GET)
@@ -1943,21 +1943,21 @@ public class ControladorGET {
     @ResponseBody
     private String info_empresa_lineamientos(@PathVariable("tipo_usuario") String tipo_usuario) throws IOException {
 
-        return request.GET("https://seguridadsanitaria360.ml/lineamientos/API/lineamientos/info_empresa/" + tipo_usuario);
+        return request.GET("https://seguridadsanitaria.claro360.com/lineamientos/API/lineamientos/info_empresa/" + tipo_usuario);
     }
 
     @RequestMapping(value = "/API/lineamientos/listado_sucursales/{tipo_usuario}", method = RequestMethod.GET)
     @ResponseBody
     private String listado_sucursales_lineamientos(@PathVariable("tipo_usuario") String tipo_usuario) throws IOException {
 
-        return request.GET("https://seguridadsanitaria360.ml/lineamientos/API/lineamientos/listado_sucursales/" + tipo_usuario);
+        return request.GET("https://seguridadsanitaria.claro360.com/lineamientos/API/lineamientos/listado_sucursales/" + tipo_usuario);
     }
 
     @RequestMapping(value = "/API/lineamientos/info_sucursal/{servicios_usuario}", method = RequestMethod.GET)
     @ResponseBody
     private String info_sucursal_lineamientos(@PathVariable("servicios_usuario") String servicios_usuario) throws IOException {
 
-        return request.GET("https://seguridadsanitaria360.ml/lineamientos/API/lineamientos/info_sucursal/" + servicios_usuario);
+        return request.GET("https://seguridadsanitaria.claro360.com/lineamientos/API/lineamientos/info_sucursal/" + servicios_usuario);
     }
 
     /**

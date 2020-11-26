@@ -698,7 +698,7 @@ public class Empresas360 {
     public JSONObject reporte_seguridad(@RequestBody JSONObject json) throws IOException, ParseException {
         System.out.println("reporte_seguridad en: " + Dependencia);
 
-        return request.POST("https://seguridadsanitaria360.ml/lineamientos/API/centro_trabajo/reporte_evidencia", json);
+        return request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/centro_trabajo/reporte_evidencia", json);
     }
 
     @RequestMapping(value = "/API/empresas360/registro/horario_laboral", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
@@ -770,7 +770,7 @@ public class Empresas360 {
 //
 //            lineamientos.put("id360", json.get("id360"));
 //            lineamientos.put("modulo", "lineamientos");
-//            lineamientos.put("url", "https://seguridadsanitaria360.ml/lineamientos/");
+//            lineamientos.put("url", "https://seguridadsanitaria.claro360.com/lineamientos/");
 //            lineamientos.put("telefono", json.get("telefono"));
 //            lineamientos.put("correo", json.get("correo"));
 //            lineamientos.put("modulos", "204,205,206,207");
@@ -822,13 +822,13 @@ public class Empresas360 {
 //                }
 //            }
 //        }
-        return request.POST("https://seguridadsanitaria360.ml/lineamientos/API/registro/empresa", json);
+        return request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/registro/empresa", json);
     }
 
     @RequestMapping(value = "/API/lineamientos/Registro/sucursales/nuevo_modulo", method = RequestMethod.POST, consumes = "application/json; charset=UTF-8")
     @ResponseBody
     public String registro_sucursales(@RequestBody String json) throws ParseException, IOException {
-        return request.POST("https://seguridadsanitaria360.ml/lineamientos/API/lineamientos/Registro/sucursales/nuevo_modulo", json);
+        return request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/lineamientos/Registro/sucursales/nuevo_modulo", json);
     }
 
     @RequestMapping(value = "/API/Registro/Institucion/nuevo_modulo", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
@@ -836,7 +836,7 @@ public class Empresas360 {
     public JSONObject registro_institucion_n_modulo(@RequestBody JSONObject json) throws IOException, ParseException {
         System.out.println("rregistro_institucion_n_modulo en: " + Dependencia);
 
-        return request.POST("https://seguridadsanitaria360.ml/lineamientos/API/Registro/Institucion/nuevo_modulo", json);
+        return request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/Registro/Institucion/nuevo_modulo", json);
     }
 
     @RequestMapping(value = "/API/empresas360/actualizacion_sucursal", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
@@ -857,7 +857,7 @@ public class Empresas360 {
         if (Query.update(Query.createQueryUpdateAND("servicios_usuario", json, where))) {
 
             respuesta = respuesta(true, "Sucursal actualizada. 1");
-            JSONObject res = request.POST("https://seguridadsanitaria360.ml/lineamientos/API/lineamientos/actualizacion_sucursal", json2);
+            JSONObject res = request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/lineamientos/actualizacion_sucursal", json2);
             if ((Boolean) res.get("success")) {
                 respuesta = respuesta(true, "Sucursal actualizada. 2");
             }
@@ -874,7 +874,7 @@ public class Empresas360 {
         if (Query.update("UPDATE `servicios_usuario` SET `activo` = 0 WHERE `id` = '" + json.get("id_institucion") + "';")) {
             respuesta = respuesta(true, "sucursal dada de baja. 1");
             //Damos de baja de lineamientos
-            JSONObject res = request.POST("https://seguridadsanitaria360.ml/lineamientos/API/lineamientos/baja_sucursal", json);
+            JSONObject res = request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/lineamientos/baja_sucursal", json);
             if ((Boolean) res.get("success")) {
                 respuesta = respuesta(true, "sucursal dada de baja. 2");
                 //Damos de baja los modulos plataforma360, lineamientos y mapais
@@ -1151,7 +1151,7 @@ public class Empresas360 {
                 respuesta = respuesta(true, "Información de la empresa actualizada correctamente");
             }
             //realizar el update en empresa lineamientos 
-            JSONObject update = request.POST("https://seguridadsanitaria360.ml/lineamientos/API/empresas360/update/empresa", json);
+            JSONObject update = request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/empresas360/update/empresa", json);
             System.out.println(update);
             if (Boolean.parseBoolean(update.get("success").toString())) {
                 respuesta = respuesta(true, update.get("mensaje").toString());
@@ -1251,39 +1251,6 @@ public class Empresas360 {
         }
         respuesta.putAll(data);
         return respuesta;
-    }
-
-    /* SERVICIO PARA CONSULTAR EL HISTORIA DE JORNADAS LABORALES */
-    @RequestMapping(value = "/API/empresas360/jornadas_laborales", method = RequestMethod.POST)
-    @ResponseBody
-    public JSONObject jornadas_laborales(@RequestBody JSONObject json) {
-
-        JSONObject respuesta = respuesta(false, "Error en la consulta");
-
-        respuesta.put("data", json);
-
-        String inicio = (String) json.get("inicio");
-        String fin = (String) json.get("fin");
-
-        String query = "";
-
-        if ("".equals(fin)) {
-            query = "SELECT * FROM registro_jornada_laboral where id_usuario = " + json.get("id") + " AND date_created = '" + json.get("inicio") + "'";
-        } else {
-            query = "SELECT * FROM registro_jornada_laboral where id_usuario = " + json.get("id") + " AND date_created >= '" + inicio + "' AND date_updated <= '" + fin + "'";
-        }
-
-        JSONArray data = Query.execute(query);
-        System.out.println(data);
-        if (data != null && data.size() > 0) {
-            respuesta = respuesta(true, "ok");
-            respuesta.put("data", data);
-        } else {
-            respuesta = respuesta(false, "Sin informacion");
-        }
-
-        return respuesta;
-
     }
 
     @RequestMapping(value = "/API/empresas360/video_empleados", method = RequestMethod.POST)
@@ -1812,4 +1779,163 @@ public class Empresas360 {
         JSONArray ids = Query.execute(query);
         return ids;
     }
+    
+    /*
+    
+    SERVICIOS PARA CONSULTAR EeeL HISTORIAL DE JORNADAS LABORALES
+    
+    */
+    
+    @RequestMapping(value = "/API/empresas360/jornadas_laborales", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject jornadas_laborales_e(@RequestBody JSONObject json) {
+        
+        JSONObject respuesta = respuesta(false, "Error en la consulta");
+        
+        respuesta.put("data", json);
+        
+        String inicio = (String) json.get("inicio");
+        String fin = (String) json.get("fin");
+        
+        String query = "";
+        
+        if( "".equals(fin) ){
+            query = "SELECT * FROM registro_jornada_laboral where id_usuario = " + json.get("id") + " AND date_created = '"+json.get("inicio")+"'";
+        }else{
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.idUsuario = " + json.get("id");
+        }
+        
+        JSONArray data = Query.execute(query);
+        System.out.println(data);
+        if (data != null && data.size()>0) {
+            respuesta = respuesta(true, "ok");
+            respuesta.put("data",data);
+        } else {
+            respuesta = respuesta(false, "Sin informacion");
+        }
+        
+        return respuesta;
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject jornadas_laborales_empresa(@RequestBody JSONObject json) {
+        
+        JSONObject respuesta = respuesta(false, "Error en la consulta");
+        
+        respuesta.put("data", json);
+        
+        String inicio = (String) json.get("inicio");
+        String fin = (String) json.get("fin");
+        
+        String query = "";
+        
+        if( "".equals(fin) ){
+            query = "SELECT * FROM empresas.registro_jornada_laboral WHERE tipo_usuario = " + json.get("id") + " AND date_created = '"+json.get("inicio")+"' ORDER BY id_usuario";
+        }else{
+            //query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " AND r.date_created >= '"+inicio+"' AND r.date_updated <= '"+fin+"' ORDER BY r.id_usuario";
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " ORDER BY r.id_usuario";
+        }
+        
+        JSONArray data = Query.execute(query);
+        System.out.println(data);
+        if (data != null && data.size()>0) {
+            respuesta = respuesta(true, "ok");
+            respuesta.put("data",data);
+            respuesta.put("query",query);
+        } else {
+            respuesta = respuesta(false, "Sin informacion");
+            respuesta.put("query", query);
+        }
+        
+        return respuesta;
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/jornadas_laborales/sucursal", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject jornadas_laborales_sucursal(@RequestBody JSONObject json) {
+        
+        JSONObject respuesta = respuesta(false, "Error en la consulta");
+        
+        respuesta.put("data", json);
+        
+        String inicio = (String) json.get("inicio");
+        String fin = (String) json.get("fin");
+        
+        String query = "";
+        
+        if( "".equals(fin) ){
+            query = "SELECT * FROM empresas.registro_jornada_laboral WHERE tipo_usuario = " + json.get("id") + " AND date_created = '"+json.get("inicio")+"' ORDER BY id_usuario";
+        }else{
+            //query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " AND r.date_created >= '"+inicio+"' AND r.date_updated <= '"+fin+"' ORDER BY r.id_usuario";
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_servicio = " + json.get("id") + " ORDER BY r.id_usuario";
+        }
+        
+        JSONArray data = Query.execute(query);
+        System.out.println(data);
+        if (data != null && data.size()>0) {
+            respuesta = respuesta(true, "ok");
+            respuesta.put("data",data);
+            respuesta.put("query",query);
+        } else {
+            respuesta = respuesta(false, "Sin informacion");
+            respuesta.put("query", query);
+        }
+        
+        return respuesta;
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/jornadas_laborales/area", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject jornadas_laborales_area(@RequestBody JSONObject json) {
+        
+        JSONObject respuesta = respuesta(false, "Error en la consulta");
+        
+        respuesta.put("data", json);
+        
+        String inicio = (String) json.get("inicio");
+        String fin = (String) json.get("fin");
+        
+        String query = "";
+        
+        if( "".equals(fin) ){
+            query = "SELECT * FROM empresas.registro_jornada_laboral WHERE tipo_usuario = " + json.get("id") + " AND date_created = '"+json.get("inicio")+"' ORDER BY id_usuario";
+        }else{
+            //query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " AND r.date_created >= '"+inicio+"' AND r.date_updated <= '"+fin+"' ORDER BY r.id_usuario";
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_area = " + json.get("id") + " ORDER BY r.id_usuario";
+        }
+        
+        JSONArray data = Query.execute(query);
+        System.out.println(data);
+        if (data != null && data.size()>0) {
+            respuesta = respuesta(true, "ok");
+            respuesta.put("data",data);
+            respuesta.put("query",query);
+        } else {
+            respuesta = respuesta(false, "Sin informacion");
+            respuesta.put("query", query);
+        }
+        
+        return respuesta;
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa/obtener_ids", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray jornadas_laborales_empresa_obtener_ids(@RequestBody JSONObject json) {
+        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area FROM directorio d LEFT JOIN tipos_usuarios tu ON d.tipo_usuario = tu.id LEFT JOIN servicios_usuario su ON d.tipo_servicio = su.id LEFT JOIN tipo_area ta ON d.tipo_area = ta.id WHERE d.tipo_usuario = " + json.get("id");
+        return Query.execute(query);
+    }
+    
+    @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa/obtener_empleados", method = RequestMethod.POST)
+    @ResponseBody
+    public String jornadas_laborales_empresa_obtener_empleados(@RequestBody String json) throws IOException, ParseException {
+       
+        return request.POST("https://plataforma911.ml/CONTROLADOR/API/cuenta360/perfiles/array", json);
+        
+    }
+    
 }
