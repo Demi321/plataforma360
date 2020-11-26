@@ -763,7 +763,7 @@ public class Empresas360 {
 //            empresa.put("RegistroApp", "1");
 //            empresa.put("token", json.get("token"));
 //
-////            Request.request.POST("https://empresas360.ml/plataforma360/API/empresas360/registro_tipo_usuario", empresa);
+////            Request.request.POST("https://empresas.claro360.com/plataforma360/API/empresas360/registro_tipo_usuario", empresa);
 //            registro_tipo_usuario(empresa);
 //            //levantamiento de modulos
 //            JSONObject lineamientos = new JSONObject();
@@ -786,7 +786,7 @@ public class Empresas360 {
 //
 //            mi_empresa.put("id360", json.get("id360"));
 //            mi_empresa.put("modulo", "plataforma360");
-//            mi_empresa.put("url", "https://empresas360.ml/plataforma360/");
+//            mi_empresa.put("url", "https://empresas.claro360.com/plataforma360/");
 //            mi_empresa.put("alias", "Mi Empresa");
 //            mi_empresa.put("modulos", "3,4,15,24");
 //            mi_empresa.put("modulo_principal", "Empresa");
@@ -1352,7 +1352,7 @@ public class Empresas360 {
                         id360.put("modulo", "plataforma360");
                         id360.put("correo", info_hoja.get("correo"));
                         JSONObject sistema = new JSONObject();
-                        sistema.put("url", "https://empresas360.ml/plataforma360/");
+                        sistema.put("url", "https://empresas.claro360.com/plataforma360/");
                         sistema.put("alias", "Mi Empresa");
                         sistema.put("tipo_usuario", info_hoja.get("tipo_usuario"));
                         sistema.put("tipo_servicio", info_hoja.get("tipo_servicio"));
@@ -1395,7 +1395,7 @@ public class Empresas360 {
                         id360.put("modulo", "empleados");
                         id360.put("correo", info_hoja.get("correo"));
                         sistema = new JSONObject();
-//                            sistema.put("url", "https://empresas360.ml/plataforma360/");
+//                            sistema.put("url", "https://empresas.claro360.com/plataforma360/");
 //                            sistema.put("alias", "Mi Empresa");
 
                         sistema.put("tipo_usuario", info_hoja.get("tipo_usuario"));

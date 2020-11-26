@@ -82,7 +82,7 @@ public class ControladorGET {
     @RequestMapping(value = "/tablas", method = RequestMethod.GET)
     public String tablas(HttpServletRequest sesion, Model model) throws ParseException, IOException {
 
-        model.addAttribute("pathRecursos", "https://empresas360.ml/p360_v3.04");
+        model.addAttribute("pathRecursos", "https://empresas.claro360.com/p360_v3.04");
         model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
         model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
         //model.addAttribute("title", config.getAliasServicio() + " - " + config.getPersonalizacion().get("t1"));
