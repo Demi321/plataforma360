@@ -81,7 +81,7 @@ public class SocketEndPoint {
             //System.out.println("Inicializando sesion");
             mensaje.put("idUsuario", mensaje.containsKey("idUsuario") ? mensaje.get("idUsuario") : "");
             mensaje.put("tipo_usuario", mensaje.containsKey("tipo_usuario") ? mensaje.get("tipo_usuario") : "");
-            mensaje.put("tipo_usuario", mensaje.containsKey("tipo_usuario") ? mensaje.get("tipo_usuario") : "");
+            mensaje.put("tipo_servicio", mensaje.containsKey("tipo_servicio") ? mensaje.get("tipo_servicio") : "");
             mensaje.put("tipo_area", mensaje.containsKey("tipo_area") ? mensaje.get("tipo_area") : "");
 
             userSession.getUserProperties().put("idUsuario", mensaje.get("idUsuario")); //El id de usuario sera el id del estado de quien se logueo
