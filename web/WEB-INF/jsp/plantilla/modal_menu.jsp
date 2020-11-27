@@ -65,7 +65,7 @@
                         <div class="navegacion" id="menu_navegacion" style="">
                             <nav>
                                 <ul class="menu-sesion text-left">
-                                    <li id="link_registro"><a href="https://claro360.ml/plataforma360/registro">Registrate</a></li>
+                                    <li id="link_registro"><a href="https://claro360.com/plataforma360/registro">Registrate</a></li>
                                     <li id="pcollapseServicios" class="serviciosMH" data-toggle="collapse" href="#collapseServicios" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         Mis Servicios
                                     </li>
