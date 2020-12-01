@@ -123,7 +123,7 @@ public class ControladorGET {
         JSONObject the_sesion = Revision.getCookie(sesion);
         if (the_sesion != null) {
             if(the_sesion.get("tipo_usuario")==null){
-                return ValidarIP.Validacion_ip_publica(sesion, model, "empresas360/empresa");
+                return ValidarIP.Validacion_ip_publica(sesion, model, "empresas360/registro_empresa");
             }
             if (the_sesion.get("tipo_usuario").toString().equals("0")) {
                 System.out.println("Usuario Maestro");
