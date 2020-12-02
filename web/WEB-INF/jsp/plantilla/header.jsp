@@ -36,7 +36,7 @@
 <div class="Paneblock" id="block"></div>
 <header class="segmento">
     <div class="cabezera header1">
-        <a href="/plataforma360/home" id="logo360"></a>
+        <a href="#" id="logo360"></a>
         <div class="col-12 row m-0 p-0 headEmpresa">
             <div class="col-6 txtlogo" id="txtlogoE">
                 <h6 id="nomEmpresa"></h6>
@@ -56,7 +56,7 @@
             <li class="segmentos" id="hdrempresa"> <a href="#">Empresa</a></li>
             <li class="segmentos" id="hdrcorporativo"> <a href="#">Corporativo</a></li>
             <li class="segmentos" id="hdrgobierno"> <a href="#">Gobierno</a> </li>
-            <li class="segmentosV" id="hdrstore"><a target="_blank" href="https://store360.ml/app">Store 360</a></li>
+            <li class="segmentosV" id="hdrstore"><a href="#">Store 360</a></li>
         </ul>
         <div>
             <div class=" m-0 proyect_titles" style="">

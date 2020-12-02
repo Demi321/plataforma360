@@ -62,6 +62,11 @@ public class ControladorGET {
         return respuesta;
     }
 
+    @RequestMapping(value = "/API/config/proyect", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject config_proyect() {
+        return config.getInit();
+    }
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         if (config.getInit() != null) {
@@ -197,8 +202,13 @@ public class ControladorGET {
             System.out.println("****************");
         } else {
             System.out.println("Proyecto no inicializado");
-            return "plantilla/sinInicializar";
+            //return "plantilla/sinInicializar";
         }
+        
+        model.addAttribute("pathRecursos", "http://localhost:8080/p360");
+            model.addAttribute("config", "{\"logo3pdf\":null,\"lottie\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/json\\/lottie360.json\",\"logo2\":null,\"logo1\":null,\"logo1pdf\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/911.png\",\"proyecto\":\"lineamientos\",\"iconMap\":null,\"t2pdf\":\"Ciudad de México\",\"alias_proyecto\":\"Lineamientos\",\"dep_base\":false,\"lg2\":\"7\",\"lg1\":\"12\",\"logo_principal\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"lg3\":null,\"logo2pdf\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"logo_footer\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"favicon\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/favicon360.png\",\"pv1\":\"15\",\"ah2\":\"37\",\"ah1\":\"18\",\"pv3\":null,\"pv2\":\"17\",\"ah3\":null,\"t1pdf\":\"Plataforma Emergencia\",\"ph1\":\"12\",\"catalogo\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/json\\/incidentes.json\",\"ph3\":null,\"socket\":\"wss:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/SocketNotifications\",\"ph2\":\"165\",\"recursos\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\",\"t1\":\"\",\"logo_modal\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"t2\":\"Administrador\",\"tfooter\":\"© 360 HQ S.A de C.V 2019. Todos los derechos reservados\",\"t3\":\"\"}".toString().replace("\"", "&quot;"));
+            //model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - ");
         return "plantilla/plantilla";
     }
 

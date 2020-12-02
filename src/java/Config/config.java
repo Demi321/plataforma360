@@ -5,6 +5,7 @@
  */
 package Config;
 
+import Recursos.InicializacionLocal;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -105,6 +106,15 @@ public class config {
 
     
     public static JSONObject getInit() {
+       if (config.getInit_value() == null) {
+           JSONObject json = InicializacionLocal.getLocalInit();
+           config.setInit(json);
+           config.initialize();
+       }
+        return init;
+    }
+    
+    public static JSONObject getInit_value() {
         return init;
     }
 
