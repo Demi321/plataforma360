@@ -71,7 +71,7 @@ public class InicializacionLocal {
         personalizacion.put("t3", "");
 
         JSONObject server = new JSONObject();
-        server.put("bd", "lineamientos");
+        server.put("bd", "empresas");
         server.put("dep_base", false);
         server.put("lista_blanca", false);
         server.put("recursos", "https://empresas.claro360.com/p360_v3.04");
