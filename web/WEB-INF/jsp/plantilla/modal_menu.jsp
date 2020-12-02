@@ -71,73 +71,73 @@
                                     </li>
                                     <ul class="menu-servicios collapse" id="collapseServicios"></ul>
                                     <ul class="navbar-nav" style="width: 100%;">
-                                        <li class="nav-item pl-0" id="modulo22">
+                                        <li class="nav-item " id="modulo22">
                                             <a class="nav active" href="EstadisticosCCB">Resumen Estadístico</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo10">
+                                        <li class="nav-item " id="modulo10">
                                             <a class="nav active" href="CCB">Referencia de Pacientes COVID-19</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo6">
+                                        <li class="nav-item " id="modulo6">
                                             <a class="nav active" href="Institucion">Referencia de Pacientes COVID-19</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo7">
+                                        <li class="nav-item " id="modulo7">
                                             <a class="nav active" href="SolicitudTraslado" target="_blank">Solicitud a U.T.C-19</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo26">
+                                        <li class="nav-item " id="modulo26">
                                             <a class="nav active" href="referencia_contrareferencia">Solicitudes de referencia y contrareferencia.</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo27">
+                                        <li class="nav-item " id="modulo27">
                                             <a class="nav active" href="referencia_hospitalaria" target="_blank">Solicitud de referencia hospitalaria</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo8">
+                                        <li class="nav-item " id="modulo8">
                                             <a class="nav active" href="CRUM">Traslado de Referencias COVID-19</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo9">
+                                        <li class="nav-item " id="modulo9">
                                             <a class="nav active" href="SUCRE">Traslado de Referencias COVID-19</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo5">
+                                        <li class="nav-item " id="modulo5">
                                             <a class="nav active" href="ReporteHospital">Reporte Hospital</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo11">
+                                        <li class="nav-item " id="modulo11">
                                             <a class="nav active" href="vinculacion_familiar">Vinculación Familiar</a>
                                         </li>
 
-                                        <li class="nav-item pl-0 d-none" id="modulo12">
+                                        <li class="nav-item  d-none" id="modulo12">
                                             <a class="nav active" href="MonitoreoRemotoPersonalCCB">Monitoreo Personal CCB</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo13">
+                                        <li class="nav-item " id="modulo13">
                                             <a class="nav active" href="MonitoreoRemoto">Monitoreo Pacientes dados de Alta</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo4">
+                                        <li class="nav-item " id="modulo4">
                                             <a class="nav active" href="Administrador">Recepción de llamadas</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo14">
+                                        <li class="nav-item " id="modulo14">
                                             <a class="nav active" href="Notificaciones_TestCOVID19">Reportes COVID-19</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo3">
+                                        <li class="nav-item " id="modulo3">
                                             <a class="nav active" href="Empresa">Monitoreo de Unidades</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo15">
+                                        <li class="nav-item " id="modulo15">
                                             <a class="nav active" href="BuscarReporte">Búsqueda de Reporte</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo16">
+                                        <li class="nav-item " id="modulo16">
                                             <a class="nav active" href="#">PDF - Usuarios Registrados</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo17">
+                                        <li class="nav-item " id="modulo17">
                                             <a class="nav active" href="#">PDF - Usuarios Activos</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo1">
+                                        <li class="nav-item " id="modulo1">
                                             <a class="nav active" href="Registro">Registrar un Usuario</a>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo18">
+                                        <li class="nav-item " id="modulo18">
                                             <a class="nav active" href="ReporteElemento">
                                                 Reporte de Incidente Operativo
                                                 <label id="TamBackup" style="padding: 4px 5px 4px 5px; margin: 0; background: red; border-radius: 15px; font: bold 12px Arial; right: 5%; position: absolute; display: none;"></label>
@@ -147,34 +147,34 @@
                                             </div>
                                         </li>
 
-                                        <li class="nav-item pl-0" id="modulo2">
+                                        <li class="nav-item " id="modulo2">
                                             <a class="nav active" href="Administracion">Administración de Usuarios</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo19">
+                                        <li class="nav-item " id="modulo19">
                                             <a class="nav active" href="TestCovidCCB">Test Covid Personal U.T.C.</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo20">
+                                        <li class="nav-item " id="modulo20">
                                             <a class="nav active" href="TestCovidPacientesCCB">Test Covid Pacientes U.T.C.</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo21">
+                                        <li class="nav-item " id="modulo21">
                                             <a class="nav active" href="RegistroPaciente">Registro de Pacientes</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo24">
+                                        <li class="nav-item " id="modulo24">
                                             <a class="nav active" href="RegistroPlantillaLaboral">Plantilla Laboral</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo25">
+                                        <li class="nav-item " id="modulo25">
                                             <a class="nav active" href="dashboard">Dashboard</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo403">
+                                        <li class="nav-item " id="modulo403">
                                             <a class="nav active" href="agregar_perfil">Nuevo Perfil</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo400">
+                                        <li class="nav-item " id="modulo400">
                                             <a class="nav active" href="administracion_directiva">Dirección</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo401">
+                                        <li class="nav-item " id="modulo401">
                                             <a class="nav active" href="planeacion_docente">Docente</a>
                                         </li>
-                                        <li class="nav-item pl-0" id="modulo402">
+                                        <li class="nav-item " id="modulo402">
                                             <a class="nav active" href="actividad_estudiantil">Alumno</a>
                                         </li>
                                     </ul>
