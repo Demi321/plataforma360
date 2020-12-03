@@ -1783,7 +1783,7 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/usuarios_con_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray usuarios_con_chat(@RequestBody JSONObject json){
-        String query = "select distinct replace(concat(id360,to_id360),'"+json.get("id360")+"','') from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
+        String query = "select distinct replace(concat(id360,to_id360),'"+json.get("id360")+"','') as id360 from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
         JSONArray ids = Query.execute(query);
         return ids;
     }
