@@ -18,8 +18,8 @@
     <spring:url value="${pathRecursos}/css/Empresa/home_empresa.css" var="home_empresaCSS" />
 
     <%-- Javascript Personalizados --%>    
-    <spring:url value="${pathRecursos}/js/Empresa/home_empresas.js" var="home_empresaJS" />
     <spring:url value="${pathRecursos}/js/Empresa/functions_empresas.js" var="functions_empresasJS" />
+    <spring:url value="${pathRecursos}/js/Empresa/home_empresas.js" var="home_empresaJS" />
 
 </head>
 
