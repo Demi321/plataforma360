@@ -36,7 +36,8 @@
     </div>
 
     <aside>
-        <div class="row col-12 m-0 p-0" id="toggle">Plataforma 360</div>
+        <div class="row col-12 m-0 p-0" id="toggle">
+            <div><i class="fas fa-ellipsis-v"></i></div><span>Plataforma 360</span></div>
         <div id="sidebar" class="p-2">
 
         </div>
@@ -71,6 +72,8 @@
         <%--<%@include file="../empresas360/modulos_empresa/modulo_ajustes_privacidad.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_plantillas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_jornadas_laborales.jsp" %>
+        <%--<%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>--%>
+        <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
 
     </section>

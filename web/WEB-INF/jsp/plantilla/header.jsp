@@ -82,14 +82,27 @@
     <!--a class="btn btn-danger btn-ingresa" id="ingreso" href="/plataforma360/login">Ingresa</a-->
 </header>
 <div id="menuServicios" class="menuServicios segmento">
-    <ul id="servicios" class="servicios d-none">
-        <!--li>
-            <a href="#">
-                <div class="text-center"><img src="${pathRecursos}/images/iconosHeader/persona/40/Hogar_Conectado-Persona_40X40.png"></div>
-                <label for="">EJEMPLO DE SERVICIOS</label>
-            </a>
-        </li-->
-    </ul>
+    <!--    <ul id="servicios" class="servicios d-none">
+            li>
+                <a href="#">
+                    <div class="text-center"><img src="${pathRecursos}/images/iconosHeader/persona/40/Hogar_Conectado-Persona_40X40.png"></div>
+                    <label for="">EJEMPLO DE SERVICIOS</label>
+                </a>
+            </li
+        </ul>-->
+       <div id="servicios_grid" class="row col-12 m-0 p-2">
+            <div class="col-4 p-2">
+                <div class="service"></div>
+                <div class="service_label">Service Label</div>
+            </div>
+        </div>
+
+        <div class="expanded_menu">
+             <i class="fas fa-chevron-up"></i>
+        </div>
+        <div class="expand_menu">Ver más</div>
+  
+
     <ul id="ulhdrpersona" class="servicios d-none">
         <li>
             <a href="#">
@@ -219,6 +232,6 @@
         </li>
     </ul>
 </div>
-                
-  
+
+
 
