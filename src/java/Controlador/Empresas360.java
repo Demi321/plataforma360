@@ -1771,11 +1771,48 @@ public class Empresas360 {
         }
         return respuesta;
     }
-    @RequestMapping(value = "/API/empresas360/backup_chat", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/API/empresas360/backup_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray empresas360_backup_chat(@RequestBody JSONObject json){
         System.out.println("empresas360_backup_chat");
         String query = "SELECT * FROM chat_empresarial WHERE (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
+        JSONArray ids = Query.execute(query);
+        return ids;
+    }*/
+    
+    /*
+    NUEVO BACKUP, SOLO RECUPERAR 20 MENSAJES DE CADA USUARIO CON CHAT
+    */
+    @RequestMapping(value = "/API/empresas360/backup_chat", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray empresas360_backup_chat(@RequestBody JSONObject json){
+        
+        String query = ""
+                + "SELECT" +
+                "	replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','') as id360Chat," +
+                "	p.*" +
+                "FROM" +
+                "  chat_empresarial p" +
+                "  " +
+                "  INNER JOIN (" +
+                "		select" +
+                "			replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','') as id360Chat," +
+                "			group_concat( id order by date_created desc ) idsMessages" +
+                "		from chat_empresarial p" +
+                "		where (p.id360 = '"+json.get("id360")+"' OR p.to_id360 = '"+json.get("id360")+"')" +
+                "		group by id360Chat" +
+                "  ) messages" +
+                "  ON replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','') = messages.id360Chat" +
+                "  " +
+                "  AND FIND_IN_SET(id, idsMessages) BETWEEN 1 AND 20" +
+                "		" +
+                "ORDER BY" +
+                "       p.id,"+
+                "	replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','')," +
+                "	p.date_created DESC," +
+                "       p.time_created;";
+        
+        System.out.println(query);
         JSONArray ids = Query.execute(query);
         return ids;
     }
@@ -1788,9 +1825,17 @@ public class Empresas360 {
         return ids;
     }
     
+    @RequestMapping(value = "/API/empresas360/directorio/un_usuario", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject directorio_un_usuario(@RequestBody JSONObject json) throws IOException, ParseException {
+       
+        return request.POST("https://plataforma911.ml/CONTROLADOR/API/cuenta360/perfil", json);
+        
+    }
+    
     /*
     
-    SERVICIOS PARA CONSULTAR EeeL HISTORIAL DE JORNADAS LABORALES
+    SERVICIOS PARA CONSULTAR EL HISTORIAL DE JORNADAS LABORALES
     
     */
     

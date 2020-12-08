@@ -72,7 +72,7 @@
         <%--<%@include file="../empresas360/modulos_empresa/modulo_ajustes_privacidad.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_plantillas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_jornadas_laborales.jsp" %>
-        <%--<%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>--%>
+        <%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>
         <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
 
