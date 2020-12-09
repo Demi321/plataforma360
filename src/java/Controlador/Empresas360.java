@@ -1807,12 +1807,22 @@ public class Empresas360 {
                 "  AND FIND_IN_SET(id, idsMessages) BETWEEN 1 AND 20" +
                 "		" +
                 "ORDER BY" +
-                "       p.id,"+
-                "	replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','')," +
-                "	p.date_created DESC," +
-                "       p.time_created;";
+                "       p.id;";
         
         System.out.println(query);
+        JSONArray ids = Query.execute(query);
+        return ids;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/carga_mas_mensajes_chat", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray carga_mas_mensajes_chat(@RequestBody JSONObject json){
+        
+        String query = "select * from chat_empresarial " +
+                        "where (id360 = '"+json.get("id360-1")+"' and to_id360 = '"+json.get("id360-2")+"') " +
+                        "or (id360 = '"+json.get("id360-2")+"' and to_id360 = '"+json.get("id360-1")+"') " +
+                        "limit "+json.get("init")+",20;";
+        
         JSONArray ids = Query.execute(query);
         return ids;
     }
