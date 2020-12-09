@@ -1827,9 +1827,9 @@ public class Empresas360 {
     
     @RequestMapping(value = "/API/empresas360/directorio/un_usuario", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject directorio_un_usuario(@RequestBody JSONObject json) throws IOException, ParseException {
+    public String directorio_un_usuario(@RequestBody String json) throws IOException, ParseException {
        
-        return request.POST("https://plataforma911.ml/CONTROLADOR/API/cuenta360/perfil", json);
+        return request.POST("https://plataforma911.ml/CONTROLADOR/API/cuenta360/perfiles/array", json);
         
     }
     
