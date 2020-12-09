@@ -18,8 +18,8 @@
     <spring:url value="${pathRecursos}/css/Empresa/home_empresa.css" var="home_empresaCSS" />
 
     <%-- Javascript Personalizados --%>    
-    <spring:url value="${pathRecursos}/js/Empresa/home_empresas.js" var="home_empresaJS" />
     <spring:url value="${pathRecursos}/js/Empresa/functions_empresas.js" var="functions_empresasJS" />
+    <spring:url value="${pathRecursos}/js/Empresa/home_empresas.js" var="home_empresaJS" />
 
 </head>
 
@@ -72,7 +72,7 @@
         <%--<%@include file="../empresas360/modulos_empresa/modulo_ajustes_privacidad.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_plantillas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_jornadas_laborales.jsp" %>
-        <%--<%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>--%>
+        <%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>
         <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
 

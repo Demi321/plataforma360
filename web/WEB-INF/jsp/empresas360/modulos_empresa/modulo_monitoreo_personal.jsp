@@ -16,7 +16,7 @@ MÛDULO DE REPORTING
             <div id="titulomenu"> Nuevo grupo </div>
         </div>
         <div id="old_sidebar" class="position-relative">
-            <div id="buscarContactos">
+            <div id="buscarContactos_monitoreo">
                 <div>
                     <multiselect
                         v-model="value"
