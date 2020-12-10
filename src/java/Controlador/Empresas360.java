@@ -1821,7 +1821,7 @@ public class Empresas360 {
         String query = "select * from chat_empresarial " +
                         "where (id360 = '"+json.get("id360-1")+"' and to_id360 = '"+json.get("id360-2")+"') " +
                         "or (id360 = '"+json.get("id360-2")+"' and to_id360 = '"+json.get("id360-1")+"') " +
-                        "limit "+json.get("init")+",20;";
+                        "limit "+json.get("init")+","+json.get("limit")+";";
         
         JSONArray ids = Query.execute(query);
         return ids;
