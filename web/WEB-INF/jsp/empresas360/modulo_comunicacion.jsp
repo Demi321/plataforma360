@@ -117,6 +117,32 @@
                 <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
             </div>
         </div>
+        
+        <div class="h-100" style="display: none;" id="content_call">
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    
+                    <!-- Contenedor Videollamada -->
+                    <div class="col-9" id="contenedor-llamada">
+                        <h1>Llamada</h1>
+                    </div>
+                    
+                    <!-- Contenedor Chat videollamada -->
+                    <div class="col-3" id="contenedor-p-c">
+                        
+                        <div id="contenedor-participantes">
+                            
+                        </div>
+                        
+                        <div id="contenedor-chat-llamada">
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
 
         <div class="h-100" id="content_messaging">
             
