@@ -1821,7 +1821,7 @@ public class Empresas360 {
         String query = "select * from chat_empresarial " +
                         "where (id360 = '"+json.get("id360-1")+"' and to_id360 = '"+json.get("id360-2")+"') " +
                         "or (id360 = '"+json.get("id360-2")+"' and to_id360 = '"+json.get("id360-1")+"') " +
-                        "limit "+json.get("init")+",20;";
+                        "limit "+json.get("init")+","+json.get("limit")+";";
         
         JSONArray ids = Query.execute(query);
         return ids;
@@ -1830,7 +1830,11 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/usuarios_con_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray usuarios_con_chat(@RequestBody JSONObject json){
-        String query = "select distinct replace(concat(id360,to_id360),'"+json.get("id360")+"','') as id360 from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
+        //String query = "select distinct replace(concat(id360,to_id360),'"+json.get("id360")+"','') as id360 from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
+        String query = "select count(*) as cantidadMensajes, " +
+                        "replace(concat(id360,to_id360),'"+json.get("id360")+"','') as id360chat " +
+                        "from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"') " +
+                        "group by id360chat;";
         JSONArray ids = Query.execute(query);
         return ids;
     }
