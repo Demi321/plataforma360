@@ -35,10 +35,10 @@ public class InicializacionLocal {
 
         JSONObject personalizacion = new JSONObject();
         personalizacion.put("logo3pdf", null);
-        personalizacion.put("lottie", "https://empresas.claro360.com/p360_v3.04/json/lottie360.json");
+        personalizacion.put("lottie", "https://empresas.claro360.com/p360_v4/json/lottie360.json");
         personalizacion.put("logo2", null);
         personalizacion.put("logo1", null);
-        personalizacion.put("logo1pdf", "https://empresas.claro360.com/p360_v3.04/Img/Logos/911.png");
+        personalizacion.put("logo1pdf", "https://empresas.claro360.com/p360_v4/Img/Logos/911.png");
         personalizacion.put("proyecto", "plataforma360");
         personalizacion.put("iconMap", null);
         personalizacion.put("t2pdf", "Empresas360");
@@ -46,11 +46,11 @@ public class InicializacionLocal {
         personalizacion.put("dep_base", false);
         personalizacion.put("lg2", "7");
         personalizacion.put("lg1", "12");
-        personalizacion.put("logo_principal", "https://empresas.claro360.com/p360_v3.04/Img/Logos/Claro%20360.png");
+        personalizacion.put("logo_principal", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
         personalizacion.put("lg3", null);
-        personalizacion.put("logo2pdf", "https://empresas.claro360.com/p360_v3.04/Img/Logos/Claro%20360.png");
-        personalizacion.put("logo_footer", "https://empresas.claro360.com/p360_v3.04/Img/Logos/Claro%20360.png");
-        personalizacion.put("favicon", "https://empresas.claro360.com/p360_v3.04/Img/favicon360.png");
+        personalizacion.put("logo2pdf", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
+        personalizacion.put("logo_footer", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
+        personalizacion.put("favicon", "https://empresas.claro360.com/p360_v4/Img/favicon360.png");
         personalizacion.put("pv1", "15");
         personalizacion.put("ah2", "37");
         personalizacion.put("ah1", "18");
@@ -59,13 +59,13 @@ public class InicializacionLocal {
         personalizacion.put("ah3", null);
         personalizacion.put("t1pdf", "Plataforma Emergencia");
         personalizacion.put("ph1", "12");
-        personalizacion.put("catalogo", "https://empresas.claro360.com/p360_v3.04/json/incidentes.json");
+        personalizacion.put("catalogo", "https://empresas.claro360.com/p360_v4/json/incidentes.json");
         personalizacion.put("ph3", null);
         personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360/SocketNotifications");
         personalizacion.put("ph2", "165");
-        personalizacion.put("recursos", "https://empresas.claro360.com/p360_v3.04");
+        personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4");
         personalizacion.put("t1", "Empresas");
-        personalizacion.put("logo_modal", "https://empresas.claro360.com/p360_v3.04/Img/Logos/Claro%20360.png");
+        personalizacion.put("logo_modal", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
         personalizacion.put("t2", "Empresas360");
         personalizacion.put("tfooter", "© 360 HQ S.A de C.V 2020. Todos los derechos reservados");
         personalizacion.put("t3", "");
@@ -74,7 +74,7 @@ public class InicializacionLocal {
         server.put("bd", "empresas");
         server.put("dep_base", false);
         server.put("lista_blanca", false);
-        server.put("recursos", "https://empresas.claro360.com/p360_v3.04");
+        server.put("recursos", "https://empresas.claro360.com/p360_v4");
         server.put("validar_ip", false);
 
         json.put("inferiores", inferiores);
