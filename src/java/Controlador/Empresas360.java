@@ -1164,6 +1164,96 @@ public class Empresas360 {
         return respuesta;
     }
 
+    @RequestMapping(value = "/API/notificacion/llamada360/agregar_participante", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject notificacion_llamada360_agregar_participante(@RequestBody String json_string) throws IOException, ParseException {
+        System.out.println("notificacion_llamada360_agregar_participante");
+        /*
+        {
+            "id360":"",
+            "to_id360":[{"id360":""},{"id360":""},...n]
+        }
+         */
+
+        //Revisando usuarios en linea * notificar por id360-
+        //solicitud de credenciales 
+        //solicitud del ticket 
+        //iteracion por cada participante 
+        //estructurar data
+        /*
+            perfil del quien llama
+            fecha y hora
+            credenciales opentok
+            datos de registro  ---- por si uno otra llamada nececito el id de la llamada 
+                -- listado de participantes* 
+         */
+        //notificar por firebase  * No se si exista ---
+        //notificar por socket    * notificar por id360
+        //registramos llamadas de quien a quien 
+        //regresar a quien realizo el request el estatus de a quien si notifico y a quien no , credenciales opentok
+        JSONObject respuesta = respuesta(false, "Usuarios no notificados");
+
+        //Solicitamos las credenciales
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(json_string);
+
+//        JSONObject credenciales = (JSONObject) parser.parse(ControladorPOST.GeneraCredenciales("{}"));
+        JSONObject credenciales = (JSONObject) json.get("credenciales");
+        //Solicitamos el ticket al controlador
+        json.put("fecha", Query.getFecha());
+        json.put("hora", Query.getHora());
+//        JSONObject ticket_settings = new JSONObject();
+//        ticket_settings.put("origen", config.getPATH() + Dependencia);
+//        ticket_settings.put("fecha", json.get("fecha"));
+//        ticket_settings.put("hora", json.get("hora"));
+//        JSONObject JsonTicket = request.POST(config.getURL_CONTROLADOR() + "API/ticket", ticket_settings);
+        //Obtenemos el perfil de quien llama
+        JSONObject perfil360 = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", json);
+        //
+
+        JSONArray ids = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfiles/array", (JSONArray) json.get("to_id360"));
+
+        JSONObject data = new JSONObject();
+        JSONObject RegistroLlamada = new JSONObject();
+        data.put("credenciales", credenciales);
+        data.put("emisor", json.get("id360"));
+//        data.put("receptores", ids);
+        RegistroLlamada.put("fecha", json.get("fecha"));
+        RegistroLlamada.put("hora", json.get("hora"));
+        RegistroLlamada.put("idLlamada", json.get("idLlamada"));
+        data.put("registro_llamada", RegistroLlamada);
+
+        data.put("llamada_multiplataforma", true);
+
+        JSONObject data_moviles = (JSONObject) data.clone();
+        data.put("emisor", perfil360);
+        data.put("receptores", ids);
+
+        boolean notificados = false;
+
+        for (int i = 0; i < ids.size(); i++) {
+            JSONObject id360 = (JSONObject) ids.get(i);
+            System.out.println(id360);
+            boolean id360_notificado = SocketEndPoint.EnviarNotificacio_id360(data, id360.get("id360").toString());
+            if (id360_notificado) {
+                notificados = true;
+            }
+            //Notificar por socket al id360
+            id360.put("web", id360_notificado);
+            //Notificar por firebase a id360
+            data_moviles.put("firebasekey", id360.get("firebasekey"));
+            System.out.println("Data para moviles ------->");
+            System.out.println(data_moviles);
+            id360.put("movil", request.POST(config.getURL_CONTROLADOR() + "API/moviles/notification/llamada_multiplataforma", data_moviles));
+        }
+
+        if (notificados) {
+            respuesta = respuesta(true, "Notificación enviada");
+        }
+        respuesta.putAll(data);
+        return respuesta;
+    }
+
     @RequestMapping(value = "/API/notificacion/llamada360", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject notificacion_llamada360(@RequestBody String json_string) throws IOException, ParseException {
