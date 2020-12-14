@@ -23,7 +23,8 @@
       <%@include file="../plantilla/modal_menu.jsp" %>
       <aside>
             <div class="row col-12 m-0 p-0" id="toggle">
-                  <div id="titulomenu"> Participantes </div>
+                  <div><i class="fas fa-ellipsis-v"></i></div>
+                  <span id="titulomenu"> Participantes </span>
                   <input type="button" id="directorio" class="AddNewGroup der">
             </div>
             <div id="sidebar">
@@ -183,7 +184,7 @@
 
 
                         <div class="col  p-0" id="side1">
-                              <div class="col-12 p-0 pl-1 side1Map">
+                              <div class="col-12 p-0 pl-1 side1Map d-none">
                                     <div class="card-headertitle text-center" >
                                           MAPA
                                     </div> 
@@ -198,7 +199,7 @@
                                           </div>
                                     </div>
                               </div>
-                              <div class="col-12 p-0 pl-1 pt-0 side1Chat">
+                              <div class="col-12 p-0 pl-1 pt-0 side1Chat h-100">
 
                                     <form id="chat" class="h-100">
                                           <div class="card" id="textchat" >
