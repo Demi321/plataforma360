@@ -1348,13 +1348,13 @@ public class Empresas360 {
     public JSONArray video_empleados(@RequestBody JSONObject json) throws IOException, ParseException {
         System.out.println("video_empleados");
 
-        String query = "SELECT * FROM registro_jornada_laboral WHERE tipo_usuario='" + json.get("tipo_usuario") + "' AND tipo_servicio='" + json.get("tipo_servicio") + "' AND tipo_area='" + json.get("tipo_area") + "' AND activo =1";
+        String query = "SELECT * FROM registro_jornada_laboral WHERE  date_created='"+Query.getFecha()+"' AND tipo_usuario='" + json.get("tipo_usuario") + "' AND tipo_servicio='" + json.get("tipo_servicio") + "' AND tipo_area='" + json.get("tipo_area") + "' AND activo =1";
         if (json.get("tipo_usuario").toString().equals("0") && json.get("tipo_servicio").toString().equals("0") && json.get("tipo_area").toString().equals("0")) {
-            query = "SELECT * FROM registro_jornada_laboral WHERE activo =1;";
+            query = "SELECT * FROM registro_jornada_laboral WHERE  date_created='"+Query.getFecha()+"' AND activo =1; ";
         } else if (json.get("tipo_servicio").toString().equals("0") && json.get("tipo_area").toString().equals("0")) {
-            query = "SELECT * FROM registro_jornada_laboral WHERE tipo_usuario='" + json.get("tipo_usuario") + "' AND activo =1;";
+            query = "SELECT * FROM registro_jornada_laboral WHERE  date_created='"+Query.getFecha()+"' AND tipo_usuario='" + json.get("tipo_usuario") + "' AND activo =1;";
         } else if (json.get("tipo_area").toString().equals("0")) {
-            query = "SELECT * FROM registro_jornada_laboral WHERE tipo_usuario='" + json.get("tipo_usuario") + "' AND tipo_servicio='" + json.get("tipo_servicio") + "' AND activo =1;";
+            query = "SELECT * FROM registro_jornada_laboral WHERE  date_created='"+Query.getFecha()+"' AND tipo_usuario='" + json.get("tipo_usuario") + "' AND tipo_servicio='" + json.get("tipo_servicio") + "' AND activo =1;";
         }
 
         JSONArray empleados = Query.execute(query);
@@ -1362,7 +1362,7 @@ public class Empresas360 {
         //Revisar los videos activo por el id de socket 
         for (int i = 0; i < empleados.size(); i++) {
             JSONObject empleado = (JSONObject) empleados.get(i);
-            if (!SocketEndPoint.revisar_socket(empleado.get("id_socket").toString())) {
+            if (!SocketEndPoint.revisar_socket(empleado.get("id_socket").toString())&&false) {//Deshabilitar temporalmente por desarrollo 
                 Query.update("UPDATE registro_jornada_laboral set activo=0 WHERE id='" + empleado.get("id") + "';");
                 empleados.remove(empleado);
                 i--;
