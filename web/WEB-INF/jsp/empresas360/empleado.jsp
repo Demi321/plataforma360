@@ -23,12 +23,15 @@
 <body>
     <%@include file="../plantilla/header.jsp" %>
     <%@include file="../plantilla/modal_menu.jsp" %>
+    
     <aside>
-        <div class="row col-12 m-0 p-0" id="toggle">Plataforma 360</div>
+        <div class="row col-12 m-0 p-0" id="toggle">
+            <div><i class="fas fa-ellipsis-v"></i></div><span>Plataforma 360</span></div>
         <div id="sidebar" class="p-2">
 
         </div>
     </aside>
+    
     <section>
         <div class="h-100 row col-12 m-0 p-0" id="contenidoSection">
 

@@ -22,7 +22,11 @@
     <spring:url value="${pathRecursos}/js/Empresa/home_empresas.js" var="home_empresaJS" />
 
 </head>
-
+        <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+        <div id="video_drag_header" style="padding: 10px; cursor: move; z-index: 10; background-color: #495057; color: #fff;"><h7 class="nombre_completo"></h7></div>
+        <div id="conectado_jornada_laboral" style="min-height: 150px; min-width: 150px; width: 100%; height: 100%; overflow: hidden;" >
+        </div>
+    </div>
 <body>
     
     <%@include file="../plantilla/header.jsp" %>
