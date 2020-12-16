@@ -1270,7 +1270,8 @@ public class ControladorPOST {
                 System.out.println(institucion.get("url"));
                 System.out.println(config.getPATH() + "" + Dependencia);
                 if (institucion.get("url").toString().equals(config.getPATH() + "" + Dependencia + "/")) {
-
+                    System.out.println("Tipo de servicio--->");
+                    System.out.println(institucion.get("tipo_servicio"));
                     //tipo de servicio nulo 
                     if (institucion.get("tipo_servicio") != null) {
                         //sea usuario maestro 
@@ -1280,8 +1281,10 @@ public class ControladorPOST {
                             institucion.put("direccion", "Cuenta maestra.");
 
                         } else if (institucion.get("tipo_servicio").toString().equals("0")) {
-
-                            if (config.getPATH().contains("empresas360")) {
+                            System.out.println("tipo_servicio es 0");
+                            System.out.println(config.getPATH());
+                            System.out.println(config.getPATH().contains("empresas"));
+                            if (config.getPATH().contains("empresas")) {
                                 //Buscar la informacion de la empresa a la que pertenece 
                                 institucion.put("nombre_institucion", "Cuenta Administrativa");
                                 institucion.put("logotipo", null);
@@ -1297,7 +1300,7 @@ public class ControladorPOST {
                         } else {
                             //los demas  
 
-                            if (config.getPATH().contains("empresas360")) {
+                            if (config.getPATH().contains("empresas")) {
                                 //Buscar la informacion de la empresa a la que pertenece 
                                 institucion.put("nombre_institucion", null);
                                 institucion.put("logotipo", null);
@@ -1353,6 +1356,8 @@ public class ControladorPOST {
 
         }
         //return usuario.toString();
+        System.out.println("usuarios----->");
+        System.out.println(usuario);
         return usuario;
     }
 

@@ -290,7 +290,7 @@
                 $("#registrar_modulo").removeClass("d-none");
                 modulo_sos();
             }
-            if (window.location.host.toString().includes("empresas360")) {
+            if (window.location.host.toString().includes("empresas")) {
                 //cargar modulo de empresa.
                 RequestPOST("/API/cuenta360/access_token", {
                     "token": sesion_cookie.token,
@@ -299,7 +299,7 @@
                     if (response.success) {
                         //access_token
 //                                    let hostdir = window.location.protocol + "//" + window.location.host+ "/" + DEPENDENCIA + "/";
-                        let path = "https://seguridadsanitaria360.ml/lineamientos/API/cuenta360/access_token/" + sesion_cookie.idUsuario_Sys + "/" + response.access_token;
+                        let path = "https://seguridadsanitaria.claro360.com/lineamientos/API/cuenta360/access_token/" + sesion_cookie.idUsuario_Sys + "/" + response.access_token;
 //            window.location.replace(path);
                         window.location.replace(path);
                     }
