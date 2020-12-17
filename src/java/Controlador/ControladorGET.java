@@ -536,6 +536,67 @@ public class ControladorGET {
 
         return "empresas360/llamada_entrante";
     }
+    
+    @RequestMapping(value = "/Llamada/{id_llamada}/{apikey}/{sesion}/{token}/{id360}/{access_token}", method = RequestMethod.GET)
+    public String llamada_multiplataforma_access_token(
+            Model model,
+            /*@RequestParam("id") String id,*/
+            @PathVariable("id_llamada") String id_llamada, 
+            @PathVariable("apikey") String apikey, 
+            @PathVariable("sesion") String sesion, 
+            @PathVariable("token") String token,
+            @PathVariable("id360") String id360,
+            @PathVariable("access_token") String access_token
+            ) throws IOException, ParseException {
+
+        System.out.println("llamada_multiplataforma:");
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+        } else {
+            System.out.println("Proyecto no inicializado");
+            return "plantilla/sinInicializar";
+        }
+        
+        
+        JSONObject credenciales = new JSONObject();
+        credenciales.put("apikey", apikey);
+        credenciales.put("sesion", sesion);
+        credenciales.put("token", token);
+
+        JSONObject registroLlamada = new JSONObject();
+        registroLlamada.put("fecha", Query.getFecha());
+        registroLlamada.put("hora", Query.getHora());
+        registroLlamada.put("idLlamada", id_llamada);
+//        registroLlamada.put("idOperador", idSys);
+//        registroLlamada.put("modo", modo);
+//        registroLlamada.put("participantes", jsonIntegrantes);
+
+       
+
+    
+        JSONObject Notificacion = new JSONObject();
+        Notificacion.put("registro_llamada", registroLlamada);
+        Notificacion.put("credenciales", credenciales);
+       
+
+        model.addAttribute("data", Notificacion.toString().replace("\"", "&quot;"));
+        
+        
+        JSONObject json = new JSONObject();
+        json.put("access_token", access_token);
+        json.put("id360", id360);
+        JSONObject usuario = Request.request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/validate/access_token", json);
+        if ((boolean) usuario.get("success")) {
+            ControladorPOST cp = new ControladorPOST();
+            usuario = cp.data_login(usuario);
+            model.addAttribute("cuenta360", usuario.toString().replace("\"", "&quot;"));
+        }
+
+        return "empresas360/llamada_entrante";
+    }
 
     @RequestMapping(value = "/MonitoreoLlamadas", method = RequestMethod.GET)
     public String MonitoreoLlamadas(HttpServletRequest sesion, Model model) {
