@@ -1866,6 +1866,48 @@ public class Empresas360 {
         }
         return respuesta;
     }
+    
+    /*
+    SERVICIO WEB PARA ELIMINAR MENSAJE DE UN CHAT
+    */
+    @RequestMapping(value = "/API/empresas360/eliminaMensaje", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_eliminaMensaje(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Eliminando mensaje...");
+        JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
+        
+        String query = "UPDATE chat_empresarial SET activo = 0 WHERE id = " + json.get("idMensaje");
+        
+        if (Query.update(query)) {
+            respuesta = respuesta(true,"Mensaje eliminado");
+            respuesta.putAll(json);
+            //Enviar por socket
+            json.put("eliminacion_mensaje_chat_empresarial", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+        
+        return respuesta;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/eliminaMensajeParaMi", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_eliminaMensajeMio(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Eliminando mensaje...");
+        JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
+        
+        String query = "UPDATE chat_empresarial SET activo_id360 = 0 WHERE id = " + json.get("idMensaje");
+        
+        if (Query.update(query)) {
+            respuesta = respuesta(true,"Mensaje eliminado");
+            respuesta.putAll(json);
+            //Enviar por socket
+            json.put("eliminacion_mensaje_chat_empresarial_mio", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+        
+        return respuesta;
+    }
+    
     /*@RequestMapping(value = "/API/empresas360/backup_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray empresas360_backup_chat(@RequestBody JSONObject json){
