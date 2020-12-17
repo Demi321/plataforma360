@@ -1876,7 +1876,7 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
         
-        String query = "UPDATE chat_empresarial SET activo = 0 WHERE id = " + json.get("idMensaje");
+        String query = "UPDATE chat_empresarial SET activo = 0, activo_id360 = 0 WHERE id = " + json.get("idMensaje");
         
         if (Query.update(query)) {
             respuesta = respuesta(true,"Mensaje eliminado");
