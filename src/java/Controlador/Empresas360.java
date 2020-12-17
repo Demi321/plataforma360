@@ -1930,7 +1930,6 @@ public class Empresas360 {
                 "			group_concat( id order by date_created desc ) idsMessages" +
                 "		from chat_empresarial p" +
                 "		where (p.id360 = '"+json.get("id360")+"' OR p.to_id360 = '"+json.get("id360")+"')" +
-                "               and (activo != 0)" +
                 "		group by id360Chat" +
                 "  ) messages" +
                 "  ON replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','') = messages.id360Chat" +
