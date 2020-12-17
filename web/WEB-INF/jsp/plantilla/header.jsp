@@ -91,10 +91,10 @@
             </li
         </ul>-->
        <div id="servicios_grid" class="row col-12 m-0 p-2">
-            <div class="col-4 p-2">
+<!--            <div class="col-4 p-2">
                 <div class="service"></div>
                 <div class="service_label">Service Label</div>
-            </div>
+            </div>-->
         </div>
 
         <div class="expanded_menu">

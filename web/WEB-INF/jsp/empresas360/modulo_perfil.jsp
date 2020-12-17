@@ -24,7 +24,7 @@
                         <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="nombre_sucursal" placeholder="Sucursal" /></div>
                     </div>
                     <div class="form-group row m-0 p-2">
-                        <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Área:</label>
+                        <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">�rea:</label>
                         <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="nombre_area" placeholder="Área" /></div>
                     </div>
                     <div class="form-group row m-0 p-2">
@@ -32,7 +32,7 @@
                         <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="puesto" placeholder="Puesto" /></div>
                     </div>
                     <div class="form-group row m-0 p-2">
-                        <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Número de empleado:</label>
+                        <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">N�mero de empleado:</label>
                         <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="num_empleado" placeholder="Número de empleado" /></div>
                     </div>
                     <div class="form-group row m-0 p-2">
