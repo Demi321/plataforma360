@@ -1857,11 +1857,13 @@ public class Empresas360 {
     public JSONObject empresas360_chat(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         System.out.println("empresas360_chat");
         JSONObject respuesta = respuesta(false, "Informacion no almacenada");
-        if (Query.insert(Query.createQueryInsertWithColumns("chat_empresarial", json))>=0) {
+        int resultSend = Query.insert(Query.createQueryInsertWithColumns("chat_empresarial", json));
+        if (resultSend>=0) {
             respuesta = respuesta(true,"Mensaje guardado");
             respuesta.putAll(json);
             //Enviar por socket
             json.put("chat_empresarial", true);
+            json.put("id",resultSend);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
         return respuesta;
