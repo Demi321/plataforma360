@@ -1876,7 +1876,7 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
         
-        String query = "UPDATE chat_empresarial SET activo = 0, activo_id360 = 0 WHERE id = " + json.get("idMensaje");
+        String query = "UPDATE chat_empresarial SET activo = 0, activo_id360 = 0, activo_to_id360 = 0 WHERE id = " + json.get("idMensaje");
         
         if (Query.update(query)) {
             respuesta = respuesta(true,"Mensaje eliminado");
@@ -1901,21 +1901,12 @@ public class Empresas360 {
             respuesta = respuesta(true,"Mensaje eliminado");
             respuesta.putAll(json);
             //Enviar por socket
-            json.put("eliminacion_mensaje_chat_empresarial_mio", true);
-            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+            //json.put("eliminacion_mensaje_chat_empresarial_mio", true);
+            //SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
         
         return respuesta;
     }
-    
-    /*@RequestMapping(value = "/API/empresas360/backup_chat", method = RequestMethod.POST)
-    @ResponseBody
-    public JSONArray empresas360_backup_chat(@RequestBody JSONObject json){
-        System.out.println("empresas360_backup_chat");
-        String query = "SELECT * FROM chat_empresarial WHERE (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
-        JSONArray ids = Query.execute(query);
-        return ids;
-    }*/
     
     /*
     NUEVO BACKUP, SOLO RECUPERAR 20 MENSAJES DE CADA USUARIO CON CHAT
@@ -1937,6 +1928,7 @@ public class Empresas360 {
                 "			group_concat( id order by date_created desc ) idsMessages" +
                 "		from chat_empresarial p" +
                 "		where (p.id360 = '"+json.get("id360")+"' OR p.to_id360 = '"+json.get("id360")+"')" +
+                "               and (activo != 0)" +
                 "		group by id360Chat" +
                 "  ) messages" +
                 "  ON replace(concat(p.id360,p.to_id360),'"+json.get("id360")+"','') = messages.id360Chat" +
