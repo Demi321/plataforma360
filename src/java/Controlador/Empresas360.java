@@ -56,6 +56,11 @@ public class Empresas360 {
 
     private static String Dependencia = config.getDEPENDENCIA();
 
+   
+    public static void setDependencia(String Dependencia) {
+        Empresas360.Dependencia = Dependencia;
+    }
+
     private JSONObject respuesta(boolean success, String message) {
         JSONObject respuesta = new JSONObject();
         respuesta.put("success", success);
