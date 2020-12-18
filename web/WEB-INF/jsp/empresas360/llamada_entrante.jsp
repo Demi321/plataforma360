@@ -24,9 +24,14 @@
         var institucion_seleccionada = null;
         if ($("#cuenta360").length) {
             if ($("#cuenta360").val() !== "") {
+                
+                //eliminar sesion 
+                
                 sesion_cookie = JSON.parse($("#cuenta360").val());
+                console.log(sesion_cookie);
+                //alert(sesion_cookie);
                 if (sesion_cookie.plataforma360.length > 0) {
-                    document.getElementById("span").style.display = "none";
+                    //document.getElementById("span").style.display = "none";
                     let plataforma360 = false;
                     let count_plataforma360 = 0;
                     let frst_id = null;
@@ -46,6 +51,9 @@
                 }
             }
         }
+
+
+
 
 function continuar_institucion_seleccionada() {
     console.log("continuar");
@@ -139,8 +147,45 @@ function continuar_institucion_seleccionada() {
     delete sesion_cookie.telemedicina_medico;
     delete sesion_cookie.telemedicina_paciente;
     delete sesion_cookie.videovigilancia;
-    setCookie("username_v3.1_" + DEPENDENCIA, JSON.stringify(sesion_cookie), 1000);
+    console.log("colocando cookie");
+    setCookie("username_v3.1_" + "plataforma360", JSON.stringify(sesion_cookie), 1000);
 
+}
+
+
+function setCookie(cname, cvalue, exdays) {
+    cvalue = window.btoa(cvalue);
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+    var user = JSON.parse(getCookie("username_v3.1_" + "plataforma360"));
+    console.log(user);
+    //alert(user);
+    if (user !== "") {
+//        var hostdir = window.location.protocol + "//" + window.location.host;
+//        var path = hostdir + "/" + "plataforma360" + "/" + user.modulo_principal;
+//        window.location.replace(path);
+    } else {
+        window.location.reload();
+    }
+    //window.location.reload();
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return window.atob(c.substring(name.length, c.length));
+        }
+    }
+    return "";
 }
     </script>
     <%@include file="../plantilla/header.jsp" %>

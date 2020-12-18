@@ -75,6 +75,10 @@ public class ControladorPOST {
 
     private static String Dependencia = config.getDEPENDENCIA();
 
+    public static void setDependencia(String Dependencia) {
+        ControladorPOST.Dependencia = Dependencia;
+    }
+
     private JSONObject respuesta(boolean success, String message) {
         JSONObject respuesta = new JSONObject();
         respuesta.put("success", success);

@@ -588,6 +588,7 @@ public class ControladorGET {
         JSONObject json = new JSONObject();
         json.put("access_token", access_token);
         json.put("id360", id360);
+        json.put("force_validation", true);
         JSONObject usuario = Request.request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/validate/access_token", json);
         if ((boolean) usuario.get("success")) {
             ControladorPOST cp = new ControladorPOST();

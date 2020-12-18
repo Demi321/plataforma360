@@ -30,6 +30,10 @@ public class ControladorReferenciasHospitalarias {
 
     private static String Dependencia = config.getDEPENDENCIA();
 
+    public static void setDependencia(String Dependencia) {
+        ControladorReferenciasHospitalarias.Dependencia = Dependencia;
+    }
+
     private JSONObject respuesta(boolean success, String message) {
         JSONObject respuesta = new JSONObject();
         respuesta.put("success", success);

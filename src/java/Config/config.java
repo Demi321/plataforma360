@@ -83,6 +83,9 @@ public class config {
                             break;
                       }
                 }
+                Controlador.ControladorPOST.setDependencia(DEPENDENCIA);
+                Controlador.ControladorReferenciasHospitalarias.setDependencia(DEPENDENCIA);
+                Controlador.Empresas360.setDependencia(DEPENDENCIA);
                 
                 return true;
             }else{
