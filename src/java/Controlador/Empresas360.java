@@ -1972,6 +1972,7 @@ public class Empresas360 {
                 + "			group_concat( id order by date_created desc ) idsMessages"
                 + "		from chat_empresarial p"
                 + "		where (p.id360 = '" + json.get("id360") + "' OR p.to_id360 = '" + json.get("id360") + "')"
+                + "             and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
                 + "		group by id360Chat"
                 + "  ) messages"
                 + "  ON replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') = messages.id360Chat"
@@ -2006,6 +2007,7 @@ public class Empresas360 {
         String query = "select count(*) as cantidadMensajes, "
                 + "replace(concat(id360,to_id360),'" + json.get("id360") + "','') as id360chat "
                 + "from chat_empresarial where (id360 = '" + json.get("id360") + "' OR to_id360 = '" + json.get("id360") + "') "
+                + "and ( if(id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
                 + "group by id360chat;";
         JSONArray ids = Query.execute(query);
         return ids;
