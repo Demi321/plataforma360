@@ -1885,6 +1885,7 @@ public class Empresas360 {
             //Enviar por socket
             json.put("chat_empresarial", true);
             json.put("id", resultSend);
+            respuesta.put("id", resultSend);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
         return respuesta;
