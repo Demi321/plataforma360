@@ -100,7 +100,8 @@
         <%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
         <%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
         <%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> 
+        
     </div>
 
 </body>
