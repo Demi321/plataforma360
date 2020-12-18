@@ -1900,7 +1900,7 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
 
-        String query = "UPDATE chat_empresarial SET activo = 0, activo_id360 = 0, activo_to_id360 = 0 WHERE id = " + json.get("idMensaje");
+        String query = "UPDATE chat_empresarial SET activo = 0 WHERE id = " + json.get("idMensaje");
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje eliminado");
@@ -1919,14 +1919,34 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
 
-        String query = "UPDATE chat_empresarial SET activo_id360 = 0 WHERE id = " + json.get("idMensaje");
+        String query = "update	chat_empresarial " +
+                       "set 	activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360)," +
+                       "	activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360)" +
+                       "where 	id = "+ json.get("idMensaje");
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje eliminado");
             respuesta.putAll(json);
-            //Enviar por socket
-            //json.put("eliminacion_mensaje_chat_empresarial_mio", true);
-            //SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+
+        return respuesta;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/vaciarChat", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_vaciarChat(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Eliminando chat...");
+        JSONObject respuesta = respuesta(false, "Chat no eliminado");
+
+        String query = "update	chat_empresarial " +
+                       "set 	activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360), " +
+                       "	activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360) " +
+                       "where	(id360 = '"+ json.get("idUser") +"' and to_id360 = '"+ json.get("idContact") +"') " +
+                       "or	(id360 = '"+ json.get("idContact") +"' and to_id360 = '"+ json.get("idUser") +"');";
+
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Chat eliminado");
+            respuesta.putAll(json);
         }
 
         return respuesta;
