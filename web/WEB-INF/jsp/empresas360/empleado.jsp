@@ -25,7 +25,7 @@
     <%@include file="../plantilla/modal_menu.jsp" %>
     
     <aside>
-        <div class="row col-12 m-0 p-0" id="toggle">
+        <div class="" id="toggle">
             <div><i class="fas fa-ellipsis-v"></i></div><span>Plataforma 360</span></div>
         <div id="sidebar" class="p-2">
 

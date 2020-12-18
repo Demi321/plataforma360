@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/moises/Dropbox/v8.5/plataforma360/src/java/Controlador/Empresas360.java</file>
-            <file>file:/home/moises/Dropbox/v8.5/plataforma360/src/java/Controlador/ControladorPOST.java</file>
+            <file>file:/home/moises/git_workspace/develop/plataforma360/src/java/Controlador/ControladorGET.java</file>
+            <file>file:/home/moises/git_workspace/develop/plataforma360/src/java/Config/config.java</file>
+            <file>file:/home/moises/git_workspace/develop/plataforma360/src/java/Config/Revision.java</file>
+            <file>file:/home/moises/git_workspace/develop/plataforma360/src/java/Recursos/InicializacionLocal.java</file>
         </group>
     </open-files>
 </project-private>
