@@ -29,7 +29,7 @@
                 
                 sesion_cookie = JSON.parse($("#cuenta360").val());
                 console.log(sesion_cookie);
-                alert(sesion_cookie);
+                //alert(sesion_cookie);
                 if (sesion_cookie.plataforma360.length > 0) {
                     //document.getElementById("span").style.display = "none";
                     let plataforma360 = false;
@@ -162,7 +162,7 @@ function setCookie(cname, cvalue, exdays) {
 
     var user = JSON.parse(getCookie("username_v3.1_" + "plataforma360"));
     console.log(user);
-    alert(user);
+    //alert(user);
     if (user !== "") {
 //        var hostdir = window.location.protocol + "//" + window.location.host;
 //        var path = hostdir + "/" + "plataforma360" + "/" + user.modulo_principal;
