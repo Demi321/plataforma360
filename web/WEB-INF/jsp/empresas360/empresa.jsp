@@ -68,6 +68,19 @@
         <%--<%@include file="../empresas360/modulos_empresa/modulo_registrar_activar.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_mi_empresa.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_registrar_sucursal.jsp" %>
+        
+        <!--*****************************Modulos de seguridada Sanitaria*******************************-->
+         <%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_lineamientos_estatales.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
+        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> 
+        <!--*****************************Modulos de seguridada Sanitaria*******************************-->
+        
+        
+        
         <%--<%@include file="../empresas360/modulos_empresa/modulo_registrar_mi_sucursal.jsp" %>--%>
         <%--<%@include file="../empresas360/modulos_empresa/modulo_registrar_mi_institucion.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_mis_sucursales.jsp" %>
@@ -96,15 +109,6 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe5gzNGneaWmWLzmZs6bFKNlwdCTr0Odk&callback=initMaps&callback=initMaps&libraries=places&v=weekly">
     </script>
     
-    <div class="d-none">
-        <%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_lineamientos_estatales.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> 
-        
-    </div>
+    
 
 </body>
