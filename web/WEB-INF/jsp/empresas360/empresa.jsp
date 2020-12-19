@@ -97,6 +97,7 @@
         <%@include file="../empresas360/modulo_agenda.jsp" %>
         <%@include file="../administracion_finanzas/modulo_dashboard.jsp" %>
         <%@include file="../administracion_finanzas/modulo_balanza.jsp" %>
+        <%@include file="../empresas360/modulo_geodatos.jsp" %>
 
     </section>
 
