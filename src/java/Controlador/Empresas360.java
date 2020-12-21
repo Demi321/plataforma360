@@ -1885,6 +1885,7 @@ public class Empresas360 {
             //Enviar por socket
             json.put("chat_empresarial", true);
             json.put("id", resultSend);
+            respuesta.put("id", resultSend);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
         return respuesta;
@@ -1899,7 +1900,7 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
 
-        String query = "UPDATE chat_empresarial SET activo = 0, activo_id360 = 0, activo_to_id360 = 0 WHERE id = " + json.get("idMensaje");
+        String query = "UPDATE chat_empresarial SET activo = 0 WHERE id = " + json.get("idMensaje");
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje eliminado");
@@ -1918,14 +1919,34 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
 
-        String query = "UPDATE chat_empresarial SET activo_id360 = 0 WHERE id = " + json.get("idMensaje");
+        String query = "update	chat_empresarial " +
+                       "set 	activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360)," +
+                       "	activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360)" +
+                       "where 	id = "+ json.get("idMensaje");
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje eliminado");
             respuesta.putAll(json);
-            //Enviar por socket
-            //json.put("eliminacion_mensaje_chat_empresarial_mio", true);
-            //SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+
+        return respuesta;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/vaciarChat", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_vaciarChat(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Eliminando chat...");
+        JSONObject respuesta = respuesta(false, "Chat no eliminado");
+
+        String query = "update	chat_empresarial " +
+                       "set 	activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360), " +
+                       "	activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360) " +
+                       "where	(id360 = '"+ json.get("idUser") +"' and to_id360 = '"+ json.get("idContact") +"') " +
+                       "or	(id360 = '"+ json.get("idContact") +"' and to_id360 = '"+ json.get("idUser") +"');";
+
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Chat eliminado");
+            respuesta.putAll(json);
         }
 
         return respuesta;
@@ -1951,6 +1972,7 @@ public class Empresas360 {
                 + "			group_concat( id order by date_created desc ) idsMessages"
                 + "		from chat_empresarial p"
                 + "		where (p.id360 = '" + json.get("id360") + "' OR p.to_id360 = '" + json.get("id360") + "')"
+                + "             and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
                 + "		group by id360Chat"
                 + "  ) messages"
                 + "  ON replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') = messages.id360Chat"
@@ -1985,6 +2007,7 @@ public class Empresas360 {
         String query = "select count(*) as cantidadMensajes, "
                 + "replace(concat(id360,to_id360),'" + json.get("id360") + "','') as id360chat "
                 + "from chat_empresarial where (id360 = '" + json.get("id360") + "' OR to_id360 = '" + json.get("id360") + "') "
+                + "and ( if(id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
                 + "group by id360chat;";
         JSONArray ids = Query.execute(query);
         return ids;
