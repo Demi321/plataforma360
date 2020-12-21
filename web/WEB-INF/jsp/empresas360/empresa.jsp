@@ -92,7 +92,7 @@
         <%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>
         <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
-        <%@include file="../empresas360/modulo_notas.jsp" %>
+        <%--<%@include file="../empresas360/modulo_notas.jsp" %>--%>
         <%@include file="../empresas360/modulo_recordatorios.jsp" %>
         <%@include file="../empresas360/modulo_agenda.jsp" %>
         <%@include file="../administracion_finanzas/modulo_dashboard.jsp" %>
