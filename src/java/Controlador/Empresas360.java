@@ -1873,6 +1873,10 @@ public class Empresas360 {
         return respuesta;
     }
 
+    /*
+    SERVICIO PARA ENVIAR UN NUEVO MENSAJE DE CUALQUIER TIPO A TRAVES
+    DEL CHAT EMPRESARIAL
+    */
     @RequestMapping(value = "/API/empresas360/chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_chat(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
@@ -1892,6 +1896,10 @@ public class Empresas360 {
         return respuesta;
     }
     
+    /*
+    SERVICIO PARA AGREGAR UN NUEVO GRUPO DE CHAT EMPRESARIAL, ESTE RECIBE LOS DATOS 
+    DEL GRUPO Y LOS PARTICIPANTES QUE SE AGREGARAN
+    */
     @RequestMapping(value = "/API/empresas360/crear_grupo", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_crear_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
@@ -1932,6 +1940,9 @@ public class Empresas360 {
         return respuesta;
     }
     
+    /*
+    SERVICIO PARA EDITAR UN MENSAJE QUE HAYA SIDO ENVIADO ANTERIORME
+    */
     @RequestMapping(value = "/API/empresas360/edita_mensaje", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_edita_mensaje(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
@@ -1956,9 +1967,12 @@ public class Empresas360 {
         
     }
     
-    @RequestMapping(value = "/API/empresas360/agrega_participante_grupo_chat_empresarial", method = RequestMethod.POST)
+    /*
+    SERVICIO PARA AGREGAR PARTICIPANTES DENTRO DE UN GRUPO DE CHAT EMPRESARIAL
+    */
+    @RequestMapping(value = "/API/empresas360/agrega_participantes_grupo_chat_empresarial", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject empresas360_agrega_participante_grupo_chat_empresarial(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+    public JSONObject empresas360_agrega_participantes_grupo_chat_empresarial(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         System.out.println("Agregando participante");
         
         JSONObject respuesta = respuesta(false, "Participante no añadido");
@@ -2002,6 +2016,10 @@ public class Empresas360 {
         return respuesta;
     }
 
+    /*
+    SERVICIO PARA ELIMINAR UN MENSAJE SOLO PARA EL USUARIO QUE LO DESA BORRAR
+    (NO AMBAS PARTES)
+    */
     @RequestMapping(value = "/API/empresas360/eliminaMensajeParaMi", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_eliminaMensajeMio(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
@@ -2021,6 +2039,9 @@ public class Empresas360 {
         return respuesta;
     }
     
+    /*
+    SERVICIO PARA ELIMINAR TODO EL HISTORIAL DE MENSAJES QUE SE TENGA CON UN CONTACTO
+    */
     @RequestMapping(value = "/API/empresas360/vaciarChat", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_vaciarChat(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
@@ -2076,6 +2097,9 @@ public class Empresas360 {
         return ids;
     }
 
+    /*
+    SERVICIO PARA CARGAR MAS MENSAJES DE UNA CONVERSACION ESPECIFICA
+    */
     @RequestMapping(value = "/API/empresas360/carga_mas_mensajes_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray carga_mas_mensajes_chat(@RequestBody JSONObject json) {
@@ -2089,6 +2113,9 @@ public class Empresas360 {
         return ids;
     }
 
+    /*
+    SERVICIO PARA CARGAR UN ARRAY DE USUARIOS CON LOS QUE SE TIENE PREVIA CONVERSACION
+    */
     @RequestMapping(value = "/API/empresas360/usuarios_con_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray usuarios_con_chat(@RequestBody JSONObject json) {
