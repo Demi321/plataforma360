@@ -1892,6 +1892,46 @@ public class Empresas360 {
         return respuesta;
     }
     
+    @RequestMapping(value = "/API/empresas360/crear_grupo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_crear_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Creando grupo");
+        JSONObject respuesta = respuesta(false, "Grupo no creado");
+        int resultCreated = Query.insert(Query.createQueryInsertWithColumns("grupos_chat_empresarial", json));
+        if (resultCreated >= 0) {
+            respuesta = respuesta(true, "Grupo creado");
+            respuesta.putAll(json);
+            respuesta.put("id_grupo", resultCreated);
+            
+            /*
+            AGREGAR PARTICIPANTES
+            */
+            String [] participantes = (String[]) json.get("participantes");
+            String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante) VALUES ";
+            int cantidadParticipantes = participantes.length;
+            for( int x = 0; x < (cantidadParticipantes-1); x++ ){
+                queryInsert = queryInsert.concat( " ("+resultCreated+", "+participantes[x]+") , " );
+            }
+            
+            queryInsert = queryInsert.substring(-2);
+            
+            int insert = Query.insert(queryInsert);
+            if( insert >= 0 ){
+                
+                //Enviar por socket
+                json.put("grupo_chat_empresarial", true);
+                json.put("id_grupo", resultCreated);
+                
+                for( int x = 0; x < (cantidadParticipantes-1); x++ ){
+                    SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
+                }
+                
+            }
+            
+        }
+        return respuesta;
+    }
+    
     @RequestMapping(value = "/API/empresas360/edita_mensaje", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_edita_mensaje(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
