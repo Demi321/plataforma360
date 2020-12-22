@@ -1931,7 +1931,7 @@ public class Empresas360 {
                 json.put("id_grupo", resultCreated);
                 
                 for( int x = 0; x < (cantidadParticipantes-1); x++ ){
-                    SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
+                    SocketEndPoint.EnviarNotificacio_id360(json, participantes[x]);
                 }
                 
             }
@@ -1975,19 +1975,28 @@ public class Empresas360 {
     public JSONObject empresas360_agrega_participantes_grupo_chat_empresarial(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         System.out.println("Agregando participante");
         
-        JSONObject respuesta = respuesta(false, "Participante no añadido");
+        JSONObject respuesta = respuesta(false, "Participantes no añadidos");
 
-        String query = "update chat_empresarial set "
-                + "message = '" + json.get("mensaje") + "', "
-                + "date_updated = '" + json.get("fecha_edita") + "', "
-                + "time_updated = '" + json.get("hora_edita") + "' where id = 1";
+        String [] participantes = (String[]) json.get("participantes");
+        String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante, rol) VALUES ";
+        int cantidadParticipantes = participantes.length;
+        for( int x = 0; x < (cantidadParticipantes-1); x++ ){
+            queryInsert = queryInsert.concat( " ("+json.get("idGrupo")+", "+participantes[x]+", 0) , " );
+        }
 
-        if (Query.update(query)) {
-            respuesta = respuesta(true, "Mensaje editado");
-            respuesta.putAll(json);
+        queryInsert = queryInsert.substring(-2);
+
+        int insert = Query.insert(queryInsert);
+        if( insert >= 0 ){
+
             //Enviar por socket
-            json.put("edicion_mensaje_chat_empresarial", true);
-            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+            json.put("grupo_chat_empresarial", true);
+            json.put("id_grupo", json.get("idGrupo"));
+
+            for( int x = 0; x < (cantidadParticipantes-1); x++ ){
+                SocketEndPoint.EnviarNotificacio_id360(json, participantes[x]);
+            }
+
         }
 
         return respuesta;
