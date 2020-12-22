@@ -1886,9 +1886,34 @@ public class Empresas360 {
             json.put("chat_empresarial", true);
             json.put("id", resultSend);
             respuesta.put("id", resultSend);
-            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+            boolean EnviarNotificacio_id360 = SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
+            respuesta.put("enviadoPorSocket",EnviarNotificacio_id360);
         }
         return respuesta;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/edita_mensaje", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_edita_mensaje(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Editando mensaje");
+        
+        JSONObject respuesta = respuesta(false, "Mensaje no editado");
+
+        String query = "update chat_empresarial set "
+                + "message = '" + json.get("mensaje") + "', "
+                + "date_updated = '" + json.get("fecha_edita") + "', "
+                + "time_updated = '" + json.get("hora_edita") + "' where id = 1";
+
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Mensaje editado");
+            respuesta.putAll(json);
+            //Enviar por socket
+            json.put("edicion_mensaje_chat_empresarial", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+
+        return respuesta;
+        
     }
 
     /*
