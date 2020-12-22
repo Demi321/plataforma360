@@ -1907,10 +1907,10 @@ public class Empresas360 {
             AGREGAR PARTICIPANTES
             */
             String [] participantes = (String[]) json.get("participantes");
-            String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante) VALUES ";
+            String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante, rol) VALUES ("+resultCreated+", "+json.get("idUser")+", 1) , ";
             int cantidadParticipantes = participantes.length;
             for( int x = 0; x < (cantidadParticipantes-1); x++ ){
-                queryInsert = queryInsert.concat( " ("+resultCreated+", "+participantes[x]+") , " );
+                queryInsert = queryInsert.concat( " ("+resultCreated+", "+participantes[x]+", 0) , " );
             }
             
             queryInsert = queryInsert.substring(-2);
@@ -1938,6 +1938,30 @@ public class Empresas360 {
         System.out.println("Editando mensaje");
         
         JSONObject respuesta = respuesta(false, "Mensaje no editado");
+
+        String query = "update chat_empresarial set "
+                + "message = '" + json.get("mensaje") + "', "
+                + "date_updated = '" + json.get("fecha_edita") + "', "
+                + "time_updated = '" + json.get("hora_edita") + "' where id = 1";
+
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Mensaje editado");
+            respuesta.putAll(json);
+            //Enviar por socket
+            json.put("edicion_mensaje_chat_empresarial", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+
+        return respuesta;
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/agrega_participante_grupo_chat_empresarial", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_agrega_participante_grupo_chat_empresarial(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Agregando participante");
+        
+        JSONObject respuesta = respuesta(false, "Participante no añadido");
 
         String query = "update chat_empresarial set "
                 + "message = '" + json.get("mensaje") + "', "
