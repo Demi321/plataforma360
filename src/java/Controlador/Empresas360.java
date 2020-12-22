@@ -1872,6 +1872,21 @@ public class Empresas360 {
         respuesta.put("empleados", empleados);
         return respuesta;
     }
+    
+    /*
+    OBTENER CONFIGURACION DEL USUARIO (TONOS, ETC)
+    */
+    @RequestMapping(value = "/API/empresas360/configuracionUsuario", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray empresas360_configuracionUsuario(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Obteniendo configuracion...");
+        JSONObject respuesta = respuesta(false, "Sin configuración");
+
+        String query = "SELECT * FROM config_user WHERE id360 = " + json.get("id360");
+
+        JSONArray config = Query.execute(query);
+        return config;
+    }
 
     /*
     SERVICIO PARA ENVIAR UN NUEVO MENSAJE DE CUALQUIER TIPO A TRAVES
@@ -1978,10 +1993,10 @@ public class Empresas360 {
         JSONObject respuesta = respuesta(false, "Participantes no añadidos");
 
         String [] participantes = (String[]) json.get("participantes");
-        String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante, rol) VALUES ";
+        String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante) VALUES ";
         int cantidadParticipantes = participantes.length;
         for( int x = 0; x < (cantidadParticipantes-1); x++ ){
-            queryInsert = queryInsert.concat( " ("+json.get("idGrupo")+", "+participantes[x]+", 0) , " );
+            queryInsert = queryInsert.concat( " ("+json.get("idGrupo")+", "+participantes[x]+") , " );
         }
 
         queryInsert = queryInsert.substring(-2);
