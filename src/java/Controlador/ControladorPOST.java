@@ -1245,7 +1245,7 @@ public class ControladorPOST {
         usuario.put("usuario", cuenta360.get("usuario"));
         usuario.put("correo", cuenta360.get("correo"));
         usuario.put("token", cuenta360.get("token"));
-
+        
         ///////---Estaticos
         usuario.put("tipo", "Administrador");
 
@@ -1298,6 +1298,9 @@ public class ControladorPOST {
                                 if (empresa != null) {
                                     institucion.put("logotipo", empresa.get("logotipo"));
                                     institucion.put("direccion", empresa.get("tipo_usuario"));
+                                    if (institucion.get("gc").toString().equals("1")) {
+                                        institucion.put("logotipo_empresa", empresa.get("logotipo_empresa"));
+                                    }
                                 }
                             }
 
@@ -1314,6 +1317,9 @@ public class ControladorPOST {
                                 if (empresa != null) {
                                     institucion.put("logotipo", empresa.get("logotipo"));
                                     institucion.put("nombre_institucion", empresa.get("tipo_usuario"));
+                                    if (institucion.get("gc").toString().equals("1")) {
+                                        institucion.put("logotipo_empresa", empresa.get("logotipo_empresa"));
+                                    }
                                 }
 
                                 query = "SELECT * FROM servicios_usuario WHERE id='" + institucion.get("tipo_servicio") + "';";

@@ -69,7 +69,10 @@
                                     <li id="pcollapseServicios" class="serviciosMH" data-toggle="collapse" href="#collapseServicios" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         Mis Servicios
                                     </li>
-                                    <ul class="menu-servicios collapse" id="collapseServicios"></ul>
+                                    <div id="collapseServicios" style="overflow-x: scroll;display: flex;">
+                                        
+                                    </div>
+                                    <ul class="menu-servicios collapse d-none" id="collapseServicios2"></ul>
                                     <ul class="navbar-nav" style="width: 100%;">
                                         <li class="nav-item " id="modulo22">
                                             <a class="nav active" href="EstadisticosCCB">Resumen Estadístico</a>
