@@ -90,6 +90,7 @@
         <%@include file="../empresas360/modulos_empresa/modulo_plantillas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_jornadas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>
+        <%@include file="../empresas360/modulo_envio_archivos.jsp" %>
         <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
         <%--<%@include file="../empresas360/modulo_notas.jsp" %>--%>
