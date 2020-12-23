@@ -1246,6 +1246,14 @@ public class ControladorPOST {
         usuario.put("correo", cuenta360.get("correo"));
         usuario.put("token", cuenta360.get("token"));
         
+        /*Cambios fernando*/
+        JSONArray app360 = (JSONArray) usuario.get("perfil");
+        JSONObject app = (JSONObject) app360.get(0);
+        if (app.get("img") != null) {
+            usuario.put("img_perfil", app.get("img"));
+        }
+        /******************/
+        
         ///////---Estaticos
         usuario.put("tipo", "Administrador");
 
