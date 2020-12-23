@@ -1887,6 +1887,41 @@ public class Empresas360 {
         JSONArray config = Query.execute(query);
         return config;
     }
+    
+    /*
+    CAMBIAR LA CONFIGURACION DEL USUARIO (TONOS, ETC)
+    */
+    @RequestMapping(value = "/API/empresas360/cambiaConfiguracionUsuario", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_cambiaConfiguracionUsuario(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Cambiando ´onfiguracion...");
+        
+        JSONObject respuesta = respuesta(true, "Informacion almacenada");
+        
+        String query = "UPDATE config_user SET "
+                + "tono_mensaje = '"+json.get("tono_mensaje")+"', "
+                + "tono_llamada = '"+json.get("tono_llamada")+"' "
+                + "WHERE id360 = '"+json.get("id360")+"' ";
+        
+        boolean update = Query.update(query);
+        respuesta.put("update", update);
+
+        if(!update){
+            
+            String queryI = "INSERT INTO config_user (id360, tono_mensaje, tono_llamada) VALUES ("
+                    + "'" + json.get("id360") + "' , '" + json.get("tono_mensaje") + "' , '" + json.get("tono_llamada") + "'"
+                    + ")";
+            
+            int insert = Query.insert(queryI);
+            respuesta.put("insert", insert);
+            respuesta.put("queryinsert", queryI);
+            
+        }
+        
+        respuesta.put("queryupdate", query);
+        
+        return respuesta;
+    }
 
     /*
     SERVICIO PARA ENVIAR UN NUEVO MENSAJE DE CUALQUIER TIPO A TRAVES
