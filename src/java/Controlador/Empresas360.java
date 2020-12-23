@@ -1880,7 +1880,6 @@ public class Empresas360 {
     @ResponseBody
     public JSONArray empresas360_configuracionUsuario(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         System.out.println("Obteniendo configuracion...");
-        JSONObject respuesta = respuesta(false, "Sin configuración");
 
         String query = "SELECT * FROM config_user WHERE id360 = " + json.get("id360");
 
@@ -1900,7 +1899,9 @@ public class Empresas360 {
         
         String query = "UPDATE config_user SET "
                 + "tono_mensaje = '"+json.get("tono_mensaje")+"', "
-                + "tono_llamada = '"+json.get("tono_llamada")+"' "
+                + "tono_llamada = '"+json.get("tono_llamada")+"', "
+                + "date_updated = '"+json.get("fecha")+"', "
+                + "time_updated = '"+json.get("hora")+"' "
                 + "WHERE id360 = '"+json.get("id360")+"' ";
         
         boolean update = Query.update(query);
@@ -1908,8 +1909,8 @@ public class Empresas360 {
 
         if(!update){
             
-            String queryI = "INSERT INTO config_user (id360, tono_mensaje, tono_llamada) VALUES ("
-                    + "'" + json.get("id360") + "' , '" + json.get("tono_mensaje") + "' , '" + json.get("tono_llamada") + "'"
+            String queryI = "INSERT INTO config_user (id360, tono_mensaje, tono_llamada, date_created, time_created) VALUES ("
+                    + "'" + json.get("id360") + "' , '" + json.get("tono_mensaje") + "' , '" + json.get("tono_llamada") + "' , '" + json.get("fecha") + "' , '" + json.get("hora") + "'"
                     + ")";
             
             int insert = Query.insert(queryI);
