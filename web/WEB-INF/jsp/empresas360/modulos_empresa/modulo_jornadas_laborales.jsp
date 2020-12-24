@@ -83,6 +83,37 @@ MóDULO DE REPORTING
 
         </form>
     </div>
+    
+    <div id="inicio-reporte-jornadas-laborales" class="w-100">
+        <div class="text-center">
+            <h5 style="font-size: 2rem;">Empleados en jornada laboral</h5>
+        </div>
+        <div class="empleados-en-jornada-laboral">
+                
+            <div class="sin-empleados-en-jornada d-none">
+                <div class="alert alert-info" role="alert">Aún no se encuentra ningún empleado en jornada laboral!</div>
+            </div>
+
+            <div class="con-empleados-en-jornada d-none">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Empleado</th>
+                            <th>Sucursal</th>
+                            <th>Área</th>
+                            <th>Hora de entrada</th>
+                            <th>Enviar mensaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-empleados-en-jornada">
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
 
     <div id="resultado-busqueda-jornadas" class="d-none col-12">
 
