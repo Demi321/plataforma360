@@ -8053,5 +8053,17 @@ public class ControladorPOST {
         System.out.println("get_perfil360");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", json);
     }
+    @RequestMapping(value = "/API/cuenta360/logout_sesion", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject logout(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println("logout");
+        return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/logout_sesion", json);
+    }
+    @RequestMapping(value = "/API/cuenta360/check_login", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject check_login(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println("logout");
+        return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/check_login", json);
+    }
  
 }
