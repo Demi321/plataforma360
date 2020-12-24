@@ -2380,12 +2380,12 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa/obtener_ids/en_jornada", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray jornadas_laborales_empresa_obtener_ids_en_jornada(@RequestBody JSONObject json) {
-        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created" +
+        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created " +
                         "FROM directorio d " +
                         "LEFT JOIN tipos_usuarios tu ON d.tipo_usuario = tu.id " +
                         "LEFT JOIN servicios_usuario su ON d.tipo_servicio = su.id " +
                         "LEFT JOIN tipo_area ta ON d.tipo_area = ta.id " +
-                        "LEFT JOIN registro_jornada_laboral rjl ON rjl.id_usuario = d.idUsuario AND rjl.date_created = date(NOW())" +
+                        "LEFT JOIN registro_jornada_laboral rjl ON rjl.id_usuario = d.idUsuario AND rjl.date_created = date(NOW()) " +
                         "WHERE d.activo = 1 AND rjl.time_created IS NOT NULL AND d.tipo_usuario = "+ json.get("id");
         return Query.execute(query);
     }

@@ -90,13 +90,13 @@ MóDULO DE REPORTING
         </div>
         <div class="empleados-en-jornada-laboral">
                 
-            <div class="sin-empleados-en-jornada d-none">
+            <div id="sin-empleados-en-jornada" class="d-none">
                 <div class="alert alert-info" role="alert">Aún no se encuentra ningún empleado en jornada laboral!</div>
             </div>
 
-            <div class="con-empleados-en-jornada d-none">
+            <div id="con-empleados-en-jornada" class="d-none">
 
-                <table class="table table-hover">
+                <table id="tabla-empleados-en-jornada" class="table table-hover">
                     <thead>
                         <tr>
                             <th>Empleado</th>
