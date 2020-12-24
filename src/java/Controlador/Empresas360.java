@@ -2103,10 +2103,10 @@ public class Empresas360 {
         System.out.println("Eliminando mensaje...");
         JSONObject respuesta = respuesta(false, "Mensaje no eliminado");
 
-        String query = "update	chat_empresarial " +
-                       "set 	activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360)," +
-                       "	activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360)" +
-                       "where 	id = "+ json.get("idMensaje");
+        String query = "update  chat_empresarial " +
+                       "set     activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360)," +
+                       "    activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360)" +
+                       "where   id = "+ json.get("idMensaje");
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje eliminado");
@@ -2125,11 +2125,11 @@ public class Empresas360 {
         System.out.println("Eliminando chat...");
         JSONObject respuesta = respuesta(false, "Chat no eliminado");
 
-        String query = "update	chat_empresarial " +
-                       "set 	activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360), " +
-                       "	activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360) " +
-                       "where	(id360 = '"+ json.get("idUser") +"' and to_id360 = '"+ json.get("idContact") +"') " +
-                       "or	(id360 = '"+ json.get("idContact") +"' and to_id360 = '"+ json.get("idUser") +"');";
+        String query = "update  chat_empresarial " +
+                       "set     activo_id360 = if(id360 = '"+ json.get("idUser") +"', 0, activo_id360), " +
+                       "    activo_to_id360 = if(to_id360 = '"+ json.get("idUser") +"', 0, activo_to_id360) " +
+                       "where   (id360 = '"+ json.get("idUser") +"' and to_id360 = '"+ json.get("idContact") +"') " +
+                       "or  (id360 = '"+ json.get("idContact") +"' and to_id360 = '"+ json.get("idUser") +"');";
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Chat eliminado");
@@ -2148,24 +2148,24 @@ public class Empresas360 {
 
         String query = ""
                 + "SELECT"
-                + "	replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') as id360Chat,"
-                + "	p.*"
+                + " replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') as id360Chat,"
+                + " p.*"
                 + "FROM"
                 + "  chat_empresarial p"
                 + "  "
                 + "  INNER JOIN ("
-                + "		select"
-                + "			replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') as id360Chat,"
-                + "			group_concat( id order by date_created desc ) idsMessages"
-                + "		from chat_empresarial p"
-                + "		where (p.id360 = '" + json.get("id360") + "' OR p.to_id360 = '" + json.get("id360") + "')"
+                + "     select"
+                + "         replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') as id360Chat,"
+                + "         group_concat( id order by date_created desc ) idsMessages"
+                + "     from chat_empresarial p"
+                + "     where (p.id360 = '" + json.get("id360") + "' OR p.to_id360 = '" + json.get("id360") + "')"
                 + "             and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
-                + "		group by id360Chat"
+                + "     group by id360Chat"
                 + "  ) messages"
                 + "  ON replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') = messages.id360Chat"
                 + "  "
                 + "  AND FIND_IN_SET(id, idsMessages) BETWEEN 1 AND 20"
-                + "		"
+                + "     "
                 + "ORDER BY"
                 + "       p.id;";
 
