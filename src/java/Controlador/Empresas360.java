@@ -1948,6 +1948,20 @@ public class Empresas360 {
     }
     
     /*
+    OBTENER CONFIGURACION DEL USUARIO (TONOS, ETC)
+    */
+    @RequestMapping(value = "/API/empresas360/infoGrupo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray empresas360_infoGrupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        System.out.println("Obteniendo configuracion...");
+
+        String query = "SELECT * FROM grupos_chat_empresarial where id_grupo = " + json.get("id_grupo");
+
+        JSONArray config = Query.execute(query);
+        return config;
+    }
+    
+    /*
     SERVICIO PARA AGREGAR UN NUEVO GRUPO DE CHAT EMPRESARIAL, ESTE RECIBE LOS DATOS 
     DEL GRUPO Y LOS PARTICIPANTES QUE SE AGREGARAN
     */
