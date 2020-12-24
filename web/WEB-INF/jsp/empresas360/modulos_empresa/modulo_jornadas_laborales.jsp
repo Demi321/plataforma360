@@ -10,8 +10,11 @@ MÛDULO DE REPORTING
 ========================================
 -->
 <div class="row col-12 m-0 p-2 pt-3" id="base_modulo_ReporteJornadasLaborales">
-    <h3>Reporte de jornadas laborales</h3>
+    <h3 style="display: block; width: 100%; text-align: left">Reporte de jornadas laborales</h3>
 
+    <div style="display: block; margin-bottom: 20px; width: 100%;">
+        <button class="btn btn-dark d-none" id="verEmpleadosEnJornada">Empleados en Jornada Laboral</button>
+    </div>
 
     <div class="col-12 text-center">
         <form id="form_historia_jornadas" class="row mb-4">
@@ -86,7 +89,7 @@ MÛDULO DE REPORTING
     
     <div id="inicio-reporte-jornadas-laborales" class="w-100">
         <div class="text-center">
-            <h5 style="font-size: 2rem;">Empleados en jornada laboral</h5>
+            <h6 style="font-size: 2rem;">Empleados en jornada laboral</h6>
         </div>
         <div class="empleados-en-jornada-laboral">
                 
@@ -97,8 +100,8 @@ MÛDULO DE REPORTING
             <div id="con-empleados-en-jornada" class="d-none">
 
                 <table id="tabla-empleados-en-jornada" class="table table-hover">
-                    <thead>
-                        <tr>
+                    <thead class="thead-light">
+                        <tr class="text-center">
                             <th>Empleado</th>
                             <th>Sucursal</th>
                             <th>¡rea</th>
