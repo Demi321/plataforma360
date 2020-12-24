@@ -1953,10 +1953,17 @@ public class Empresas360 {
     */
     @RequestMapping(value = "/API/empresas360/crear_grupo", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject empresas360_crear_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+    public JSONObject empresas360_crear_grupo(@RequestBody String string) throws IOException, ParseException, java.text.ParseException {
         System.out.println("Creando grupo");
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
         JSONObject respuesta = respuesta(false, "Grupo no creado");
-        int resultCreated = Query.insert(Query.createQueryInsertWithColumns("grupos_chat_empresarial", json));
+        
+        String query = "INSERT INTO grupos_chat_empresarial (nombre_grupo, icono_grupo, descripcion_grupo, date_created, time_created, idUser) VALUES ("
+                + " '" + json.get("nombre_grupo") + "' , '" + json.get("icono_grupo") + "' , '" + json.get("descripcion_grupo") + "' , '" + json.get("fecha") + "' , '" + json.get("hora") + "' , '" + json.get("idUser") + "' "
+                + ")";
+        
+        int resultCreated = Query.insert(query);
         if (resultCreated >= 0) {
             respuesta = respuesta(true, "Grupo creado");
             respuesta.putAll(json);
@@ -1965,14 +1972,19 @@ public class Empresas360 {
             /*
             AGREGAR PARTICIPANTES
             */
-            String [] participantes = (String[]) json.get("participantes");
-            String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante, rol) VALUES ("+resultCreated+", "+json.get("idUser")+", 1) , ";
-            int cantidadParticipantes = participantes.length;
-            for( int x = 0; x < (cantidadParticipantes-1); x++ ){
-                queryInsert = queryInsert.concat( " ("+resultCreated+", "+participantes[x]+", 0) , " );
+            JSONArray participantes = (JSONArray) json.get("participantes");
+            System.out.println(json);
+            System.out.println(participantes);
+            String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participantes, rol) VALUES ("+resultCreated+", '"+json.get("idUser")+"', 1) , ";
+            int cantidadParticipantes = participantes.size();
+            
+            for( int x = 0; x < cantidadParticipantes; x++ ){
+                queryInsert += " ("+resultCreated+", '"+participantes.get(x)+"', 0) , ";
+                System.out.println(queryInsert);
             }
             
-            queryInsert = queryInsert.substring(-2);
+            System.out.println("Query final" + queryInsert);
+            queryInsert = queryInsert.substring(0, queryInsert.length()-2);
             
             int insert = Query.insert(queryInsert);
             if( insert >= 0 ){
@@ -1982,12 +1994,17 @@ public class Empresas360 {
                 json.put("id_grupo", resultCreated);
                 
                 for( int x = 0; x < (cantidadParticipantes-1); x++ ){
-                    SocketEndPoint.EnviarNotificacio_id360(json, participantes[x]);
+                    SocketEndPoint.EnviarNotificacio_id360(json, participantes.get(x).toString());
                 }
                 
+                respuesta.put("participantesAgregados", true);
+                
+            }else{
+                respuesta.put("participantesAgregados", false);
             }
             
         }
+        respuesta.put("query",query);
         return respuesta;
     }
     
