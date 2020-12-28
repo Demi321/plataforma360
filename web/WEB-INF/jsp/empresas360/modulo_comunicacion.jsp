@@ -4,6 +4,60 @@
     Author     : moises
 --%>
 
+<div id="contenedor-sonidos-notificaciones">
+    
+    <audio muted id="sonido1">
+        <spring:url value="${pathRecursos}/Audio/sonido1.mp3" var="sonido1" />
+        <source src="${sonido1}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido2">
+        <spring:url value="${pathRecursos}/Audio/sonido2.mp3" var="sonido2" />
+        <source src="${sonido2}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido3">
+        <spring:url value="${pathRecursos}/Audio/sonido3.mp3" var="sonido3" />
+        <source src="${sonido3}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido4">
+        <spring:url value="${pathRecursos}/Audio/sonido4.mp3" var="sonido4" />
+        <source src="${sonido4}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido5">
+        <spring:url value="${pathRecursos}/Audio/sonido5.mp3" var="sonido5" />
+        <source src="${sonido5}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido6">
+        <spring:url value="${pathRecursos}/Audio/sonido6.mp3" var="sonido6" />
+        <source src="${sonido6}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido7">
+        <spring:url value="${pathRecursos}/Audio/sonido7.mp3" var="sonido7" />
+        <source src="${sonido7}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido8">
+        <spring:url value="${pathRecursos}/Audio/sonido8.mp3" var="sonido8" />
+        <source src="${sonido8}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido9">
+        <spring:url value="${pathRecursos}/Audio/sonido9.mp3" var="sonido9" />
+        <source src="${sonido9}" type="audio/mpeg">
+    </audio>
+    
+    <audio muted id="sonido10">
+        <spring:url value="${pathRecursos}/Audio/sonido10.mp3" var="sonido10" />
+        <source src="${sonido10}" type="audio/mpeg">
+    </audio>
+    
+</div>
+
 <div class="row col-12 m-0 p-0 h-100" id="base_modulo_Comunicación">
 
     <div class="col-8 d-none" >
@@ -112,9 +166,9 @@
 
                 </ul>
             </div>
-            <div id="bottom-bar" class="d-none">
-                <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
-                <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+            <div id="bottom-bar">
+                <button id="addGroup"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span> Nuevo Grupo</span></button>
+                <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span> Configuración</span></button>
             </div>
         </div>
         

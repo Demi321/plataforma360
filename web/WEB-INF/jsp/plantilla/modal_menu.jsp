@@ -36,14 +36,14 @@
                 <div class="position-relative h-100 w-100">
                     <!--Contenido-->
                     <address class="cerrarSesion w-100 h-100" id="ventanaSesion">
-<!--                        <div class="titulo d-flex justify-content-center align-items-center">
-                            <h5 class="titulo-seg">Bienvenido</h5>
-                            <div style="position: absolute; left: 15px; font-size: 23px; cursor: pointer;" title="Cambiar cuenta" id="cambiar_cuenta">
-                                <i class="fas fa-exchange-alt"></i>
-                            </div>
-                        </div>-->
+                        <!--                        <div class="titulo d-flex justify-content-center align-items-center">
+                                                    <h5 class="titulo-seg">Bienvenido</h5>
+                                                    <div style="position: absolute; left: 15px; font-size: 23px; cursor: pointer;" title="Cambiar cuenta" id="cambiar_cuenta">
+                                                        <i class="fas fa-exchange-alt"></i>
+                                                    </div>
+                                                </div>-->
 
-                         <div class="perfil" id="menu_info_perfil">
+                        <div class="perfil" id="menu_info_perfil">
                             <div class="foto">
                                 <div class="foto-perfil d-flex justify-content-center align-content-center" id="img_perfil_user"><i class="fas fa-user-circle" style="font-size: 7rem; margin-top: 20px;"></i></div>
                             </div>
@@ -66,10 +66,13 @@
                             <nav>
                                 <ul class="menu-sesion text-left">
                                     <li id="link_registro"><a href="https://claro360.com/plataforma360/registro">Registrate</a></li>
-                                    <li id="pcollapseServicios" class="serviciosMH" data-toggle="collapse" href="#collapseServicios" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    <li id="pcollapseServicios" class="serviciosMH" data-toggle="collapse" href="#collapseServicios" role="button" aria-expanded="false" aria-controls="collapseServicios">
                                         Mis Servicios
                                     </li>
-                                    <ul class="menu-servicios collapse" id="collapseServicios"></ul>
+                                    <div id="collapseServicios" style="overflow: auto;white-space: nowrap;">
+
+                                    </div>
+                                    <ul class="menu-servicios collapse d-none" id="collapseServicios2"></ul>
                                     <ul class="navbar-nav" style="width: 100%;">
                                         <li class="nav-item " id="modulo22">
                                             <a class="nav active" href="EstadisticosCCB">Resumen Estadístico</a>
@@ -255,10 +258,26 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row col-12 m-0 p-0 mt-5">
+                                    <div class="col-12 d-flex justify-content-center align-items-center mt-5" style="
+                                         ">
+                                        <img src="http://empresas.claro360.com/p360_v4_dev/images/base/Claro360_Logo_Header_negro.png" style="
+                                             ">
+                                    </div>
+                                    <div class="col-12 m-0 mt-4">
+                                        <label class="w-100 text-center text-secondary" style="
+                                               font-size: 14px;
+                                               ">¿Tienes alguna duda? Escríbenos</label>
+                                        <label class="w-100 text-center text-secondary font-weight-bold" style="
+                                               font-size: 13px;
+                                               ">contacto@claro360.com</label>
+                                    </div>
+                                </div>
                             </nav>
                         </div>
 
-                        <div id="menu_cerrar_sesion" class="btn-sesion d-none">
+                        <div id="menu_cerrar_sesion" class="btn-sesion d-none" style="height: 10%;">
                             <a href="#" class="boton-sesion">Cerrar Sesión</a>
                         </div>
                     </address>
