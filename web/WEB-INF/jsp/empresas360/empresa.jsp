@@ -70,13 +70,13 @@
         <%@include file="../empresas360/modulos_empresa/modulo_registrar_sucursal.jsp" %>
         
         <!--*****************************Modulos de seguridada Sanitaria*******************************-->
-         <%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_lineamientos_estatales.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> 
+        <%--<%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_lineamientos_estatales.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> --%>
         <!--*****************************Modulos de seguridada Sanitaria*******************************-->
         
         
@@ -93,12 +93,12 @@
         <%@include file="../empresas360/modulo_envio_archivos.jsp" %>
         <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
-        <%--<%@include file="../empresas360/modulo_notas.jsp" %>--%>
-        <%@include file="../empresas360/modulo_recordatorios.jsp" %>
-        <%@include file="../empresas360/modulo_agenda.jsp" %>
-        <%@include file="../administracion_finanzas/modulo_dashboard.jsp" %>
-        <%@include file="../administracion_finanzas/modulo_balanza.jsp" %>
-        <%@include file="../empresas360/modulo_geodatos.jsp" %>
+        <%--<%@include file="../empresas360/modulo_notas.jsp" %>--%>--%>
+        <%--<%@include file="../empresas360/modulo_recordatorios.jsp" %>--%>
+        <%--<%@include file="../empresas360/modulo_agenda.jsp" %>--%>
+        <%--<%@include file="../administracion_finanzas/modulo_dashboard.jsp" %>--%>
+        <%--<%@include file="../administracion_finanzas/modulo_balanza.jsp" %>--%>
+        <%--<%@include file="../empresas360/modulo_geodatos.jsp" %>--%>
 
     </section>
 
