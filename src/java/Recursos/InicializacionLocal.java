@@ -39,7 +39,7 @@ public class InicializacionLocal {
         personalizacion.put("logo2", null);
         personalizacion.put("logo1", null);
         personalizacion.put("logo1pdf", "https://empresas.claro360.com/p360_v4/Img/Logos/911.png");
-        personalizacion.put("proyecto", "plataforma360_dev");
+        personalizacion.put("proyecto", "plataforma360");
         personalizacion.put("iconMap", null);
         personalizacion.put("t2pdf", "Empresas360");
         personalizacion.put("alias_proyecto", "Empresas360");
@@ -74,7 +74,7 @@ public class InicializacionLocal {
         server.put("bd", "empresas");
         server.put("dep_base", false);
         server.put("lista_blanca", false);
-        server.put("recursos", "https://empresas.claro360.com/p360_v4_dev");
+        server.put("recursos", "https://empresas.claro360.com/p360_v4");
         server.put("validar_ip", false);
 
         json.put("inferiores", inferiores);
