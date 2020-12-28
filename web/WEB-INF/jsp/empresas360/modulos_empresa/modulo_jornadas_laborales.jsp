@@ -106,6 +106,7 @@ MÛDULO DE REPORTING
                             <th>Sucursal</th>
                             <th>¡rea</th>
                             <th>Hora de entrada</th>
+                            <th>Hora inicio jornada</th>
                             <th>Enviar mensaje</th>
                         </tr>
                     </thead>
