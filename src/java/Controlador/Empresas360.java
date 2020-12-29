@@ -729,7 +729,23 @@ public class Empresas360 {
             JSONObject where = new JSONObject();
             where.put("id", id);
             where.put("id_usuario", json.get("id_usuario"));
-            if (Query.update(Query.createQueryUpdateAND("registro_jornada_laboral", json, where))) {
+            
+            String queryUpdate = "UPDATE registro_jornada_laboral " +
+                                    "SET tipo_area='"+ json.get("tipo_area") +"', " +
+                                    "apikey='"+ json.get("apikey") +"', " +
+                                    "id_usuario='" + json.get("id_usuario") + "', " +
+                                    "id_socket='"+ json.get("id_socket") +"', " +
+                                    "tipo_usuario='"+json.get("tipo_usuario")+"', " +
+                                    "tipo_servicio='"+json.get("tipo_servicio")+"', " +
+                                    "idsesion='"+json.get("idsesion")+"', " +
+                                    "token='"+json.get("token")+"', " +
+                                    "activo='1', " +
+                                    "date_updated='"+json.get("fecha")+"', " +
+                                    "time_updated='"+json.get("hora")+"', " +
+                                    "contadorDesconexion = contadorDesconexion+ " + json.get("aumentaConexion") +
+                                    " WHERE ( id_usuario='" + json.get("id_usuario") + "' AND id='"+id+"' );";
+            
+            if (Query.update(queryUpdate)) {
                 respuesta = respuesta(true, "Reporte actualizado correctamente");
             }
 
@@ -2380,7 +2396,7 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa/obtener_ids/en_jornada", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray jornadas_laborales_empresa_obtener_ids_en_jornada(@RequestBody JSONObject json) {
-        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created " +
+        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created, rjl.time_updated, rjl.contadorDesconexion as desconexiones " +
                         "FROM directorio d " +
                         "LEFT JOIN tipos_usuarios tu ON d.tipo_usuario = tu.id " +
                         "LEFT JOIN servicios_usuario su ON d.tipo_servicio = su.id " +

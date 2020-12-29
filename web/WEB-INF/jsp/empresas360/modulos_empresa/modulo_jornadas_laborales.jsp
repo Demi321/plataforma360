@@ -89,15 +89,41 @@ MóDULO DE REPORTING
     
     <div id="inicio-reporte-jornadas-laborales" class="w-100">
         <div class="text-center">
-            <h6 style="font-size: 2rem;">Empleados en jornada laboral</h6>
+            <h6 style="font-size: 2rem; color: #343a40">Empleados en jornada laboral</h6>
         </div>
+        
+        <div class="row mt-4 mb-5 text-center">
+            <div class="col-md-6 col-sm-12">
+                <button type="button" class="btn btn-success mr-2">
+                    En tiempo <span class="badge badge-light" id="contadorEnTiempo"></span>
+                </button>
+                <button type="button" class="btn btn-warning mr-2">
+                    Retardo <span class="badge badge-light" id="contadorRetardo"></span>
+                </button>
+                <button type="button" class="btn btn-danger">
+                    Tarde <span class="badge badge-light" id="contadorTarde"></span>
+                </button>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <button type="button" class="btn btn-success mr-2">
+                    En tiempo <span class="badge badge-light" id="contadorEnTiempoSalida"></span>
+                </button>
+                <button type="button" class="btn btn-warning mr-2">
+                    Antes <span class="badge badge-light" id="contadorRetardoSalida"></span>
+                </button>
+                <button type="button" class="btn btn-danger">
+                    Muy antes <span class="badge badge-light" id="contadorTardeSalida"></span>
+                </button>
+            </div>
+        </div>
+        
         <div class="empleados-en-jornada-laboral">
                 
             <div id="sin-empleados-en-jornada" class="d-none">
                 <div class="alert alert-info" role="alert">Aún no se encuentra ningún empleado en jornada laboral!</div>
             </div>
 
-            <div id="con-empleados-en-jornada" class="d-none">
+            <div style="max-height: 350px; overflow-y: auto" id="con-empleados-en-jornada" class="d-none">
 
                 <table id="tabla-empleados-en-jornada" class="table table-hover">
                     <thead class="thead-light">
@@ -107,7 +133,11 @@ MóDULO DE REPORTING
                             <th>Área</th>
                             <th>Hora de entrada</th>
                             <th>Hora inicio jornada</th>
+                            <th>Hora de salida</th>
+                            <th>Hora salida jornada</th>
+                            <th>Cantidad desconexiones</th>
                             <th>Enviar mensaje</th>
+                            <th>Iniciar llamada</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo-tabla-empleados-en-jornada">
