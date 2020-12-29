@@ -36,7 +36,7 @@
 <div class="Paneblock" id="block"></div>
 <header class="segmento">
     <div class="cabezera header1">
-        <a href="#" id="logo360"></a>
+        <a href="#" id="logo360" class="d-none"></a>
         <div class="col-12 row m-0 p-0 headEmpresa">
             <div class="col-6 txtlogo" id="txtlogoE">
                 <h6 id="nomEmpresa"></h6>

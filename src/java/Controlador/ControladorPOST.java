@@ -1245,7 +1245,15 @@ public class ControladorPOST {
         usuario.put("usuario", cuenta360.get("usuario"));
         usuario.put("correo", cuenta360.get("correo"));
         usuario.put("token", cuenta360.get("token"));
-
+        
+        /*Cambios fernando*/
+        JSONArray app360 = (JSONArray) usuario.get("perfil");
+        JSONObject app = (JSONObject) app360.get(0);
+        if (app.get("img") != null) {
+            usuario.put("img_perfil", app.get("img"));
+        }
+        /******************/
+        
         ///////---Estaticos
         usuario.put("tipo", "Administrador");
 
@@ -1298,6 +1306,9 @@ public class ControladorPOST {
                                 if (empresa != null) {
                                     institucion.put("logotipo", empresa.get("logotipo"));
                                     institucion.put("direccion", empresa.get("tipo_usuario"));
+                                    if (institucion.get("gc").toString().equals("1")) {
+                                        institucion.put("logotipo_empresa", empresa.get("logotipo_empresa"));
+                                    }
                                 }
                             }
 
@@ -1314,6 +1325,9 @@ public class ControladorPOST {
                                 if (empresa != null) {
                                     institucion.put("logotipo", empresa.get("logotipo"));
                                     institucion.put("nombre_institucion", empresa.get("tipo_usuario"));
+                                    if (institucion.get("gc").toString().equals("1")) {
+                                        institucion.put("logotipo_empresa", empresa.get("logotipo_empresa"));
+                                    }
                                 }
 
                                 query = "SELECT * FROM servicios_usuario WHERE id='" + institucion.get("tipo_servicio") + "';";
@@ -8038,6 +8052,18 @@ public class ControladorPOST {
     public JSONObject get_perfil360(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println("get_perfil360");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", json);
+    }
+    @RequestMapping(value = "/API/cuenta360/logout_sesion", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject logout(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println("logout");
+        return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/logout_sesion", json);
+    }
+    @RequestMapping(value = "/API/cuenta360/check_login", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject check_login(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println("logout");
+        return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/check_login", json);
     }
  
 }

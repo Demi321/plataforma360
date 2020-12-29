@@ -40,7 +40,7 @@
     </div>
 
     <aside>
-        <div class="row col-12 m-0 p-0" id="toggle">
+        <div class="" id="toggle">
             <div><i class="fas fa-ellipsis-v"></i></div><span>Plataforma 360</span></div>
         <div id="sidebar" class="p-2">
 
@@ -68,6 +68,19 @@
         <%--<%@include file="../empresas360/modulos_empresa/modulo_registrar_activar.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_mi_empresa.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_registrar_sucursal.jsp" %>
+        
+        <!--*****************************Modulos de seguridada Sanitaria*******************************-->
+        <%--<%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_lineamientos_estatales.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> --%>
+        <!--*****************************Modulos de seguridada Sanitaria*******************************-->
+        
+        
+        
         <%--<%@include file="../empresas360/modulos_empresa/modulo_registrar_mi_sucursal.jsp" %>--%>
         <%--<%@include file="../empresas360/modulos_empresa/modulo_registrar_mi_institucion.jsp" %>--%>
         <%@include file="../empresas360/modulos_empresa/modulo_mis_sucursales.jsp" %>
@@ -77,8 +90,15 @@
         <%@include file="../empresas360/modulos_empresa/modulo_plantillas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_jornadas_laborales.jsp" %>
         <%@include file="../empresas360/modulos_empresa/modulo_monitoreo_personal.jsp" %>
+        <%@include file="../empresas360/modulo_envio_archivos.jsp" %>
         <%@include file="../empresas360/modulo_comunicacion.jsp" %>
         <%@include file="../empresas360/modulo_videowall.jsp" %>
+        <%--<%@include file="../empresas360/modulo_notas.jsp" %>--%>--%>
+        <%--<%@include file="../empresas360/modulo_recordatorios.jsp" %>--%>
+        <%--<%@include file="../empresas360/modulo_agenda.jsp" %>--%>
+        <%--<%@include file="../administracion_finanzas/modulo_dashboard.jsp" %>--%>
+        <%--<%@include file="../administracion_finanzas/modulo_balanza.jsp" %>--%>
+        <%--<%@include file="../empresas360/modulo_geodatos.jsp" %>--%>
 
     </section>
 
@@ -92,5 +112,7 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe5gzNGneaWmWLzmZs6bFKNlwdCTr0Odk&callback=initMaps&callback=initMaps&libraries=places&v=weekly">
     </script>
+    
+    
 
 </body>

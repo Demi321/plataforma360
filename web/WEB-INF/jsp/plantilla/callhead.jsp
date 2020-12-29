@@ -68,6 +68,29 @@
 <spring:url value="/resources/frameworks/xlsx/xlsx.full.min.js" var="xlsxJS" />
 <script src="${xlsxJS}" ></script>
 
+<!-- DataTable -->
+<spring:url value="/resources/frameworks/datatables/js/jquery.dataTables.min.js" var="dataTable" />
+<script src="${dataTable}" ></script>
+<spring:url value="/resources/frameworks/datatables/js/dataTables.buttons.min.js" var="dataTableButton" />
+<script src="${dataTableButton}" ></script>
+<spring:url value="/resources/frameworks/datatables/js/buttons.flash.min.js" var="buttonsFlash" />
+<script src="${buttonsFlash}" ></script>
+<spring:url value="/resources/frameworks/datatables/js/jszip.min.js" var="jsZip" />
+<script src="${jsZip}" ></script>
+<spring:url value="/resources/frameworks/datatables/js/pdfmake.min.js" var="pdfMake" />
+<script src="${pdfMake}" ></script>                
+<spring:url value="/resources/frameworks/datatables/js/vfs_fonts.js" var="vfs_fonts" />
+<script src="${vfs_fonts}" ></script> 
+<spring:url value="/resources/frameworks/datatables/js/buttons.html5.min.js" var="buttonsHTML" />
+<script src="${buttonsHTML}" ></script> 
+<spring:url value="/resources/frameworks/datatables/js/buttons.print.min.js" var="buttonsPrint" />
+<script src="${buttonsPrint}" ></script>
+
+<spring:url value="/resources/frameworks/datatables/css/dataTables.bootstrap4.min.css" var="dataTableCSS" />
+<link href="${dataTableCSS}" rel="stylesheet" />
+<spring:url value="/resources/frameworks/datatables/css/buttons.dataTables.min.css" var="buttonsDatTableCSS" />
+<link href="${buttonsDatTableCSS}" rel="stylesheet" />
+
 <script src="${pathRecursos}/js/functions/functions.js" ></script>
 
 <script src="${pathRecursos}/js/btns-toggle.js" ></script>
