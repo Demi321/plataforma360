@@ -123,7 +123,7 @@ MóDULO DE REPORTING
                 <div class="alert alert-info" role="alert">Aún no se encuentra ningún empleado en jornada laboral!</div>
             </div>
 
-            <div style="max-height: 350px; overflow-y: auto" id="con-empleados-en-jornada" class="d-none">
+            <div style="max-height: 550px; overflow-y: auto" id="con-empleados-en-jornada" class="d-none">
 
                 <table id="tabla-empleados-en-jornada" class="table table-hover">
                     <thead class="thead-light">
@@ -131,13 +131,14 @@ MóDULO DE REPORTING
                             <th>Empleado</th>
                             <th>Sucursal</th>
                             <th>Área</th>
-                            <th>Hora de entrada</th>
-                            <th>Hora inicio jornada</th>
-                            <th>Hora de salida</th>
-                            <th>Hora salida jornada</th>
-                            <th>Cantidad desconexiones</th>
-                            <th>Enviar mensaje</th>
-                            <th>Iniciar llamada</th>
+                            <th>Hora de Entrada</th>
+                            <th>Hora Inicio Jornada</th>
+                            <th>Hora Última Desconexión</th>
+                            <th>Hora de Salida</th>
+                            <th>Hora Salida Jornada</th>
+                            <th>Cantidad Desconexiones</th>
+                            <th>Enviar Mensaje</th>
+                            <th>Iniciar Llamada</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo-tabla-empleados-en-jornada">

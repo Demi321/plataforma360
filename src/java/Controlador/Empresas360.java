@@ -704,6 +704,76 @@ public class Empresas360 {
 
         return request.POST("https://seguridadsanitaria.claro360.com/lineamientos/API/centro_trabajo/reporte_evidencia", json);
     }
+    
+    @RequestMapping(value = "/API/empresas360/registro/horario_laboral_aumenta_desconexion", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject registro_horario_laboral_aumenta_desconexion(@RequestBody JSONObject json) throws IOException, ParseException {
+        JSONObject respuesta = respuesta(false, "Error al aumentar");
+        
+        String queryUpdate = "UPDATE registro_jornada_laboral " +
+                            "contadorDesconexion = contadorDesconexion+1 " +
+                            " WHERE ( id_usuario = '"+json.get("id_usuario")+"' AND date_created = '"+json.get("fecha")+"' );";
+        
+        if (Query.update(queryUpdate)) {
+            respuesta = respuesta(true, "Desconexion registrada");
+        }
+        
+        return respuesta;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/registro/horario_laboral_cierre", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject registro_horario_laboral_cierre(@RequestBody JSONObject json) throws IOException, ParseException {
+        
+        JSONObject respuesta = respuesta(false, "Error al guardar el reporte");
+        
+        String queryUpdate = "UPDATE registro_jornada_laboral " +
+                            "reporte = '"+json.get("reporte")+"', " +
+                            "activo='0', " +
+                            "date_updated='"+json.get("fecha")+"', " +
+                            "time_updated='"+json.get("hora")+"', " +
+                            "time_finished='"+json.get("hora")+"', " + 
+                            "contadorDesconexion = contadorDesconexion+1 " +
+                            " WHERE ( id='"+json.get("id")+"' );";
+        
+        if (Query.update(queryUpdate)) {
+            respuesta = respuesta(true, "Reporte actualizado correctamente");
+        }
+        
+        JSONObject reg = Query.select("SELECT * FROM registro_jornada_laboral WHERE id='" + json.get("id") + "';");
+        respuesta.putAll(reg);
+        //Notificacion por socket del inicio de envio de video por tipo de usuario 
+        if (json.get("activo").toString().equals("1")) {
+            reg.put("video_empleado", true);
+            SocketEndPoint.EnviarNotificacio_jerarqia(reg, json.get("tipo_usuario").toString(), json.get("tipo_servicio").toString(), json.get("tipo_area").toString());
+        }
+
+        // modificar el modulo de empleados 
+        JSONObject modulo_empleados = new JSONObject();
+        modulo_empleados.put("id360", json.get("id_usuario"));
+        modulo_empleados.put("modulo", "empleados");
+        modulo_empleados.put("en_jornada", "1");
+
+        if (json.containsKey("reporte")) {
+            modulo_empleados.put("en_jornada", "0");
+        }
+        if (json.containsKey("web")) {
+
+            respuesta.put("modulo_empleados", request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/registro_modulo", modulo_empleados));
+            //Notificacion a aplicacion movil 
+            JSONObject notificacion_movil = new JSONObject();
+            notificacion_movil.put("id360", json.get("id_usuario"));
+            notificacion_movil.put("type", "300");
+            notificacion_movil.put("en_jornada", "1");
+            if (json.containsKey("reporte")) {
+                notificacion_movil.put("en_jornada", "0");
+            }
+            respuesta.put("notificacion_movil", request.POST(config.getURL_CONTROLADOR() + "API/moviles/notification/llamada_multiplataforma", notificacion_movil));
+        }
+        
+        return respuesta;
+        
+    }
 
     @RequestMapping(value = "/API/empresas360/registro/horario_laboral", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     @ResponseBody
