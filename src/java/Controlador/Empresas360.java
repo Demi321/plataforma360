@@ -754,7 +754,7 @@ public class Empresas360 {
         JSONObject modulo_empleados = new JSONObject();
         modulo_empleados.put("id360", json.get("id_usuario"));
         modulo_empleados.put("modulo", "empleados");
-        modulo_empleados.put("en_jornada", "1");
+        modulo_empleados.put("en_jornada", "0");
 
         if (json.containsKey("reporte")) {
             modulo_empleados.put("en_jornada", "0");
@@ -766,7 +766,7 @@ public class Empresas360 {
             JSONObject notificacion_movil = new JSONObject();
             notificacion_movil.put("id360", json.get("id_usuario"));
             notificacion_movil.put("type", "300");
-            notificacion_movil.put("en_jornada", "1");
+            notificacion_movil.put("en_jornada", "0");
             if (json.containsKey("reporte")) {
                 notificacion_movil.put("en_jornada", "0");
             }
@@ -814,6 +814,7 @@ public class Empresas360 {
                                     "activo='1', " +
                                     "date_updated='"+json.get("fecha")+"', " +
                                     "time_updated='"+json.get("hora")+"', " +
+                                    "time_finished = NULL, " +
                                     "contadorDesconexion = contadorDesconexion+ " + json.get("aumentaConexion") +
                                     " WHERE ( id_usuario='" + json.get("id_usuario") + "' AND id='"+id+"' );";
             

@@ -88,12 +88,18 @@ MóDULO DE REPORTING
     </div>
     
     <div id="inicio-reporte-jornadas-laborales" class="w-100">
-        <div class="text-center">
+        <div class="text-center" style="position: relative">
             <h6 style="font-size: 2rem; color: #343a40">Empleados en jornada laboral</h6>
+            
+            <button id="btn-refrescar-jornadas" class="btn btn-outline-dark btn-lg" style="position: absolute; top: 0; right: 20px; ">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            
         </div>
         
         <div class="row mt-4 mb-5 text-center">
             <div class="col-md-6 col-sm-12">
+                <p style="font-size: 1.4rem">Entrada</p>
                 <button type="button" class="btn btn-success mr-2">
                     En tiempo <span class="badge badge-light" id="contadorEnTiempo"></span>
                 </button>
@@ -105,6 +111,10 @@ MóDULO DE REPORTING
                 </button>
             </div>
             <div class="col-md-6 col-sm-12">
+                <p style="font-size: 1.4rem">Salida</p>
+                <button type="button" class="btn btn-info mr-2">
+                    Aún en jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
+                </button>
                 <button type="button" class="btn btn-success mr-2">
                     En tiempo <span class="badge badge-light" id="contadorEnTiempoSalida"></span>
                 </button>
