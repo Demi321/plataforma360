@@ -710,13 +710,15 @@ public class Empresas360 {
     public JSONObject registro_horario_laboral_aumenta_desconexion(@RequestBody JSONObject json) throws IOException, ParseException {
         JSONObject respuesta = respuesta(false, "Error al aumentar");
         
-        String queryUpdate = "UPDATE registro_jornada_laboral " +
-                            "contadorDesconexion = contadorDesconexion+1 " +
+        String queryUpdate = "UPDATE registro_jornada_laboral SET " +
+                            "contadorDesconexion = contadorDesconexion+1, " +
+                            "time_updated = '"+json.get("hora")+"' " +
                             " WHERE ( id_usuario = '"+json.get("id_usuario")+"' AND date_created = '"+json.get("fecha")+"' );";
         
         if (Query.update(queryUpdate)) {
             respuesta = respuesta(true, "Desconexion registrada");
         }
+        respuesta.put("query", queryUpdate);
         
         return respuesta;
     }
@@ -727,19 +729,19 @@ public class Empresas360 {
         
         JSONObject respuesta = respuesta(false, "Error al guardar el reporte");
         
-        String queryUpdate = "UPDATE registro_jornada_laboral " +
+        String queryUpdate = "UPDATE registro_jornada_laboral SET " +
                             "reporte = '"+json.get("reporte")+"', " +
                             "activo='0', " +
                             "date_updated='"+json.get("fecha")+"', " +
                             "time_updated='"+json.get("hora")+"', " +
                             "time_finished='"+json.get("hora")+"', " + 
                             "contadorDesconexion = contadorDesconexion+1 " +
-                            " WHERE ( id='"+json.get("id")+"' );";
+                            "WHERE ( id='"+json.get("id")+"' );";
         
         if (Query.update(queryUpdate)) {
             respuesta = respuesta(true, "Reporte actualizado correctamente");
         }
-        
+        respuesta.put("query", queryUpdate);
         JSONObject reg = Query.select("SELECT * FROM registro_jornada_laboral WHERE id='" + json.get("id") + "';");
         respuesta.putAll(reg);
         //Notificacion por socket del inicio de envio de video por tipo de usuario 
@@ -2466,7 +2468,7 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa/obtener_ids/en_jornada", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray jornadas_laborales_empresa_obtener_ids_en_jornada(@RequestBody JSONObject json) {
-        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created, rjl.time_updated, rjl.contadorDesconexion as desconexiones " +
+        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created, rjl.time_updated, rjl.contadorDesconexion as desconexiones, rjl.time_finished " +
                         "FROM directorio d " +
                         "LEFT JOIN tipos_usuarios tu ON d.tipo_usuario = tu.id " +
                         "LEFT JOIN servicios_usuario su ON d.tipo_servicio = su.id " +
