@@ -2486,5 +2486,34 @@ public class Empresas360 {
         return request.POST("https://plataforma911.ml/CONTROLADOR/API/cuenta360/perfiles/array", json);
 
     }
+    @RequestMapping(value = "/API/empresas360/add_note", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_add_note(@RequestBody JSONObject json) throws IOException, ParseException {
+        System.out.println("empresas360_add_note: "+Dependencia);
+        JSONObject respuesta = respuesta(false, "Algo ocurrio, intentelo de nuevo.");
+        int id = Query.insert(Query.createQueryInsert("notas", json));
+        if (id > 0) {
+            respuesta = respuesta(true, "Nota creada correctamente");
+            respuesta.put("id_nota", id);
+        }
+        return respuesta;
 
+    }
+    @RequestMapping(value = "/API/empresas360/edit_note", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_edit_note(@RequestBody JSONObject json) throws IOException, ParseException {
+        System.out.println("empresas360_edit_note: "+Dependencia);
+        JSONObject respuesta = respuesta(false, "Algo ocurrio, intentelo de nuevo.");
+        String query = null;
+        if (json.containsKey("titulo")) {
+            query = "UPDATE notas SET titulo='"+json.get("titulo")+"', nota='"+json.get("nota")+"' WHERE id = '"+json.get("id_nota")+"';";
+        }else{
+            query = "UPDATE notas SET nota='"+json.get("nota")+"' WHERE id = '"+json.get("id_nota")+"';";
+        }
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Nota actualizada correctamente");
+        }
+        return respuesta;
+
+    }
 }
