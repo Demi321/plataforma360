@@ -2213,10 +2213,17 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/carga_mas_mensajes_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray carga_mas_mensajes_chat(@RequestBody JSONObject json) {
+        
+        String orderBy = "";
+        
+        if (json.containsKey("movil")) {
+            orderBy = " order by id desc ";
+        }
 
         String query = "select * from chat_empresarial "
                 + "where (id360 = '" + json.get("id360-1") + "' and to_id360 = '" + json.get("id360-2") + "') "
                 + "or (id360 = '" + json.get("id360-2") + "' and to_id360 = '" + json.get("id360-1") + "') "
+                + orderBy + " "
                 + "limit " + json.get("init") + "," + json.get("limit") + ";";
 
         JSONArray ids = Query.execute(query);
