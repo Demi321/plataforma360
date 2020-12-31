@@ -1348,7 +1348,7 @@ public class Empresas360 {
         RegistroLlamada.put("idLlamada", JsonTicket.get("ticket"));
         data.put("registro_llamada", RegistroLlamada);
 
-        
+        data.put("llamada_multiplataforma", true);
         
 
         JSONObject data_moviles = (JSONObject) data.clone();
