@@ -2124,7 +2124,7 @@ public class Empresas360 {
         String query = "update chat_empresarial set "
                 + "message = '" + json.get("mensaje") + "', "
                 + "date_updated = '" + json.get("fecha_edita") + "', "
-                + "time_updated = '" + json.get("hora_edita") + "' where id = 1";
+                + "time_updated = '" + json.get("hora_edita") + "' where id = " + json.get("idMensaje");
 
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje editado");
