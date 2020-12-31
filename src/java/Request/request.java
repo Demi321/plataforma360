@@ -55,7 +55,13 @@ public class request {
                 .addHeader("Content-Type", "application/json")
                 .build();
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        if (response.toString().contains("code=200")) {
+            return response.body().string();
+        } else {
+            System.out.println(response.body().string());
+            return null;
+        }
+        //return response.body().string();
     }
 
     public static JSONArray POST(String url, JSONArray json) throws IOException, ParseException {
