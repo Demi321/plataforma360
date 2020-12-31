@@ -200,20 +200,18 @@ public class ControladorPOST {
 //        if (!array.isEmpty()) {
 //            String url = ((JSONObject) array.get(0)).get("urlServicio").toString();
 //            String respuesta = request.POST(url + "/envioPerfil", idUsuario_Movil);
-            JSONObject Usuario_Movil = new JSONObject();
+        JSONObject Usuario_Movil = new JSONObject();
 //            JSONParser parser = new JSONParser();
 //            Usuario_Movil.put("Usuarios_Movil", (JSONObject) parser.parse(respuesta));
-            JSONObject json = new JSONObject();
-            json.put("id360", idUsuario_Movil);
-            json = request.POST(config.getURL_CONTROLADOR()+"API/cuenta360/perfil", json);
-            String query = "SELECT Fecha FROM registro_rutas WHERE idUsuarios_Movil=\"" + idUsuario_Movil + "\";";
-            JSONArray array = Query.execute(query);
-            json.put("FechasRutas", array);
-            Usuario_Movil.put("Usuarios_Movil", json);
-           
-            
-            
-            model.addAttribute("data", Usuario_Movil.toString().replace("\"", "&quot;"));
+        JSONObject json = new JSONObject();
+        json.put("id360", idUsuario_Movil);
+        json = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", json);
+        String query = "SELECT Fecha FROM registro_rutas WHERE idUsuarios_Movil=\"" + idUsuario_Movil + "\";";
+        JSONArray array = Query.execute(query);
+        json.put("FechasRutas", array);
+        Usuario_Movil.put("Usuarios_Movil", json);
+
+        model.addAttribute("data", Usuario_Movil.toString().replace("\"", "&quot;"));
 //        } else {
 //            System.out.println("ERROR. Usuario no existe en el directorio: " + idUsuario_Movil);
 //        }
@@ -1245,15 +1243,17 @@ public class ControladorPOST {
         usuario.put("usuario", cuenta360.get("usuario"));
         usuario.put("correo", cuenta360.get("correo"));
         usuario.put("token", cuenta360.get("token"));
-        
+
         /*Cambios fernando*/
         JSONArray app360 = (JSONArray) usuario.get("perfil");
         JSONObject app = (JSONObject) app360.get(0);
         if (app.get("img") != null) {
             usuario.put("img_perfil", app.get("img"));
         }
-        /******************/
-        
+        /**
+         * ***************
+         */
+
         ///////---Estaticos
         usuario.put("tipo", "Administrador");
 
@@ -1548,8 +1548,11 @@ public class ControladorPOST {
         UpdateBackupDirectorio(gps_json);
 
         JSONObject r_gps = new JSONObject();
-        r_gps.put("resultado", request.POST_GPS(json));
-        Query.insert(Query.createQueryInsert("serviciogps", r_gps));
+        String gps_agenda = request.POST_GPS(json);
+        if (gps_agenda != null) {
+            r_gps.put("resultado", gps_agenda);
+            Query.insert(Query.createQueryInsert("serviciogps", r_gps));
+        }
 
         //Modelo.Escalamiento.AgregarData(gps_json);
 //                  JSONObject servicio = new JSONObject();
@@ -1747,7 +1750,6 @@ public class ControladorPOST {
 
             //ServerReporte not = new ServerReporte();
             //not.EnviaNot(jsonObj.toString());
-
             return res.toString();
         } else {
             return ("fallo");
@@ -2916,13 +2918,13 @@ public class ControladorPOST {
             user.put("id360", user.get("idUsuario"));
         }
         array = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfiles/array", array);
-        
+
         for (int i = 0; i < array.size(); i++) {
             JSONObject servicio = ((JSONObject) array.get(i));
-            
+
             if ((Boolean) servicio.get("failure")) {
-               array.remove(i);
-               i--;
+                array.remove(i);
+                i--;
             }
         }
         json.put("directorio", array);
@@ -3152,7 +3154,6 @@ public class ControladorPOST {
         return respuesta;
     }
 
-   
     @RequestMapping(value = "/API/Baja_Directorio", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public boolean Baja_Directorio(@RequestBody JSONObject json) throws ParseException, IOException {
@@ -3409,7 +3410,6 @@ public class ControladorPOST {
 //        return json;
     }
 
-    
     @RequestMapping(value = "/API/solicitud/dataGrupos", method = RequestMethod.POST, consumes = "application/json", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public JSONObject solicitud_dataGrupos(@RequestBody JSONObject jsonObj) throws ParseException, IOException {
@@ -3514,28 +3514,27 @@ public class ControladorPOST {
 //        if (url.isEmpty()) {
 //            return null;
 //        } else {
-            //JSONArray ConsultaRuta = (JSONArray) parser.parse(request.POST(((JSONObject) url.get(0)).get("urlServicio").toString() + "/ConsultaRutaFecha", json.toString()));
-            JSONArray ConsultaRuta = ConsultaRutaFecha(json);
-            if (!ConsultaRuta.isEmpty()) {
-                JSONObject ruta = new JSONObject();
-                String Fecha = ((JSONObject) ConsultaRuta.get(0)).get("Fecha").toString();
-                ruta.put("Ruta", ((JSONObject) ConsultaRuta.get(0)).get("Ruta"));
-                ruta.put("Latitud", ((JSONObject) ConsultaRuta.get(0)).get("Latitud"));
-                ruta.put("Longitud", ((JSONObject) ConsultaRuta.get(0)).get("Longitud"));
-                ruta.put("Hora", ((JSONObject) ConsultaRuta.get(0)).get("Hora"));
-                Ruta.put(Fecha, ruta);
-            } else {
-                JSONObject ruta = new JSONObject();
-                String Fecha = json.get("fecha").toString();
-                ruta.put("Ruta", "");
-                ruta.put("Latitud", "");
-                ruta.put("Longitud", "");
-                ruta.put("Hora", "");
-                Ruta.put(Fecha, ruta);
-            }
+        //JSONArray ConsultaRuta = (JSONArray) parser.parse(request.POST(((JSONObject) url.get(0)).get("urlServicio").toString() + "/ConsultaRutaFecha", json.toString()));
+        JSONArray ConsultaRuta = ConsultaRutaFecha(json);
+        if (!ConsultaRuta.isEmpty()) {
+            JSONObject ruta = new JSONObject();
+            String Fecha = ((JSONObject) ConsultaRuta.get(0)).get("Fecha").toString();
+            ruta.put("Ruta", ((JSONObject) ConsultaRuta.get(0)).get("Ruta"));
+            ruta.put("Latitud", ((JSONObject) ConsultaRuta.get(0)).get("Latitud"));
+            ruta.put("Longitud", ((JSONObject) ConsultaRuta.get(0)).get("Longitud"));
+            ruta.put("Hora", ((JSONObject) ConsultaRuta.get(0)).get("Hora"));
+            Ruta.put(Fecha, ruta);
+        } else {
+            JSONObject ruta = new JSONObject();
+            String Fecha = json.get("fecha").toString();
+            ruta.put("Ruta", "");
+            ruta.put("Latitud", "");
+            ruta.put("Longitud", "");
+            ruta.put("Hora", "");
+            Ruta.put(Fecha, ruta);
+        }
 
 //        }
-
         return Ruta;
     }
 
@@ -4010,7 +4009,7 @@ public class ControladorPOST {
         if (config.initialize()) {
             Dependencia = config.getDEPENDENCIA();
             //BackupDirectorio();
-            
+
             return "<span style=\"color:limegreen; font-weight: bold;\" >Proyecto inicializado Correctamente</span>";
         } else {
             return "<span style=\"color:red; font-weight: bold;\" >Proyecto no se ha inicializado Correctamente... </span>";
@@ -4927,9 +4926,7 @@ public class ControladorPOST {
         return "{\"respuesta\":\"3\"}";
     }
 
-    
     ///-----------------------------------------------------------------
-
     @RequestMapping(value = "/API/reportemedico", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     @ResponseBody
     public static JSONObject reportemedico(@RequestBody JSONObject reporte) {
@@ -7693,7 +7690,6 @@ public class ControladorPOST {
         return notificar_llamada;
     }
 
-    
     /**
      * **********************************************************************************
      */
@@ -8047,23 +8043,26 @@ public class ControladorPOST {
         json.put("modulo", "plataforma360");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/registro_modulo", json);
     }
+
     @RequestMapping(value = "/API/get/perfil360", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     @ResponseBody
     public JSONObject get_perfil360(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println("get_perfil360");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", json);
     }
+
     @RequestMapping(value = "/API/cuenta360/logout_sesion", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     @ResponseBody
     public JSONObject logout(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println("logout");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/logout_sesion", json);
     }
+
     @RequestMapping(value = "/API/cuenta360/check_login", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     @ResponseBody
     public JSONObject check_login(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println("logout");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/check_login", json);
     }
- 
+
 }
