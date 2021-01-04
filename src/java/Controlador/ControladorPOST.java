@@ -1548,8 +1548,11 @@ public class ControladorPOST {
         UpdateBackupDirectorio(gps_json);
 
         JSONObject r_gps = new JSONObject();
-        r_gps.put("resultado", request.POST_GPS(json));
-        Query.insert(Query.createQueryInsert("serviciogps", r_gps));
+        String gps_agenda = request.POST_GPS(json);
+        if (gps_agenda != null) {
+            r_gps.put("resultado", gps_agenda);
+            Query.insert(Query.createQueryInsert("serviciogps", r_gps));
+        }
 
         //Modelo.Escalamiento.AgregarData(gps_json);
 //                  JSONObject servicio = new JSONObject();
