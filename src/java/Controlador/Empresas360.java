@@ -2149,6 +2149,12 @@ public class Empresas360 {
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje editado");
             respuesta.putAll(json);
+            
+            String querySelect = "SELECT * FROM chat_empresarial WHERE id = " + json.get("idMensaje");
+            JSONObject dataNew = Query.select(querySelect);
+            respuesta.put("nuevo",dataNew);
+            json.put("nuevo",dataNew);
+            
             //Enviar por socket
             json.put("edicion_mensaje_chat_empresarial", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
