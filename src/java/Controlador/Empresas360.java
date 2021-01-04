@@ -1339,8 +1339,17 @@ public class Empresas360 {
         data.put("registro_llamada", RegistroLlamada);
 
         data.put("llamada_multiplataforma", true);
+        
 
         JSONObject data_moviles = (JSONObject) data.clone();
+        System.out.println("Este es el json ----->");
+        System.out.println(json);
+        if (json.containsKey("type")) {
+            
+            data_moviles.put("type", json.get("type"));//type=200 para videollamada, type=201 llamada de voz
+        }else{
+            data_moviles.put("type", "200");//type=200 para videollamada, type=201 llamada de voz
+        }
         data.put("emisor", perfil360);
         data.put("receptores", ids);
 
@@ -1376,7 +1385,8 @@ public class Empresas360 {
         /*
         {
             "id360":"",
-            "to_id360":[{"id360":""},{"id360":""},...n]
+            "to_id360":[{"id360":""},{"id360":""},...n],
+            "type":"" //tipo de llamada, viodeollamada o voz
         }
          */
 
@@ -1428,8 +1438,17 @@ public class Empresas360 {
         data.put("registro_llamada", RegistroLlamada);
 
         data.put("llamada_multiplataforma", true);
+        
 
         JSONObject data_moviles = (JSONObject) data.clone();
+        System.out.println("Este es el json ----->");
+        System.out.println(json);
+        if (json.containsKey("type")) {
+            
+            data_moviles.put("type", json.get("type"));//type=200 para videollamada, type=201 llamada de voz
+        }else{
+            data_moviles.put("type", "200");//type=200 para videollamada, type=201 llamada de voz
+        }
         data.put("emisor", perfil360);
         data.put("receptores", ids);
 
