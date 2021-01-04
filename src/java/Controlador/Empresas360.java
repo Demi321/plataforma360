@@ -2147,6 +2147,12 @@ public class Empresas360 {
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje editado");
             respuesta.putAll(json);
+            
+            String querySelect = "SELECT * FROM chat_empresarial WHERE id = " + json.get("idMensaje");
+            JSONObject dataNew = Query.select(querySelect);
+            respuesta.put("nuevo",dataNew);
+            json.put("nuevo",dataNew);
+            
             //Enviar por socket
             json.put("edicion_mensaje_chat_empresarial", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
@@ -2270,7 +2276,8 @@ public class Empresas360 {
         String query = ""
                 + "SELECT"
                 + " replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') as id360Chat,"
-                + " p.*"
+                + " p.*, "
+                + " (SELECT message FROM chat_empresarial sc WHERE sc.id = p.idResponse) as mensajeRespuesta "
                 + "FROM"
                 + "  chat_empresarial p"
                 + "  "
@@ -2308,7 +2315,7 @@ public class Empresas360 {
             orderBy = " order by id desc ";
         }
 
-        String query = "select * from chat_empresarial "
+        String query = "select *, (SELECT message FROM chat_empresarial sc WHERE sc.id = p.idResponse) as mensajeRespuesta from chat_empresarial p "
                 + "where (id360 = '" + json.get("id360-1") + "' and to_id360 = '" + json.get("id360-2") + "') "
                 + "or (id360 = '" + json.get("id360-2") + "' and to_id360 = '" + json.get("id360-1") + "') "
                 + orderBy + " "
