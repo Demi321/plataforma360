@@ -2591,7 +2591,7 @@ public class Empresas360 {
             for (int i = 0; i < ids.size(); i++) {
                 JSONObject id = (JSONObject) ids.get(i);
                 if (i < ids.size() - 1) {
-                    query += "id_usuario = '" + id.get("id360") + "' OR";
+                    query += "id_usuario = '" + id.get("id360") + "' OR ";
                 } else {
                     query += "id_usuario = '" + id.get("id360") + "')";
                 }
