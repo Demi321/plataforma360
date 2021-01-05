@@ -2326,8 +2326,9 @@ public class Empresas360 {
         }
 
         String query = "select *, (SELECT message FROM chat_empresarial sc WHERE sc.id = p.idResponse) as mensajeRespuesta from chat_empresarial p "
-                + "where (id360 = '" + json.get("id360-1") + "' and to_id360 = '" + json.get("id360-2") + "') "
-                + "or (id360 = '" + json.get("id360-2") + "' and to_id360 = '" + json.get("id360-1") + "') "
+                + "where ( (id360 = '" + json.get("id360-1") + "' and to_id360 = '" + json.get("id360-2") + "') "
+                + "or (id360 = '" + json.get("id360-2") + "' and to_id360 = '" + json.get("id360-1") + "') ) "
+                + " and if(p.id360 = '" + json.get("id360-2") + "', activo_id360, activo_to_id360) = 1 "
                 + orderBy + " "
                 + "limit " + json.get("init") + "," + json.get("limit") + ";";
 
