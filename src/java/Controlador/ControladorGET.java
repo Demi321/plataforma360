@@ -2123,6 +2123,13 @@ public class ControladorGET {
         return Query.execute(query);
     }
 
-    
-    
+    /*
+        Servicio para traer las notas de un tipo de usuario
+    */
+    @RequestMapping(value = "/API/empresas360/get_notas/{id360}", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONArray empresas360_get_notas(@PathVariable("id360") String id360) {
+        String query = "SELECT * from notas WHERE id360 = '" + id360 + "' AND activo = 1;";
+        return Query.execute(query);
+    }
 }
