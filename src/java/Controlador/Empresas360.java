@@ -2560,6 +2560,18 @@ public class Empresas360 {
         return respuesta;
 
     }
+    @RequestMapping(value = "/API/empresas360/delete_note", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_delete_note(@RequestBody JSONObject json) throws IOException, ParseException {
+        System.out.println("empresas360_delete_note: " + Dependencia);
+        JSONObject respuesta = respuesta(false, "Algo ocurrio, intentelo de nuevo.");
+        String query = "UPDATE notas SET activo = '0' WHERE id='"+json.get("id_nota")+"';";
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Nota eliminada correctamente.");
+        }
+        return respuesta;
+
+    }
 
     /*
         Servicio de asistencia de una empresa o sucursal
