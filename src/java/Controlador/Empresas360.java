@@ -2582,7 +2582,7 @@ public class Empresas360 {
                 query = "SELECT DISTINCT id_usuario AS id360 FROM registro_jornada_laboral WHERE tipo_usuario = '" + json.get("tipo_usuario") + "';";
             } else {
                 //Informacion de usuarios de una sucursal
-                query = "SELECT DISTINCT id_usuario AS id360 FROM registro_jornada_laboral WHERE tipo_usuario = '" + json.get("tipo_usuario") + "' AND tipo_servicio = 3064;";
+                query = "SELECT DISTINCT id_usuario AS id360 FROM registro_jornada_laboral WHERE tipo_usuario = '" + json.get("tipo_usuario") + "' AND tipo_servicio = '"+json.get("tipo_servicio")+"';";
             }
             JSONArray ids = Query.execute(query);
             query = "SELECT R.id_usuario AS id360, R.date_created AS fecha_conexion, R.time_created AS hora_conexion, R.date_updated AS fecha_desconexion, R.time_updated AS hora_desconexion, T.area "
@@ -2598,6 +2598,7 @@ public class Empresas360 {
             }
             query += " AND R.tipo_area = T.id AND R.date_created = DATE(NOW())";
             if (!ids.isEmpty()) {
+                System.out.println(query);
                 JSONArray info_asistencia = Query.execute(query);
                 response = respuesta(true, "Asistencia encontrada");
                 response.put("info_asistencia", info_asistencia);
