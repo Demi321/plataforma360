@@ -2041,6 +2041,16 @@ public class Empresas360 {
         JSONObject respuesta = respuesta(false, "Informacion no almacenada");
         int resultSend = Query.insert(Query.createQueryInsertWithColumns("chat_empresarial", json));
         if (resultSend >= 0) {
+            
+            if( json.containsKey("idResponse") ){
+                String querySelect = "SELECT message, id FROM chat_empresarial WHERE id = " + json.get("idResponse");
+                JSONObject dResponse = Query.select(querySelect);
+                json.put("respuesta",true);
+                json.put("mensajeRespondido", dResponse);
+                respuesta.put("respuesta",true);
+                respuesta.put("mensajeRespondido", dResponse);
+            }
+            
             respuesta = respuesta(true, "Mensaje guardado");
             respuesta.putAll(json);
             //Enviar por socket
