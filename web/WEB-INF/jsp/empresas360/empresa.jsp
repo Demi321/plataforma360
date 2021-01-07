@@ -70,13 +70,15 @@
         <%@include file="../empresas360/modulos_empresa/modulo_registrar_sucursal.jsp" %>
         
         <!--*****************************Modulos de seguridada Sanitaria*******************************-->
-         <%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
+        <!-- Cambios prueba Fernanado --> 
+        <%@include file="../seguridad_sanitaria/modulo_seguridad_sanitaria.jsp" %>
+        <%--<%@include file="../seguridad_sanitaria/modulo_reporte_evidencias.jsp" %>
         <%@include file="../seguridad_sanitaria/modulo_lineamientos_estatales.jsp" %>
         <%@include file="../seguridad_sanitaria/modulo_protocolos_procedimientos.jsp" %>
         <%@include file="../seguridad_sanitaria/modulo_reporte_consolidado.jsp" %>
         <%@include file="../seguridad_sanitaria/modulo_monitoreo_sucursales.jsp" %>
-        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> 
+        <%@include file="../seguridad_sanitaria/modulo_panel_de_datos.jsp" %> --%>
+        <!---------------------------------------------------------------------------->
         <!--*****************************Modulos de seguridada Sanitaria*******************************-->
         
         
