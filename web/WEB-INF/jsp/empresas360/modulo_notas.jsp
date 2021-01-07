@@ -6,8 +6,8 @@
 
 <div class="row col-12 m-0 p-0" id="base_modulo_Notas">
     <h3>Notas</h3>
-    <div class="row col-12 m-0 p-2 pt-3" id="contenido_cards">
-        <div class="card m-2" style="width: 18rem;">
+    <div class="row col-12 m-0 p-2 pl-4 pt-3" id="contenido_cards">
+        <div class="card m-2 mb-5 mr-5" style="width: 18rem;">
             <div class="card-body" style="background: white; color: black;">
                 <p class="mb-5" style="text-align: center; font: bold 15px Arial;">Agregar Nueva Nota</p>
                 <i class="far fa-calendar-plus" style="font-size: 10rem; display: flex; margin: auto; cursor: pointer;" onclick="add_note()"></i>
