@@ -2123,10 +2123,12 @@ public class Empresas360 {
                 json.put("grupo_chat_empresarial", true);
                 json.put("id_grupo", resultCreated);
 
-                for (int x = 0; x < (cantidadParticipantes - 1); x++) {
+                String agregados = "";
+                for (int x = 0; x < cantidadParticipantes; x++) {
                     SocketEndPoint.EnviarNotificacio_id360(json, participantes.get(x).toString());
+                    agregados += participantes.get(x).toString() + ",";    
                 }
-
+                respuesta.put("invitacion enviada a", agregados);
                 respuesta.put("participantesAgregados", true);
 
             } else {
