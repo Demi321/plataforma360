@@ -1790,7 +1790,44 @@ public class ControladorGET {
 
         return "login/access_token";
     }
+    
+    /*Cambios prueba fernando*/
+    @RequestMapping(value = "/API/cuenta360/access_token/{id360}/{access_token}/section/{seccion}/{tipo_usuario}/{tipo_servicio}/{tipo_area}", method = RequestMethod.GET)
+    public String Login2(
+            HttpServletRequest sesion,
+            Model model,
+            @PathVariable("id360") String id360,
+            @PathVariable("access_token") String access_token,
+            @PathVariable("seccion") String seccion,
+            @PathVariable("tipo_usuario") String tipo_usuario,
+            @PathVariable("tipo_servicio") String tipo_servicio,
+            @PathVariable("tipo_area") String tipo_area)
+            throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+        } else {
+            System.out.println("Proyecto no inicializado");
+            return "plantilla/sinInicializar";
+        }
+        JSONObject json = new JSONObject();
+        json.put("access_token", access_token);
+        json.put("id360", id360);
+        JSONObject usuario = Request.request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/validate/access_token", json);
+        if ((boolean) usuario.get("success")) {
+            ControladorPOST cp = new ControladorPOST();
+            usuario = cp.data_login(usuario);
+            usuario.put("seccion", seccion);
+            model.addAttribute("cuenta360", usuario.toString().replace("\"", "&quot;"));
+            
+        }
 
+        return "login/access_token";
+    }
+    /*************************/
+    
     @RequestMapping(value = "/API/empresas360/info/{tipo_servicio}", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject empresas360_info(@PathVariable("tipo_servicio") String tipo_servicio) {
