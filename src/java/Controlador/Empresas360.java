@@ -2036,8 +2036,12 @@ public class Empresas360 {
      */
     @RequestMapping(value = "/API/empresas360/chat", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject empresas360_chat(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+    public JSONObject empresas360_chat(@RequestBody String string) throws IOException, ParseException, java.text.ParseException {
         System.out.println("empresas360_chat");
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
         JSONObject respuesta = respuesta(false, "Informacion no almacenada");
         int resultSend = Query.insert(Query.createQueryInsertWithColumns("chat_empresarial", json));
         if (resultSend >= 0) {
@@ -2057,8 +2061,23 @@ public class Empresas360 {
             json.put("chat_empresarial", true);
             json.put("id", resultSend);
             respuesta.put("id", resultSend);
-            boolean EnviarNotificacio_id360 = SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
-            respuesta.put("enviadoPorSocket", EnviarNotificacio_id360);
+            if( json.containsKey("idGroup") && json.containsKey("participantes") ){
+                
+                JSONArray participantes = (JSONArray) json.get("participantes");
+                int cantidadParticipantes = participantes.size();
+                
+                String agregados = "";
+                for (int x = 0; x < cantidadParticipantes; x++) {
+                    SocketEndPoint.EnviarNotificacio_id360(json, participantes.get(x).toString());
+                    agregados += participantes.get(x).toString() + ",";    
+                }
+                respuesta.put("enviado a", agregados);
+                
+            }else{
+                boolean EnviarNotificacio_id360 = SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
+                respuesta.put("enviadoPorSocket", EnviarNotificacio_id360);
+            }
+
         }
         return respuesta;
     }
