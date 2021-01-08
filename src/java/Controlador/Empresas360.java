@@ -2319,6 +2319,7 @@ public class Empresas360 {
                 + "     from chat_empresarial p"
                 + "     where (p.id360 = '" + json.get("id360") + "' OR p.to_id360 = '" + json.get("id360") + "')"
                 + "             and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
+                + "             and ( p.idGroup IS NULL )"
                 + "     group by id360Chat"
                 + "  ) messages"
                 + "  ON replace(concat(p.id360,p.to_id360),'" + json.get("id360") + "','') = messages.id360Chat"
@@ -2327,10 +2328,35 @@ public class Empresas360 {
                 + "     "
                 + "ORDER BY"
                 + "       p.id;";
+        
+        String queryGrupos = "select " +
+                            "	p.*, " +
+                            "	(select message from chat_empresarial sc where sc.id = p.idResponse) as mensajeRespuesta " +
+                            "from " +
+                            "	chat_empresarial p " +
+                            "	inner join (" +
+                            "		 select " +
+                            "				p.idGroup, " +
+                            "                group_concat( p.id order by p.date_created desc ) idsMessages " +
+                            "		 from	chat_empresarial p " +
+                            "		 where 	p.idGroup in ( " +
+                            "			select distinct pg.id_grupo from participantes_grupos_chat_empresarial pg " +
+                            "            where pg.id_grupo = p.idGroup and pg.id_participantes = '" + json.get("id360") + "' " +
+                            "		 ) and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 ) " +
+                            "		 group by p.idGroup " +
+                            "    ) messages " +
+                            "    on p.idGroup = messages.idGroup " +
+                            "	and FIND_IN_SET(id, idsMessages) BETWEEN 1 AND 20 " +
+                            "     " +
+                            "where p.idGroup IS NOT NULL " +
+                            "order by p.id;";
 
-        System.out.println(query);
-        JSONArray ids = Query.execute(query);
-        return ids;
+        JSONArray mensajesNormales  = Query.execute(query);
+        JSONArray mensajesGrupos    = Query.execute(queryGrupos);
+        
+        mensajesNormales.addAll(mensajesGrupos);
+        
+        return mensajesNormales;
     }
 
     /*
@@ -2364,13 +2390,55 @@ public class Empresas360 {
     @ResponseBody
     public JSONArray usuarios_con_chat(@RequestBody JSONObject json) {
         //String query = "select distinct replace(concat(id360,to_id360),'"+json.get("id360")+"','') as id360 from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
-        String query = "select count(*) as cantidadMensajes, "
-                + "replace(concat(id360,to_id360),'" + json.get("id360") + "','') as id360chat "
-                + "from chat_empresarial where (id360 = '" + json.get("id360") + "' OR to_id360 = '" + json.get("id360") + "') "
-                + "and ( if(id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 )"
-                + "group by id360chat;";
+        String query = "" +
+                        "select 		count(*) as cantidadMensajes, " +
+                        "			replace(concat(id360,to_id360),'" + json.get("id360") + "','') as id360chat, " +
+                        "            (select idGroup from grupos_chat_empresarial s where s.id_grupo = p.idGroup ) as esGrupo " +
+                        "from " +
+                        "			chat_empresarial p " +
+                        "where " +
+                        "			(id360 = '" + json.get("id360") + "' OR to_id360 = '" + json.get("id360") + "') " +
+                        "			and ( if(id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 ) " +
+                        "group by 	id360chat;";
         JSONArray ids = Query.execute(query);
         return ids;
+    }
+    
+    /*
+    SERVICIO PARA CARGAR INFORMACION DE UN GRUPO DE GRUPOS
+     */
+    @RequestMapping(value = "/API/empresas360/informacion_grupos", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray informacion_grupos(@RequestBody String string) throws IOException, ParseException, java.text.ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+
+        /*
+        AGREGAR PARTICIPANTES
+         */
+        JSONArray grupos = (JSONArray) json.get("grupos");
+        String query = "SELECT 	" +
+                        "		g.*, " +
+                        "        ( " +
+                        "			SELECT " +
+                        "				group_concat( concat(p.id_participantes, \"-\", p.rol) ) " +
+                        "			FROM participantes_grupos_chat_empresarial p " +
+                        "			WHERE p.id_grupo = g.id_grupo " +
+                        "        ) as participantes " +
+                        "FROM 	grupos_chat_empresarial g WHERE id_grupo IN ( ";
+        int cantidadGrupos = grupos.size();
+
+        for (int x = 0; x < cantidadGrupos; x++) {
+            query += grupos.get(x) + " , ";
+        }
+
+        query = query.substring(0, query.length() - 2);
+        query += " );";
+        
+        JSONArray mensajes = Query.execute(query);
+
+        return mensajes;
     }
 
     @RequestMapping(value = "/API/empresas360/directorio/un_usuario", method = RequestMethod.POST)
