@@ -114,7 +114,14 @@
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe5gzNGneaWmWLzmZs6bFKNlwdCTr0Odk&callback=initMaps&callback=initMaps&libraries=places&v=weekly">
     </script>
-    
+    <script>
+        $(window).on("load", function () {
+            var sidebar = $("#sidebar");
+            $("#sidebar").remove();
+            $("aside").append(sidebar);
+        });
+
+    </script>
     
 
 </body>

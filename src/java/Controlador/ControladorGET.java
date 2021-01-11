@@ -40,6 +40,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,7 +84,38 @@ public class ControladorGET {
         System.out.println(ValidarIP.Validacion_ip_publica(sesion, model, "Login"));
         return ValidarIP.Validacion_ip_publica(sesion, model, "login/Login");
     }
-
+    @RequestMapping(value = "/makepage", method = RequestMethod.GET)
+    public String make(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            //model.addAttribute("title", config.getAliasServicio() + " - " + config.getPersonalizacion().get("t1"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            model.addAttribute("salary", 1800);
+            model.addAttribute("v", 1800);
+            System.out.println(config.getPersonalizacion().get("favicon"));
+            if(true){
+                JSONObject abc = new JSONObject();
+                abc.put("a", 10);
+                abc.put("b", 20);
+                abc.put("c", 30);
+                model.addAttribute("page_added",request.POST("http://localhost:8080/plataforma360/one", abc.toString()));
+            }
+        } else {
+            System.out.println("Proyecto no inicializado");
+            
+            return "makepage/makepage";
+        }
+        System.out.println(ValidarIP.Validacion_ip_publica(sesion, model, "Login"));
+        return ValidarIP.Validacion_ip_publica(sesion, model, "makepage/makepage");
+    }
+    @RequestMapping(value = "/one", method = RequestMethod.POST)
+    public String one(Model model,@RequestBody JSONObject json) throws ParseException, IOException {
+        model.addAttribute("a", json.get("a"));
+        model.addAttribute("b", json.get("b"));
+        return"makepage/one";
+    }
     @RequestMapping(value = "/tablas", method = RequestMethod.GET)
     public String tablas(HttpServletRequest sesion, Model model) throws ParseException, IOException {
 
