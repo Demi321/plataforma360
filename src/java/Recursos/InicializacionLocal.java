@@ -61,7 +61,7 @@ public class InicializacionLocal {
         personalizacion.put("ph1", "12");
         personalizacion.put("catalogo", "https://empresas.claro360.com/p360_v4/json/incidentes.json");
         personalizacion.put("ph3", null);
-        personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360/SocketNotifications");
+        personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360_dev/SocketNotifications");
         personalizacion.put("ph2", "165");
         personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4");
         personalizacion.put("t1", "Empresas");

@@ -40,6 +40,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,7 +84,38 @@ public class ControladorGET {
         System.out.println(ValidarIP.Validacion_ip_publica(sesion, model, "Login"));
         return ValidarIP.Validacion_ip_publica(sesion, model, "login/Login");
     }
-
+    @RequestMapping(value = "/makepage", method = RequestMethod.GET)
+    public String make(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            //model.addAttribute("title", config.getAliasServicio() + " - " + config.getPersonalizacion().get("t1"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            model.addAttribute("salary", 1800);
+            model.addAttribute("v", 1800);
+            System.out.println(config.getPersonalizacion().get("favicon"));
+            if(true){
+                JSONObject abc = new JSONObject();
+                abc.put("a", 10);
+                abc.put("b", 20);
+                abc.put("c", 30);
+                model.addAttribute("page_added",request.POST("http://localhost:8080/plataforma360/one", abc.toString()));
+            }
+        } else {
+            System.out.println("Proyecto no inicializado");
+            
+            return "makepage/makepage";
+        }
+        System.out.println(ValidarIP.Validacion_ip_publica(sesion, model, "Login"));
+        return ValidarIP.Validacion_ip_publica(sesion, model, "makepage/makepage");
+    }
+    @RequestMapping(value = "/one", method = RequestMethod.POST)
+    public String one(Model model,@RequestBody JSONObject json) throws ParseException, IOException {
+        model.addAttribute("a", json.get("a"));
+        model.addAttribute("b", json.get("b"));
+        return"makepage/one";
+    }
     @RequestMapping(value = "/tablas", method = RequestMethod.GET)
     public String tablas(HttpServletRequest sesion, Model model) throws ParseException, IOException {
 
@@ -1790,7 +1822,44 @@ public class ControladorGET {
 
         return "login/access_token";
     }
+    
+    /*Cambios prueba fernando*/
+    @RequestMapping(value = "/API/cuenta360/access_token/{id360}/{access_token}/section/{seccion}/{tipo_usuario}/{tipo_servicio}/{tipo_area}", method = RequestMethod.GET)
+    public String Login2(
+            HttpServletRequest sesion,
+            Model model,
+            @PathVariable("id360") String id360,
+            @PathVariable("access_token") String access_token,
+            @PathVariable("seccion") String seccion,
+            @PathVariable("tipo_usuario") String tipo_usuario,
+            @PathVariable("tipo_servicio") String tipo_servicio,
+            @PathVariable("tipo_area") String tipo_area)
+            throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+        } else {
+            System.out.println("Proyecto no inicializado");
+            return "plantilla/sinInicializar";
+        }
+        JSONObject json = new JSONObject();
+        json.put("access_token", access_token);
+        json.put("id360", id360);
+        JSONObject usuario = Request.request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/validate/access_token", json);
+        if ((boolean) usuario.get("success")) {
+            ControladorPOST cp = new ControladorPOST();
+            usuario = cp.data_login(usuario);
+            usuario.put("seccion", seccion);
+            model.addAttribute("cuenta360", usuario.toString().replace("\"", "&quot;"));
+            
+        }
 
+        return "login/access_token";
+    }
+    /*************************/
+    
     @RequestMapping(value = "/API/empresas360/info/{tipo_servicio}", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject empresas360_info(@PathVariable("tipo_servicio") String tipo_servicio) {
@@ -2123,6 +2192,14 @@ public class ControladorGET {
         return Query.execute(query);
     }
 
-    
-    
+    /*
+        Servicio para traer las notas de un tipo de usuario
+    */
+    @RequestMapping(value = "/API/empresas360/get_notas/{id360}", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONArray empresas360_get_notas(@PathVariable("id360") String id360) {
+        String query = "SELECT id AS id_nota,id360,tipo_usuario,tipo_servicio,tipo_area,titulo,nota "
+                + "from notas WHERE id360 = '"+id360+"' AND activo = 1;";
+        return Query.execute(query);
+    }
 }
