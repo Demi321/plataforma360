@@ -151,7 +151,7 @@
                         let institucion = sesion_cookie.plataforma360[i];
                         console.log(institucion);
                         /*Solo para dev*/
-                        institucion.url = "https://empresas.claro360.com/plataforma360_dev/";
+                        institucion.url = "https://empresas.claro360.com/plataforma360/";
                         /***************/
                         if (institucion.url === window.location.protocol + "//" + window.location.host + '/' + DEPENDENCIA + '/') {
                             plataforma360 = true;
