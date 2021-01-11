@@ -1377,7 +1377,6 @@ public class Empresas360 {
         return respuesta;
     }
 
-
     @RequestMapping(value = "/API/notificacion/llamada360", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject notificacion_llamada360(@RequestBody String json_string) throws IOException, ParseException {
@@ -1475,7 +1474,6 @@ public class Empresas360 {
         respuesta.putAll(data);
         return respuesta;
     }
-
 
     @RequestMapping(value = "/API/empresas360/video_empleados", method = RequestMethod.POST)
     @ResponseBody
@@ -2621,7 +2619,6 @@ public class Empresas360 {
 
     }
 
-
     @RequestMapping(value = "/API/empresas360/add_note", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject empresas360_add_note(@RequestBody JSONObject json) throws IOException, ParseException {
@@ -2723,5 +2720,4 @@ public class Empresas360 {
         }
         return response;
     }
-
 }
