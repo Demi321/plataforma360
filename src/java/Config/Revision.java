@@ -95,7 +95,7 @@ public class Revision {
             Cookie[] cookies = sesion.getCookies();
             if (cookies != null) {
                 for (Cookie c : cookies) {
-                    if (c.getName().equals("username_v3.1_plataforma360_dev")) {
+                    if (c.getName().equals("username_v3.1_plataforma360")) {
                         JSONParser parser = new JSONParser();
                         try {
                             String value = new String(Base64.decodeBase64(c.getValue()));

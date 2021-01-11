@@ -6,7 +6,7 @@
 
 <!-- 
 ========================================
-MÛDULO DE REPORTING 
+M√≥DULO DE REPORTING 
 ========================================
 -->
 <div class="row col-12 m-0 p-2 pt-3" id="base_modulo_ReporteJornadasLaborales">
@@ -44,7 +44,7 @@ MÛDULO DE REPORTING
                     <div class="col-md-6 col-sm-12">
                         <p style="font-size: 1.4rem">Salida</p>
                         <button type="button" class="btn btn-info mr-2">
-                            A˙n en jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
+                            A√∫n en jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
                         </button>
                         <button type="button" class="btn btn-success mr-2">
                             En tiempo <span class="badge badge-light" id="contadorEnTiempoSalida"></span>
@@ -61,7 +61,7 @@ MÛDULO DE REPORTING
                 <div class="empleados-en-jornada-laboral">
 
                     <div id="sin-empleados-en-jornada" class="d-none">
-                        <div class="alert alert-info" role="alert">A˙n no se encuentra ning˙n empleado en jornada laboral!</div>
+                        <div class="alert alert-info" role="alert">A√∫n no se encuentra ning√∫n empleado en jornada laboral!</div>
                     </div>
 
                     <div style="max-height: 550px; overflow-y: auto" id="con-empleados-en-jornada" class="d-none">
@@ -71,10 +71,10 @@ MÛDULO DE REPORTING
                                 <tr class="text-center">
                                     <th>Empleado</th>
                                     <th>Sucursal</th>
-                                    <th>¡rea</th>
+                                    <th>√Årea</th>
                                     <th>Hora de Entrada</th>
                                     <th>Hora Inicio Jornada</th>
-                                    <th>Hora ⁄ltima DesconexiÛn</th>
+                                    <th>Hora √öltima Desconexi√≥n</th>
                                     <th>Hora de Salida</th>
                                     <th>Hora Salida Jornada</th>
                                     <th>Cantidad Desconexiones</th>
@@ -114,11 +114,11 @@ MÛDULO DE REPORTING
 
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
-                            <label class="mr-2" for="tipo_busqueda">Tipo de b˙squeda</label>
+                            <label class="mr-2" for="tipo_busqueda">Tipo de b√∫squeda</label>
                             <select class="form-control-plaintext input p-2 text-dark m-0 mb-1" name="tipo_busqueda" id="tipo_busqueda">
                                 <option selected disabled>Seleccionar...</option>
                                 <option value="SUCURSAL">Por sucursal</option>
-                                <option value="AREA">Por ·rea</option>
+                                <option value="AREA">Por √°rea</option>
                                 <option value="EMPLEADO">Por empleado</option>
                                 <option value="TODOS">Todos</option>
                             </select>
@@ -138,7 +138,7 @@ MÛDULO DE REPORTING
                     <!-- SELECT DE AREAS -->
                     <div id="contenedor-select-areas" class="col-md-3 col-sm-12 d-none">
                         <div class="form-group">
-                            <label class="mr-2" for="area_jornadas">Seleccionar ·rea</label>
+                            <label class="mr-2" for="area_jornadas">Seleccionar √°rea</label>
                             <select name="area_jornadas" id="area_jornadas" class="form-control-plaintext input p-2 text-dark m-0 mb-1">
                                 <option selected disabled>Seleccionar...</option>
                             </select>
@@ -168,24 +168,24 @@ MÛDULO DE REPORTING
             
             <div id="inicio_jornadas_laborales" class="jumbotron">
                 <h1 class="display-4">Generar reporte de jornadas laborales!</h1>
-                <p class="lead mt-3">Elige los par·metros de b˙squeda para generar el reporte.</p>
+                <p class="lead mt-3">Elige los par√°metros de b√∫squeda para generar el reporte.</p>
                 <hr class="my-4">
                 <p>Pasos para generarlo.</p>
                 
                 <ul>
-                    <li>Elige un rango de b˙squeda </li>
-                    <li>Selecciona un tipo de b˙squeda</li>
+                    <li>Elige un rango de b√∫squeda </li>
+                    <li>Selecciona un tipo de b√∫squeda</li>
                     <li style="list-style: none;">
                         <ul>
                             <li>Por sucursal</li>
-                            <li>Por ·rea</li>
+                            <li>Por √°rea</li>
                             <li>Por empleado</li>
-                            <li>Todos (filtrar· todos los empleados de la empresa)</li>
+                            <li>Todos (filtrar√° todos los empleados de la empresa)</li>
                         </ul>
                     </li>
                 </ul>
                 
-                <p style="font-style: italic;">El tiempo de generaciÛn depender· del rango de b˙squeda y de la cantidad de empleados que se seleccione</p>
+                <p style="font-style: italic;">El tiempo de generaci√≥n depender√° del rango de b√∫squeda y de la cantidad de empleados que se seleccione</p>
                 
             </div>
             
@@ -206,7 +206,7 @@ MÛDULO DE REPORTING
 </div>
 <!-- 
 ========================================
-FINAL MÛDULO DE REPORTING
+FINAL M√≥DULO DE REPORTING
 ========================================
 -->
 

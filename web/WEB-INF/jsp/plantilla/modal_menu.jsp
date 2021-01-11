@@ -262,7 +262,7 @@
                                 <div class="row col-12 m-0 p-0 mt-5">
                                     <div class="col-12 d-flex justify-content-center align-items-center mt-5" style="
                                          ">
-                                        <img src="http://empresas.claro360.com/p360_v4_dev/images/base/Claro360_Logo_Header_negro.png" style="
+                                        <img src="http://empresas.claro360.com/p360_v4/images/base/Claro360_Logo_Header_negro.png" style="
                                              ">
                                     </div>
                                     <div class="col-12 m-0 mt-4">
