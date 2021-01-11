@@ -44,7 +44,7 @@ M贸DULO DE REPORTING
                     <div class="col-md-6 col-sm-12">
                         <p style="font-size: 1.4rem">Salida</p>
                         <button type="button" class="btn btn-info mr-2">
-                            A煤n en jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
+                            En jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
                         </button>
                         <button type="button" class="btn btn-success mr-2">
                             En tiempo <span class="badge badge-light" id="contadorEnTiempoSalida"></span>
@@ -61,7 +61,7 @@ M贸DULO DE REPORTING
                 <div class="empleados-en-jornada-laboral">
 
                     <div id="sin-empleados-en-jornada" class="d-none">
-                        <div class="alert alert-info" role="alert">A煤n no se encuentra ning煤n empleado en jornada laboral!</div>
+                        <div class="alert alert-info" role="alert">A鷑 no se encuentra ning鷑 empleado en jornada laboral!</div>
                     </div>
 
                     <div style="max-height: 550px; overflow-y: auto" id="con-empleados-en-jornada" class="d-none">
@@ -71,10 +71,10 @@ M贸DULO DE REPORTING
                                 <tr class="text-center">
                                     <th>Empleado</th>
                                     <th>Sucursal</th>
-                                    <th>脕rea</th>
+                                    <th>羠ea</th>
                                     <th>Hora de Entrada</th>
                                     <th>Hora Inicio Jornada</th>
-                                    <th>Hora 脷ltima Desconexi贸n</th>
+                                    <th>Hora 趌tima Desconexi髇</th>
                                     <th>Hora de Salida</th>
                                     <th>Hora Salida Jornada</th>
                                     <th>Cantidad Desconexiones</th>
@@ -114,7 +114,7 @@ M贸DULO DE REPORTING
 
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
-                            <label class="mr-2" for="tipo_busqueda">Tipo de b煤squeda</label>
+                            <label class="mr-2" for="tipo_busqueda">Tipo de b鷖queda</label>
                             <select class="form-control-plaintext input p-2 text-dark m-0 mb-1" name="tipo_busqueda" id="tipo_busqueda">
                                 <option selected disabled>Seleccionar...</option>
                                 <option value="SUCURSAL">Por sucursal</option>
@@ -173,19 +173,19 @@ M贸DULO DE REPORTING
                 <p>Pasos para generarlo.</p>
                 
                 <ul>
-                    <li>Elige un rango de b煤squeda </li>
-                    <li>Selecciona un tipo de b煤squeda</li>
+                    <li>Elige un rango de b鷖queda </li>
+                    <li>Selecciona un tipo de b鷖queda</li>
                     <li style="list-style: none;">
                         <ul>
                             <li>Por sucursal</li>
-                            <li>Por 谩rea</li>
+                            <li>Por 羠ea</li>
                             <li>Por empleado</li>
-                            <li>Todos (filtrar谩 todos los empleados de la empresa)</li>
+                            <li>Todos (filtrar帷 todos los empleados de la empresa)</li>
                         </ul>
                     </li>
                 </ul>
                 
-                <p style="font-style: italic;">El tiempo de generaci贸n depender谩 del rango de b煤squeda y de la cantidad de empleados que se seleccione</p>
+                <p style="font-style: italic;">El tiempo de generaci髇 depender帷 del rango de b鷖queda y de la cantidad de empleados que se seleccione</p>
                 
             </div>
             
