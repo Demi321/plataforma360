@@ -6,7 +6,7 @@
 
 <!-- 
 ========================================
-MÃ³DULO DE REPORTING 
+MóDULO DE REPORTING 
 ========================================
 -->
 <div class="row col-12 m-0 p-2 pt-3" id="base_modulo_ReporteJornadasLaborales">
@@ -44,7 +44,7 @@ MÃ³DULO DE REPORTING
                     <div class="col-md-6 col-sm-12">
                         <p style="font-size: 1.4rem">Salida</p>
                         <button type="button" class="btn btn-info mr-2">
-                            En jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
+                            Aún en jornada <span class="badge badge-light" id="contadorAunEnJornada"></span>
                         </button>
                         <button type="button" class="btn btn-success mr-2">
                             En tiempo <span class="badge badge-light" id="contadorEnTiempoSalida"></span>
@@ -118,7 +118,7 @@ MÃ³DULO DE REPORTING
                             <select class="form-control-plaintext input p-2 text-dark m-0 mb-1" name="tipo_busqueda" id="tipo_busqueda">
                                 <option selected disabled>Seleccionar...</option>
                                 <option value="SUCURSAL">Por sucursal</option>
-                                <option value="AREA">Por Ã¡rea</option>
+                                <option value="AREA">Por área</option>
                                 <option value="EMPLEADO">Por empleado</option>
                                 <option value="TODOS">Todos</option>
                             </select>
@@ -138,7 +138,7 @@ MÃ³DULO DE REPORTING
                     <!-- SELECT DE AREAS -->
                     <div id="contenedor-select-areas" class="col-md-3 col-sm-12 d-none">
                         <div class="form-group">
-                            <label class="mr-2" for="area_jornadas">Seleccionar Ã¡rea</label>
+                            <label class="mr-2" for="area_jornadas">Seleccionar área</label>
                             <select name="area_jornadas" id="area_jornadas" class="form-control-plaintext input p-2 text-dark m-0 mb-1">
                                 <option selected disabled>Seleccionar...</option>
                             </select>
@@ -168,7 +168,7 @@ MÃ³DULO DE REPORTING
             
             <div id="inicio_jornadas_laborales" class="jumbotron">
                 <h1 class="display-4">Generar reporte de jornadas laborales!</h1>
-                <p class="lead mt-3">Elige los parÃ¡metros de bÃºsqueda para generar el reporte.</p>
+                <p class="lead mt-3">Elige los parámetros de búsqueda para generar el reporte.</p>
                 <hr class="my-4">
                 <p>Pasos para generarlo.</p>
                 
@@ -178,14 +178,14 @@ MÃ³DULO DE REPORTING
                     <li style="list-style: none;">
                         <ul>
                             <li>Por sucursal</li>
-                            <li>Por Área</li>
+                            <li>Por área</li>
                             <li>Por empleado</li>
-                            <li>Todos (filtrará¡ todos los empleados de la empresa)</li>
+                            <li>Todos (filtrará todos los empleados de la empresa)</li>
                         </ul>
                     </li>
                 </ul>
                 
-                <p style="font-style: italic;">El tiempo de generación dependerá¡ del rango de búsqueda y de la cantidad de empleados que se seleccione</p>
+                <p style="font-style: italic;">El tiempo de generación dependerá del rango de búsqueda y de la cantidad de empleados que se seleccione</p>
                 
             </div>
             
@@ -206,7 +206,7 @@ MÃ³DULO DE REPORTING
 </div>
 <!-- 
 ========================================
-FINAL MÃ³DULO DE REPORTING
+FINAL MóDULO DE REPORTING
 ========================================
 -->
 
