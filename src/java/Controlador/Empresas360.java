@@ -2236,6 +2236,29 @@ public class Empresas360 {
     }
     
     /*
+    SERVICIO PARA CAMBIAR PARAMETRO DE UN GRUPO (ICONO, TITULO O DESCRIPCION)
+    */
+    @RequestMapping(value = "/API/empresas360/cambiar_parametro_grupo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject cambiar_parametro_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
+        JSONObject respuesta = respuesta(false, "Error al quitar participante");
+        
+        String query = "update grupos_chat_empresarial set " +
+                        json.get("columna") + " = '"+json.get("valor")+"', " +
+                        "date_updated = '"+json.get("fecha")+"', " +
+                        "time_updated = '"+json.get("hora")+"' " +
+                        "where id_grupo = '"+json.get("idGroup")+"';";
+        
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Usuario Eliminado");
+            json.put("eliminado_grupo", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+        
+        return respuesta;
+    }
+    
+    /*
     SERVICIO PARA QUITAR PERMISOS DE ADMINISTRADOR 
     */
     @RequestMapping(value = "/API/empresas360/elimina_administrador_grupo", method = RequestMethod.POST)
