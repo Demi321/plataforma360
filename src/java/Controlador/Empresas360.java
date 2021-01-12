@@ -2192,6 +2192,27 @@ public class Empresas360 {
         return respuesta;
 
     }
+    
+    /*
+    SERVICIO PARA HACER ADMINISTRADOR UN PARTICIPANTE DE GRUPO
+    */
+    @RequestMapping(value = "/API/empresas360/agrega_administrador_grupo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject agrega_administrador_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
+        JSONObject respuesta = respuesta(false, "Error al agregar administrador");
+        
+        String query = "update participantes_grupos_chat_empresarial " +
+                        "set rol = 1 " +
+                        "where id_grupo = "+json.get("idGroup")+" and id_participantes = '"+json.get("id360")+"' ";
+        
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Administrador Agregado");
+            json.put("eres_administrador", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+        
+        return respuesta;
+    }
 
     /*
     SERVICIO PARA AGREGAR PARTICIPANTES DENTRO DE UN GRUPO DE CHAT EMPRESARIAL
