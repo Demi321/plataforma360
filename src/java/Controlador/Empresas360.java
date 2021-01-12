@@ -2213,6 +2213,27 @@ public class Empresas360 {
         
         return respuesta;
     }
+    
+    /*
+    SERVICIO PARA QUITAR PERMISOS DE ADMINISTRADOR 
+    */
+    @RequestMapping(value = "/API/empresas360/elimina_administrador_grupo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject elimina_administrador_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
+        JSONObject respuesta = respuesta(false, "Error al quitar administrador");
+        
+        String query = "update participantes_grupos_chat_empresarial " +
+                        "set rol = 0 " +
+                        "where id_grupo = "+json.get("idGroup")+" and id_participantes = '"+json.get("id360")+"' ";
+        
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Administrador Eliminado");
+            json.put("eliminado_administrador", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+        }
+        
+        return respuesta;
+    }
 
     /*
     SERVICIO PARA AGREGAR PARTICIPANTES DENTRO DE UN GRUPO DE CHAT EMPRESARIAL
