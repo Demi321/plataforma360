@@ -31,7 +31,7 @@ public class InicializacionLocal {
         proyecto.put("proyecto", "plataforma360");
         proyecto.put("urlTop", null);
         proyecto.put("idServicio", null);
-        proyecto.put("url", "https://empresas.claro360.com/plataforma360_dev");
+        proyecto.put("url", "https://empresas.claro360.com/plataforma360_dev_moises");
 
         JSONObject personalizacion = new JSONObject();
         personalizacion.put("logo3pdf", null);
@@ -39,7 +39,7 @@ public class InicializacionLocal {
         personalizacion.put("logo2", null);
         personalizacion.put("logo1", null);
         personalizacion.put("logo1pdf", "https://empresas.claro360.com/p360_v4/Img/Logos/911.png");
-        personalizacion.put("proyecto", "plataforma360_dev");
+        personalizacion.put("proyecto", "plataforma360_dev_moises");
         personalizacion.put("iconMap", null);
         personalizacion.put("t2pdf", "Empresas360");
         personalizacion.put("alias_proyecto", "Empresas360");
@@ -63,7 +63,7 @@ public class InicializacionLocal {
         personalizacion.put("ph3", null);
         personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360_dev/SocketNotifications");
         personalizacion.put("ph2", "165");
-        personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4_dev");
+        personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4_dev_moises");
         personalizacion.put("t1", "Empresas");
         personalizacion.put("logo_modal", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
         personalizacion.put("t2", "Empresas360");
@@ -74,7 +74,7 @@ public class InicializacionLocal {
         server.put("bd", "empresas");
         server.put("dep_base", false);
         server.put("lista_blanca", false);
-        server.put("recursos", "https://empresas.claro360.com/p360_v4_dev");
+        server.put("recursos", "https://empresas.claro360.com/p360_v4_dev_moises");
         server.put("validar_ip", false);
 
         json.put("inferiores", inferiores);

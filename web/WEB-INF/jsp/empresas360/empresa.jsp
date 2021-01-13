@@ -103,6 +103,7 @@
         <%@include file="../administracion_finanzas/modulo_dashboard.jsp" %>
         <%@include file="../administracion_finanzas/modulo_balanza.jsp" %>
         <%@include file="../empresas360/modulo_geodatos.jsp" %>
+        <%@include file="../empresas360/modulo_dashboard_principal.jsp" %>
 
     </section>
 
