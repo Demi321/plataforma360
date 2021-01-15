@@ -39,7 +39,7 @@ public class Revision {
             if (cookies != null) {
                 for (Cookie c : cookies) {
                     System.out.println(c.getName());
-                    if (c.getName().equals("username_v3.1_plataforma360_dev_moises")) {
+                    if (c.getName().equals("username_v3.1_plataforma360_dev")) {
                         JSONParser parser = new JSONParser();
                         try {
                             String value = new String(Base64.decodeBase64(c.getValue()));
@@ -95,7 +95,41 @@ public class Revision {
             Cookie[] cookies = sesion.getCookies();
             if (cookies != null) {
                 for (Cookie c : cookies) {
-                    if (c.getName().equals("username_v3.1_plataforma360_dev_moises")) {
+                    if (c.getName().equals("username_v3.1_plataforma360_dev")) {
+                        JSONParser parser = new JSONParser();
+                        try {
+                            String value = new String(Base64.decodeBase64(c.getValue()));
+                            misesion = (JSONObject) parser.parse(value);
+                            misesion.put("v", c.getName());
+                            //System.out.println(misesion);
+                        } catch (ParseException ex) {
+                            System.out.println("Error en la lectura de la sesion");
+                        }
+                        break;
+                    }
+                }
+            }
+            //System.out.println(misesion);
+        return misesion;
+    }
+
+    
+    public static JSONObject getSesion(HttpServletRequest sesion) {
+        //Inicializacion local automatica
+//        InicializacionLocal.AutoInit();
+
+        //Revision de inicializacion del proyecto 
+        if (config.getInit() == null) {
+            System.out.println("Proyecto no inicializado");
+            return null;
+        }
+
+        //Revision de sesion 
+        JSONObject misesion = null;
+            Cookie[] cookies = sesion.getCookies();
+            if (cookies != null) {
+                for (Cookie c : cookies) {
+                    if (c.getName().equals(config.getSESION())) {
                         JSONParser parser = new JSONParser();
                         try {
                             String value = new String(Base64.decodeBase64(c.getValue()));
