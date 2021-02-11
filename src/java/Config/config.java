@@ -52,7 +52,7 @@ public class config {
     
     private static  String urlSuperior=null;
     private static int time = 2;
-    private static String SESION = "username_v3.1_plataforma360";
+    private static String SESION = "username_v3.1_plataforma360_dev_moises";
     public static boolean initialize() {
         System.out.println("initialize");
         

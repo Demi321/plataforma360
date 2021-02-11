@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Enumeration;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -68,6 +69,7 @@ public class ControladorGET {
     public JSONObject config_proyect() {
         return config.getInit();
     }
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         if (config.getInit() != null) {
@@ -84,6 +86,7 @@ public class ControladorGET {
         System.out.println(ValidarIP.Validacion_ip_publica(sesion, model, "Login"));
         return ValidarIP.Validacion_ip_publica(sesion, model, "login/Login");
     }
+
     @RequestMapping(value = "/makepage", method = RequestMethod.GET)
     public String make(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         if (config.getInit() != null) {
@@ -95,27 +98,29 @@ public class ControladorGET {
             model.addAttribute("salary", 1800);
             model.addAttribute("v", 1800);
             System.out.println(config.getPersonalizacion().get("favicon"));
-            if(true){
+            if (true) {
                 JSONObject abc = new JSONObject();
                 abc.put("a", 10);
                 abc.put("b", 20);
                 abc.put("c", 30);
-                model.addAttribute("page_added",request.POST("http://localhost:8080/plataforma360/one", abc.toString()));
+                model.addAttribute("page_added", request.POST("http://localhost:8080/plataforma360/one", abc.toString()));
             }
         } else {
             System.out.println("Proyecto no inicializado");
-            
+
             return "makepage/makepage";
         }
         System.out.println(ValidarIP.Validacion_ip_publica(sesion, model, "Login"));
         return ValidarIP.Validacion_ip_publica(sesion, model, "makepage/makepage");
     }
+
     @RequestMapping(value = "/one", method = RequestMethod.POST)
-    public String one(Model model,@RequestBody JSONObject json) throws ParseException, IOException {
+    public String one(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
         model.addAttribute("a", json.get("a"));
         model.addAttribute("b", json.get("b"));
-        return"makepage/one";
+        return "makepage/one";
     }
+
     @RequestMapping(value = "/tablas", method = RequestMethod.GET)
     public String tablas(HttpServletRequest sesion, Model model) throws ParseException, IOException {
 
@@ -145,7 +150,7 @@ public class ControladorGET {
         //return "Login";
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    @RequestMapping(value = "/dashboard2", method = RequestMethod.GET)
     public String empleado(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         if (config.getInit() != null) {
             model.addAttribute("pathRecursos", config.getServer().get("recursos"));
@@ -159,7 +164,7 @@ public class ControladorGET {
         }
         JSONObject the_sesion = Revision.getCookie(sesion);
         if (the_sesion != null) {
-            if(the_sesion.get("tipo_usuario")==null){
+            if (the_sesion.get("tipo_usuario") == null) {
                 return ValidarIP.Validacion_ip_publica(sesion, model, "empresas360/registro_empresa");
             }
             if (the_sesion.get("tipo_usuario").toString().equals("0")) {
@@ -236,11 +241,11 @@ public class ControladorGET {
             System.out.println("Proyecto no inicializado");
             //return "plantilla/sinInicializar";
         }
-        
+
         model.addAttribute("pathRecursos", "http://localhost:8080/p360");
-            model.addAttribute("config", "{\"logo3pdf\":null,\"lottie\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/json\\/lottie360.json\",\"logo2\":null,\"logo1\":null,\"logo1pdf\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/911.png\",\"proyecto\":\"lineamientos\",\"iconMap\":null,\"t2pdf\":\"Ciudad de México\",\"alias_proyecto\":\"Lineamientos\",\"dep_base\":false,\"lg2\":\"7\",\"lg1\":\"12\",\"logo_principal\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"lg3\":null,\"logo2pdf\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"logo_footer\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"favicon\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/favicon360.png\",\"pv1\":\"15\",\"ah2\":\"37\",\"ah1\":\"18\",\"pv3\":null,\"pv2\":\"17\",\"ah3\":null,\"t1pdf\":\"Plataforma Emergencia\",\"ph1\":\"12\",\"catalogo\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/json\\/incidentes.json\",\"ph3\":null,\"socket\":\"wss:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/SocketNotifications\",\"ph2\":\"165\",\"recursos\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\",\"t1\":\"\",\"logo_modal\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"t2\":\"Administrador\",\"tfooter\":\"© 360 HQ S.A de C.V 2019. Todos los derechos reservados\",\"t3\":\"\"}".toString().replace("\"", "&quot;"));
-            //model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
-            model.addAttribute("title", "Claro360  - ");
+        model.addAttribute("config", "{\"logo3pdf\":null,\"lottie\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/json\\/lottie360.json\",\"logo2\":null,\"logo1\":null,\"logo1pdf\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/911.png\",\"proyecto\":\"lineamientos\",\"iconMap\":null,\"t2pdf\":\"Ciudad de México\",\"alias_proyecto\":\"Lineamientos\",\"dep_base\":false,\"lg2\":\"7\",\"lg1\":\"12\",\"logo_principal\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"lg3\":null,\"logo2pdf\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"logo_footer\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"favicon\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/favicon360.png\",\"pv1\":\"15\",\"ah2\":\"37\",\"ah1\":\"18\",\"pv3\":null,\"pv2\":\"17\",\"ah3\":null,\"t1pdf\":\"Plataforma Emergencia\",\"ph1\":\"12\",\"catalogo\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/json\\/incidentes.json\",\"ph3\":null,\"socket\":\"wss:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/SocketNotifications\",\"ph2\":\"165\",\"recursos\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\",\"t1\":\"\",\"logo_modal\":\"https:\\/\\/seguridadsanitaria.claro360.com\\/lineamientos\\/resources\\/local_v3.03\\/Img\\/Logos\\/Claro%20360.png\",\"t2\":\"Administrador\",\"tfooter\":\"© 360 HQ S.A de C.V 2019. Todos los derechos reservados\",\"t3\":\"\"}".toString().replace("\"", "&quot;"));
+        //model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+        model.addAttribute("title", "Claro360  - ");
         return "plantilla/plantilla";
     }
 
@@ -521,16 +526,16 @@ public class ControladorGET {
 
         return "monitoreo/LlamadaGrupal";
     }
-    
+
     @RequestMapping(value = "/Llamada/{id_llamada}/{apikey}/{sesion}/{token}", method = RequestMethod.GET)
     public String llamada_multiplataforma(
             Model model,
             /*@RequestParam("id") String id,*/
-            @PathVariable("id_llamada") String id_llamada, 
-            @PathVariable("apikey") String apikey, 
-            @PathVariable("sesion") String sesion, 
+            @PathVariable("id_llamada") String id_llamada,
+            @PathVariable("apikey") String apikey,
+            @PathVariable("sesion") String sesion,
             @PathVariable("token") String token
-            ) {
+    ) {
 
         System.out.println("llamada_multiplataforma:");
         if (config.getInit() != null) {
@@ -542,7 +547,7 @@ public class ControladorGET {
             System.out.println("Proyecto no inicializado");
             return "plantilla/sinInicializar";
         }
-        
+
         JSONObject credenciales = new JSONObject();
         credenciales.put("apikey", apikey);
         credenciales.put("sesion", sesion);
@@ -556,30 +561,26 @@ public class ControladorGET {
 //        registroLlamada.put("modo", modo);
 //        registroLlamada.put("participantes", jsonIntegrantes);
 
-       
-
-    
         JSONObject Notificacion = new JSONObject();
         Notificacion.put("registro_llamada", registroLlamada);
         Notificacion.put("credenciales", credenciales);
-       
 
         model.addAttribute("data", Notificacion.toString().replace("\"", "&quot;"));
 
         return "empresas360/llamada_entrante";
     }
-    
+
     @RequestMapping(value = "/Llamada/{id_llamada}/{apikey}/{sesion}/{token}/{id360}/{access_token}", method = RequestMethod.GET)
     public String llamada_multiplataforma_access_token(
             Model model,
             /*@RequestParam("id") String id,*/
-            @PathVariable("id_llamada") String id_llamada, 
-            @PathVariable("apikey") String apikey, 
-            @PathVariable("sesion") String sesion, 
+            @PathVariable("id_llamada") String id_llamada,
+            @PathVariable("apikey") String apikey,
+            @PathVariable("sesion") String sesion,
             @PathVariable("token") String token,
             @PathVariable("id360") String id360,
             @PathVariable("access_token") String access_token
-            ) throws IOException, ParseException {
+    ) throws IOException, ParseException {
 
         System.out.println("llamada_multiplataforma:");
         if (config.getInit() != null) {
@@ -591,8 +592,7 @@ public class ControladorGET {
             System.out.println("Proyecto no inicializado");
             return "plantilla/sinInicializar";
         }
-        
-        
+
         JSONObject credenciales = new JSONObject();
         credenciales.put("apikey", apikey);
         credenciales.put("sesion", sesion);
@@ -606,17 +606,12 @@ public class ControladorGET {
 //        registroLlamada.put("modo", modo);
 //        registroLlamada.put("participantes", jsonIntegrantes);
 
-       
-
-    
         JSONObject Notificacion = new JSONObject();
         Notificacion.put("registro_llamada", registroLlamada);
         Notificacion.put("credenciales", credenciales);
-       
 
         model.addAttribute("data", Notificacion.toString().replace("\"", "&quot;"));
-        
-        
+
         JSONObject json = new JSONObject();
         json.put("access_token", access_token);
         json.put("id360", id360);
@@ -804,9 +799,10 @@ public class ControladorGET {
 
         System.out.println("get credenciales: " + config.getDEPENDENCIA());
 
-        String url = config.getURL_CONTROLADOR() + "API/Credenciales";
-//        String response = ;
-        return request.POST(url, "{}");
+//        String url = config.getURL_CONTROLADOR() + "API/Credenciales";
+////        String response = ;
+//        return request.POST(url, "{}");
+        return request.GET("https://meeting.claro360.com/getRoom");
     }
 
     @RequestMapping(value = "/Llamada", method = RequestMethod.GET)
@@ -1530,20 +1526,20 @@ public class ControladorGET {
             return new JSONArray();
         }
         JSONArray referencias = Query.execute("SELECT id_referencia_hospitalaria as id FROM eventos_referencias_hospitalarias\n"
-                + " where (tipo_usuario = '"+tipo_usuario+"' and  tipo_servicio='"+tipo_servicio+"')  \n"
-                + " OR (to_tipo_usuario_traslado='"+tipo_usuario+"' and to_tipo_servicio_traslado='"+tipo_servicio+"') \n"
-                + " or (to_tipo_usuario_institucion='"+tipo_usuario+"' and to_tipo_servicio_institucion='"+tipo_servicio+"') \n"
+                + " where (tipo_usuario = '" + tipo_usuario + "' and  tipo_servicio='" + tipo_servicio + "')  \n"
+                + " OR (to_tipo_usuario_traslado='" + tipo_usuario + "' and to_tipo_servicio_traslado='" + tipo_servicio + "') \n"
+                + " or (to_tipo_usuario_institucion='" + tipo_usuario + "' and to_tipo_servicio_institucion='" + tipo_servicio + "') \n"
                 + " or (to_tipo_servicio_institucion = 0 and to_tipo_usuario_institucion = 0 and tipo_servicio_institucion is null and tipo_usuario_institucion is null)\n"
                 + " or (to_tipo_servicio_traslado = 0 and to_tipo_usuario_traslado = 0 and tipo_servicio_traslado is null and tipo_usuario_traslado is null);");
-        
+
         JSONArray pacientes = new JSONArray();
-        
+
         for (Object referencia : referencias) {
             JSONObject r = (JSONObject) referencia;
-           r = Query.select("SELECT id,estado,fecha,hora,nombre,apellidop_paciente,apellidom_paciente  from referencias_hospitalarias where id = '"+r.get("id")+"';");
-           if(r!=null){
-               pacientes.add(r);
-           }
+            r = Query.select("SELECT id,estado,fecha,hora,nombre,apellidop_paciente,apellidom_paciente  from referencias_hospitalarias where id = '" + r.get("id") + "';");
+            if (r != null) {
+                pacientes.add(r);
+            }
         }
         return pacientes;
     }
@@ -1789,6 +1785,7 @@ public class ControladorGET {
 
         return "login/access_token";
     }
+
     @RequestMapping(value = "/API/cuenta360/access_token/{id360}/{access_token}/{perfil}/{ruta}", method = RequestMethod.GET)
     public String Login2(
             HttpServletRequest sesion,
@@ -1814,15 +1811,15 @@ public class ControladorGET {
         if ((boolean) usuario.get("success")) {
             ControladorPOST cp = new ControladorPOST();
             usuario = cp.data_login(usuario);
-           usuario.put("perfil", perfil);
-           usuario.put("ruta", ruta);
+            usuario.put("perfil", perfil);
+            usuario.put("ruta", ruta);
             model.addAttribute("cuenta360", usuario.toString().replace("\"", "&quot;"));
-            
+
         }
 
         return "login/access_token";
     }
-    
+
     /*Cambios prueba fernando*/
     @RequestMapping(value = "/API/cuenta360/access_token/{id360}/{access_token}/section/{seccion}/{tipo_usuario}/{tipo_servicio}/{tipo_area}", method = RequestMethod.GET)
     public String Login2(
@@ -1853,13 +1850,15 @@ public class ControladorGET {
             usuario = cp.data_login(usuario);
             usuario.put("seccion", seccion);
             model.addAttribute("cuenta360", usuario.toString().replace("\"", "&quot;"));
-            
+
         }
 
         return "login/access_token";
     }
-    /*************************/
-    
+
+    /**
+     * **********************
+     */
     @RequestMapping(value = "/API/empresas360/info/{tipo_servicio}", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject empresas360_info(@PathVariable("tipo_servicio") String tipo_servicio) {
@@ -2061,6 +2060,13 @@ public class ControladorGET {
         return Query.select("SELECT * FROM servicios_usuario WHERE id='" + servicios_usuario + "';");
     }
 
+    @RequestMapping(value = "/API/empresas360/info_sucursales/{tipo_usuario}", method = RequestMethod.GET)
+    @ResponseBody
+    private JSONArray info_sucursales(@PathVariable("tipo_usuario") String tipo_usuario) {
+
+        return Query.execute("SELECT * FROM servicios_usuario WHERE idTipoUsuario='" + tipo_usuario + "';");
+    }
+
     @RequestMapping(value = "/API/empresas360/info_area/{tipo_area}", method = RequestMethod.GET)
     @ResponseBody
     private JSONObject info_area(@PathVariable("tipo_area") String tipo_area) {
@@ -2176,7 +2182,8 @@ public class ControladorGET {
     }
 
     /**
-     * ******************************************* Referencias Hospitalarias *********************************************************************
+     * ******************************************* Referencias Hospitalarias
+     * *********************************************************************
      */
     @RequestMapping(value = "/API/referencias_hospitalarias/instituciones_traslado", method = RequestMethod.GET)
     @ResponseBody
@@ -2194,12 +2201,25 @@ public class ControladorGET {
 
     /*
         Servicio para traer las notas de un tipo de usuario
-    */
+     */
     @RequestMapping(value = "/API/empresas360/get_notas/{id360}", method = RequestMethod.GET)
     @ResponseBody
     public JSONArray empresas360_get_notas(@PathVariable("id360") String id360) {
         String query = "SELECT id AS id_nota,id360,tipo_usuario,tipo_servicio,tipo_area,titulo,nota "
-                + "from notas WHERE id360 = '"+id360+"' AND activo = 1;";
+                + "from notas WHERE id360 = '" + id360 + "' AND activo = 1;";
         return Query.execute(query);
     }
+
+    @RequestMapping(value = "/API/catalogo_cni", method = RequestMethod.GET)
+    @ResponseBody
+    public String catalogo_cni() throws IOException {
+        return request.GET(config.getURL_CONTROLADOR() + "API/catalogo_cni");
+    }
+
+    @RequestMapping(value = "/API/GET/reporte_evidencias/categorias", method = RequestMethod.GET)
+    @ResponseBody
+    public String categorias_reporte_evidencias() throws IOException {
+        return request.GET("https://seguridadsanitaria.claro360.com/lineamientos/API/GET/reporte_evidencias/categorias");
+    }
+
 }

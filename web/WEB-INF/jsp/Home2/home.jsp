@@ -1,0 +1,85 @@
+<%-- 
+    Document   : plantilla
+    Created on : 26 jul 2019, 16:25:53
+    Author     : Moises Juárez
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<!DOCTYPE html>
+
+
+<head>  
+    <%@include file="../plantilla/head.jsp" %>
+    <%-- Estilos Personalizados --%>
+    <spring:url value="${pathRecursos}/css/operador.css" var="operadorCSS" />
+    <link href="${operadorCSS}" rel="stylesheet" />
+    <spring:url value="${pathRecursos}/Home/home.css" var="homeCSS" />
+
+    <%-- Javascript Personalizados --%>    
+    <spring:url value="${pathRecursos}/Home/functions_home.js" var="functions_homeJS" />
+    <spring:url value="${pathRecursos}/Home/home.js" var="homeJS" />
+    <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAe5gzNGneaWmWLzmZs6bFKNlwdCTr0Odk&libraries=places&v=weekly">
+    </script>
+</head>
+<!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+<!--<div id="video_drag_header" style="padding: 10px; cursor: move; z-index: 10; background-color: #495057; color: #fff;"><h7 class="nombre_completo"></h7></div>-->
+<!--<div id="conectado_jornada_laboral" style="min-height: 150px; min-width: 150px; width: 100%; height: 100%; overflow: hidden;" >-->
+</div>
+</div>
+<body>
+
+    <%@include file="../plantilla/header.jsp" %>
+    <%@include file="../plantilla/modal_menu.jsp" %>
+
+    
+
+    <aside>
+        <div class="" id="toggle">
+            <div><i class="fas fa-ellipsis-v"></i></div><span>Plataforma 360</span></div>
+        <div id="sidebar" class="p-2">
+
+        </div>
+    </aside>
+
+    <%@include file="../plantilla/callhead.jsp" %>
+    <script src="${sdk_awsJS}" ></script>
+    <script src="${functions_homeJS}" ></script>
+
+
+    <section>
+        <div class="h-100 row col-12 m-0 p-2" id="contenidoSection">
+
+        </div>
+
+
+        <link href="${homeCSS}" rel="stylesheet" />
+        <script src="${homeJS}" ></script>
+
+
+    </section>
+        ${modulos}
+
+    <div class="d-none" id="guardando_logo">
+        <div class="mensaje_guardando_logo">Guardando Logo ...</div>
+    </div>
+
+    <%@include file="../plantilla/footer.jsp" %>
+
+
+    <script>
+
+            $(window).on("load", function () {
+                var sidebar = $("#sidebar");
+                $("#sidebar").remove();
+                $("aside").append(sidebar);
+                //inicializar mapas
+                initMaps();
+            });
+
+    </script>
+
+
+</body>

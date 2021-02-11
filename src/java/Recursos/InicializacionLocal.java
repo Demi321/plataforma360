@@ -46,11 +46,11 @@ public class InicializacionLocal {
         personalizacion.put("dep_base", false);
         personalizacion.put("lg2", "7");
         personalizacion.put("lg1", "12");
-        personalizacion.put("logo_principal", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
+        personalizacion.put("logo_principal", "https://empresas.claro360.com/p360_v4_dev_moises/Img/Logos/Claro%20360.png");
         personalizacion.put("lg3", null);
-        personalizacion.put("logo2pdf", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
-        personalizacion.put("logo_footer", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
-        personalizacion.put("favicon", "https://empresas.claro360.com/p360_v4/Img/favicon360.png");
+        personalizacion.put("logo2pdf", "https://empresas.claro360.com/p360_v4_dev_moises/Img/Logos/Claro%20360.png");
+        personalizacion.put("logo_footer", "https://empresas.claro360.com/p360_v4_dev_moises/Img/Logos/Claro%20360.png");
+        personalizacion.put("favicon", "https://empresas.claro360.com/p360_v4_dev_moises/Img/favicon360.png");
         personalizacion.put("pv1", "15");
         personalizacion.put("ah2", "37");
         personalizacion.put("ah1", "18");
@@ -65,7 +65,7 @@ public class InicializacionLocal {
         personalizacion.put("ph2", "165");
         personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4_dev_moises");
         personalizacion.put("t1", "Empresas");
-        personalizacion.put("logo_modal", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
+        personalizacion.put("logo_modal", "https://empresas.claro360.com/p360_v4_dev_moises/Img/Logos/Claro%20360.png");
         personalizacion.put("t2", "Empresas360");
         personalizacion.put("tfooter", "© 360 HQ S.A de C.V 2020. Todos los derechos reservados");
         personalizacion.put("t3", "");

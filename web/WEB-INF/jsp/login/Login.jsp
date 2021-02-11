@@ -32,7 +32,7 @@
             <label for="usr"  class="" style="display: table; margin-left: auto; margin-right: auto; font: 15px Arial;">Usuario:</label>
             <input type="text" name="usr" class="form-control" id="usuario" style="color: #495057; background-color: #fff;">
             <label for="pwd" class="" style="display: table; margin-left: auto; margin-right: auto; font: 15px Arial;">Contraseña:</label>
-            <input type="password" name="pwd" class="form-control" id="contra" style="color: #495057; background-color: #fff;">
+            <input type="password" name="pwd" class="form-control" id="contra" style="color: #495057; background-color: #fff;" autocomplete="on">
             <button type="submit" class="btn btn-default" name="enviar" style="border-radius: 20px; width: 150px; margin-left: auto;  margin-right: auto;">Entrar</button>
             <p class="text-center"><a href="/plataforma360/Registro">Registrarse</a></p>
             <span   style="font-size: 13px; margin-left: auto; margin-right: auto; display: table;">Las cookies y notificaciones deben de estar activadas en el navegador.</span>

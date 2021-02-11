@@ -1236,6 +1236,34 @@ public class SocketEndPoint {
     }
     ///////////////////////////************************
 
+    public static void EnviarNotificacio_id360_array(JSONObject m, JSONArray id360) throws IOException {
+        //System.out.println("Enviando Notificacion al municipio " + config.getDEPENDENCIA());
+        boolean notificado = false;
+        Iterator<Session> iterator = chatroomUsers.iterator();
+        while (iterator.hasNext()) {
+            try {
+                
+                Session usuario = iterator.next();
+                for (int i = 0; i < id360.size(); i++) {
+                    JSONObject id = (JSONObject) id360.get(i);
+                    if(usuario.getUserProperties().get("id360").equals(id.get("to_id360"))){
+                        usuario.getBasicRemote().sendText(m.toString());
+                        break;
+                    }
+                }
+//                if (usuario.getUserProperties().get("id360").equals(id360)) {
+//                    //System.out.println("Not Enviada");
+//                    usuario.getBasicRemote().sendText(m.toString());
+//                    notificado = true;
+//                }
+            } catch (Exception e) {
+                System.out.println("Error enviando mensaje:");
+                System.out.println(e.getMessage());
+            }
+
+        }
+        //return notificado;
+    }
     public static boolean EnviarNotificacio_id360(JSONObject m, String id360) throws IOException {
         //System.out.println("Enviando Notificacion al municipio " + config.getDEPENDENCIA());
         boolean notificado = false;

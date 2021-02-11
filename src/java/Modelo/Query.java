@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -642,6 +643,18 @@ public class Query {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    
+    public static String getFecha(String fecha, int dias) throws ParseException {
+        //sumarle dias a el date 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_YEAR, dias);
+        date = calendar.getTime();
+        return dateFormat.format(date);
+    }
 
     public static String getHora() {
         DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
@@ -685,12 +698,44 @@ public class Query {
         
         return res;
     }
+    public String comparaHoras(String date1, String date2) throws ParseException{
+        String res = "";
+        if(StringUtils.countMatches(date1, ":")==0){
+            date1+=":00:00";
+        }else if(StringUtils.countMatches(date1, ":")==1){
+            date1+=":00";
+        }
+        if(StringUtils.countMatches(date2, ":")==0){
+            date2+=":00:00";
+        }else if(StringUtils.countMatches(date2, ":")==1){
+            date2+=":00";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Date d1 = sdf.parse(date1);
+        Date d2 = sdf.parse(date2);
+        if (d1.before(d2)) {
+            res = "<";
+        }
+        if (d1.after(d2)) {
+            res = ">";
+        }
+        if (d1.equals(d2)) {
+            res = "=";
+        }
+        return res;
+    }
 
     public static void main(String[] args) throws ParseException {
         Query q = new Query();
-        System.out.println(q.comparaFechas("2020-10-30 04:05:45","2020-10-30 09:00:00"));
-        System.out.println(q.comparaFechas("2020-10-30 04:06:00","2020-10-30 19:00:00"));
-        
+//        System.out.println(q.comparaFechas("2020-10-30 04:05:45","2020-10-30 09:00:00"));
+//        System.out.println(q.comparaFechas("2020-10-30 04:06:00","2020-10-30 19:00:00"));
+//        
+        System.out.println(q.comparaHoras("10","09:00:00"));
+        System.out.println(q.comparaHoras("04:06:00","19:00:00"));
+        System.out.println(q.comparaHoras("20:05:45","09:00:00"));
+        System.out.println(q.comparaHoras("22:06:00","19:00:00"));
+        JSONObject a = new JSONObject();
+        a.remove("ok");
         
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-dd");
 //        String dateI = "2020-10-30";
@@ -704,5 +749,19 @@ public class Query {
 //        System.out.println(cI);
 //        System.out.println(cF);
 //        System.out.println(q.getDiasHabiles(cI, cF));
+    }
+    
+    public static String getHora(String hora, int minutos) throws ParseException {
+        //sumarle dias a el date 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new SimpleDateFormat("HH:mm").parse(hora);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MINUTE, minutos);
+        date = calendar.getTime();
+        
+        return hourFormat.format(date);
+        
     }
 }

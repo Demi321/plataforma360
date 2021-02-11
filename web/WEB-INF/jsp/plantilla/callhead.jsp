@@ -90,7 +90,7 @@
 <spring:url value="/resources/frameworks/jQuery/jquery-ui.min.js" var="jqueryuiJS" />
 <script src="${jqueryuiJS}" ></script>
 <spring:url value="/resources/frameworks/jQuery/jquery-ui.min.css" var="jqueryuiCSS" />
-<script src="${jqueryuiCSS}" ></script>
+<!--<script src="${jqueryuiCSS}" ></script>-->
 
 <spring:url value="/resources/frameworks/datatables/css/dataTables.bootstrap4.min.css" var="dataTableCSS" />
 <link href="${dataTableCSS}" rel="stylesheet" />

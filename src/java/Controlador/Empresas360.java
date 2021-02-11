@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
@@ -855,6 +856,7 @@ public class Empresas360 {
         }
         return respuesta;
     }
+    
 
     //Para el registro de las empresas
     @RequestMapping(value = "/API/registro/empresa", method = RequestMethod.POST, consumes = "application/json; charset=UTF-8")
@@ -1279,6 +1281,69 @@ public class Empresas360 {
         return respuesta;
     }
 
+    /* 
+    AÑADIR USUARIO COMO FAVORITO
+     */
+    @RequestMapping(value = "/API/empresas360/agregar_usuario_favorito", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject agregar_usuario_favorito(@RequestBody JSONObject json) throws IOException, ParseException {
+
+        JSONObject respuesta = respuesta(false, "Error al agregar al usuario");
+
+        String queryUpdate = "UPDATE usuarios_favoritos "
+                + "SET estatus_favorito = 1, date_updated = '" + json.get("fecha") + "', time_updated = '" + json.get("hora") + "' "
+                + "WHERE id360 = '" + json.get("id360") + "' AND id360_favorito = '" + json.get("id360Favorito") + "' ";
+
+        if (!Query.update(queryUpdate)) {
+
+            String queryInsert = "INSERT INTO usuarios_favoritos (id360, id360_favorito, date_created, time_created) "
+                    + " VALUES ('" + json.get("id360") + "', '" + json.get("id360Favorito") + "', '" + json.get("fecha") + "', '" + json.get("hora") + "') ";
+
+            if (Query.insert(queryInsert) > 0) {
+                respuesta = respuesta(true, "Usuario agregado como favorito");
+            }
+
+        } else {
+            respuesta = respuesta(true, "Usuario agregado como favorito");
+        }
+
+        return respuesta;
+
+    }
+
+    /*
+    ELIMINAR USUARIO COMO FAVORITO
+     */
+    @RequestMapping(value = "/API/empresas360/eliminar_usuario_favorito", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject eliminar_usuario_favorito(@RequestBody JSONObject json) throws IOException, ParseException {
+
+        JSONObject respuesta = respuesta(false, "Error al eliminar al usuario");
+
+        String queryUpdate = "UPDATE usuarios_favoritos "
+                + "SET estatus_favorito = 0, date_updated = '" + json.get("fecha") + "', time_updated = '" + json.get("hora") + "' "
+                + "WHERE id360 = '" + json.get("id360") + "' AND id360_favorito = '" + json.get("id360Favorito") + "' ";
+
+        if (Query.update(queryUpdate)) {
+            respuesta = respuesta(true, "Usuario eliminado como favorito");
+        }
+
+        return respuesta;
+
+    }
+
+    /*
+    Consultar USUARIO COMO FAVORITO
+     */
+    @RequestMapping(value = "/API/empresas360/consultar_usuario_favorito", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_usuario_favorito(@RequestBody JSONObject json) throws IOException, ParseException {
+
+        String query = "SELECT * FROM usuarios_favoritos WHERE id360 = '" + json.get("id360") + "' AND estatus_favorito = 1";
+
+        return Query.execute(query);
+
+    }
     @RequestMapping(value = "/API/notificacion/llamada360/agregar_participante", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject notificacion_llamada360_agregar_participante(@RequestBody String json_string) throws IOException, ParseException {
@@ -1368,6 +1433,17 @@ public class Empresas360 {
             System.out.println("Data para moviles ------->");
             System.out.println(data_moviles);
             id360.put("movil", request.POST(config.getURL_CONTROLADOR() + "API/moviles/notification/llamada_multiplataforma", data_moviles));
+            /*Cambios prueba fernando*/
+            if (id360.get("movil") != null) {
+                //verificar si se envio la not por firebase
+                JSONObject movil = (JSONObject) id360.get("movil");
+                if (movil.get("success").toString().equals("1")) {
+                    notificados = true;
+                }
+            }
+            /**
+             * **********************
+             */
         }
 
         if (notificados) {
@@ -1419,6 +1495,13 @@ public class Empresas360 {
         ticket_settings.put("origen", config.getPATH() + Dependencia);
         ticket_settings.put("fecha", json.get("fecha"));
         ticket_settings.put("hora", json.get("hora"));
+        /*Cambios prueba fernando*/
+        if (json.containsKey("tipo")) {
+            ticket_settings.put("tipo", json.get("tipo"));
+        }
+        /**
+         * *********************
+         */
         JSONObject JsonTicket = request.POST(config.getURL_CONTROLADOR() + "API/ticket", ticket_settings);
         //Obtenemos el perfil de quien llama
         JSONObject perfil360 = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", json);
@@ -1437,7 +1520,7 @@ public class Empresas360 {
         data.put("registro_llamada", RegistroLlamada);
 
         data.put("llamada_multiplataforma", true);
-
+        data.put("to_id360", json.get("to_id360").toString());
         JSONObject data_moviles = (JSONObject) data.clone();
         System.out.println("Este es el json ----->");
         System.out.println(json);
@@ -1466,12 +1549,54 @@ public class Empresas360 {
             System.out.println("Data para moviles ------->");
             System.out.println(data_moviles);
             id360.put("movil", request.POST(config.getURL_CONTROLADOR() + "API/moviles/notification/llamada_multiplataforma", data_moviles));
+            /*Cambios prueba fernando*/
+            if (id360.get("movil") != null) {
+                //verificar si se envio la not por firebase
+                JSONObject movil = (JSONObject) id360.get("movil");
+                if (movil.get("success").toString().equals("1")) {
+                    notificados = true;
+                }
+            }
+            /**
+             * **********************
+             */
         }
 
         if (notificados) {
             respuesta = respuesta(true, "Notificación enviada");
         }
         respuesta.putAll(data);
+
+        /*Registro de la llamada*/
+ /*
+        {
+            "idRegistro_Llamadas":"",
+            "fecha":"",
+            "hora":"",
+            "Modo_Llamada_idModo_Llamada":"",
+            "Usuarios_Movil_idUsuarios_Movil":"",
+            "apikey":"",
+            "sesion":"",
+            "tipo_usuario":"",
+            "tipo_servicio":"",
+            "tipo_area":""
+        }
+         */
+        JSONObject reg_llamada = new JSONObject();
+        reg_llamada.put("idRegistro_Llamadas", RegistroLlamada.get("idLlamada"));
+        reg_llamada.put("fecha", RegistroLlamada.get("fecha"));
+        reg_llamada.put("hora", RegistroLlamada.get("hora"));
+        reg_llamada.put("Modo_Llamada_idModo_Llamada", json.get("type"));
+        reg_llamada.put("Usuarios_Movil_idUsuarios_Movil", json.get("id360"));
+        reg_llamada.put("apikey", credenciales.get("apikey"));
+        reg_llamada.put("sesion", credenciales.get("idsesion"));
+//        reg_llamada.put("tipo_usuario", ids);
+//        reg_llamada.put("tipo_servicio", ids);
+//        reg_llamada.put("tipo_area", ids);
+        System.out.println(empresas360_registro_llamada(reg_llamada));
+        /**
+         * *********************
+         */
         return respuesta;
     }
 
@@ -1582,6 +1707,7 @@ public class Empresas360 {
                         sistema.put("modulos", "25");
                         sistema.put("modulo_principal", "dashboard");
                         sistema.put("canje", "1");
+                        sistema.put("jerarquia", "empleado");
 
                         JSONObject usuario = new JSONObject();
                         usuario.put("nombre", "Nombre:text");
@@ -2043,6 +2169,9 @@ public class Empresas360 {
         JSONObject json = (JSONObject) parser.parse(string);
         
         JSONObject respuesta = respuesta(false, "Informacion no almacenada");
+        boolean setNames = Query.update("SET NAMES 'utf8mb4'");
+        respuesta.put("setNames", setNames);
+        
         int resultSend = Query.insert(Query.createQueryInsertWithColumns("chat_empresarial", json));
         if (resultSend >= 0) {
             
@@ -2061,7 +2190,7 @@ public class Empresas360 {
             json.put("chat_empresarial", true);
             json.put("id", resultSend);
             respuesta.put("id", resultSend);
-            if( json.containsKey("idGroup") && json.containsKey("participantes") ){
+            if( json.containsKey("idGroup")){
                 
                 JSONArray participantes = (JSONArray) json.get("participantes");
                 int cantidadParticipantes = participantes.size();
@@ -2074,8 +2203,9 @@ public class Empresas360 {
                 respuesta.put("enviado a", agregados);
                 
             }else{
-                boolean EnviarNotificacio_id360 = SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
-                respuesta.put("enviadoPorSocket", EnviarNotificacio_id360);
+                SocketEndPoint.EnviarNotificacio_id360(json, json.get("to_id360").toString());
+                json.put("chat_empresarial_mio", true);
+                SocketEndPoint.EnviarNotificacio_id360(json, json.get("id360").toString());
             }
 
         }
@@ -2179,7 +2309,7 @@ public class Empresas360 {
             respuesta = respuesta(true, "Mensaje editado");
             respuesta.putAll(json);
             
-            String querySelect = "SELECT * FROM chat_empresarial WHERE id = " + json.get("idMensaje");
+            String querySelect = "SELECT *, (SELECT message FROM chat_empresarial sc WHERE sc.id = idResponse) as mensajeRespuesta FROM chat_empresarial WHERE id = " + json.get("idMensaje");
             JSONObject dataNew = Query.select(querySelect);
             respuesta.put("nuevo",dataNew);
             json.put("nuevo",dataNew);
@@ -2187,8 +2317,11 @@ public class Empresas360 {
             //Enviar por socket
             json.put("edicion_mensaje_chat_empresarial", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+            json.put("edicion_mensaje_chat_empresarial_mio", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("id360"));
+        }else{
+            respuesta.put("query",query);
         }
-
         return respuesta;
 
     }
@@ -2196,21 +2329,21 @@ public class Empresas360 {
     /*
     SERVICIO PARA HACER ADMINISTRADOR UN PARTICIPANTE DE GRUPO
     */
-    @RequestMapping(value = "/API/empresas360/agrega_administrador_grupo", method = RequestMethod.POST)
+     @RequestMapping(value = "/API/empresas360/agrega_administrador_grupo", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject agrega_administrador_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
+    public JSONObject agrega_administrador_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         JSONObject respuesta = respuesta(false, "Error al agregar administrador");
-        
-        String query = "update participantes_grupos_chat_empresarial " +
-                        "set rol = 1 " +
-                        "where id_grupo = "+json.get("idGroup")+" and id_participantes = '"+json.get("id360")+"' ";
-        
+
+        String query = "update participantes_grupos_chat_empresarial "
+                + "set rol = 1 "
+                + "where id_grupo = " + json.get("idGroup") + " and id_participantes = '" + json.get("id360") + "' ";
+
         if (Query.update(query)) {
             respuesta = respuesta(true, "Administrador Agregado");
             json.put("eres_administrador", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
-        
+
         return respuesta;
     }
     
@@ -2219,19 +2352,19 @@ public class Empresas360 {
     */
     @RequestMapping(value = "/API/empresas360/elimina_participante_grupo", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject elimina_participante_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
+    public JSONObject elimina_participante_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         JSONObject respuesta = respuesta(false, "Error al quitar participante");
-        
-        String query = "update participantes_grupos_chat_empresarial " +
-                        "set estatus_en_grupo = 0 " +
-                        "where id_grupo = "+json.get("idGroup")+" and id_participantes = '"+json.get("id360")+"' ";
-        
+
+        String query = "update participantes_grupos_chat_empresarial "
+                + "set estatus_en_grupo = 0 "
+                + "where id_grupo = " + json.get("idGroup") + " and id_participantes = '" + json.get("id360") + "' ";
+
         if (Query.update(query)) {
             respuesta = respuesta(true, "Usuario Eliminado");
             json.put("eliminado_grupo", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
-        
+
         return respuesta;
     }
     
@@ -2240,19 +2373,31 @@ public class Empresas360 {
     */
     @RequestMapping(value = "/API/empresas360/cambiar_parametro_grupo", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject cambiar_parametro_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
-        JSONObject respuesta = respuesta(false, "Error al quitar participante");
-        
-        String query = "update grupos_chat_empresarial set " +
-                        json.get("columna") + " = '"+json.get("valor")+"', " +
-                        "date_updated = '"+json.get("fecha")+"', " +
-                        "time_updated = '"+json.get("hora")+"' " +
-                        "where id_grupo = '"+json.get("idGroup")+"';";
-        
+    public JSONObject cambiar_parametro_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+        JSONObject respuesta = respuesta(false, "Error al cambiar el parametro");
+
+        String query = "update grupos_chat_empresarial set "
+                + json.get("columna") + " = '" + json.get("valor") + "', "
+                + "date_updated = '" + json.get("fecha") + "', "
+                + "time_updated = '" + json.get("hora") + "' "
+                + "where id_grupo = '" + json.get("idGroup") + "';";
+
         if (Query.update(query)) {
-            respuesta = respuesta(true, "Usuario Eliminado");
-            json.put("eliminado_grupo", true);
-            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+            respuesta = respuesta(true, "Valor cambiado exitosamente");
+            json.put("cambio_parametro_grupo", true);
+            
+            String queryParticipantes = "select id_participantes from participantes_grupos_chat_empresarial where id_grupo = " + json.get("idGroup");
+            JSONArray participantes = Query.execute(queryParticipantes);
+            int cantidadParticipantes = participantes.size();
+
+            String agregados = "";
+            for (int x = 0; x < cantidadParticipantes; x++) {
+                JSONObject p = (JSONObject) participantes.get(x);
+                SocketEndPoint.EnviarNotificacio_id360(json, p.get("id_participantes").toString());
+                agregados += p.get("id_participantes").toString() + ",";
+            }
+            respuesta.put("enviado a", agregados);
+            
         }
         
         return respuesta;
@@ -2263,19 +2408,19 @@ public class Empresas360 {
     */
     @RequestMapping(value = "/API/empresas360/elimina_administrador_grupo", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject elimina_administrador_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException{
+    public JSONObject elimina_administrador_grupo(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
         JSONObject respuesta = respuesta(false, "Error al quitar administrador");
-        
-        String query = "update participantes_grupos_chat_empresarial " +
-                        "set rol = 0 " +
-                        "where id_grupo = "+json.get("idGroup")+" and id_participantes = '"+json.get("id360")+"' ";
-        
+
+        String query = "update participantes_grupos_chat_empresarial "
+                + "set rol = 0 "
+                + "where id_grupo = " + json.get("idGroup") + " and id_participantes = '" + json.get("id360") + "' ";
+
         if (Query.update(query)) {
             respuesta = respuesta(true, "Administrador Eliminado");
             json.put("eliminado_administrador", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
         }
-        
+
         return respuesta;
     }
 
@@ -2284,32 +2429,40 @@ public class Empresas360 {
      */
     @RequestMapping(value = "/API/empresas360/agrega_participantes_grupo_chat_empresarial", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject empresas360_agrega_participantes_grupo_chat_empresarial(@RequestBody JSONObject json) throws IOException, ParseException, java.text.ParseException {
+    public JSONObject empresas360_agrega_participantes_grupo_chat_empresarial(@RequestBody String string) throws IOException, ParseException, java.text.ParseException {
         System.out.println("Agregando participante");
 
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
         JSONObject respuesta = respuesta(false, "Participantes no añadidos");
 
-        String[] participantes = (String[]) json.get("participantes");
-        String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participante) VALUES ";
-        int cantidadParticipantes = participantes.length;
-        for (int x = 0; x < (cantidadParticipantes - 1); x++) {
-            queryInsert = queryInsert.concat(" (" + json.get("idGrupo") + ", " + participantes[x] + ") , ");
+        JSONArray participantes = (JSONArray) json.get("participantes");
+        String queryInsert = "INSERT INTO participantes_grupos_chat_empresarial (id_grupo, id_participantes) VALUES ";
+        String queryUpdate = "UPDATE participantes_grupos_chat_empresarial SET estatus_en_grupo = 1 WHERE id_grupo = " + json.get("idGrupo") + " AND id_participantes IN ( ";
+        int cantidadParticipantes = participantes.size();
+        for (int x = 0; x < cantidadParticipantes; x++) {
+            queryInsert += " (" + json.get("idGrupo") + ", " + participantes.get(x) + ") , ";
+            queryUpdate += " " + participantes.get(x) + " , ";
         }
 
-        queryInsert = queryInsert.substring(-2);
+        System.out.println(queryInsert);
+        queryInsert = queryInsert.substring(0, queryInsert.length() - 2);
+        queryUpdate = queryUpdate.substring(0, queryUpdate.length() - 2);
+        queryUpdate += ");";
 
-        int insert = Query.insert(queryInsert);
-        if (insert >= 0) {
+        Query.insert(queryInsert);
+        Query.update(queryUpdate);
+        respuesta = respuesta(true, "Participantes añadidos");
+        //Enviar por socket
+        json.put("grupo_chat_empresarial", true);
+        json.put("id_grupo", json.get("idGrupo"));
 
-            //Enviar por socket
-            json.put("grupo_chat_empresarial", true);
-            json.put("id_grupo", json.get("idGrupo"));
-
-            for (int x = 0; x < (cantidadParticipantes - 1); x++) {
-                SocketEndPoint.EnviarNotificacio_id360(json, participantes[x]);
-            }
-
+        for (int x = 0; x < cantidadParticipantes; x++) {
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) participantes.get(x));
         }
+
+        respuesta.put("query", queryInsert);
+        respuesta.put("update", queryUpdate);
 
         return respuesta;
 
@@ -2332,6 +2485,8 @@ public class Empresas360 {
             //Enviar por socket
             json.put("eliminacion_mensaje_chat_empresarial", true);
             SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("to_id360"));
+            json.put("eliminacion_mensaje_chat_empresarial_mio", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("id360"));
         }
 
         return respuesta;
@@ -2355,11 +2510,13 @@ public class Empresas360 {
         if (Query.update(query)) {
             respuesta = respuesta(true, "Mensaje eliminado");
             respuesta.putAll(json);
+            json.put("eliminacion_mensaje_chat_empresarial_solo_mio", true);
+            SocketEndPoint.EnviarNotificacio_id360(json, (String) json.get("idUser"));
         }
 
         return respuesta;
     }
-
+    
     /*
     SERVICIO PARA ELIMINAR TODO EL HISTORIAL DE MENSAJES QUE SE TENGA CON UN CONTACTO
      */
@@ -2388,7 +2545,7 @@ public class Empresas360 {
      */
     @RequestMapping(value = "/API/empresas360/backup_chat", method = RequestMethod.POST)
     @ResponseBody
-    public JSONArray empresas360_backup_chat(@RequestBody JSONObject json) {
+    public JSONArray empresas360_backup_chat(@RequestBody JSONObject json) throws java.text.ParseException {
 
         String query = ""
                 + "SELECT"
@@ -2414,35 +2571,63 @@ public class Empresas360 {
                 + "     "
                 + "ORDER BY"
                 + "       p.id;";
-        
-        String queryGrupos = "select " +
-                            "	p.*, " +
-                            "	(select message from chat_empresarial sc where sc.id = p.idResponse) as mensajeRespuesta " +
-                            "from " +
-                            "	chat_empresarial p " +
-                            "	inner join (" +
-                            "		 select " +
-                            "				p.idGroup, " +
-                            "                group_concat( p.id order by p.date_created desc ) idsMessages " +
-                            "		 from	chat_empresarial p " +
-                            "		 where 	p.idGroup in ( " +
-                            "			select distinct pg.id_grupo from participantes_grupos_chat_empresarial pg " +
-                            "            where pg.id_grupo = p.idGroup and pg.id_participantes = '" + json.get("id360") + "' " +
-                            "		 ) and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 ) " +
-                            "		 group by p.idGroup " +
-                            "    ) messages " +
-                            "    on p.idGroup = messages.idGroup " +
-                            "	and FIND_IN_SET(id, idsMessages) BETWEEN 1 AND 20 " +
-                            "     " +
-                            "where p.idGroup IS NOT NULL " +
-                            "order by p.id;";
 
-        JSONArray mensajesNormales  = Query.execute(query);
-        JSONArray mensajesGrupos    = Query.execute(queryGrupos);
-        
+
+        String queryGrupos = "select "
+                + "	p.*, "
+                + "	(select message from chat_empresarial sc where sc.id = p.idResponse) as mensajeRespuesta "
+                + "from "
+                + "	chat_empresarial p "
+                + "	inner join ("
+                + "		 select "
+                + "				p.idGroup, "
+                + "                group_concat( p.id order by p.date_created desc ) idsMessages "
+                + "		 from	chat_empresarial p "
+                + "		 where 	p.idGroup in ( "
+                + "			select distinct pg.id_grupo from participantes_grupos_chat_empresarial pg "
+                + "            where pg.id_grupo = p.idGroup and pg.id_participantes = '" + json.get("id360") + "' "
+                + "		 ) and ( if(p.id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 ) "
+                + "		 group by p.idGroup "
+                + "    ) messages "
+                + "    on p.idGroup = messages.idGroup "
+                + "	and FIND_IN_SET(id, idsMessages) BETWEEN 1 AND 20 "
+                + "     "
+                + "where p.idGroup IS NOT NULL "
+                + "order by p.id;";
+
+        JSONArray mensajesNormales = Query.execute(query);
+        JSONArray mensajesGrupos = Query.execute(queryGrupos);
+
         mensajesNormales.addAll(mensajesGrupos);
-        
-        return mensajesNormales;
+
+        return ordenaBackupBurbuja(mensajesNormales);
+    }
+
+    public JSONArray ordenaBackupBurbuja(JSONArray bakcup) throws java.text.ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1, date2;
+
+        JSONObject auxiliar, arregloJ, arregloJ1;
+        for (int i = 2; i < bakcup.size(); i++) {
+            for (int j = 0; j < (bakcup.size() - i); j++) {
+
+                arregloJ = (JSONObject) bakcup.get(j);
+                arregloJ1 = (JSONObject) bakcup.get(j + 1);
+
+                date1 = dateFormat.parse(arregloJ.get("date_created").toString() + " " + arregloJ.get("time_created").toString() );
+                date2 = dateFormat.parse(arregloJ1.get("date_created").toString() + " " + arregloJ1.get("time_created").toString() );
+
+                if (date1.after(date2)) {
+                    auxiliar = arregloJ;
+                    bakcup.set(j, arregloJ1);
+                    bakcup.set(j + 1, auxiliar);
+                }
+            }
+        }
+        //bakcup.add(consultaEmojis());
+        return bakcup;
+
     }
 
     /*
@@ -2470,22 +2655,76 @@ public class Empresas360 {
     }
 
     /*
-    SERVICIO PARA CARGAR UN ARRAY DE USUARIOS CON LOS QUE SE TIENE PREVIA CONVERSACION
+    /*
+    SERVICIO PARA MARCAR MENSAJES COMO LEIDOS
+     */
+    @RequestMapping(value = "/API/empresas360/marcar_chats_leidos", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject marcar_chats_leidos(@RequestBody String string) throws ParseException {
+        JSONObject respuesta = respuesta(false, "No se pudieron marcar los mensajes");
+
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+
+        JSONArray chats = (JSONArray) json.get("chats");
+        int cantidadChats = chats.size();
+        String query = "UPDATE chat_empresarial SET leido = 1 WHERE id IN (";
+
+        for (int x = 0; x < cantidadChats; x++) {
+            query += chats.get(x) + ", ";
+        }
+
+        query = query.substring(0, query.length() - 2);
+        query = query + ")";
+
+        if (Query.update(query)) {
+            respuesta = respuesta(true, "Mensajes marcados");
+        } else {
+            respuesta.put("query", query);
+        }
+
+        return respuesta;
+    }
+
+    /*SERVICIO PARA CARGAR UN ARRAY DE USUARIOS CON LOS QUE SE TIENE PREVIA CONVERSACION
      */
     @RequestMapping(value = "/API/empresas360/usuarios_con_chat", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray usuarios_con_chat(@RequestBody JSONObject json) {
         //String query = "select distinct replace(concat(id360,to_id360),'"+json.get("id360")+"','') as id360 from chat_empresarial where (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"');";
-        String query = "" +
-                        "select 		count(*) as cantidadMensajes, " +
-                        "			replace(concat(id360,to_id360),'" + json.get("id360") + "','') as id360chat, " +
-                        "            (select idGroup from grupos_chat_empresarial s where s.id_grupo = p.idGroup ) as esGrupo " +
-                        "from " +
-                        "			chat_empresarial p " +
-                        "where " +
-                        "			(id360 = '" + json.get("id360") + "' OR to_id360 = '" + json.get("id360") + "') " +
-                        "			and ( if(id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 ) " +
-                        "group by 	id360chat;";
+        Query.update("SET sql_mode = '';");
+        String query = "select       count(*) as cantidadMensajes, "
+                + "            if(p.idGroup is not null, p.idGroup, replace(concat(id360,to_id360),'" + json.get("id360") + "','')) as id360chat, "
+                + "            ( "
+                + "		 select     idGroup "
+                + "                from       grupos_chat_empresarial s "
+                + "                where      s.id_grupo = p.idGroup "
+                + "            ) as esGrupo, "
+                + "            ( "
+                + "		 select     count(*) "
+                + "                from       chat_empresarial "
+                + "                where      ((id360 = '" + json.get("id360") + "' and to_id360 = id360chat) "
+                + "                or         (id360 = id360chat and to_id360 = '" + json.get("id360") + "')) "
+                + "                and leido = 0 and to_id360 = '" + json.get("id360") + "' "
+                + "            ) as cantidadMensajesNoLeidos, "
+                + "            ( "
+                + "		 select     group_concat( id ) "
+                + "                from       chat_empresarial "
+                + "                where      ((id360 = '" + json.get("id360") + "' and to_id360 = id360chat) "
+                + "                or         (id360 = id360chat and to_id360 = '" + json.get("id360") + "')) "
+                + "                and leido = 0 and to_id360 = '" + json.get("id360") + "' "
+                + "            ) as mensajesNoLeidos "
+                + "from "
+                + "            chat_empresarial p "
+                + "where "
+                + "            (id360 = '" + json.get("id360") + "' OR to_id360 = '" + json.get("id360") + "') "
+                + "            and ( if(id360 = '" + json.get("id360") + "', activo_id360, activo_to_id360) = 1 ) "
+                + "            or idGroup in 	( "
+                + "                                   select 	gc.id_grupo "
+                + "                                   from 	participantes_grupos_chat_empresarial gc "
+                + "                                   where 	gc.id_participantes = '" + json.get("id360") + "' "
+                + "				) "
+                + "group by 	id360chat;";
         JSONArray ids = Query.execute(query);
         return ids;
     }
@@ -2496,7 +2735,7 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/informacion_grupos", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray informacion_grupos(@RequestBody String string) throws IOException, ParseException, java.text.ParseException {
-        
+
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(string);
 
@@ -2504,15 +2743,15 @@ public class Empresas360 {
         AGREGAR PARTICIPANTES
          */
         JSONArray grupos = (JSONArray) json.get("grupos");
-        String query = "SELECT 	" +
-                        "		g.*, " +
-                        "        ( " +
-                        "			SELECT " +
-                        "				group_concat( concat(p.id_participantes, \"-\", p.rol) ) " +
-                        "			FROM participantes_grupos_chat_empresarial p " +
-                        "			WHERE p.id_grupo = g.id_grupo " +
-                        "        ) as participantes " +
-                        "FROM 	grupos_chat_empresarial g WHERE id_grupo IN ( ";
+        String query = "SELECT 	"
+                + "		g.*, "
+                + "        ( "
+                + "			SELECT "
+                + "				group_concat( concat(p.id_participantes, \"-\", p.rol) ) "
+                + "			FROM participantes_grupos_chat_empresarial p "
+                + "			WHERE p.id_grupo = g.id_grupo and p.estatus_en_grupo = 1 "
+                + "        ) as participantes "
+                + "FROM 	grupos_chat_empresarial g WHERE id_grupo IN ( ";
         int cantidadGrupos = grupos.size();
 
         for (int x = 0; x < cantidadGrupos; x++) {
@@ -2521,7 +2760,7 @@ public class Empresas360 {
 
         query = query.substring(0, query.length() - 2);
         query += " );";
-        
+
         JSONArray mensajes = Query.execute(query);
 
         return mensajes;
@@ -2556,7 +2795,7 @@ public class Empresas360 {
         if ("".equals(fin)) {
             query = "SELECT * FROM registro_jornada_laboral where id_usuario = " + json.get("id") + " AND date_created = '" + json.get("inicio") + "'";
         } else {
-            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.idUsuario = " + json.get("id");
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.idUsuario = " + json.get("id") + " and r.date_created >= '" + json.get("inicio") + "' and r.date_created <= '" + json.get("fin") + "'";
         }
 
         JSONArray data = Query.execute(query);
@@ -2589,7 +2828,7 @@ public class Empresas360 {
             query = "SELECT * FROM empresas.registro_jornada_laboral WHERE tipo_usuario = " + json.get("id") + " AND date_created = '" + json.get("inicio") + "' ORDER BY id_usuario";
         } else {
             //query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " AND r.date_created >= '"+inicio+"' AND r.date_updated <= '"+fin+"' ORDER BY r.id_usuario";
-            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " ORDER BY r.id_usuario";
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " and r.date_created >= '" + json.get("inicio") + "' and r.date_created <= '" + json.get("fin") + "' ORDER BY r.id_usuario";
         }
 
         JSONArray data = Query.execute(query);
@@ -2624,7 +2863,7 @@ public class Empresas360 {
             query = "SELECT * FROM empresas.registro_jornada_laboral WHERE tipo_usuario = " + json.get("id") + " AND date_created = '" + json.get("inicio") + "' ORDER BY id_usuario";
         } else {
             //query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " AND r.date_created >= '"+inicio+"' AND r.date_updated <= '"+fin+"' ORDER BY r.id_usuario";
-            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_servicio = " + json.get("id") + " ORDER BY r.id_usuario";
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_servicio = " + json.get("id") + " and r.date_created >= '" + json.get("inicio") + "' and r.date_created <= '" + json.get("fin") + "' ORDER BY r.id_usuario";
         }
 
         JSONArray data = Query.execute(query);
@@ -2659,7 +2898,7 @@ public class Empresas360 {
             query = "SELECT * FROM empresas.registro_jornada_laboral WHERE tipo_usuario = " + json.get("id") + " AND date_created = '" + json.get("inicio") + "' ORDER BY id_usuario";
         } else {
             //query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_usuario = " + json.get("id") + " AND r.date_created >= '"+inicio+"' AND r.date_updated <= '"+fin+"' ORDER BY r.id_usuario";
-            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_area = " + json.get("id") + " ORDER BY r.id_usuario";
+            query = "SELECT * FROM empresas.directorio d LEFT JOIN empresas.registro_jornada_laboral r ON r.id_usuario = d.idUsuario where d.tipo_area = " + json.get("id") + " and r.date_created >= '" + json.get("inicio") + "' and r.date_created <= '" + json.get("fin") + "' ORDER BY r.id_usuario";
         }
 
         JSONArray data = Query.execute(query);
@@ -2687,7 +2926,7 @@ public class Empresas360 {
     @RequestMapping(value = "/API/empresas360/jornadas_laborales/empresa/obtener_ids/en_jornada", method = RequestMethod.POST)
     @ResponseBody
     public JSONArray jornadas_laborales_empresa_obtener_ids_en_jornada(@RequestBody JSONObject json) {
-        String query = "SELECT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created, rjl.time_updated, rjl.contadorDesconexion as desconexiones, rjl.time_finished "
+        String query = "SELECT DISTINCT d.idUsuario as id360, tu.razon_social as empresa, su.nombre as sucursal, ta.area, rjl.date_created, rjl.time_created, rjl.time_updated, rjl.contadorDesconexion as desconexiones, rjl.time_finished "
                 + "FROM directorio d "
                 + "LEFT JOIN tipos_usuarios tu ON d.tipo_usuario = tu.id "
                 + "LEFT JOIN servicios_usuario su ON d.tipo_servicio = su.id "
@@ -2749,10 +2988,21 @@ public class Empresas360 {
 
     }
 
+    /*Cambios prueba ferando*/
+    @RequestMapping(value = "/API/send/invitacion_llamada_app360", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject send_invitacion_llamada_app360(@RequestBody JSONObject json) throws IOException, ParseException {
+        System.out.println("send_invitacion_llamada_app360: " + Dependencia);
+        return request.POST(config.getURL_CONTROLADOR() + "API/send/invitacion_llamada_app360", json);
+    }
+
+    /**
+     * **************************
+     */
     /*
         Servicio de asistencia de una empresa o sucursal
     */
-    @RequestMapping(value = "/API/empresas360/asistencia", method = RequestMethod.POST)
+    @RequestMapping(value = "/API/empresas360/asistencia", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
     @ResponseBody
     public JSONObject empresas360_asistencia(@RequestBody JSONObject json) {
         System.out.println("empresas360_asistencia");
@@ -2768,7 +3018,7 @@ public class Empresas360 {
         String query = null;
         if (json.containsKey("id360")) {
             query = "SELECT R.date_created AS fecha_conexion, R.time_created AS hora_conexion, R.date_updated AS fecha_desconexion, R.time_updated AS hora_desconexion, T.area "
-                    + "FROM registro_jornada_laboral R, tipo_area T WHERE id_usuario = '" + json.get("id360") + "' AND R.tipo_area = T.id LIMIT 30;";
+                    + "FROM registro_jornada_laboral R, tipo_area T WHERE id_usuario = '" + json.get("id360") + "' AND R.tipo_area = T.id ORDER BY fecha_conexion DESC LIMIT 30;";
             JSONArray jornada = Query.execute(query);
             if (!jornada.isEmpty()) {
                 response = respuesta(true, "Asistencia encontrada");
@@ -2780,7 +3030,7 @@ public class Empresas360 {
                 query = "SELECT DISTINCT id_usuario AS id360 FROM registro_jornada_laboral WHERE tipo_usuario = '" + json.get("tipo_usuario") + "';";
             } else {
                 //Informacion de usuarios de una sucursal
-                query = "SELECT DISTINCT id_usuario AS id360 FROM registro_jornada_laboral WHERE tipo_usuario = '" + json.get("tipo_usuario") + "' AND tipo_servicio = '"+json.get("tipo_servicio")+"';";
+                query = "SELECT DISTINCT id_usuario AS id360 FROM registro_jornada_laboral WHERE tipo_usuario = '" + json.get("tipo_usuario") + "' AND tipo_servicio = '" + json.get("tipo_servicio") + "';";
             }
             JSONArray ids = Query.execute(query);
             query = "SELECT R.id_usuario AS id360, R.date_created AS fecha_conexion, R.time_created AS hora_conexion, R.date_updated AS fecha_desconexion, R.time_updated AS hora_desconexion, T.area "
@@ -2806,4 +3056,66 @@ public class Empresas360 {
         }
         return response;
     }
+
+
+    /*
+        API's para el guardado de las llamadas
+     */
+    @RequestMapping(value = "/API/empresas360/registro_llamada", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject empresas360_registro_llamada(@RequestBody JSONObject json) {
+        System.out.println("empresas360_registro_llamada");
+        /*
+        {
+            "idRegistro_Llamadas":"",
+            "fecha":"",
+            "hora":"",
+            "Modo_Llamada_idModo_Llamada":"",
+            "Usuarios_Movil_idUsuarios_Movil":"",
+            "apikey":"",
+            "sesion":"",
+            "tipo_usuario":"",
+            "tipo_servicio":"",
+            "tipo_area":""
+        }
+         */
+        JSONObject respuesta = respuesta(false, "Algo ocurrio");
+        if (Query.insert(Query.createQueryInsert("registro_llamadas", json)) > 0) {
+            respuesta = respuesta(true, "Registro de llamada realizado correctamente.");
+        }
+        return respuesta;
+    }
+    
+    @RequestMapping(value = "/API/empresas360/emojis", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject emojis(String string) {
+
+        return consultaEmojis();
+
+    }
+    
+    public JSONObject consultaEmojis(){
+        String query = "SELECT * FROM emojis";
+        
+        JSONArray emojisDB = Query.execute(query);
+        int cantidadEmojis = emojisDB.size();
+        JSONObject emojis = new JSONObject();
+        emojis.put("cantidad",emojisDB.size());
+        emojis.put("query",query);
+        emojis.put("emojis",emojisDB);
+        
+        for(int x = 0; x<cantidadEmojis; x++){
+             JSONObject emoji = (JSONObject) emojisDB.get(x);
+            emojis.put(emoji.get("codigo"), emoji);
+        }
+
+        return emojis;
+    }
+    
+    
+    
+    
+    
+    
+   
 }

@@ -128,6 +128,8 @@ public class request {
         if (response.toString().contains("code=200")) {
             return response.body().string();
         } else {
+            System.out.println(url);
+            System.out.println(json);
             System.out.println(response.body().string());
             return null;
         }

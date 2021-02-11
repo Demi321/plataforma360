@@ -30,6 +30,8 @@
 <%-- Javascript Base --%>
 <spring:url value="${pathRecursos}/js/aws/aws-sdk-2.685.0.min.js" var="sdk_awsJS" />
 
+<script src="${sdk_awsJS}" ></script>
+
 <spring:url value="${pathRecursos}/plantilla/toggleeffect.js" var="toggleeffectJS" />
 <spring:url value="${pathRecursos}/plantilla/plantilla.css" var="plantillaCSS" />
 <spring:url value="${FAVICON}" var="favicon" />

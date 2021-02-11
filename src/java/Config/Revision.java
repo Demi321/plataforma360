@@ -146,6 +146,33 @@ public class Revision {
             //System.out.println(misesion);
         return misesion;
     }
+    public static boolean deleteSesion(HttpServletRequest sesion) {
+        //Inicializacion local automatica
+//        InicializacionLocal.AutoInit();
+       boolean deleted = false;
+        //Revision de inicializacion del proyecto 
+        if (config.getInit() == null) {
+            System.out.println("Proyecto no inicializado");
+            return deleted;
+        }
+
+        //Revision de sesion 
+        JSONObject misesion = null;
+            Cookie[] cookies = sesion.getCookies();
+            if (cookies != null) {
+                for (Cookie c : cookies) {
+                    if (c.getName().equals(config.getSESION())) {
+                          c.setMaxAge(-1);
+                          c.setValue("");
+                          deleted=true;
+                            //System.out.println(misesion);
+                        break;
+                    }
+                }
+            }
+            //System.out.println(misesion);
+        return deleted;
+    }
 
     
 

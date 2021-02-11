@@ -1,9 +1,5 @@
-<%-- 
-    Document   : modulo_comunicacion
-    Created on : 6/11/2020, 06:02:00 PM
-    Author     : moises
---%>
 
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <div id="contenedor-sonidos-notificaciones">
     
     <audio muted id="sonido1">
@@ -58,7 +54,7 @@
     
 </div>
 
-<div class="row col-12 m-0 p-0 h-100" id="base_modulo_Comunicación">
+<div class="row col-12 m-0 p-0 h-100 comunicacion" id="base_modulo_${id_menu}">
 
     <div class="col-8 d-none" >
         <div id="app">
@@ -315,75 +311,22 @@
         </div>
     </div>
 </div>
-              
-<style>
-/* Make the image fully responsive */
-.carousel-inner img {
-    width: 100%;
-    height: 100%;
-}
-body {font-family: Arial, Helvetica, sans-serif;}
 
-/* The Modal (background) */
-.modal {
-    display:none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    /*width: 45%;*/width: 80%;
-    height: 80%;
-    /**/
-    /*top: 20%;*/
-}
+<script>
+    //id menu 
+    //nombre a mostrar alias
+    //icono
+    //categoria
+    //url externa 
+   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
 
-/*Frame*/
-.frame{
-    margin: auto;
-    padding: 5px;
-    border: 1px solid #888;
-    width: -webkit-calc(100% - 40px);
-    width:    -moz-calc(100% - 40px);
-    width:         calc(100% - 40px);
-    height: -webkit-calc(100% - 80px);
-    height:    -moz-calc(100% - 80px);
-    height:         calc(100% - 80px);
-}
+</script>
 
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-</style>
-
-<spring:url value="${pathRecursos}/css/Empresa/modulo_comunicacion.css" var="modulo_comunicacionCSS" />
-<spring:url value="${pathRecursos}/js/Empresa/modulo_comunicacion.js" var="modulo_comunicacionJS" />
+<spring:url value="${pathRecursos}/empresas360/comunicacion/comunicacion.css" var="modulo_comunicacionCSS" />
+<spring:url value="${pathRecursos}/empresas360/comunicacion/comunicacion.js" var="modulo_comunicacionJS" />
 <link href="${modulo_comunicacionCSS}" rel="stylesheet"/>
 <script src="${modulo_comunicacionJS}" ></script>
-
-<link href="${pathRecursos}/css/operador.css" rel="stylesheet" />
-<%-- <script src="${pathRecursos}/js/Empresa/llamada_entrante.js" ></script> --%>
+<script>
+    init_comunicacion("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+</script>
