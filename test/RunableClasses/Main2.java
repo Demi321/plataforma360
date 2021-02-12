@@ -54,13 +54,32 @@ public class Main2 {
 //            System.out.println(text.replace("comunicacion", nombre));
 //            
 //        }
-JSONParser parser = new JSONParser();
-    JSONArray array = (JSONArray) parser.parse("[87,88]");
-        System.out.println(array);
-        for (int i = 0; i < array.size(); i++) {
-            System.out.println(array.get(i));
-            
-        }
+//JSONParser parser = new JSONParser();
+//    JSONArray array = (JSONArray) parser.parse("[87,88]");
+//        System.out.println(array);
+//        for (int i = 0; i < array.size(); i++) {
+//            System.out.println(array.get(i));
+//            
+//        }
+        JSONObject menu = new JSONObject();
+        menu.put("tipo_usuario", "124,124");
+        menu.put("tipo_servicio", "3064,3065");
+        menu.put("tipo_area", menu.get("fg"));
+        String tipo_usuario = menu.get("tipo_usuario") != null ? !menu.get("tipo_usuario").toString().equals("")?menu.get("tipo_usuario").toString() : "0" : "0";
+        String tipo_servicio = menu.get("tipo_servicio") != null ? !menu.get("tipo_servicio").toString().equals("")?menu.get("tipo_servicio").toString() : "0" : "0";
+        String tipo_area = menu.get("tipo_area") != null ? !menu.get("tipo_area").toString().equals("")?menu.get("tipo_area").toString():"0" : "0";
+        
+        System.out.println(tipo_usuario);
+        System.out.println(tipo_servicio);
+        System.out.println(tipo_area);
+        
+        JSONParser parser = new JSONParser();
+        JSONArray array_tipo_usuario = (JSONArray) parser.parse((Arrays.toString(tipo_usuario.split(","))));
+        JSONArray array_tipo_servicio = (JSONArray) parser.parse((Arrays.toString(tipo_servicio.split(","))));
+        JSONArray array_tipo_area = (JSONArray) parser.parse((Arrays.toString(tipo_area.split(","))));
+        System.out.println(array_tipo_usuario);
+        System.out.println(array_tipo_servicio);
+        System.out.println(array_tipo_area);
     }
-    
+
 }

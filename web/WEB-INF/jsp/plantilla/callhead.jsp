@@ -60,9 +60,7 @@
 <%--******** MOMENT *******--%>
 <spring:url value="/resources/frameworks/moment/moment.js" var="momentJS" />
 <script src="${momentJS}" ></script>
-<%--******** LOTTIE *******--%>
-<spring:url value="/resources/frameworks/lottie/lottie_5.5.7.js" var="lottieJS" />
-<script src="${lottieJS}" ></script>
+
 <%--******** XLSX *******--%>
 <!--<spring:url value="/resources/frameworks/xlsx/xlsx.min.js" var="xlsxJS" />-->
 <spring:url value="/resources/frameworks/xlsx/xlsx.full.min.js" var="xlsxJS" />

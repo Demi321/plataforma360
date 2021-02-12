@@ -73,13 +73,28 @@ public class Modulos {
             //Carga de perfil de usuario 
             JSONObject perfil = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/perfil", id360);
 
-            //cargar informacion de la empresa
-            JSONObject empresa = (JSONObject) parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA() + "/API/lineamientos/info_empresa/" + the_sesion.get("tipo_usuario")));
+            JSONObject empresa = new JSONObject();
+            JSONArray sucursales = new JSONArray();
+            JSONArray directorio = new JSONArray();
 
-            //cargar informacion de las sucursales
-            JSONArray sucursales = (JSONArray) parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA() + "/API/lineamientos/listado_sucursales/" + the_sesion.get("tipo_usuario")));
+            //cargar informacion de la empresa si es que se tiene 
+            if (the_sesion.get("tipo_usuario") != null && the_sesion.get("tipo_usuario") != "") {
+                empresa = (JSONObject) parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA() + "/API/lineamientos/info_empresa/" + the_sesion.get("tipo_usuario")));
 
-            //cargar informacion de las sucursales
+                //cargar informacion de las sucursales
+                sucursales = (JSONArray) parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA() + "/API/lineamientos/listado_sucursales/" + the_sesion.get("tipo_usuario")));
+
+                //Cargamos el directorio de la sucursal
+                JSONObject info_dir = new JSONObject();
+                info_dir.put("fecha", Query.getFecha());
+                info_dir.put("hora", Query.getHora());
+                info_dir.put("tipo_usuario", the_sesion.get("tipo_usuario"));
+                info_dir.put("tipo_servicio", the_sesion.get("tipo_servicio"));
+                info_dir.put("tipo_area", "0");
+                directorio = (JSONArray) request.POST(config.getPATH() + config.getDEPENDENCIA() + "/API/ConsultarDirectorio", info_dir).get("directorio");
+
+            }
+
 //            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.gJSONObjectetPATH() + config.getDEPENDENCIA()+"/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
 //            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA()+"_dev_moises/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
             JSONObject estatus_jornada = null;
@@ -91,15 +106,6 @@ public class Modulos {
 
             //cargar informacion sobre los reportes
             JSONObject reportes_realizados = empresas360_get_ids_reportes(id360);
-
-            //Cargamos el directorio de la sucursal
-            JSONObject info_dir = new JSONObject();
-            info_dir.put("fecha", Query.getFecha());
-            info_dir.put("hora", Query.getHora());
-            info_dir.put("tipo_usuario", the_sesion.get("tipo_usuario"));
-            info_dir.put("tipo_servicio", the_sesion.get("tipo_servicio"));
-            info_dir.put("tipo_area", "0");
-            JSONArray directorio = (JSONArray) request.POST(config.getPATH() + config.getDEPENDENCIA() + "/API/ConsultarDirectorio", info_dir).get("directorio");
 
             model.addAttribute("perfil_usuario", perfil);
             model.addAttribute("empresa_usuario", empresa);
@@ -120,12 +126,12 @@ public class Modulos {
 
                     if (menu.get("url").toString().equals(config.getPATH() + config.getDEPENDENCIA() + "/")) {
                         //solicitar vista
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
 
                         //System.out.println(Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase());
                     } else {
                         //agregar menu externo 
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST(config.getPATH() + "plataforma360_dev_moises/modulo_vacio", menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/modulo_vacio", menu.toString()));
 
                     }
 
@@ -219,12 +225,12 @@ public class Modulos {
 
                     if (menu.get("url").toString().equals(config.getPATH() + config.getDEPENDENCIA() + "/")) {
                         //solicitar vista
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
 
                         //System.out.println(Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase());
                     } else {
                         //agregar menu externo 
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST(config.getPATH() + "plataforma360_dev_moises/modulo_vacio", menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/modulo_vacio", menu.toString()));
 
                     }
 
@@ -1148,6 +1154,167 @@ public class Modulos {
             model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/mapa";
+    }
+
+    @RequestMapping(value = "/historialdellamadas", method = RequestMethod.POST)
+    public String historialdellamadas(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/historialdellamadas";
+    }
+
+    @RequestMapping(value = "/operaciones", method = RequestMethod.POST)
+    public String operaciones(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/operaciones";
+    }
+
+    @RequestMapping(value = "/paneldatosrrhh", method = RequestMethod.POST)
+    public String paneldatosrrhh(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/paneldatosrrhh";
+    }
+
+    @RequestMapping(value = "/protocolodevacunacioncovid", method = RequestMethod.POST)
+    public String protocolodevacunacioncovid(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/protocolodevacunacioncovid";
+    }
+
+    @RequestMapping(value = "/invitacionempresarial", method = RequestMethod.POST)
+    public String invitacionempresarial(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/invitacionempresarial";
+    }
+
+    @RequestMapping(value = "/perfildesalud", method = RequestMethod.POST)
+    public String perfildesalud(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/perfildesalud";
+    }
+
+    @RequestMapping(value = "/perfillaboral", method = RequestMethod.POST)
+    public String perfillaboral(Model model, @RequestBody JSONObject json) throws ParseException, IOException {
+        if (config.getInit() != null) {
+            model.addAttribute("pathRecursos", config.getServer().get("recursos"));
+            model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
+            model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
+            model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+
+            model.addAttribute("id_menu", json.get("id_menu"));
+            model.addAttribute("id_usuario", json.get("id_usuario"));
+            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+            model.addAttribute("tipo_area", json.get("tipo_area"));
+            model.addAttribute("alias", json.get("alias"));
+            model.addAttribute("icono", json.get("icono"));
+            model.addAttribute("categoria", json.get("categoria"));
+            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("id", json.get("id"));
+            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+        }
+        return "empresa/perfillaboral";
     }
 
     /**

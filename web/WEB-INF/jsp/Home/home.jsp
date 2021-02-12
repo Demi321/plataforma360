@@ -16,7 +16,7 @@
     <spring:url value="${pathRecursos}/css/operador.css" var="operadorCSS" />
     <link href="${operadorCSS}" rel="stylesheet" />
     <spring:url value="${pathRecursos}/plantilla/empresa.css" var="homeCSS" />
-
+    <link href="${homeCSS}" rel="stylesheet" />
     <%-- Javascript Personalizados --%>    
     <spring:url value="${pathRecursos}/plantilla/empresa.js" var="homeJS" />
     <script 
@@ -34,6 +34,26 @@
     <%@include file="../plantilla/header.jsp" %>
     <%@include file="../plantilla/modal_menu.jsp" %>
     <div class="Paneblock d-block" id="blockpage"></div>
+    <script>
+        //colocar lottie de carga de pagina 
+        console.log("colocar lottie de carga de pagina");
+            var lottieLoader_blockpage = document.createElement("div");
+            lottieLoader_blockpage.style = "width: 50%;height: 50%;transform: translate(50%, 50%);";
+            lottieLoader_blockpage.id = "lottie_blockpage";
+            document.getElementById("blockpage").appendChild(lottieLoader_blockpage);
+
+            var lottieAnimation_blockpage = bodymovin.loadAnimation({
+                container: lottieLoader_blockpage, // ID del div
+                path: "https://empresas.claro360.com/p360_v4_dev_moises/json/Rayas rojo.json", // Ruta fichero .json de la animación
+                renderer: 'svg', // Requerido
+                loop: true, // Opcional
+                autoplay: true, // Opcional
+//                name: "Hello World" // Opcional
+            });
+            console.log(document.getElementById("blockpage"));  
+            console.log("termino colocar lottie de carga de pagina");  
+
+    </script>
     <aside>
         <div class="" id="toggle">
             <div><i class="fas fa-ellipsis-v"></i></div><span>Plataforma 360</span></div>
@@ -47,12 +67,12 @@
     <section>
         <div class="h-100 row col-12 m-0 p-2" id="contenidoSection">
         </div>
-        <link href="${homeCSS}" rel="stylesheet" />
+        
         <script src="${homeJS}" ></script>
     </section>
     <script>
             
-           var perfil_usuario = ${perfil_usuario}
+            var perfil_usuario = ${perfil_usuario}
             var empresa_usuario = ${empresa_usuario}
             var sucursales_usuario = ${sucursales_usuario}
             var directorio_usuario = ${directorio_usuario}
@@ -67,7 +87,6 @@
                     IdentityPoolId: IdentityPoolId
                 })
             });
-
             var s3 = new AWS.S3({
                 apiVersion: "2006-03-01",
                 params: {Bucket: BucketName}
@@ -79,106 +98,106 @@
     </div>
     <%@include file="../plantilla/footer.jsp" %>
     <script>
-         $(window).on("load", function () {
-                $("#blockpage").removeClass("d-block");
-                $("#blockpage").addClass("d-none");
-                var sidebar = $("#sidebar");
-                $("#sidebar").remove();
-                $("aside").append(sidebar);
+        $(window).on("load", function () {
+            $("#blockpage").removeClass("d-block");
+            $("#blockpage").addClass("d-none");
+            var sidebar = $("#sidebar");
+            $("#sidebar").remove();
+            $("aside").append(sidebar);
 
-                //Seccion para activar el drag de las categorias
-                //$('#sidebar .accordion').attr("draggable","true");
-                var dragSrcEl = null;
+            //Seccion para activar el drag de las categorias
+            //$('#sidebar .accordion').attr("draggable","true");
+            var dragSrcEl = null;
 
-                function handleDragStart(e) {
-                    //Cerrar todos los acordeones
-                    $(".collapse_sidebar_cntr").removeClass("show");
-                    // Target (this) element is the source node.
-                    dragSrcEl = this.parentNode;
-                    e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text/html', this.parentNode.outerHTML);
+            function handleDragStart(e) {
+                //Cerrar todos los acordeones
+                $(".collapse_sidebar_cntr").removeClass("show");
+                // Target (this) element is the source node.
+                dragSrcEl = this.parentNode;
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/html', this.parentNode.outerHTML);
 
-                    this.classList.add('dragElem');
+                this.classList.add('dragElem');
+            }
+            function handleDragOver(e) {
+                if (e.preventDefault) {
+                    e.preventDefault(); // Necessary. Allows us to drop.
                 }
-                function handleDragOver(e) {
-                    if (e.preventDefault) {
-                        e.preventDefault(); // Necessary. Allows us to drop.
-                    }
-                    this.parentNode.classList.add('over');
+                this.parentNode.classList.add('over');
 
-                    e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+                e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
 
-                    return false;
+                return false;
+            }
+
+            function handleDragEnter(e) {
+                // this / e.target is the current hover target.
+            }
+
+            function handleDragLeave(e) {
+                this.parentNode.classList.remove('over');  // this / e.target is previous target element.
+            }
+
+            function handleDrop(e) {
+                // this/e.target is current target element.
+
+                if (e.stopPropagation) {
+                    e.stopPropagation(); // Stops some browsers from redirecting.
                 }
+                // Don't do anything if dropping the same column we're dragging.
+                if (dragSrcEl != this.parentNode) {
+                    // Set the source column's HTML to the HTML of the column we dropped on.
+                    //alert(this.outerHTML);
+                    //dragSrcEl.innerHTML = this.innerHTML;
+                    //this.innerHTML = e.dataTransfer.getData('text/html');
+                    this.parentNode.parentNode.removeChild(dragSrcEl);
+                    var dropHTML = e.dataTransfer.getData('text/html');
+                    this.parentNode.insertAdjacentHTML('beforebegin', dropHTML);
+                    var dropElem = this.parentNode.previousSibling.firstChild;
 
-                function handleDragEnter(e) {
-                    // this / e.target is the current hover target.
-                }
-
-                function handleDragLeave(e) {
-                    this.parentNode.classList.remove('over');  // this / e.target is previous target element.
-                }
-
-                function handleDrop(e) {
-                    // this/e.target is current target element.
-
-                    if (e.stopPropagation) {
-                        e.stopPropagation(); // Stops some browsers from redirecting.
-                    }
-                    // Don't do anything if dropping the same column we're dragging.
-                    if (dragSrcEl != this.parentNode) {
-                        // Set the source column's HTML to the HTML of the column we dropped on.
-                        //alert(this.outerHTML);
-                        //dragSrcEl.innerHTML = this.innerHTML;
-                        //this.innerHTML = e.dataTransfer.getData('text/html');
-                        this.parentNode.parentNode.removeChild(dragSrcEl);
-                        var dropHTML = e.dataTransfer.getData('text/html');
-                        this.parentNode.insertAdjacentHTML('beforebegin', dropHTML);
-                        var dropElem = this.parentNode.previousSibling.firstChild;
-
-                        addDnDHandlers(dropElem);
-
-                    }
-                    this.parentNode.classList.remove('over');
-                    return false;
-                }
-
-                function handleDragEnd(e) {
-                    // this/e.target is the source node.
-                    this.parentNode.classList.remove('over');
-
-                    /*[].forEach.call(cols, function (col) {
-                     col.classList.remove('over');
-                     });*/
-                }
-
-                function addDnDHandlers(elem) {
-                    elem.addEventListener('dragstart', handleDragStart, false);
-                    elem.addEventListener('dragenter', handleDragEnter, false)
-                    elem.addEventListener('dragover', handleDragOver, false);
-                    elem.addEventListener('dragleave', handleDragLeave, false);
-                    elem.addEventListener('drop', handleDrop, false);
-                    elem.addEventListener('dragend', handleDragEnd, false);
+                    addDnDHandlers(dropElem);
 
                 }
+                this.parentNode.classList.remove('over');
+                return false;
+            }
 
-                var cols = document.querySelectorAll('#sidebar div.collapse_sidebar');
-                [].forEach.call(cols, addDnDHandlers);
+            function handleDragEnd(e) {
+                // this/e.target is the source node.
+                this.parentNode.classList.remove('over');
+
+                /*[].forEach.call(cols, function (col) {
+                 col.classList.remove('over');
+                 });*/
+            }
+
+            function addDnDHandlers(elem) {
+                elem.addEventListener('dragstart', handleDragStart, false);
+                elem.addEventListener('dragenter', handleDragEnter, false)
+                elem.addEventListener('dragover', handleDragOver, false);
+                elem.addEventListener('dragleave', handleDragLeave, false);
+                elem.addEventListener('drop', handleDrop, false);
+                elem.addEventListener('dragend', handleDragEnd, false);
+
+            }
+
+            var cols = document.querySelectorAll('#sidebar div.collapse_sidebar');
+            [].forEach.call(cols, addDnDHandlers);
 
 
-                //inicializar mapas
-                //initMaps();
+            //inicializar mapas
+            //initMaps();
 
-                //grafica de home de empleado ***********
-                if ($("#menu_section_HomeEmpleado").length) {
-                    $("#menu_section_HomeEmpleado").click(() => {
-                        console.log("bingo:onload");
-                        chart_productividad();
-                    });
+            //grafica de home de empleado ***********
+            if ($("#menu_section_HomeEmpleado").length) {
+                $("#menu_section_HomeEmpleado").click(() => {
+                    console.log("bingo:onload");
                     chart_productividad();
-                }
-                $(".modulo_menu")[0].click();
-            });
-        
+                });
+                chart_productividad();
+            }
+            $(".modulo_menu")[0].click();
+        });
+
     </script>
 </body>

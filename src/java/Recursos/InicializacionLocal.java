@@ -35,7 +35,7 @@ public class InicializacionLocal {
 
         JSONObject personalizacion = new JSONObject();
         personalizacion.put("logo3pdf", null);
-        personalizacion.put("lottie", "https://empresas.claro360.com/p360_v4/json/lottie360.json");
+        personalizacion.put("lottie", "https://empresas.claro360.com/p360_v4_dev_moises/json/lottie360.json");
         personalizacion.put("logo2", null);
         personalizacion.put("logo1", null);
         personalizacion.put("logo1pdf", "https://empresas.claro360.com/p360_v4/Img/Logos/911.png");
@@ -61,7 +61,7 @@ public class InicializacionLocal {
         personalizacion.put("ph1", "12");
         personalizacion.put("catalogo", "https://empresas.claro360.com/p360_v4/json/incidentes.json");
         personalizacion.put("ph3", null);
-        personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360_dev/SocketNotifications");
+        personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360_dev_moises/SocketNotifications");
         personalizacion.put("ph2", "165");
         personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4_dev_moises");
         personalizacion.put("t1", "Empresas");

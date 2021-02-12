@@ -72,7 +72,7 @@
                                     </div>
                                     <label class="col-sm-12 col-md-4 col-form-label d-flex align-items-center mt-4">Correo:</label>
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center mt-4">
-                                        <input type="text" class="form-control-plaintext input bg-light rounded p-2 border text-dark" id="correo" placeholder="Correo" required="true" />
+                                        <input type="text" class="form-control-plaintext input bg-light rounded p-2 border text-dark correo_registrarempresa" id="correo" placeholder="Correo" required="true" />
                                     </div>
                                     <label class="col-sm-12 col-md-4 col-form-label d-flex align-items-center mt-4">Teléfono:</label>
                                     <div class="col-sm-12 col-md-8 d-flex align-items-center mt-4">

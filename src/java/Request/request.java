@@ -135,6 +135,30 @@ public class request {
         }
 
     }
+    public static String POST_vista(String url, String json) throws IOException {
+        System.out.println(url);
+        OkHttpClient client = new OkHttpClient();
+
+        MediaType mediaType = MediaType.parse("application/json");
+        RequestBody body = RequestBody.create(mediaType, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        Response response = client.newCall(request).execute();
+        if (response.toString().contains("code=200")) {
+            return response.body().string();
+        } else {
+            System.out.println(url);
+            System.out.println(json);
+            System.out.println(response.body().string());
+//            return null;
+            return url;
+        }
+
+    }
 
     public static String GET(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();

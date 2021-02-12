@@ -21,7 +21,9 @@
 <script src="${bootstrapJS}" ></script>
 <script src="${bootstrapSliderJS}" ></script>
 
-
+<%--******** LOTTIE *******--%>
+<spring:url value="/resources/frameworks/lottie/lottie_5.5.7.js" var="lottieJS" />
+<script src="${lottieJS}" ></script>
 
 <link href="${pathRecursos}/css/app.css" rel="stylesheet" />
 <link href="${pathRecursos}/css/layoutoperador.css" rel="stylesheet" />
