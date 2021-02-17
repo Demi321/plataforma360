@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 monitoreodeempleados" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 monitoreodeempleados" id="base_modulo_${id}">
  <div id="frame_monitoreo_empleados">
         <div id="sidepanel_grupos">
             <div class="row col-12 m-0 p-0" id="old_toggle">
@@ -66,7 +66,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -75,5 +76,6 @@
 <link href="${modulo_monitoreodeempleadosCSS}" rel="stylesheet"/>
 <script src="${modulo_monitoreodeempleadosJS}" ></script>
 <script>
-    init_monitoreodeempleados("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_monitoreodeempleados("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_monitoreodeempleados(${json});
 </script>

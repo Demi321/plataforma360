@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 areasdetrabajo" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 areasdetrabajo" id="base_modulo_${id}">
     <h3>Administra tus areas de trabajo</h3>
     <form id="registrar_area" class="row m-0 p-0 col-12">
         <input type="hidden" id="AreasdeTrabajo_tipo_usuario">
@@ -37,8 +37,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
-
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 </script>
 
 <spring:url value="${pathRecursos}/empresas360/areasdetrabajo/areasdetrabajo.css" var="modulo_areasdetrabajoCSS" />
@@ -46,5 +46,6 @@
 <link href="${modulo_areasdetrabajoCSS}" rel="stylesheet"/>
 <script src="${modulo_areasdetrabajoJS}" ></script>
 <script>
-    init_areasdetrabajo("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_areasdetrabajo("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_areasdetrabajo(${json});
 </script>

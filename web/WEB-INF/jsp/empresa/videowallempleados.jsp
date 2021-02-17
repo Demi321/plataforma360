@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 videowallempleados" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 videowallempleados" id="base_modulo_${id}">
  <div class="user_datails d-none">
         <p>
             <span class="user_details_name" id="user_details_name"></span>
@@ -70,7 +70,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -79,5 +80,6 @@
 <link href="${modulo_videowallempleadosCSS}" rel="stylesheet"/>
 <script src="${modulo_videowallempleadosJS}" ></script>
 <script>
-    init_videowallempleados("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_videowallempleados("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_videowallempleados(${json});
 </script>

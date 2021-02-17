@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 cuestionario_sintomas" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 cuestionario_sintomas" id="base_modulo_${id}">
     <div class="row col-12 m-0 px-2 pt-3 pb-0" >
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 mx-auto container shadow p-3 mb-5 bg-white p-2">
             <div class="card">
@@ -35,7 +35,7 @@
                                 <strong>¿Cuál es tu código postal?</strong>
                             </div>
                             <div class="row col-12 m-0 p-1">
-                                 <input type="number" class="form-control" name="cuestionario_tamizaje_cp" id="cuestionario_tamizaje_cp" placeholder="Número de piezas" required="">
+                                 <input type="number" class="form-control" name="cuestionario_tamizaje_cp" id="cuestionario_tamizaje_cp" placeholder="Escribe tu código postal" required="">
                              </div>
 
                             <div class="row col-12 m-0 p-1 text_small mt-2">
@@ -170,12 +170,12 @@
                                 </select>
                             </div>
 
-                            <div class="d-flex mt-3">
-                                <div class="mx-auto justify-content-center">
+                            <div class="d-block mt-3">
+                                <div class="mx-auto justify-content-center my-2 text-center">
                                     <input type="submit" class="btn btn-outline-danger btn_claro mx-auto" value="Guardar" />
                                 </div>
-                                <div class="mx-auto justify-content-center">
-                                    <input type="reset" class="btn btn-outline-secondary btn_claro mx-auto" value="Cancelar" style="border: 2px solid #4d4949;" />
+                                <div class="mx-auto justify-content-center my-2 text-center">
+                                    <input type="reset" class="btn btn-outline-secondary btn_claro mx-auto" value="Cancelar" style="/*border: 2px solid #4d4949;*/" />
                                 </div>
                             </div>
                         </form>
@@ -193,7 +193,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}","${alias}",'${icono}', '${categoria}',"");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}","${alias}",'${icono}', '${categoria}',"");
+agregar_menu(${json});
     
 </script>
 
@@ -202,5 +203,6 @@
 <link href="${modulo_cuestionario_tamizajeCSS}" rel="stylesheet"/>
 <script src="${modulo_cuestionario_tamizajeJS}" ></script>
 <script>
-    init_cuestionario_tamizaje("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_cuestionario_tamizaje("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_cuestionario_tamizaje(${json});
 </script>

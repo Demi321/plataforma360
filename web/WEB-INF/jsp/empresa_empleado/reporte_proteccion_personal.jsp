@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 proteccion_personal" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 proteccion_personal" id="base_modulo_${id}">
     <div class="row col-12 m-0 px-2 pt-3 pb-0" >
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 mx-auto container shadow p-3 mb-5 bg-white p-2">
             <div class="card">
@@ -13,7 +13,7 @@
                         <hr>
                         <div class="text_small col-12 p-1">1.- Equipo de protección personal</div>
                         <div class="row col-12 m-0 p-1 text_small mt-2">
-                            <strong>Selecciona la protecció personal que te proporcionó tu centro de trabajo para tus labores diarias.</strong>
+                            <strong>Selecciona la protección personal que te proporcionó tu centro de trabajo para tus labores diarias.</strong>
                         </div>
                         <div class="row col-12 m-0 p-1 text_small mt-2">
                             <strong>Manten actualizada esta información diariamente.</strong>
@@ -169,8 +169,8 @@
                                 <strong>¿Se le ha practicado la prueba de COVID-19?</strong>
                             </div>
                             <div class="row col-12 m-0 p-1">
-                                <select class="form-control" name="reporte_proteccion_personal_prueba_covid" id="reporte_proteccion_personal_prueba_covid" placeholder="Seleccione una respuesta" required="" >
-                                    <option disabled="true" selected="true">Seleccione una respuesta</option>
+                                <select class="form-control" name="reporte_proteccion_personal_prueba_covid" id="reporte_proteccion_personal_prueba_covid" placeholder="Seleccione una respuesta" required >
+                                    <option disabled="true" selected="true" value="">Seleccione una respuesta</option>
                                     <option value="1">Sí</option>
                                     <option value="0">No</option>
                                 </select>
@@ -202,12 +202,12 @@
                             </div>
 
                             
-                            <div class="d-flex mt-3">
-                                <div class="mx-auto justify-content-center">
+                            <div class="d-block mt-3">
+                                <div class="mx-auto justify-content-center my-2 text-center">
                                     <input type="submit" class="btn btn-outline-danger btn_claro mx-auto" value="Guardar" />
                                 </div>
-                                <div class="mx-auto justify-content-center">
-                                    <input type="reset" class="btn btn-outline-secondary btn_claro mx-auto" value="Cancelar" style="border: 2px solid #4d4949;" />
+                                <div class="mx-auto justify-content-center my-2 text-center">
+                                    <input type="reset" class="btn btn-outline-secondary btn_claro mx-auto" value="Cancelar" style="/*border: 2px solid #4d4949;*/" />
                                 </div>
                             </div>
                         </form>
@@ -225,7 +225,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -234,5 +235,6 @@
 <link href="${modulo_reporte_proteccion_personalCSS}" rel="stylesheet"/>
 <script src="${modulo_reporte_proteccion_personalJS}" ></script>
 <script>
-    init_reporte_proteccion_personal("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_reporte_proteccion_personal("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_reporte_proteccion_personal(${json});
 </script>

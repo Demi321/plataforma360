@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 miperfil" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 miperfil" id="base_modulo_${id}">
 
     <div class="row col-12 m-0 p-2 pt-3">
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 p-0 d-flex align-items-center justify-content-center" style="
@@ -38,7 +38,7 @@
                 <label class="col-12 col-md-4 col-lg-2 col-form-label d-flex justify-content-center align-items-center">Sexo</label>
                 <div class="col-12 col-md-8 col-lg-3">
                     <select class="form-control" name="genero" id="genero" placeholder="Seleccione un valor" required="">
-                        <option disabled="true" selected="true">Seleccione un valor</option>
+                        <option disabled="true" selected="true" value="">Seleccione un valor</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                     </select>
@@ -66,7 +66,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -75,5 +76,6 @@
 <link href="${modulo_perfilCSS}" rel="stylesheet"/>
 <script src="${modulo_perfilJS}" ></script>
 <script>
-    init_perfil("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_perfil("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_perfil(${json});
 </script>

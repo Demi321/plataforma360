@@ -21,7 +21,7 @@
 <script src="${list_mainJS}" ></script>
 <script src="${timegrid_mainJS}" ></script>
 
-<div class="row col-12 m-0 p-0 h-100 agenda" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 agenda" id="base_modulo_${id}">
     <div class="container py-4">
         <div class="row">
             <div class="col-12 col-md-2 d-flex flex-column justify-content-center">
@@ -303,7 +303,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -312,5 +313,6 @@
 <link href="${modulo_agendaCSS}" rel="stylesheet"/>
 <script src="${modulo_agendaJS}" ></script>
 <script>
-    init_agenda("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_agenda("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_agenda(${json});
 </script>

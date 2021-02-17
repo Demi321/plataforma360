@@ -4,11 +4,11 @@
     Author     : moises
 --%>
 
-<div class="row col-12 m-0 p-2 pt-3" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-2 pt-3" id="base_modulo_${id}">
     
 </div>
 <script>
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}","${alias}", '${icono}', "${categoria}","${url}");
+   agregar_menu(${json});
 </script>
 
 

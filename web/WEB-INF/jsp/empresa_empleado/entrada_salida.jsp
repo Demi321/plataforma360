@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 entrada_salida" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 entrada_salida" id="base_modulo_${id}">
     <div class="row col-12 m-0 px-2 pt-3 pb-0" >
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 mx-auto container shadow p-3 mb-5 bg-white p-2">
             <div class="card">
@@ -34,10 +34,11 @@
                             <div class="entrada_salida_logo">
                                 <div id="entrada_salida_logo"></div>
                             </div>
+                            <div class="p-1"><strong id="entrada_salida_today"></strong></div>
                             <div id="entrada_salida_clock"></div>
 
                             <div class="d-flex align-items-center justify-content-center tiempo_jornada_clock">
-                                <i class="fas fa-tv"></i><div id="tiempo_jornada_clock"></div>
+                                <div class="checador"></div><div id="tiempo_jornada_clock"></div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center tiempo_jornada_clock mb-3">
                                 <div class="d-block text-center">
@@ -47,30 +48,30 @@
                             <button type="button" class="btn btn-primary iniciar_jornada d-none" id="entrada_salida_iniciar_jornada"> <i class="fas fa-play"></i> Iniciar jornada</button>
                             <button type="button" class="btn btn-warning pausar_jornada d-none" id="entrada_salida_pausar_jornada"> <i class="fas fa-pause"></i> Pausar Jornada (Descanso)</button>
                             <button type="button" class="btn btn-warning reanudar_jornada d-none" id="entrada_salida_reanudar_jornada"> <i class="fas fa-play"></i> Reanudar Jornada (Descanso)</button>
-                            <button type="button" class="btn btn-danger finalizar_jornada d-none"  id="entrada_salida_finalizar_jornada"> <i class="fas fa-sign-out-alt"></i> Finalizar Jornada</button>
+                            <button type="button" class="btn btn-danger finalizar_jornada d-none"  id="entrada_salida_finalizar_jornada"> <div class="finalizar_jornada_icon"></div> Finalizar Jornada</button>
 
                             <div class="row col-12 m-0 p-0 mt-3">
                                 <div class="col-4 p-0">
                                     <div class="progress">
                                         <span class="state1"><i class="fas fa-circle"></i></span>
-                                        <div class="d-none state_walking_1"><i class="fas fa-walking"></i></i></div>
+                                        <div class="d-none state_walking_1"><div class="walking_man"></div></div>
                                         <div class="progress-bar bg-success progress-bar1" role="progressbar"></div>
                                     </div>
                                 </div>
                                 <div class="col-4 p-0">
                                     <div class="progress">
                                         <span class="state2"><i class="fas fa-circle"></i></span>
-                                        <div class="d-none state_walking_2"><i class="fas fa-walking"></i></i></div>
+                                        <div class="d-none state_walking_2"><div class="walking_man"></div></div>
                                         <div class="progress-bar bg-success progress-bar2" role="progressbar"></div>
                                     </div>
                                 </div>
                                 <div class="col-4 p-0">
                                     <div class="progress">
                                         <span class="state3"><i class="fas fa-circle"></i></span>
-                                        <div class="d-none state_walking_3"><i class="fas fa-walking"></i></i></div>
+                                        <div class="d-none state_walking_3"><div class="walking_man"></div></div>
                                         <div class="progress-bar bg-success progress-bar3" role="progressbar"></div>
                                         <span class="state4"><i class="fas fa-circle"></i></span>
-                                        <div class="d-none state_walking_4"><i class="fas fa-walking"></i></i></div>
+                                        <div class="d-none state_walking_4"><div class="walking_man"></div></div>
                                     </div>
                                 </div>
 
@@ -172,7 +173,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -181,5 +183,6 @@
 <link href="${modulo_entrada_salidaCSS}" rel="stylesheet"/>
 <script src="${modulo_entrada_salidaJS}" ></script>
 <script>
-    init_entrada_salida("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_entrada_salida("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_entrada_salida(${json});
 </script>

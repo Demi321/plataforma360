@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 perfillaboral perfillaboral_${id}" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 perfillaboral perfillaboral_${id}" id="base_modulo_${id}">
     
 </div>
 
@@ -13,7 +13,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -22,5 +23,6 @@
 <link href="${modulo_perfillaboralCSS}" rel="stylesheet"/>
 <script src="${modulo_perfillaboralJS}" ></script>
 <script>
-    init_perfillaboral("${id}","${id_usuario}", "${tipo_usuario}", '${tipo_servicio}', '${tipo_area}');
+//    init_perfillaboral("${id}","${id_usuario}", "${tipo_usuario}", '${tipo_servicio}', '${tipo_area}');
+init_perfillaboral(${json});
 </script>

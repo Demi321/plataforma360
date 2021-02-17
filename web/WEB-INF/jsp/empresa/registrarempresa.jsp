@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 registrarempresa" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 registrarempresa" id="base_modulo_${id}">
  <h3>Registra y activa una empresa</h3>
     <div class="listado_instituciones row m-0 p-2">
         <div class="row col-12 m-0 p-0">
@@ -103,7 +103,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -112,5 +113,6 @@
 <link href="${modulo_registrarempresaCSS}" rel="stylesheet"/>
 <script src="${modulo_registrarempresaJS}" ></script>
 <script>
-    init_registrarempresa("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_registrarempresa("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_registrarempresa(${json});
 </script>

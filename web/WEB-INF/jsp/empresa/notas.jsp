@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 notas" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 notas" id="base_modulo_${id}">
   <h3>Notas</h3>
     <div class="row col-12 m-0 p-2 pl-4 pt-3" id="contenido_cards">
         <div class="card m-2 mb-5 mr-5" style="width: 18rem;">
@@ -21,7 +21,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -30,5 +31,6 @@
 <link href="${modulo_notasCSS}" rel="stylesheet"/>
 <script src="${modulo_notasJS}" ></script>
 <script>
-    init_notas("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_notas("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_notas(${json});
 </script>

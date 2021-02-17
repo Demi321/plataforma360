@@ -1,10 +1,10 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 home_empleado" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 home_empleado" id="base_modulo_${id}">
     <div class="col-12 col-sm-12 col-md-7 ">
         <div class="card">
             <div class="card-header pb-0">
-                <span class="title">
-                    Nombre del empleado.
+                <span class="title home_empleado_nombre_empleado">
+                    -
                 </span>
                 <span id="home_empleado_estatus_descanso" class="position-absolute d-none" style="right: 10px;">
                     Descanso <span style="color:#a4a2a2"><i class="fas fa-circle"></i></span>
@@ -25,35 +25,35 @@
                         <div class="h3 font-weight-bold">Puesto de trabajo</div>
                         <div class="clima d-flex align-items-center pl-3"></div>
                         <div class="py-2"><i class="fas fa-map-marker-alt"></i><strong id="home_empleado_municipio"> - </strong><span id="home_empleado_estado">, - </span></div>
-                        <div class="py-1">semaforo: <strong>Rojo <span style="color: red"><i class="fas fa-circle"></i></span></strong></div>
+                        <div class="py-1">Semáforo: <strong>Rojo <span style="color: red"><i class="fas fa-circle"></i></span></strong></div>
                         <div id="clock"></div>
                         <button type="button" class="btn btn-primary iniciar_jornada" id="iniciar_jornada"> <i class="fas fa-play"></i> Iniciar jornada</button>
                         <button type="button" class="btn btn-warning pausar_jornada" id="pausar_jornada"> <i class="fas fa-pause"></i> Pausar Jornada (Descanso)</button>
                         <button type="button" class="btn btn-warning reanudar_jornada" id="reanudar_jornada"> <i class="fas fa-play"></i> Reanudar Jornada (Descanso)</button>
-                        <button type="button" class="btn btn-danger finalizar_jornada"  id="finalizar_jornada"> <i class="fas fa-sign-out-alt"></i> Finalizar Jornada</button>
+                        <button type="button" class="btn btn-danger finalizar_jornada"  id="finalizar_jornada"> <div class="finalizar_jornada_icon"></div> Finalizar Jornada</button>
 
                         <div class="row col-12 m-0 p-0 mt-3">
                             <div class="col-4 p-0">
                                 <div class="progress">
                                     <span class="state1"><i class="fas fa-circle"></i></span>
-                                    <div class="d-none state_walking_1"><i class="fas fa-walking"></i></i></div>
+                                    <div class="d-none state_walking_1"><div class="walking_man"></div></div>
                                     <div class="progress-bar bg-success progress-bar1" role="progressbar"></div>
                                 </div>
                             </div>
                             <div class="col-4 p-0">
                                 <div class="progress">
                                     <span class="state2"><i class="fas fa-circle"></i></span>
-                                    <div class="d-none state_walking_2"><i class="fas fa-walking"></i></i></div>
+                                    <div class="d-none state_walking_2"><div class="walking_man"></div></div>
                                     <div class="progress-bar bg-success progress-bar2" role="progressbar"></div>
                                 </div>
                             </div>
                             <div class="col-4 p-0">
                                 <div class="progress">
                                     <span class="state3"><i class="fas fa-circle"></i></span>
-                                    <div class="d-none state_walking_3"><i class="fas fa-walking"></i></i></div>
+                                    <div class="d-none state_walking_3"><div class="walking_man"></div></div>
                                     <div class="progress-bar bg-success progress-bar3" role="progressbar"></div>
                                     <span class="state4"><i class="fas fa-circle"></i></span>
-                                    <div class="d-none state_walking_4"><i class="fas fa-walking"></i></i></div>
+                                    <div class="d-none state_walking_4"><div class="walking_man"></div></div>
                                 </div>
                             </div>
 
@@ -183,7 +183,7 @@
                                             <div style="color: #8bc34a; font:2rem Arial" class="p-1" id="dias_laborables_ok"><i class="far fa-smile"></i></div>
                                             <div style="color: #ffc107; font:2rem Arial" class="p-1 d-none" id="dias_laborables_no_ok"><i class="far fa-frown-open"></i></div>
                                             <div style="font: bold 0.8rem Arial;color: #6c757d;" class="p-1">Dias laborales</div>
-                                            <div style="font: bold 3rem Arial;color: #6c757d;" class="p-1" id="dias_laborables">5</div>
+                                            <div style="font: bold 3rem Arial;color: #6c757d;" class="p-1" id="dias_laborables">-</div>
                                         </div>
                                     </div>
                                     <div class="col d-flex align-items-center justify-content-center">
@@ -191,7 +191,7 @@
                                             <div style="color: #8bc34a; font:2rem Arial" class="p-1" id="horas_laborables_ok"><i class="far fa-smile"></i></div>
                                             <div style="color: #ffc107; font:2rem Arial" class="p-1 d-none" id="horas_laborables_no_ok"><i class="far fa-frown-open"></i></div>
                                             <div style="font: bold 0.8rem Arial;color: #6c757d;" class="p-1">Horas laborales</div>
-                                            <div style="font: bold 3rem Arial;color: #6c757d;" class="p-1" id="horas_laborables">40</div>
+                                            <div style="font: bold 3rem Arial;color: #6c757d;" class="p-1" id="horas_laborables">-</div>
                                         </div>
                                     </div>
                                     <div class="col d-flex align-items-center justify-content-center">
@@ -282,7 +282,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -291,5 +292,6 @@
 <link href="${modulo_home_empleadoCSS}" rel="stylesheet"/>
 <script src="${modulo_home_empleadoJS}" ></script>
 <script>
-    init_home_empleado("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_home_empleado("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_home_empleado(${json});
 </script>

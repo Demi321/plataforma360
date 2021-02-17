@@ -126,6 +126,7 @@ public class Modulos {
 
                     if (menu.get("url").toString().equals(config.getPATH() + config.getDEPENDENCIA() + "/")) {
                         //solicitar vista
+                        menu.remove("url");
                         model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
 
                         //System.out.println(Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase());
@@ -260,19 +261,20 @@ public class Modulos {
 
         }
 
-        model.addAttribute("id_menu", json.get("id_menu"));
-        model.addAttribute("id_usuario", json.get("id_usuario"));
-        model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-        model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-        model.addAttribute("tipo_area", json.get("tipo_area"));
-        model.addAttribute("alias", json.get("alias"));
-        model.addAttribute("icono", json.get("icono"));
-        model.addAttribute("categoria", json.get("categoria"));
-        model.addAttribute("nombre", json.get("nombre"));
-        model.addAttribute("id", json.get("id"));
-        model.addAttribute("icono_categoria", json.get("icono_categoria"));
-        model.addAttribute("url", json.get("url"));
+        model.addAttribute("json", json);
 
+//        model.addAttribute("id_menu", json.get("id_menu"));
+//        model.addAttribute("id_usuario", json.get("id_usuario"));
+//        model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//        model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//        model.addAttribute("tipo_area", json.get("tipo_area"));
+//        model.addAttribute("alias", json.get("alias"));
+//        model.addAttribute("icono", json.get("icono"));
+//        model.addAttribute("categoria", json.get("categoria"));
+//        model.addAttribute("nombre", json.get("nombre"));
+        model.addAttribute("id", json.get("id"));
+//        model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//        model.addAttribute("url", json.get("url"));
         return "Home/modulo_vacio";
     }
 
@@ -283,18 +285,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         System.out.println(config.getServer().get("recursos"));
         return "empresa_empleado/perfil";
@@ -307,18 +311,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "Home/modulo_reporte";
     }
@@ -330,18 +336,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/reporte_seguridad_sanitaria";
     }
@@ -353,18 +361,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/entrada_salida";
     }
@@ -398,18 +408,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/registrarempresa";
     }
@@ -421,18 +433,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/notas";
     }
@@ -444,18 +458,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/recordatorios";
     }
@@ -467,18 +483,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/agenda";
     }
@@ -491,17 +509,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/misucursal";
     }
@@ -514,17 +534,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/areasdetrabajo";
     }
@@ -537,17 +559,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/plantillalaboral";
     }
@@ -559,18 +583,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/reportejornadaslaborales";
     }
@@ -583,17 +609,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/monitoreodeempleados";
     }
@@ -606,17 +634,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/videowallempleados";
     }
@@ -629,17 +659,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/miempresa";
     }
@@ -652,17 +684,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/registrarsucursal";
     }
@@ -674,18 +708,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/missucursales";
     }
@@ -697,18 +733,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/home_empleado";
     }
@@ -720,18 +758,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/reporte_sintomas";
     }
@@ -743,18 +783,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/reporte_proteccion_personal";
     }
@@ -766,18 +808,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/reporte_actividades";
     }
@@ -789,18 +833,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/reporte_evento_incidente";
     }
@@ -812,18 +858,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa_empleado/cuestionario_tamizaje";
     }
@@ -836,17 +884,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/comunicacion";
     }
@@ -861,18 +911,20 @@ public class Modulos {
             model.addAttribute("config", config.getPersonalizacion().toString().replace("\"", "&quot;"));
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
+            
+            model.addAttribute("json", json);
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/panelfinanciero";
     }
@@ -886,17 +938,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/estadisticaglobal";
     }
@@ -909,17 +963,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/saludeneltrabajo";
     }
@@ -933,17 +989,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/recursoshumanos";
     }
@@ -956,17 +1014,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/archivo";
     }
@@ -979,17 +1039,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/misreportes";
     }
@@ -1002,17 +1064,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/usodecubrebocas";
     }
@@ -1025,17 +1089,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/balanza";
     }
@@ -1048,17 +1114,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/contabilidad";
     }
@@ -1071,17 +1139,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/planeacionfinanciera";
     }
@@ -1094,17 +1164,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/impuestos";
     }
@@ -1118,17 +1190,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/administracionyfinanzas";
     }
@@ -1141,17 +1215,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/mapa";
     }
@@ -1164,17 +1240,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/historialdellamadas";
     }
@@ -1187,17 +1265,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/operaciones";
     }
@@ -1210,17 +1290,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/paneldatosrrhh";
     }
@@ -1233,17 +1315,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/protocolodevacunacioncovid";
     }
@@ -1256,17 +1340,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/invitacionempresarial";
     }
@@ -1279,17 +1365,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/perfildesalud";
     }
@@ -1302,17 +1390,19 @@ public class Modulos {
             model.addAttribute("FAVICON", config.getPersonalizacion().get("favicon"));
             model.addAttribute("title", "Claro360  - " + config.getPersonalizacion().get("t1"));
 
-            model.addAttribute("id_menu", json.get("id_menu"));
-            model.addAttribute("id_usuario", json.get("id_usuario"));
-            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
-            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
-            model.addAttribute("tipo_area", json.get("tipo_area"));
-            model.addAttribute("alias", json.get("alias"));
-            model.addAttribute("icono", json.get("icono"));
-            model.addAttribute("categoria", json.get("categoria"));
-            model.addAttribute("nombre", json.get("nombre"));
+            model.addAttribute("json", json);
+            
+//            model.addAttribute("id_menu", json.get("id_menu"));
+//            model.addAttribute("id_usuario", json.get("id_usuario"));
+//            model.addAttribute("tipo_usuario", json.get("tipo_usuario"));
+//            model.addAttribute("tipo_servicio", json.get("tipo_servicio"));
+//            model.addAttribute("tipo_area", json.get("tipo_area"));
+//            model.addAttribute("alias", json.get("alias"));
+//            model.addAttribute("icono", json.get("icono"));
+//            model.addAttribute("categoria", json.get("categoria"));
+//            model.addAttribute("nombre", json.get("nombre"));
             model.addAttribute("id", json.get("id"));
-            model.addAttribute("icono_categoria", json.get("icono_categoria"));
+//            model.addAttribute("icono_categoria", json.get("icono_categoria"));
         }
         return "empresa/perfillaboral";
     }
@@ -1953,7 +2043,7 @@ public class Modulos {
             } else {
                 query = "SELECT * FROM registro_descanso_jornada_laboral "
                         + "WHERE id360 = '" + id360 + "' AND "
-                        + "(fecha_pausa = '" + Query.getFecha() + "' ORDER BY id DESC;";
+                        + "(fecha_pausa = '" + Query.getFecha() + "' ) ORDER BY id DESC;";
             }
 
             JSONArray registro_descanso = Query.execute(query);

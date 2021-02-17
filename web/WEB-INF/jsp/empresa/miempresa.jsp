@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 miempresa" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 miempresa" id="base_modulo_${id}">
 <div class="listado_instituciones row m-0 p-2">
         <div class="row m-0 p-0 col-12 content">
             <div
@@ -261,7 +261,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -270,5 +271,6 @@
 <link href="${modulo_miempresaCSS}" rel="stylesheet"/>
 <script src="${modulo_miempresaJS}" ></script>
 <script>
-    init_miempresa("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_miempresa("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_miempresa(${json});
 </script>

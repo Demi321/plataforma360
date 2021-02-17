@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 plantillalaboral" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 plantillalaboral" id="base_modulo_${id}">
  </div>
 
 
@@ -12,7 +12,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -21,5 +22,6 @@
 <link href="${modulo_plantillalaboralCSS}" rel="stylesheet"/>
 <script src="${modulo_plantillalaboralJS}" ></script>
 <script>
-    init_plantillalaboral("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_plantillalaboral("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_plantillalaboral(${json});
 </script>

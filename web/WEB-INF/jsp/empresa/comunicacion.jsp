@@ -54,7 +54,7 @@
     
 </div>
 
-<div class="row col-12 m-0 p-0 h-100 comunicacion" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 comunicacion" id="base_modulo_${id}">
 
     <div class="col-8 d-none" >
         <div id="app">
@@ -320,6 +320,7 @@
     //categoria
     //url externa 
    agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+   agregar_menu(${json});
 
 </script>
 
@@ -328,5 +329,6 @@
 <link href="${modulo_comunicacionCSS}" rel="stylesheet"/>
 <script src="${modulo_comunicacionJS}" ></script>
 <script>
-    init_comunicacion("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_comunicacion("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_comunicacion(${json});
 </script>

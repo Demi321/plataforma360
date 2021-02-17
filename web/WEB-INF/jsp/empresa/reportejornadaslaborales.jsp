@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-0 h-100 reportejornadaslaborales" id="base_modulo_${id_menu}">
+<div class="row col-12 m-0 p-0 h-100 reportejornadaslaborales" id="base_modulo_${id}">
 <h3 style="display: block; width: 100%; text-align: left">Reporte de jornadas laborales</h3>
     
     <div id="tabs_jornadas_laborales" class="col-12">
@@ -204,7 +204,8 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+agregar_menu(${json});
 
 </script>
 
@@ -213,5 +214,6 @@
 <link href="${modulo_reportejornadaslaboralesCSS}" rel="stylesheet"/>
 <script src="${modulo_reportejornadaslaboralesJS}" ></script>
 <script>
-    init_reportejornadaslaborales("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+//    init_reportejornadaslaborales("${id_usuario}", "${tipo_usuario}", '${tipo_servicio}');
+init_reportejornadaslaborales(${json});
 </script>
