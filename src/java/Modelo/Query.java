@@ -372,6 +372,128 @@ public class Query {
         query += labels + ") VALUES (" + values + ");";
         return query;
     }
+    
+    public static String createQueryInsertWithColumnsMultiple(String table, JSONArray dataM) {
+        JSONObject data = (JSONObject) dataM.get(0);
+        Set<String> keys = data.keySet();
+        Iterator<String> iterator = keys.iterator();
+        JSONArray keys_null = new JSONArray();
+        
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            if (data.get(key).toString().equals("")) {
+                keys_null.add(key);
+            }
+        }
+        for (int i = 0; i < keys_null.size(); i++) {
+            data.remove(keys_null.get(i));
+        }
+        
+        String query = "DESCRIBE " + table + ";";
+        JSONArray table_fields = Query.execute(query);
+        query = "INSERT INTO " + table + " (";
+        keys = data.keySet();
+        iterator = keys.iterator();
+        String labels = "";
+        String values = "";
+
+        /**
+         * ************* cambio para agregar la fechas de creacion de registros
+         * ****************
+         */
+        boolean has_datecreated = false;
+        boolean has_dateupdated = false;
+        boolean has_timecreated = false;
+        boolean has_timeupdated = false;
+        for (int i = 0; i < table_fields.size(); i++) {
+            JSONObject column = (JSONObject) table_fields.get(i);
+            if (column.get("Field").toString().equals("date_created")) {
+                has_datecreated = true;
+            }
+            if (column.get("Field").toString().equals("time_created")) {
+                has_timecreated = true;
+            }
+            if (column.get("Field").toString().equals("date_updated")) {
+                has_dateupdated = true;
+            }
+            if (column.get("Field").toString().equals("time_updated")) {
+                has_timeupdated = true;
+            }
+            
+        }
+        if (!has_datecreated) {
+            Query.addColumnDATE(table, "date_created");
+        }
+        if (!has_dateupdated) {
+            Query.addColumnDATE(table, "date_updated");
+        }
+        if (!has_timecreated) {
+            Query.addColumnTIME(table, "time_created");
+        }
+        if (!has_timeupdated) {
+            Query.addColumnTIME(table, "time_updated");
+        }
+
+        /**
+         * ************* cambio para agregar la fechas de creacion de registros
+         * ****************
+         */
+        while (iterator.hasNext()) {
+            boolean field = false;
+            String val = iterator.next();
+            for (int i = 0; i < table_fields.size(); i++) {
+                JSONObject column = (JSONObject) table_fields.get(i);
+                if (val.equals(column.get("Field").toString())) {
+                    field = true;
+                    break;
+                }
+            }
+            labels += " " + val + ",";
+//            if (field) {
+//                labels += " " + val + ",";
+//                values += " '" + data.get(val) + "',";
+//            } else {
+//                //System.out.println("Informacion no puede almacenarce: "+val+" -> "+data.get(val));
+//                System.out.println("Creando Columna no existente: " + val);
+//
+//            }
+            if (!field) {
+                System.out.println("Creando columna inexistente: -----> " + val);
+                if (val.contains("sintoma_") || val.contains("proteccion_")) {
+                    Query.addColumnVarchar(table, val, 15);
+                }
+                if (val.contains("option_")) {
+                    Query.addColumnVarchar(table, val, 15);
+                } else {
+                    Query.addColumnTEXT(table, val);
+                }
+            }
+            
+        }
+        
+        int cantidadDatos = dataM.size();
+        for(int x = 0; x<cantidadDatos; x++){
+            JSONObject inf = (JSONObject) dataM.get(x);
+            Set<String> keysInf = inf.keySet();
+            Iterator<String> iteratorInf = keysInf.iterator();
+            
+            values += "(";
+            while (iteratorInf.hasNext()) {
+                String key = iteratorInf.next();
+                values += " '" + inf.get(key) + "',";
+            }
+            values += "'" + getFecha() + "','" + getHora() + "'";
+            values += "),";
+            
+        }
+        
+        System.out.println("Valor final dde values " + values);
+        values = values.substring(0, values.length()-1);
+        
+        labels += "date_created, time_created";
+        query += labels + ") VALUES " + values + ";";
+        return query;
+    }
 
     public static String createQueryUpdateAND(String table, JSONObject data, JSONObject where_keys) {
         Set<String> keys = data.keySet();
