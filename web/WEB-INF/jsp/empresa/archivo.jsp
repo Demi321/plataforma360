@@ -5,10 +5,7 @@
 <div class="row col-12 m-0 p-3 h-100 archivo d-block bg-white" id="base_modulo_${id}">
     
     <div class="row col-12 m-0 p-2">
-        <div class="col-12 p-3 mb-2 rounded-pill text-center bg-dark text-white" id="enviar_nuevo_archivo">
-            <i class="fas fa-plus mr-2"></i>
-            Nuevo Envío
-        </div>
+        <div class="col-12 p-3 mb-2 rounded-pill text-center bg-dark text-white" id="enviar_nuevo_archivo"><i class="fas fa-plus mr-2"></i>Nuevo Envío</div>
     </div>
     
     <div class="row col-12 m-4 p-3" id="nuevo_envio_archivo" style="border-radius: 15px; display: none; border: solid 1px #d3d3d3;">
@@ -70,32 +67,8 @@
     </div>
     
     <div id="contenedorDespliegueDeArchivos" class="row w-100 m-0 p-0">
-        <div class="col-12 m-0 p-0">
-            <div class="row col-12 m-0 p-0 p-1 border-bottom d-flex justify-content-center align-items-center">
-                <a class="row m-0 p-0 col-10 text-dark d-flex justify-content-center align-items-center collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <div class="col-12 col-sm-12 col-md-6 p-0"><h5>Nombre del archivo</h5></div>
-                    <div class="col-12 col-sm-12 col-md-2"><h6>Proyecto</h6></div>
-                    <div class="col-12 col-sm-12 col-md-2"><h7>Fecha</h7></div>
-                    <div class="col-12 col-sm-12 col-md-2"><h7>Hora</h7></div>
-                </a>
-                <div class="col">
-                    <i class="fas fa-share"></i>
-                </div>
-                <div class="col">
-                    <i class="fas fa-cloud-download-alt"></i>
-                </div>
-                <div class="row col-12 m-0 p-2 collapse" id="collapseExample" style="background: rgb(211, 211, 211);">
-                    <div class="col-12 m-0 p-1">
-                        <strong>Compartido con: </strong><span>Pedro Perez, </span>
-                        <span>Daniela Gonzalez, </span>
-                        <span>Michael Ween, </span><span>Ricardo Gutierrez. </span>
-                    </div>
-                    <div class="col-12 m-0 p-1"><strong>Proyecto: </strong><span>Desarrollo 1</span></div>
-                    <div class="col-12 m-0 p-1"><strong>Título: </strong><span>Documentacion para empleo del protocolo AS23GF</span></div>
-                    <div class="col-12 m-0 p-1"><strong>Desacripción: </strong><span>Se envia la documentacion en formato PDF para su implementacion en el proyecto de desarrollo 1</span></div>
-                    <div class="col-12 m-0 p-0"></div>
-                </div>
-            </div>
+        <div id="contentArchivos" class="col-12 m-0 p-0">
+            <table class="text-center" id="tablaArchivos"></table>
         </div>
     </div>
     

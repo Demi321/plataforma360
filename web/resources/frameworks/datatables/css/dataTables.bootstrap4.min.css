@@ -132,11 +132,13 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:after {
     right: 0.5em;
-    content: "\2193"
+    content: "\2193";
+    top: 0.4em;
 }
 
 table.dataTable thead .sorting_asc:before,
 table.dataTable thead .sorting_desc:after {
+    top: 0.4em;
     opacity: 1
 }
 

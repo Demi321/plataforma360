@@ -5,27 +5,15 @@
  */
 package Controlador;
 
-import Config.Revision;
-import Config.config;
 import Modelo.Query;
-import Request.request;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.Normalizer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -148,7 +136,14 @@ public class Controller1 {
         JSONObject json = (JSONObject) parser.parse(string);
         
         String query = "SELECT " +
-                        "    * " +
+                        "    *, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
