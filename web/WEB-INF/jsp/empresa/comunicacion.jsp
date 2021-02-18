@@ -1,5 +1,6 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <div id="contenedor-sonidos-notificaciones">
     
     <audio muted id="sonido1">
@@ -56,6 +57,10 @@
 
 <div class="row col-12 m-0 p-0 h-100 comunicacion" id="base_modulo_${id}">
 
+    <div class="spin-comunicacion">
+        <img src="${pathRecursos}/images/spin.gif">
+    </div>
+
     <div class="col-8 d-none" >
         <div id="app">
             <div style="width: 600px;">
@@ -95,6 +100,23 @@
     </div>
     <div id="frame">
         <div id="sidepanel">
+            
+            <div class="botoneraComunicacion">
+                
+                <button type="button" id="verMensajesDestacados" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mensajes destacados">
+                    <i class="fa fa-star fa-fw" aria-hidden="true"></i>
+                </button>
+                
+                <button type="button" id="nuevaConversacion" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nuevo">
+                    <i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> 
+                </button>
+                
+                <button type="button" id="settings" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Configuración">
+                    <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+                </button>
+                
+            </div>
+            
             <div id="profile" class="">
                 <div class="wrap">
                     <div class="cont-img online">
@@ -156,16 +178,38 @@
                     </div>
                 </div>
             </div>
+            
             <div id="contacts" class="">
+                <div id="filtrarFavoritos" class="w-100 pt-3">
+                    <label>
+                        <input type="checkbox" id="soloFavoritos" name="soloFavoritos"/>
+                        Solo contactos favoritos
+                    </label>
+                </div>
                 <ul  class="p-0" id="message_contacts">
 
 
                 </ul>
             </div>
-            <div id="bottom-bar">
-                <button id="addGroup"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span> Nuevo Grupo</span></button>
-                <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span> Configuración</span></button>
+            
+            <div id="panelMensajesDestacados">
+                
+                <div class="botoneraMensjaesDestacados">
+                    <button id="btnCerrarMensajesDestacados" type="button" data-toggle="tooltip" data-placement="bottom" title="Cerrar mensajes destacados">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+
+                    <button id="eliminarTodosLosMensajesDestacados" type="button" data-toggle="tooltip" data-placement="bottom" title="Eliminar mensajes destacados">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                
+                <ul>
+                    
+                </ul>
+                
             </div>
+            
         </div>
         
         <div class="h-100" style="display: none;" id="content_call">
@@ -233,9 +277,9 @@
 
                           </div>
                     </div>
-                    <%-- Información del Perfil - seccion izquierda--%>
+                    <%-- Informaci?n del Perfil - seccion izquierda--%>
                     <div class="row col-sm-12 col-md-12 col-lg-12 col-xl-12" style="display: none;">
-                          <!-- Información General -->
+                          <!-- Informaci?n General -->
 
 
                           <div class="card col-sm-6 col-md-6 col-lg-6 col-xl-6  " style="padding: 5px; padding-top: 0;    height: -webkit-fill-available;">
@@ -288,7 +332,7 @@
 
 
 
-                    <%-- Información  - seccion derecha --%>
+                    <%-- Informaci?n  - seccion derecha --%>
                     <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
 
                           <div class="row">
@@ -310,6 +354,7 @@
             
         </div>
     </div>
+    
 </div>
 
 
@@ -319,11 +364,12 @@
     //icono
     //categoria
     //url externa 
-   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+   //agregar_meu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
    agregar_menu(${json});
 
 </script>
 
+<script type="module" src="https://unpkg.com/emoji-picker-element@1"></script>
 <spring:url value="${pathRecursos}/empresas360/comunicacion/comunicacion.css" var="modulo_comunicacionCSS" />
 <spring:url value="${pathRecursos}/empresas360/comunicacion/comunicacion.js" var="modulo_comunicacionJS" />
 <link href="${modulo_comunicacionCSS}" rel="stylesheet"/>
