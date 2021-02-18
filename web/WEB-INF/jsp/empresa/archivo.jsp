@@ -2,10 +2,10 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row col-12 m-0 p-3 h-100 archivo d-block" id="base_modulo_${id}">
+<div class="row col-12 m-0 p-3 h-100 archivo d-block bg-white" id="base_modulo_${id}">
     
     <div class="row col-12 m-0 p-2">
-        <div class="col-12 p-3 mb-2 border rounded-pill text-center bg-dark text-white" id="enviar_nuevo_archivo">
+        <div class="col-12 p-3 mb-2 rounded-pill text-center bg-dark text-white" id="enviar_nuevo_archivo">
             <i class="fas fa-plus mr-2"></i>
             Nuevo Envío
         </div>
