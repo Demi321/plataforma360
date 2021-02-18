@@ -4,26 +4,16 @@
     Author     : Vostro Placas
 --%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
-
-
 <head>
-
     <%@include file="../plantilla/head_login.jsp" %>  
-
     <title>Inicio de Sesión</title>
 </head>
-
 <body>
-
-
-
     <%@include file="../plantilla/header_vacio.jsp" %>
-
     <input type="hidden" id="cuenta360" value="${cuenta360}">
     <div class="formulario" style="border: none;">
         <!--h2>Sistema de Monitoreo de Emergencias</h2-->
@@ -151,7 +141,7 @@
                         let institucion = sesion_cookie.plataforma360[i];
                         console.log(institucion);
                         /*Solo para dev*/
-                        institucion.url = "https://empresas.claro360.com/plataforma360_dev/";
+                        institucion.url = "https://empresas.claro360.com/plataforma360_dev_moises/";
                         /***************/
                         if (institucion.url === window.location.protocol + "//" + window.location.host + '/' + DEPENDENCIA + '/') {
                             plataforma360 = true;
