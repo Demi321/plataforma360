@@ -25,9 +25,9 @@
                 <div class="row">
                     <div class="col-12 mr-0" id="PorcentageA">
                         <div class="row">                            
-                            <div id="grafica">
+                            <div>
                                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                <div id="piechart" style="width: 400%; height: 300%;"></div>
+                                <div id="piechart" style="width: 400px; height: 300px;"></div>
                             </div>
                         </div>
                     </div>
@@ -224,11 +224,11 @@
                 <div class="row">
                     <div class="col-12 mr-0" id="PorcentageB">
                         <div class="row">                                                                                               
-                            <div id="grafica2">
+                            <div>
                                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                 <div class="wrapper">
                                     <div>                                        
-                                        <div id="chart_div_act_laborales" style="width: 400%; height: 300%;"></div>
+                                        <div id="chart_div_act_laborales" style="width: 400px; height: 300px;"></div>
                                     </div>
                                     <div class="DatosGraficaEdades">
                                         <h2 style="text-align: center">Actividades laborales</h2>
