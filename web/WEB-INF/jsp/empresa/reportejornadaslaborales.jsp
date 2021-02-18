@@ -262,7 +262,7 @@
                     
                 </div>
                 
-                <div id="resultado-busqueda-jornadas" class="d-none col-12">
+                <div id="resultado-busqueda-jornadas2" class="d-none col-12">
                     
                     <div id="tablas_resultados" class="accordion">
                         
