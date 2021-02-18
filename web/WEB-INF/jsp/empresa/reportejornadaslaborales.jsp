@@ -22,7 +22,7 @@
             <div class="card col-12 col-lg-4">
                 <div class="card-body text-dark border-0 rounded" style="background: #f5f5f5">
                     <div style="position:relative;padding-bottom:60%;height: 0;overflow-y: auto;overflow-y: hidden">
-                        <div style="position: absolute;top: 0;left: 0;width: 100%;height: 500px" id="piechart"></div>
+                        <div style="position: absolute;top: 0;left: 0;width: 100%;height: 500px" id="piechartConexionEmpresa"></div>
                     </div>
                 </div>
             </div>
