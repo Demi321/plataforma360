@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/src/java/Recursos/InicializacionLocal.java</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/web/WEB-INF/web.xml</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/src/java/Config/Revision.java</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/web/WEB-INF/jsp/empresas360/llamada_entrante.jsp</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/web/WEB-INF/glassfish-web.xml</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/src/java/Controlador/Empresas360.java</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/web/WEB-INF/jsp/login/access_token.jsp</file>
-            <file>file:/home/moises/git_workspace/develop/plataforma360_dev/web/META-INF/context.xml</file>
+            <file>file:/home/ivan/Documentos/plataforma360_dev_moises/web/WEB-INF/jsp/empresa/agenda.jsp</file>
+            <file>file:/home/ivan/Documentos/plataforma360_dev_moises/web/WEB-INF/jsp/Home/home.jsp</file>
+            <file>file:/home/ivan/Documentos/plataforma360_dev_moises/src/java/Controlador/Modulos.java</file>
         </group>
     </open-files>
 </project-private>
