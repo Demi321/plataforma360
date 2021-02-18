@@ -107,3 +107,17 @@
 
 <link href="${pathRecursos}/css/layoutBase.css" rel="stylesheet" />
 <link href="${pathRecursos}/css/normalize.css" rel="stylesheet" />
+
+<!-- Menu Click DereccontextMenuJSho -->
+<spring:url value="/resources/frameworks/jQuery/context-menu.min.js" var="contextMenuJS" />
+<script src="${contextMenuJS}" ></script>
+<spring:url value="/resources/frameworks/jQuery/context-menu.min.css" var="contextMenuCSS" />
+<link href="${contextMenuCSS}" rel="stylesheet" />
+
+<!-- FileInput -->
+<spring:url value="/resources/frameworks/fileinput/fileinput.css" var="fileinputCSS" />
+<link href="${fileinputCSS}" rel="stylesheet" />
+<spring:url value="/resources/frameworks/fileinput/fileinput.js" var="fileinputJS" />
+<script src="${fileinputJS}" ></script>
+<spring:url value="/resources/frameworks/fileinput/es.js" var="esFileinputJS" />
+<script src="${esFileinputJS}" ></script> 

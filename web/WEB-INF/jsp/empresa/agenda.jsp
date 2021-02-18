@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-12 col-md-2 d-flex flex-column justify-content-center">
                 <!-- BOTONES -->
-                <button type="button" class="btn btn-success mt-3 p-auto" data-bs-toggle="modal" data-bs-target="#nuevoModal">Nuevo evento</button>
+                <button type="button" class="btn btn-success mt-3 p-auto" data-bs-toggle="modal" data-bs-target="#nuevoModal">Nuevo evento2</button>
                 <button type="button" class="btn btn-info mt-3 p-auto"  data-bs-toggle="modal" data-bs-target="#eventosHoyModal">Eventos de hoy</button>
             </div>
             <div class="col-12 col-md-10 bg-light">
