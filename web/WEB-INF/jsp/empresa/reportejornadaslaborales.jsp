@@ -169,19 +169,19 @@
 
                     <h6 class="mb-5" style="font-size: 2rem; color: #343a40">Reporte de jornadas laborales</h6>
 
-                    <form id="form_historia_jornadas" class="row mb-4">
+                    <form id="form_historia_jornadas2" class="row mb-4">
                         
                         <div class="col-md-2 col-sm-12 p-0">
                             <div class="form-group">
-                                <label for="fecha_inicio_reporte" class="mr-2">Fecha de inicio</label>
-                                <input type="date" class="form-control" id="fecha_inicio_reporte">
+                                <label for="fecha_inicio_reporte2" class="mr-2">Fecha de inicio</label>
+                                <input type="date" class="form-control" id="fecha_inicio_reporte2">
                             </div>
                         </div>
 
                         <div class="col-md-2 col-sm-12 p-0">
                             <div id="contenedor_fecha_final" class="form-group mx-sm-3">
-                                <label for="fecha_fin_reporte" class="mr-2">Fecha de fin</label>
-                                <input type="date" class="form-control" id="fecha_fin_reporte">
+                                <label for="fecha_fin_reporte2" class="mr-2">Fecha de fin</label>
+                                <input type="date" class="form-control" id="fecha_fin_reporte2">
                             </div>
                         </div>
 
@@ -233,7 +233,7 @@
                         </div>
 
                         <div class="col-md-1 p-3 d-flex">
-                            <button type="button" style="background-color: darkgreen; border-color: darkgreen" id="botonDescargaReporteJornada" class="btn btn-dark btn-block d-none"><i class="fas fa-file-excel"></i></button>
+                            <button type="button" style="background-color: darkgreen; border-color: darkgreen" id="botonDescargaReporteJornada2" class="btn btn-dark btn-block d-none"><i class="fas fa-file-excel"></i></button>
                         </div>
                         
                     </form>                    
@@ -701,18 +701,18 @@
                         <strong style="font-size:120%;">Historial laboral</strong>
                         <hr class="bg-dark mt-1">
                         <p>Seleccione las fechas para realizar la búsqueda de su historial de jornadas.</p>
-                        <form id="form_historial_laboral" class="mb-4">
+                        <form id="form_historial_laboral2" class="mb-4">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-group">
-                                        <label for="fecha_inicio_historial_laboral" class="mr-2">Fecha de inicio</label>
-                                        <input type="date" class="form-control" id="fecha_inicio_historial_laboral">
+                                        <label for="fecha_inicio_historial_laboral2" class="mr-2">Fecha de inicio</label>
+                                        <input type="date" class="form-control" id="fecha_inicio_historial_laboral2">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div id="contenedor_fecha_final" class="form-group mx-sm-3">
-                                        <label for="fecha_fin_historial_laboral" class="mr-2">Fecha de fin</label>
-                                        <input type="date" class="form-control" id="fecha_fin_historial_laboral">
+                                        <label for="fecha_fin_historial_laboral2" class="mr-2">Fecha de fin</label>
+                                        <input type="date" class="form-control" id="fecha_fin_historial_laboral2">
                                     </div>
                                 </div>
                                 <div class="col-md-2 p-3 d-flex">

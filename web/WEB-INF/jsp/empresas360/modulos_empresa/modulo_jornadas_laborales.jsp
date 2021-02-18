@@ -9,7 +9,7 @@
 MÛDULO DE REPORTING 
 ========================================
 -->
-<div class="row col-12 m-0 p-2 pt-3" id="base_modulo_ReporteJornadasLaborales">
+<!--<div class="row col-12 m-0 p-2 pt-3" id="base_modulo_ReporteJornadasLaborales">
     <h3 style="display: block; width: 100%; text-align: left">Reporte de jornadas laborales</h3>
     
     <div id="tabs_jornadas_laborales" class="col-12">
@@ -123,30 +123,30 @@ MÛDULO DE REPORTING
                                 <option value="TODOS">Todos</option>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- SELECT DE SUCURSALES -->
-                    <div id="contenedor-select-sucursales" class="col-md-3 col-sm-12 d-none">
+                    <!--<div id="contenedor-select-sucursales" class="col-md-3 col-sm-12 d-none">
                         <div class="form-group">
                             <label class="mr-2" for="sucursal_jornadas">Seleccionar sucursal</label>
                             <select name="sucursal_jornadas" id="sucursal_jornadas" class="form-control-plaintext input p-2 text-dark m-0 mb-1">
                                 <option selected disabled>Seleccionar...</option>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- SELECT DE AREAS -->
-                    <div id="contenedor-select-areas" class="col-md-3 col-sm-12 d-none">
+                    <!--<div id="contenedor-select-areas" class="col-md-3 col-sm-12 d-none">
                         <div class="form-group">
                             <label class="mr-2" for="area_jornadas">Seleccionar ·rea</label>
                             <select name="area_jornadas" id="area_jornadas" class="form-control-plaintext input p-2 text-dark m-0 mb-1">
                                 <option selected disabled>Seleccionar...</option>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- SELECT DE EMPLEADOS -->
-                    <div id="contenedor-select-empleados" class="col-md-3 col-sm-12 d-none">
+                    <!--<div id="contenedor-select-empleados" class="col-md-3 col-sm-12 d-none">
                         <div class="form-group">
                             <label class="mr-2" for="empleado_jornadas">Seleccionar empleado</label>
                             <select name="empleado_jornadas" id="empleado_jornadas" class="form-control-plaintext input p-2 text-dark m-0 mb-1">
@@ -203,7 +203,7 @@ MÛDULO DE REPORTING
         </div>
     </div>
 
-</div>
+</div>-->
 <!-- 
 ========================================
 FINAL MÛDULO DE REPORTING

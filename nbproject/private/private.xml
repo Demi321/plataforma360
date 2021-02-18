@@ -3,9 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/home/ivan/Documentos/plataforma360_dev_moises/web/WEB-INF/jsp/empresa/agenda.jsp</file>
+            <file>file:/home/ivan/Documentos/plataforma360_dev_moises/web/WEB-INF/jsp/Home/home.jsp</file>
+            <file>file:/home/ivan/Documentos/plataforma360_dev_moises/src/java/Controlador/Modulos.java</file>
+=======
             <file>file:/home/alejandro/Documentos/Documento%20Alejandro/repositorio%20empresa/plataforma360_dev_moises/web/WEB-INF/jsp/empresa/estadisticaglobal.jsp</file>
             <file>file:/home/alejandro/Documentos/Documento%20Alejandro/repositorio%20empresa/plataforma360_dev_moises/src/java/Controlador/Controller3.java</file>
             <file>file:/home/alejandro/Documentos/Documento%20Alejandro/repositorio%20empresa/plataforma360_dev_moises/web/WEB-INF/jsp/empresa/administracionyfinanzas.jsp</file>
+>>>>>>> a663048b37e4f5f54a249b6b02069662806a1592
         </group>
     </open-files>
 </project-private>
