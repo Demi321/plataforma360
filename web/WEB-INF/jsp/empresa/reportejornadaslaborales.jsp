@@ -169,7 +169,7 @@
 
                     <h6 class="mb-5" style="font-size: 2rem; color: #343a40">Reporte de jornadas laborales</h6>
 
-                    <form id="form_historia_jornadas" class="row mb-4">
+                    <form id="form_historia_jornadas2" class="row mb-4">
                         
                         <div class="col-md-2 col-sm-12 p-0">
                             <div class="form-group">
