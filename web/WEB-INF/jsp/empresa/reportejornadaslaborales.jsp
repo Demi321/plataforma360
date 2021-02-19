@@ -48,16 +48,16 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-7 col-md-8" id="Retardos"> 
-                            <div class="rectangleVacio2" id="recReta2_1"></div>
-                            <div class="rectangleVacio2" id="recReta2_2"></div> 
-                            <div class="rectangleVacio2" id="recReta2_3"></div> 
-                            <div class="rectangleVacio2" id="recReta2_4"></div>
-                            <div class="rectangleVacio2" id="recReta2_5"></div>
-                            <div class="rectangleVacio2" id="recReta2_6"></div>
-                            <div class="rectangleVacio2" id="recReta2_7"></div>
-                            <div class="rectangleVacio2" id="recReta2_8"></div> 
-                            <div class="rectangleVacio2" id="recReta2_9"></div>
-                            <div class="rectangleVacio2" id="recReta2_10"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_1"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_2"></div> 
+                            <div class="rectangleVacio2" id="retardoEmpresa_3"></div> 
+                            <div class="rectangleVacio2" id="retardoEmpresa_4"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_5"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_6"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_7"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_8"></div> 
+                            <div class="rectangleVacio2" id="retardoEmpresa_9"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_10"></div>
                             <p>Retardos</p>
                         </div>
                         <div class="col-sm-5 col-md-4">
@@ -66,16 +66,16 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-7 col-md-8" id="Puntales"> 
-                            <div class="rectangleVacio2" id="recPunt3_1"></div>
-                            <div class="rectangleVacio2" id="recPunt3_2"></div> 
-                            <div class="rectangleVacio2" id="recPunt3_3"></div> 
-                            <div class="rectangleVacio2" id="recPunt3_4"></div>
-                            <div class="rectangleVacio2" id="recPunt3_5"></div>
-                            <div class="rectangleVacio2" id="recPunt3_6"></div>
-                            <div class="rectangleVacio2" id="recPunt3_7"></div>
-                            <div class="rectangleVacio2" id="recPunt3_8"></div> 
-                            <div class="rectangleVacio2" id="recPunt3_9"></div>
-                            <div class="rectangleVacio2" id="recPunt3_10"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_1"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_2"></div> 
+                            <div class="rectangleVacio2" id="puntualEmpresa_3"></div> 
+                            <div class="rectangleVacio2" id="puntualEmpresa_4"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_5"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_6"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_7"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_8"></div> 
+                            <div class="rectangleVacio2" id="puntualEmpresa_9"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_10"></div>
                             <p>Puntal</p>
                         </div>
                         <div class="col-sm-5 col-md-4">
