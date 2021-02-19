@@ -4,10 +4,14 @@
 
 <div class="row col-12 m-0 p-3 h-100 archivo d-block bg-white" id="base_modulo_${id}">
     
+    <div id="loaderArchivos" class="d-none"></div>
+    
+    <%-- BOTON PARA ENVIAR NUEVO ARCHIVO --%>
     <div class="row col-12 m-0 p-2">
         <div class="col-12 p-3 mb-2 rounded-pill text-center bg-dark text-white" id="enviar_nuevo_archivo"><i class="fas fa-plus mr-2"></i>Nuevo Envío</div>
     </div>
     
+    <%-- FORMULARIO DE ENVIO DE ARCHIVOS --%>
     <div class="row col-12 m-4 p-3" id="nuevo_envio_archivo" style="border-radius: 15px; display: none; border: solid 1px #d3d3d3;">
         <form class="p-3 col-12" id="form-enviar-archivo">
             <div class="form-group">
@@ -66,10 +70,53 @@
         </form>
     </div>
     
+    <%-- DESPLIEGUE DE PRODUCTOS --%>
     <div id="contenedorDespliegueDeArchivos" class="row w-100 m-0 p-0">
-        <div id="contentArchivos" class="col-12 m-0 p-0">
+        
+        <%-- SECCION DE FILTROS PARA BUSQUEDA DE ARCHIVOS --%>
+        <div class="col-12 m-0 p-0 mb-4">
+            
+            <div class="row m-0 p-0 filtrosArchivos">
+                
+                <div class="col-3 form-group">
+                    <label for="remitente">Por origen: </label>
+                    <select id="origenArchivo" name="origen" class="custom-select">
+                        <option value="0">Todos</option>
+                        <option value="1">Enviados por mi</option>
+                        <option value="2">Enviados a mi</option>
+                    </select>
+                </div>
+                
+                <div id="selectDestinatarioArchivos" class="col-3 form-group d-none">
+                    <label for="destinatarioArchivo">Seleccionar destinatario</label>
+                    <select id="destinatarioArchivo" name="destinatario" class="custom-select"></select>
+                </div>
+                
+                <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
+                    <label for="remitenteArchivo">Seleccionar Remitente</label>
+                    <select id="remitenteArchivo" name="remitente" class="custom-select"></select>
+                </div>
+                
+                <button class="btn btn-danger" id="eliminarArchivos"><i class="fas fa-trash"></i></button>
+                <button class="btn btn-secondary" id="refrescarArchivos"><i class="fas fa-sync-alt"></i></button>
+                
+            </div>
+            
+        </div>
+        
+        <%-- TABLA DE ARCHIVOS --%>
+        <div id="contentArchivos" class="col-12 m-0 p-0 d-none">
             <table class="text-center" id="tablaArchivos"></table>
         </div>
+        
+        <%-- SIN RESULTADOS ENCONTRADOS --%>
+        <div id="sinArchivos" class="col-12 m-0 p-0 d-none">
+            <div class="jumbotron">
+                <h1 class="display-4">Sin archivos encontrados!</h1>
+                <p class="lead">Prueba cambiando los filtros para encontrar los archivos deseados.</p>
+            </div>
+        </div>
+        
     </div>
     
 </div>
