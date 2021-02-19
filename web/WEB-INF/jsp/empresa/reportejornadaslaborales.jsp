@@ -30,16 +30,16 @@
                 <div class="card-body text-dark border-0 rounded pt-5" style="background: #f5f5f5">
                     <div class="row pt-5">
                         <div class="col-sm-7 col-md-8" id="Faltas"> 
-                            <div class="rectangleVacio2" id="recFalt1_1"></div>
-                            <div class="rectangleVacio2" id="recFalt1_2"></div> 
-                            <div class="rectangleVacio2" id="recFalt1_3"></div> 
-                            <div class="rectangleVacio2" id="recFalt1_4"></div>
-                            <div class="rectangleVacio2" id="recFalt1_5"></div>
-                            <div class="rectangleVacio2" id="recFalt1_6"></div>
-                            <div class="rectangleVacio2" id="recFalt1_7"></div>
-                            <div class="rectangleVacio2" id="recFalt1_8"></div> 
-                            <div class="rectangleVacio2" id="recFalt1_9"></div>
-                            <div class="rectangleVacio2" id="recFalt1_10"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_1"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_2"></div> 
+                            <div class="rectangleVacio2" id="faltaEmpresa_3"></div> 
+                            <div class="rectangleVacio2" id="faltaEmpresa_4"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_5"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_6"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_7"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_8"></div> 
+                            <div class="rectangleVacio2" id="faltaEmpresa_9"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_10"></div>
                             <p>Faltas</p> 
                         </div>                            
                         <div class="col-sm-5 col-md-4">
