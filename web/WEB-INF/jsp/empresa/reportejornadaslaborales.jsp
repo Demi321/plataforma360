@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row reportejornadaslaborales" id="base_modulo_${id}">
+<div class="row col-12 m-0 p-0 h-100 reportejornadaslaborales" id="base_modulo_${id}">
     <div class="col-12 m-0 p-2 pt-3" id="reporteJornadasLaborales">
         <h3 style="display: block; width: 100%; text-align: left">Reporte de jornadas laborales</h3>
         
