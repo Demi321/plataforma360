@@ -121,3 +121,9 @@
 <script src="${fileinputJS}" ></script>
 <spring:url value="/resources/frameworks/fileinput/es.js" var="esFileinputJS" />
 <script src="${esFileinputJS}" ></script> 
+
+<!-- SELECT2 -->
+<spring:url value="/resources/frameworks/select2/select2.js" var="select2JS" />
+<script src="${select2JS}" ></script>
+<spring:url value="/resources/frameworks/select2/select2.css" var="select2CSS" />
+<link href="${select2CSS}" rel="stylesheet" />

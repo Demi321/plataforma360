@@ -40,13 +40,7 @@
             <div class="form-group">
                 <label for="formGroupExampleInput2">Proyecto</label>
                 <input list="listado_proyectos" class="form-control" name="listado_proyectos" id="list_proj" placeholder="Selecciona o escribe un proyecto" />
-                <datalist id="listado_proyectos">
-                    <option value="Desarrollo1"> </option>
-                    <option value="Desarrollo2"> </option>
-                    <option value="Desarrollo3"> </option>
-                    <option value="Desarrollo4"> </option>
-                    <option value="Desarrollo5"> </option>
-                </datalist>
+                <datalist id="listado_proyectos"></datalist>
             </div>
 
             <div class="form-group">
@@ -90,6 +84,11 @@
                 <div id="selectDestinatarioArchivos" class="col-3 form-group d-none">
                     <label for="destinatarioArchivo">Seleccionar destinatario</label>
                     <select id="destinatarioArchivo" name="destinatario" class="custom-select"></select>
+                </div>
+                
+                <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
+                    <label for="remitenteArchivo">Seleccionar Remitente</label>
+                    <select id="remitenteArchivo" name="remitente" class="custom-select"></select>
                 </div>
                 
                 <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
