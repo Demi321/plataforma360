@@ -81,7 +81,7 @@
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="far fa-smile fa-lg" style="color:#97BA38"></i>
                             <p>Proyectos atendidos</p>
-                            <h5 class="p-0 d-flex justify-content-center">3</h5>
+                            <h5 class="p-0 d-flex justify-content-center"> - </h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="colorIconoRetardosMisReportes"></i>
@@ -324,7 +324,7 @@
                                         <p>Dias de vacaciones </p>
                                     </div>
                                     <div class="col-5">                                        
-                                        <p><strong>4</strong></p>
+                                        <p><strong> - </strong></p>
                                     </div>
                                 </div>
                             </div>
