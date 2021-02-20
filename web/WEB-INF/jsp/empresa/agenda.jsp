@@ -292,36 +292,36 @@
 				        			<input class="form-control" type="text" id="update_supervisor_id">
 				        		</div> -->
 				        		<!-- PARTICIPANTES -->
-				        		<div class="col-12 col-md-4 mt-5">
+				        		<div class="col-12 col-md-4 mt-5" id="event_new">
 				        			<label for="update_participantes_id[]">Participantes</label>
-                                                                 <multiselect
-                            v-model="value"
-                            placeholder="Buscar contacto"
-                            label="title"
-                            track-by="id360"
-                            select-label=""
-                            :options="options"
-                            :close-on-select="true"
-                            :custom-label="customLabel"
-                            :show-labels="true"
-                            :hide-selected="false"
-                            @close="onClosed"
-                            @tag="onTag"
-                            @remove="onRemove"
-                            @input="onInput"
-                            @open="onOpen"
-                            placeholder="Buscar contacto"
-                            >
-                            <template slot="singleLabel" slot-scope="props">
-                                <!--<img class="option__image" :src="props.option.img"/>-->
-                                <span class="option__desc"><span class="option__title">{{ props.option.nombre }} {{ props.option.apellido_paterno }}  {{ props.option.apellido_materno }}</span></span>
-                            </template>
+                                                                <multiselect
+                                                                    v-model="value"
+                                                                    placeholder="Buscar contacto"
+                                                                    label="title"
+                                                                    track-by="id360"
+                                                                    select-label=""
+                                                                    :options="options"
+                                                                    :close-on-select="true"
+                                                                    :custom-label="customLabel"
+                                                                    :show-labels="true"
+                                                                    :hide-selected="false"
+                                                                    @close="onClosed"
+                                                                    @tag="onTag"
+                                                                    @remove="onRemove"
+                                                                    @input="onInput"
+                                                                    @open="onOpen"
+                                                                    placeholder="Buscar contacto"
+                                                                    >
+                                                                    <template slot="singleLabel" slot-scope="props">
+                                                                        <!--<img class="option__image" :src="props.option.img"/>-->
+                                                                        <span class="option__desc"><span class="option__title">{{ props.option.nombre }} {{ props.option.apellido_paterno }}  {{ props.option.apellido_materno }}</span></span>
+                                                                    </template>
 
-                            <template slot="option" slot-scope="props">
-                                <img class="option__image" :src="props.option.img" />
-                                <span class="option__desc"><span class="option__title ">{{ props.option.nombre }} {{ props.option.apellido_paterno }}  {{ props.option.apellido_materno }}</span></span>
-                            </template>
-                        </multiselect>
+                                                                    <template slot="option" slot-scope="props">
+                                                                        <img class="option__image" :src="props.option.img" />
+                                                                        <span class="option__desc"><span class="option__title ">{{ props.option.nombre }} {{ props.option.apellido_paterno }}  {{ props.option.apellido_materno }}</span></span>
+                                                                    </template>
+                                                                </multiselect>
 <!--				        			<select class="form-control" multiple="multiple" id="update_participantes_id" name="update_participantes_id[]">
 				        				<option value="1">1</option>
 				        				<option value="2">2</option>
