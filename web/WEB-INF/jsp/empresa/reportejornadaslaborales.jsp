@@ -61,7 +61,7 @@
                             <p>Retardos</p>
                         </div>
                         <div class="col-sm-5 col-md-4">
-                            <p><strong id="PorcentajaFaltas">29.4%</strong></p> 
+                            <p><strong id="PorcentajaRetardos">29.4%</strong></p> 
                         </div>
                     </div>
                     <div class="row">
