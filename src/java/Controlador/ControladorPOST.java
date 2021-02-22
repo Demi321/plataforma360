@@ -8065,5 +8065,11 @@ public class ControladorPOST {
         System.out.println("logout");
         return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/check_login", json);
     }
+    @RequestMapping(value = "/API/cuenta360/get/invitaciones", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONObject get_invitaciones(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println("get_invitaciones");
+        return request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/get/invitaciones", json);
+    }
 
 }
