@@ -25,9 +25,9 @@
                 <div class="row">
                     <div class="col-12 mr-0" id="PorcentageA">
                         <div class="row">                            
-                            <div id="grafica">
+                            <div>
                                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                <div id="piechart" style="width: 400%; height: 300%;"></div>
+                                <div id="piechart" style="width: 400px; height: 300px;"></div>
                             </div>
                         </div>
                     </div>
@@ -93,8 +93,7 @@
             <div class="DistribucionE">
                 <p>Lista de edades</p>
                 <hr style="background-color: white; height: 1px; clear:both;">
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>                              
-                <script type="text/javascript" src="JS/chart_js.js"></script> 
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <div class="wrapper">
                     <div>
                          <div id="chart_div_edades" class="chart"></div> 
@@ -141,7 +140,6 @@
                 <p>Sexo de Empleados</p>
                 <hr style="background-color: white; height: 1px; clear:both;">
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script type="text/javascript" src="JS/chart_js.js"></script>
                 <div class="wrapper">
                     <div>
                         <div id="chart_div_sexo" class="chart"></div>
@@ -175,7 +173,6 @@
                 <p>Empleados Registrados</p>
                 <hr style="background-color: white; height: 1px; clear:both;">
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script type="text/javascript" src="JS/chart_js.js"></script>
                 <div class="wrapper">
                     <div>
                         <div id="chart_div_sucursales" class="chart"></div>
@@ -224,11 +221,11 @@
                 <div class="row">
                     <div class="col-12 mr-0" id="PorcentageB">
                         <div class="row">                                                                                               
-                            <div id="grafica2">
+                            <div>
                                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                 <div class="wrapper">
                                     <div>                                        
-                                        <div id="chart_div_act_laborales" style="width: 400%; height: 300%;"></div>
+                                        <div id="chart_div_act_laborales" style="width: 400px; height: 300px;"></div>
                                     </div>
                                     <div class="DatosGraficaEdades">
                                         <h2 style="text-align: center">Actividades laborales</h2>

@@ -5,27 +5,15 @@
  */
 package Controlador;
 
-import Config.Revision;
-import Config.config;
 import Modelo.Query;
-import Request.request;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.Normalizer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -60,6 +48,53 @@ public class Controller1 {
                         "    tipo_usuario = '"+json.get("tipo_usuario")+"';";
         
         return Query.execute(query);
+
+    }
+    
+    /*Consultar listado de proyectos*/
+    @RequestMapping(value = "/API/empresas360/eliminar_todos_los_archivos", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject eliminar_todos_los_archivos(@RequestBody JSONObject json) throws IOException, ParseException {
+
+        JSONObject respuesta = respuesta(false, "Error al eliminar los archivos");
+        
+        String query = "UPDATE archivos_empresas SET activo_id360 = if(id360 = '" + json.get("id360") + "', 0, activo_id360), activo_to_id360 = if(to_id360 = '" + json.get("id360") + "', 0, activo_to_id360) WHERE id360 = '"+json.get("id360")+"' or to_id360 = '"+json.get("id360")+"';";
+        
+        if( Query.update(query) ){
+            respuesta = respuesta(true, "Archivos eliminados");
+        }
+        respuesta.put("query", query);
+        
+        return respuesta;
+
+    }
+    
+    /*Consultar listado de proyectos*/
+    @RequestMapping(value = "/API/empresas360/eliminar_archivos_seleccionados", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject eliminar_archivos_seleccionados(@RequestBody String string) throws IOException, ParseException {
+
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        JSONObject respuesta = respuesta(false, "Error al eliminar los archivos");
+        
+        String query = "UPDATE archivos_empresas SET activo_id360 = if(id360 = '" + json.get("id360") + "', 0, activo_id360), activo_to_id360 = if(to_id360 = '" + json.get("id360") + "', 0, activo_to_id360) WHERE agrupador in ( ";
+
+        JSONArray agrupadores = (JSONArray) json.get("agrupadores");
+        int cantidadAgrupadores = agrupadores.size();
+        
+        for(int x = 0; x<cantidadAgrupadores; x++){
+            query += "'" + agrupadores.get(x) + "',";
+        }
+        
+        query = query.substring(0, query.length()-1) + ") ";
+        
+        if( Query.update(query) ){
+            respuesta = respuesta(true, "Archivos eliminados");
+        }
+        respuesta.put("query", query);
+        
+        return respuesta;
 
     }
     
@@ -148,13 +183,135 @@ public class Controller1 {
         JSONObject json = (JSONObject) parser.parse(string);
         
         String query = "SELECT " +
-                        "    * " +
+                        "    *, ar.date_created as fecha_envio, ar.time_created as hora_envio, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
                         "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
                         "WHERE " +
-                        "    id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"' " +
+                        "    (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
+                        "GROUP BY agrupador";
+        
+        return Query.execute( query );
+        
+    }
+    
+    /*Consultar archivo enviado*/
+    @RequestMapping(value = "/API/empresas360/consultar_archivos_empresas_enviados_por_mi", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_archivos_empresas_enviados_por_mi(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    *, ar.date_created as fecha_envio, ar.time_created as hora_envio, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
+                        "FROM " +
+                        "    archivos_empresas ar " +
+                        "LEFT JOIN " +
+                        "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
+                        "WHERE " +
+                        "    id360 = '"+json.get("id360")+"' AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
+                        "GROUP BY agrupador";
+        
+        return Query.execute( query );
+        
+    }
+    
+    /*Consultar archivo enviado*/
+    @RequestMapping(value = "/API/empresas360/consultar_archivos_empresas_enviados_por_mi_a", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_archivos_empresas_enviados_por_mi_a(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    *, ar.date_created as fecha_envio, ar.time_created as hora_envio, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
+                        "FROM " +
+                        "    archivos_empresas ar " +
+                        "LEFT JOIN " +
+                        "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
+                        "WHERE " +
+                        "    (id360 = '"+json.get("id360")+"'  AND to_id360 = '"+json.get("to_id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
+                        "GROUP BY agrupador";
+        
+        return Query.execute( query );
+        
+    }
+    
+    /*Consultar archivo enviado*/
+    @RequestMapping(value = "/API/empresas360/consultar_archivos_empresas_enviados_a_mi", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_archivos_empresas_enviados_a_mi(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    *, ar.date_created as fecha_envio, ar.time_created as hora_envio, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
+                        "FROM " +
+                        "    archivos_empresas ar " +
+                        "LEFT JOIN " +
+                        "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
+                        "WHERE " +
+                        "    to_id360 = '"+json.get("id360")+"' AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
+                        "GROUP BY agrupador";
+        
+        return Query.execute( query );
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/consultar_archivos_empresas_enviados_a_mi_de", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_archivos_empresas_enviados_a_mi_de(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    *, ar.date_created as fecha_envio, ar.time_created as hora_envio, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
+                        "FROM " +
+                        "    archivos_empresas ar " +
+                        "LEFT JOIN " +
+                        "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
+                        "WHERE " +
+                        "    (to_id360 = '"+json.get("id360")+"' AND id360 = '"+json.get("to_id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
                         "GROUP BY agrupador";
         
         return Query.execute( query );

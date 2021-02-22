@@ -2,7 +2,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="row reportejornadaslaborales" id="base_modulo_${id}">
+<div class="row col-12 m-0 p-0 h-100 reportejornadaslaborales" id="base_modulo_${id}">
     <div class="col-12 m-0 p-2 pt-3" id="reporteJornadasLaborales">
         <h3 style="display: block; width: 100%; text-align: left">Reporte de jornadas laborales</h3>
         
@@ -22,7 +22,7 @@
             <div class="card col-12 col-lg-4">
                 <div class="card-body text-dark border-0 rounded" style="background: #f5f5f5">
                     <div style="position:relative;padding-bottom:60%;height: 0;overflow-y: auto;overflow-y: hidden">
-                        <div style="position: absolute;top: 0;left: 0;width: 100%;height: 500px" id="piechart"></div>
+                        <div style="position: absolute;top: 0;left: 0;width: 100%;height: 500px" id="piechartConexionEmpresa"></div>
                     </div>
                 </div>
             </div>
@@ -30,16 +30,16 @@
                 <div class="card-body text-dark border-0 rounded pt-5" style="background: #f5f5f5">
                     <div class="row pt-5">
                         <div class="col-sm-7 col-md-8" id="Faltas"> 
-                            <div class="rectangleVacio2" id="recFalt1_1"></div>
-                            <div class="rectangleVacio2" id="recFalt1_2"></div> 
-                            <div class="rectangleVacio2" id="recFalt1_3"></div> 
-                            <div class="rectangleVacio2" id="recFalt1_4"></div>
-                            <div class="rectangleVacio2" id="recFalt1_5"></div>
-                            <div class="rectangleVacio2" id="recFalt1_6"></div>
-                            <div class="rectangleVacio2" id="recFalt1_7"></div>
-                            <div class="rectangleVacio2" id="recFalt1_8"></div> 
-                            <div class="rectangleVacio2" id="recFalt1_9"></div>
-                            <div class="rectangleVacio2" id="recFalt1_10"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_1"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_2"></div> 
+                            <div class="rectangleVacio2" id="faltaEmpresa_3"></div> 
+                            <div class="rectangleVacio2" id="faltaEmpresa_4"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_5"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_6"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_7"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_8"></div> 
+                            <div class="rectangleVacio2" id="faltaEmpresa_9"></div>
+                            <div class="rectangleVacio2" id="faltaEmpresa_10"></div>
                             <p>Faltas</p> 
                         </div>                            
                         <div class="col-sm-5 col-md-4">
@@ -48,34 +48,34 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-7 col-md-8" id="Retardos"> 
-                            <div class="rectangleVacio2" id="recReta2_1"></div>
-                            <div class="rectangleVacio2" id="recReta2_2"></div> 
-                            <div class="rectangleVacio2" id="recReta2_3"></div> 
-                            <div class="rectangleVacio2" id="recReta2_4"></div>
-                            <div class="rectangleVacio2" id="recReta2_5"></div>
-                            <div class="rectangleVacio2" id="recReta2_6"></div>
-                            <div class="rectangleVacio2" id="recReta2_7"></div>
-                            <div class="rectangleVacio2" id="recReta2_8"></div> 
-                            <div class="rectangleVacio2" id="recReta2_9"></div>
-                            <div class="rectangleVacio2" id="recReta2_10"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_1"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_2"></div> 
+                            <div class="rectangleVacio2" id="retardoEmpresa_3"></div> 
+                            <div class="rectangleVacio2" id="retardoEmpresa_4"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_5"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_6"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_7"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_8"></div> 
+                            <div class="rectangleVacio2" id="retardoEmpresa_9"></div>
+                            <div class="rectangleVacio2" id="retardoEmpresa_10"></div>
                             <p>Retardos</p>
                         </div>
                         <div class="col-sm-5 col-md-4">
-                            <p><strong id="PorcentajaFaltas">29.4%</strong></p> 
+                            <p><strong id="PorcentajaRetardos">29.4%</strong></p> 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-7 col-md-8" id="Puntales"> 
-                            <div class="rectangleVacio2" id="recPunt3_1"></div>
-                            <div class="rectangleVacio2" id="recPunt3_2"></div> 
-                            <div class="rectangleVacio2" id="recPunt3_3"></div> 
-                            <div class="rectangleVacio2" id="recPunt3_4"></div>
-                            <div class="rectangleVacio2" id="recPunt3_5"></div>
-                            <div class="rectangleVacio2" id="recPunt3_6"></div>
-                            <div class="rectangleVacio2" id="recPunt3_7"></div>
-                            <div class="rectangleVacio2" id="recPunt3_8"></div> 
-                            <div class="rectangleVacio2" id="recPunt3_9"></div>
-                            <div class="rectangleVacio2" id="recPunt3_10"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_1"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_2"></div> 
+                            <div class="rectangleVacio2" id="puntualEmpresa_3"></div> 
+                            <div class="rectangleVacio2" id="puntualEmpresa_4"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_5"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_6"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_7"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_8"></div> 
+                            <div class="rectangleVacio2" id="puntualEmpresa_9"></div>
+                            <div class="rectangleVacio2" id="puntualEmpresa_10"></div>
                             <p>Puntal</p>
                         </div>
                         <div class="col-sm-5 col-md-4">
@@ -169,19 +169,19 @@
 
                     <h6 class="mb-5" style="font-size: 2rem; color: #343a40">Reporte de jornadas laborales</h6>
 
-                    <form id="form_historia_jornadas" class="row mb-4">
+                    <form id="form_historia_jornadas2" class="row mb-4">
                         
                         <div class="col-md-2 col-sm-12 p-0">
                             <div class="form-group">
-                                <label for="fecha_inicio_reporte" class="mr-2">Fecha de inicio</label>
-                                <input type="date" class="form-control" id="fecha_inicio_reporte">
+                                <label for="fecha_inicio_reporte2" class="mr-2">Fecha de inicio</label>
+                                <input type="date" class="form-control" id="fecha_inicio_reporte2">
                             </div>
                         </div>
 
                         <div class="col-md-2 col-sm-12 p-0">
                             <div id="contenedor_fecha_final" class="form-group mx-sm-3">
-                                <label for="fecha_fin_reporte" class="mr-2">Fecha de fin</label>
-                                <input type="date" class="form-control" id="fecha_fin_reporte">
+                                <label for="fecha_fin_reporte2" class="mr-2">Fecha de fin</label>
+                                <input type="date" class="form-control" id="fecha_fin_reporte2">
                             </div>
                         </div>
 
@@ -233,7 +233,7 @@
                         </div>
 
                         <div class="col-md-1 p-3 d-flex">
-                            <button type="button" style="background-color: darkgreen; border-color: darkgreen" id="botonDescargaReporteJornada" class="btn btn-dark btn-block d-none"><i class="fas fa-file-excel"></i></button>
+                            <button type="button" style="background-color: darkgreen; border-color: darkgreen" id="botonDescargaReporteJornada2" class="btn btn-dark btn-block d-none"><i class="fas fa-file-excel"></i></button>
                         </div>
                         
                     </form>                    
@@ -262,7 +262,7 @@
                     
                 </div>
                 
-                <div id="resultado-busqueda-jornadas" class="d-none col-12">
+                <div id="resultado-busqueda-jornadas2" class="d-none col-12">
                     
                     <div id="tablas_resultados" class="accordion">
                         
@@ -370,7 +370,7 @@
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="far fa-smile fa-lg" style="color:#97BA38"></i>
                             <p>Proyectos atendidos</p>
-                            <h5 class="p-0 d-flex justify-content-center">3</h5>
+                            <h5 class="p-0 d-flex justify-content-center"> - </h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="colorIconoRetardos"></i>
@@ -613,7 +613,7 @@
                                         <p>Dias de vacaciones </p>
                                     </div>
                                     <div class="col-5">                                        
-                                        <p><strong>4</strong></p>
+                                        <p><strong> - </strong></p>
                                     </div>
                                 </div>
                             </div>
@@ -701,18 +701,18 @@
                         <strong style="font-size:120%;">Historial laboral</strong>
                         <hr class="bg-dark mt-1">
                         <p>Seleccione las fechas para realizar la búsqueda de su historial de jornadas.</p>
-                        <form id="form_historial_laboral" class="mb-4">
+                        <form id="form_historial_laboral2" class="mb-4">
                             <div class="row">
                                 <div class="col-md-4 col-sm-12">
                                     <div class="form-group">
-                                        <label for="fecha_inicio_historial_laboral" class="mr-2">Fecha de inicio</label>
-                                        <input type="date" class="form-control" id="fecha_inicio_historial_laboral">
+                                        <label for="fecha_inicio_historial_laboral2" class="mr-2">Fecha de inicio</label>
+                                        <input type="date" class="form-control" id="fecha_inicio_historial_laboral2">
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div id="contenedor_fecha_final" class="form-group mx-sm-3">
-                                        <label for="fecha_fin_historial_laboral" class="mr-2">Fecha de fin</label>
-                                        <input type="date" class="form-control" id="fecha_fin_historial_laboral">
+                                        <label for="fecha_fin_historial_laboral2" class="mr-2">Fecha de fin</label>
+                                        <input type="date" class="form-control" id="fecha_fin_historial_laboral2">
                                     </div>
                                 </div>
                                 <div class="col-md-2 p-3 d-flex">
