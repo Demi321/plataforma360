@@ -79,7 +79,7 @@
                             <p>Puntal</p>
                         </div>
                         <div class="col-sm-5 col-md-4">
-                            <p><strong id="PorcentajePuntales">35.3%</strong></p> 
+                            <p><strong id="porcentajePuntuales">35.3%</strong></p> 
                         </div>
                     </div>
                 </div>
