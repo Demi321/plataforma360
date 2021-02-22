@@ -350,7 +350,7 @@
                     <div class="row d-flex align-items-center pr-3">
                         <div class="col-lg-3 p-0">
                             <div style="position:relative;padding-bottom:100%;height: 0;overflow: hidden">                               
-                                <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart"></div>
+                                <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchartReporteJornadasLaborales"></div>
                                 <div id="labelOverlay">
                                     <strong>Productividad</strong>
                                     <p><span id="jornadas_laborales_productividad_porcentaje">25</span><span>%</span></p>
@@ -551,7 +551,7 @@
                             </div>
                             <div class="col-12 col-lg-3 pr-0 pl-0">
                                 <div style="position:relative;padding-bottom:77%;height: 0;overflow:hidden">
-                                    <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart2"></div>
+                                    <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart2ReporteJornadasLaborales"></div>
                                     <div id="labelOverlay">
                                         <strong>Productividad</strong>
                                         <p><span id="jornadas_laborales_productividad_mensual_porcentaje">25</span><span>%</span></p>
@@ -560,14 +560,14 @@
                             </div>
                             <div class="col-12 col-lg-2 pl-0">
                                 <div style="position:relative;padding-bottom:60%;height: 0;overflow: hidden">
-                                    <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart3"></div>
+                                    <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart3ReporteJornadasLaborales"></div>
                                     <div id="labelOverlay">
                                         <strong style="font-size: 8px">Puntualidad</strong>
                                         <p><span style="font-size: 15pt" id="jornadas_laborales_puntualidad_porcentaje">25</span><span style="font-size: 15pt">%</span></p>
                                     </div>
                                 </div>                                
                                 <div style="position:relative;padding-bottom:60%;height: 0;overflow: hidden">
-                                    <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart4"></div>
+                                    <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="donutchart4ReporteJornadasLaborales"></div>
                                     <div id="labelOverlay">
                                         <strong style="font-size: 8px">Cumplimiento</strong>
                                         <p><span style="font-size: 15pt" id="jornadas_laborales_cumplimiento_porcentaje">93</span><span style="font-size: 15pt">%</span></p>
