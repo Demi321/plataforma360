@@ -15,7 +15,7 @@
     <div class="row col-12 m-4 p-3" id="nuevo_envio_archivo" style="border-radius: 15px; display: none; border: solid 1px #d3d3d3;">
         <form class="p-3 col-12" id="form-enviar-archivo">
             <div class="form-group">
-                <label for="formGroupExampleInput">Para: </label>
+                <label id="labelDestinatariosArchivos" for="formGroupExampleInput">Para: </label>
                 <div class="col-12" id="destinatario_archivos">
                     <multiselect 
                         placeholder="Seleccionar destinatarios"
@@ -38,18 +38,18 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="formGroupExampleInput2">Proyecto</label>
+                <label id="labelProyectoArchivos" for="formGroupExampleInput2">Proyecto</label>
                 <input list="listado_proyectos" class="form-control" name="listado_proyectos" id="list_proj" placeholder="Selecciona o escribe un proyecto" />
                 <datalist id="listado_proyectos"></datalist>
             </div>
 
             <div class="form-group">
-                <label for="formGroupExampleInput2">Título: </label>
+                <label id="labelTituloArchivos" for="formGroupExampleInput2">Título: </label>
                 <input type="text" class="form-control" id="tituloArchivo" placeholder="Another input placeholder" />
             </div>
 
             <div class="form-group">
-                <label for="formGroupExampleInput2">Descripción</label>
+                <label id="labelDescripcionArchivos" for="formGroupExampleInput2">Descripción</label>
                 <input type="text" class="form-control" id="descripcionArchivo" placeholder="Another input placeholder" />
             </div>
             
@@ -125,6 +125,7 @@
     agregar_menu(${json});
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
 <spring:url value="${pathRecursos}/empresas360/archivo/archivo.css" var="modulo_archivoCSS" />
 <spring:url value="${pathRecursos}/empresas360/archivo/archivo.js" var="modulo_archivoJS" />
 <link href="${modulo_archivoCSS}" rel="stylesheet"/>
