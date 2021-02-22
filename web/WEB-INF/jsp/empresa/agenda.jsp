@@ -22,18 +22,19 @@
 <script src="${timegrid_mainJS}" ></script>
 
 <div class="row col-12 m-0 p-0 h-100 agenda" id="base_modulo_${id}">
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-12 col-md-10 bg-light">
-                <!-- CALENDARIO -->
+    <div id="event_new">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-12 col-md-10 bg-light">
+                    <!-- CALENDARIO -->
 
-                <div id='calendar' style="max-width: 900px;margin: 40px auto;"></div>
+                    <div id='calendar' style="max-width: 900px;margin: 40px auto;"></div>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- MODALS -->
+        <!-- MODALS -->
 
 	<!-- MODAL PARA MOSTRAR FORMULARIO PARA NUEVO EVENTO -->
 	<div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoEventoModalLabel" aria-hidden="true">
@@ -62,7 +63,7 @@
 				        			<input class="form-control" type="number" id="supervisor_id">
 				        		</div> -->
 				        		<!-- PARTICIPANTES -->
-				        		<div class="col-12 col-md-4 mt-5" id="event_new">
+				        		<div class="col-12 col-md-4 mt-5">
 				        			<label for="update_participantes_id[]">Participantes</label>
                                                                 <multiselect
                                                                     v-model="value"
@@ -294,7 +295,7 @@
 				        			<input class="form-control" type="text" id="update_supervisor_id">
 				        		</div> -->
 				        		<!-- PARTICIPANTES -->
-				        		<div class="col-12 col-md-4 mt-5" id="event_new_2">
+				        		<div class="col-12 col-md-4 mt-5">
 				        			<label for="update_participantes_id[]">Participantes</label>
                                                                 <multiselect
                                                                     v-model="value"
