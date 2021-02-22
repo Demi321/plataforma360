@@ -1,6 +1,6 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 <div class="row col-12 m-0 p-0 h-100 recordatorios" id="base_modulo_${id}">
     <div class="container">
