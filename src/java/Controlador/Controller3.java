@@ -125,7 +125,14 @@ public class Controller3 {
             }                                   
         }   
         return respuesta;
-    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    }
+    @RequestMapping(value = "/API/estatus_jornada_laboral/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    public JSONArray estatus_jornada_laaboral(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println("empresa_dashboard ------>>>>>>>>");        
+        JSONObject respueta = respuesta(false, "Ocurrio un error. Intentarlo mas tarde.");
+        String query = "SELECT * FROM registro_jornada_laboral Where date_created like '" + json.get("fecha_hoy") + "'";
+        return  Query.execute(query);              
+    }
     
-
 }
