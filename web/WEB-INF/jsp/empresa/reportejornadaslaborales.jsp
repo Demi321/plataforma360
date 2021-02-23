@@ -5,7 +5,7 @@
 <div class="row col-12 m-0 p-0 h-100 reportejornadaslaborales" id="base_modulo_${id}">
     <div class="col-12 m-0 p-2 pt-3" id="reporteJornadasLaborales">
         <h3 style="display: block; width: 100%; text-align: left">Reporte de jornadas laborales</h3>
-        
+
         <div class="text-left">
             <h6 class="text-left" style="font-size: 2rem; color: #343a40; text-align: left">Reporte diario jornada laboral</h6>
             <hr class="bg-dark">
@@ -170,7 +170,7 @@
                     <h6 class="mb-5" style="font-size: 2rem; color: #343a40">Reporte de jornadas laborales</h6>
 
                     <form id="form_historia_jornadas2" class="row mb-4">
-                        
+
                         <div class="col-md-2 col-sm-12 p-0">
                             <div class="form-group">
                                 <label for="fecha_inicio_reporte2" class="mr-2">Fecha de inicio</label>
@@ -207,7 +207,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <!-- SELECT DE AREAS -->
                         <div id="contenedor-select-areas" class="col-md-3 col-sm-12 d-none">
                             <div class="form-group">
@@ -235,10 +235,10 @@
                         <div class="col-md-1 p-3 d-flex">
                             <button type="button" style="background-color: darkgreen; border-color: darkgreen" id="botonDescargaReporteJornada2" class="btn btn-dark btn-block d-none"><i class="fas fa-file-excel"></i></button>
                         </div>
-                        
+
                     </form>                    
                 </div>
-                
+
                 <div id="inicio_jornadas_laborales" class="jumbotron">
                     <h1 class="display-4">Generar reporte de jornadas laborales!</h1>
                     <p class="lead mt-3">Elige los parámetros de búsqueda para generar el reporte.</p>
@@ -257,19 +257,19 @@
                             </ul>
                         </li>
                     </ul>
-                    
+
                     <p style="font-style: italic;">El tiempo de generación dependerá del rango de búsqueda y de la cantidad de empleados que se seleccione</p>
-                    
+
                 </div>
-                
+
                 <div id="resultado-busqueda-jornadas2" class="d-none col-12">
-                    
+
                     <div id="tablas_resultados" class="accordion">
-                        
+
                     </div>
-                    
+
                     <div class="d-none" id="resultados-exportar-excel">
-                        
+
                     </div>
                 </div>
             </div>
@@ -393,7 +393,7 @@
                         <div style="position: absolute;top: 0;left: 0;width: 100%;height: 100%" id="piechartActividadesLaborales"></div>
                     </div>
                     <script type="text/javascript">
-                        google.charts.load("visualization", "1", {'packages': ['corechart']});
+                        google.charts.load("current", {'packages': ['corechart']});
                         google.charts.setOnLoadCallback(drawChart);
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
@@ -783,7 +783,7 @@
                         </div>                                                                        
                     </div>           
                 </div>
-                
+
             </div>
         </div>
     </div>
