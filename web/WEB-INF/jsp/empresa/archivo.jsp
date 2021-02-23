@@ -44,13 +44,13 @@
             </div>
 
             <div class="form-group">
-                <label id="labelTituloArchivos" for="formGroupExampleInput2">Título: </label>
-                <input type="text" class="form-control" id="tituloArchivo" placeholder="Another input placeholder" />
+                <label id="labelTituloArchivos" for="formGroupExampleInput2">Asunto </label>
+                <input type="text" class="form-control" id="tituloArchivo" placeholder="Asunto del envío" />
             </div>
 
             <div class="form-group">
-                <label id="labelDescripcionArchivos" for="formGroupExampleInput2">Descripción</label>
-                <input type="text" class="form-control" id="descripcionArchivo" placeholder="Another input placeholder" />
+                <label id="labelDescripcionArchivos" for="formGroupExampleInput2">Cuerpo del envío</label>
+                <textarea id="descripcionArchivo" rows="15" class="form-control"></textarea>
             </div>
             
             <div class="form-group">
@@ -64,58 +64,89 @@
         </form>
     </div>
     
+    <%-- VISTA DE CORREO --%>
+    <div id="padreArchivosVistaCorreo">
+        <div id="archivosVistaCorreo" class="row w-100 m-0 p-0">
+        
+            <div class="listadoDeProyectos">
+                <h5 class="text-center">Seleccionar proyecto</h5>
+                <form class="formulario-lista">
+                    <div class="radio-proyectos">
+                        <!-- CARGA DINÁMICA -->
+                        <%--<div class="form-group">
+                            <input value="0" type="radio" name="proyectoSeleccionado" id="todosLosProyectos">
+                            <label for="todosLosProyectos">Todos los proyectos</label>
+                        </div>--%>
+                    </div>
+                </form>
+            </div>
+
+            <div class="listadoDeArchivos">
+                <h5 class="text-center">Lista de archvios</h5>
+                <div class="listadoArchivosVistaCorreo">
+
+                </div>
+            </div>
+
+            <div class="detalleArchivo p-3"></div>
+
+        </div>
+    </div>
+    
     <%-- DESPLIEGUE DE PRODUCTOS --%>
-    <div id="contenedorDespliegueDeArchivos" class="row w-100 m-0 p-0">
+    <div id="padreArchivosVistaArchivos">
+        <div id="archivosVistaArchivos" class="row w-100 m-0 p-0">
         
-        <%-- SECCION DE FILTROS PARA BUSQUEDA DE ARCHIVOS --%>
-        <div class="col-12 m-0 p-0 mb-4">
-            
-            <div class="row m-0 p-0 filtrosArchivos">
-                
-                <div class="col-3 form-group">
-                    <label for="remitente">Por origen: </label>
-                    <select id="origenArchivo" name="origen" class="custom-select">
-                        <option value="0">Todos</option>
-                        <option value="1">Enviados por mi</option>
-                        <option value="2">Enviados a mi</option>
-                    </select>
+            <%-- SECCION DE FILTROS PARA BUSQUEDA DE ARCHIVOS --%>
+            <div class="col-12 m-0 p-0 mb-4">
+
+                <div class="row m-0 p-0 filtrosArchivos">
+
+                    <div class="col-3 form-group">
+                        <label for="remitente">Por origen: </label>
+                        <select id="origenArchivo" name="origen" class="custom-select">
+                            <option value="0">Todos</option>
+                            <option value="1">Enviados por mi</option>
+                            <option value="2">Enviados a mi</option>
+                        </select>
+                    </div>
+
+                    <div id="selectDestinatarioArchivos" class="col-3 form-group d-none">
+                        <label for="destinatarioArchivo">Seleccionar destinatario</label>
+                        <select id="destinatarioArchivo" name="destinatario" class="custom-select"></select>
+                    </div>
+
+                    <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
+                        <label for="remitenteArchivo">Seleccionar Remitente</label>
+                        <select id="remitenteArchivo" name="remitente" class="custom-select"></select>
+                    </div>
+
+                    <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
+                        <label for="remitenteArchivo">Seleccionar Remitente</label>
+                        <select id="remitenteArchivo" name="remitente" class="custom-select"></select>
+                    </div>
+
+                    <button class="btn btn-danger" id="eliminarArchivos"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-secondary" id="refrescarArchivos"><i class="fas fa-sync-alt"></i></button>
+
                 </div>
-                
-                <div id="selectDestinatarioArchivos" class="col-3 form-group d-none">
-                    <label for="destinatarioArchivo">Seleccionar destinatario</label>
-                    <select id="destinatarioArchivo" name="destinatario" class="custom-select"></select>
-                </div>
-                
-                <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
-                    <label for="remitenteArchivo">Seleccionar Remitente</label>
-                    <select id="remitenteArchivo" name="remitente" class="custom-select"></select>
-                </div>
-                
-                <div id="selectRemitenteArchivos" class="col-3 form-group d-none">
-                    <label for="remitenteArchivo">Seleccionar Remitente</label>
-                    <select id="remitenteArchivo" name="remitente" class="custom-select"></select>
-                </div>
-                
-                <button class="btn btn-danger" id="eliminarArchivos"><i class="fas fa-trash"></i></button>
-                <button class="btn btn-secondary" id="refrescarArchivos"><i class="fas fa-sync-alt"></i></button>
-                
+
             </div>
-            
-        </div>
-        
-        <%-- TABLA DE ARCHIVOS --%>
-        <div id="contentArchivos" class="col-12 m-0 p-0 d-none">
-            <table class="text-center" id="tablaArchivos"></table>
-        </div>
-        
-        <%-- SIN RESULTADOS ENCONTRADOS --%>
-        <div id="sinArchivos" class="col-12 m-0 p-0 d-none">
-            <div class="jumbotron">
-                <h1 class="display-4">Sin archivos encontrados!</h1>
-                <p class="lead">Prueba cambiando los filtros para encontrar los archivos deseados.</p>
+
+            <%-- TABLA DE ARCHIVOS --%>
+            <div id="contentArchivos" class="col-12 m-0 p-0 d-none">
+                <table class="text-center" id="tablaArchivos"></table>
             </div>
+
+            <%-- SIN RESULTADOS ENCONTRADOS --%>
+            <div id="sinArchivos" class="col-12 m-0 p-0 d-none">
+                <div class="jumbotron">
+                    <h1 class="display-4">Sin archivos encontrados!</h1>
+                    <p class="lead">Prueba cambiando los filtros para encontrar los archivos deseados.</p>
+                </div>
+            </div>
+
         </div>
-        
     </div>
     
 </div>
