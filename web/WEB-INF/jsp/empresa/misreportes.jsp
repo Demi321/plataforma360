@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card col-12 col-lg-5 pr-5">
+            <!--<div class="card col-12 col-lg-5 pr-5">
                 <div class="card-body text-dark border-0 shadow p-3 mb-4" style="background: #f5f5f5;border-radius: 25px">
                     <strong style="font-size:120%;">Actividades laborales</strong>
                     <hr class="bg-dark mt-1">
@@ -139,7 +139,7 @@
                         });
                     </script>
                 </div>
-            </div>            
+            </div>-->
         </div>
         <!--<div class="row">
             <div class="col-12">
@@ -507,7 +507,7 @@
     //icono
     //categoria
     //url externa 
-//   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
+    //   agregar_menu("${id_menu}","${icono_categoria}","${nombre}", "${alias}", '${icono}', '${categoria}', "");
     agregar_menu(${json});
 
 </script>
