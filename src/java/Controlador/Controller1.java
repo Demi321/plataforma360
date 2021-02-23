@@ -51,6 +51,32 @@ public class Controller1 {
 
     }
     
+    /* consultar proyectos por id y con cantidad */
+    @RequestMapping(value = "/API/empresas360/consultar_proyectos_mios", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_proyectos_mios(@RequestBody JSONObject json) throws IOException, ParseException {
+        
+        String query =  "SELECT " +
+                        "    *, " +
+                        "    ( " +
+                        "       SELECT " +
+                        "           count(*) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE " +
+                        "           (to_id360 = '"+json.get("id360")+"' OR id360 = '"+json.get("id360")+"') AND " +
+                        "           if(a.id360 = '"+json.get("id360")+"', a.activo_id360, a.activo_to_id360) = 1 AND " +
+                        "           a.id_proyecto = p.id_proyecto " +
+                        "    ) as cantidadArchivos " +
+                        "FROM " +
+                        "    proyectos_empresas p " +
+                        "WHERE " +
+                        "    tipo_usuario = '"+json.get("tipo_usuario")+"'";
+        
+        return Query.execute(query);
+
+    }
+    
     /*Consultar listado de proyectos*/
     @RequestMapping(value = "/API/empresas360/eliminar_todos_los_archivos", method = RequestMethod.POST)
     @ResponseBody
@@ -198,6 +224,39 @@ public class Controller1 {
                         "WHERE " +
                         "    (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
                         "GROUP BY agrupador";
+        
+        return Query.execute( query );
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/consultar_archivos_empresas_filtros", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_archivos_empresas_filtros(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    *, ar.date_created as fecha_envio, ar.time_created as hora_envio, " +
+                        "   ( " +
+                        "       SELECT " +
+                        "           GROUP_CONCAT(a.to_id360) " +
+                        "	FROM " +
+                        "           archivos_empresas a " +
+                        "	WHERE a.agrupador = ar.agrupador " +
+                        "    ) as destinatarios " +
+                        "FROM " +
+                        "    archivos_empresas ar " +
+                        "LEFT JOIN " +
+                        "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
+                        "WHERE " +
+                        "    ((id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1) ";
+        
+        if( json.containsKey( "proyecto" ) ){
+            query +=    " AND (ar.id_proyecto = "+json.get("proyecto")+") ";
+        }
+        
+        query +=        " GROUP BY agrupador ";
         
         return Query.execute( query );
         
