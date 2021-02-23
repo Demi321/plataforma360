@@ -1466,6 +1466,7 @@ public class Empresas360 {
             data_moviles.put("type", json.get("type"));//type=200 para videollamada, type=201 llamada de voz
         } else {
             data_moviles.put("type", "200");//type=200 para videollamada, type=201 llamada de voz
+            json.put("type","200");
         }
         data.put("emisor", perfil360);
         data.put("receptores", ids);
