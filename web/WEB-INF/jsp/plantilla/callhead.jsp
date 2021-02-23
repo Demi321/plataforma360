@@ -50,8 +50,8 @@
 <script src="${VueMultiselectJS}" ></script>
 <script src="${VueMultiselect0JS}" ></script>
 <%--******** FONT AWESOME *******--%>
-<spring:url value="/resources/frameworks/fontawesome-5.15.1/css/all.css" var="fontawesomeCSS" />
-<spring:url value="/resources/frameworks/fontawesome-5.15.1/js/all.js" var="fontawesomeJS" />
+<spring:url value="/resources/frameworks/fontawesome/css/all.min.css" var="fontawesomeCSS" />
+<spring:url value="/resources/frameworks/fontawesome/js/all.min.js" var="fontawesomeJS" />
 <link href="${fontawesomeCSS}" rel="stylesheet" />
 <script src="${fontawesomeJS}" ></script>
 <%--******** OPENTOK *******--%>
@@ -83,12 +83,6 @@
 <script src="${buttonsHTML}" ></script> 
 <spring:url value="/resources/frameworks/datatables/js/buttons.print.min.js" var="buttonsPrint" />
 <script src="${buttonsPrint}" ></script>
-
-<!-- jQuery UI -->
-<spring:url value="/resources/frameworks/jQuery/jquery-ui.min.js" var="jqueryuiJS" />
-<script src="${jqueryuiJS}" ></script>
-<spring:url value="/resources/frameworks/jQuery/jquery-ui.min.css" var="jqueryuiCSS" />
-<!--<script src="${jqueryuiCSS}" ></script>-->
 
 <spring:url value="/resources/frameworks/datatables/css/dataTables.bootstrap4.min.css" var="dataTableCSS" />
 <link href="${dataTableCSS}" rel="stylesheet" />
@@ -127,3 +121,9 @@
 <script src="${select2JS}" ></script>
 <spring:url value="/resources/frameworks/select2/select2.css" var="select2CSS" />
 <link href="${select2CSS}" rel="stylesheet" />
+
+<!-- SELECT2 -->
+<spring:url value="/resources/frameworks/summernote/summernote-bs4.js" var="summernoteJS" />
+<script src="${summernoteJS}" ></script>
+<spring:url value="/resources/frameworks/summernote/summernote-bs4.css" var="summernoteCSS" />
+<link href="${summernoteCSS}" rel="stylesheet" />

@@ -3,9 +3,16 @@
 <spring:url value="/resources/frameworks/jQuery/jquery-3.4.1.js" var="jQueryJS" />
 <script src="${jQueryJS}"></script>
 
+<!-- jQuery UI -->
+<spring:url value="/resources/frameworks/jQuery/jquery-ui.min.js" var="jqueryuiJS" />
+<script src="${jqueryuiJS}" ></script>
+<spring:url value="/resources/frameworks/jQuery/jquery-ui.min.css" var="jqueryuiCSS" />
+<script src="${jqueryuiCSS}"></script>
+
 <%--******** POPPER *******--%>
-<spring:url value="/resources/frameworks/Popper/popper.min.js" var="popperJS" />
-<script src="${popperJS}" ></script>
+<%--<spring:url value="/resources/frameworks/Popper/popper.min.js" var="popperJS" />
+<script src="${popperJS}" ></script>--%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <%--******** BOOSTRAP *******--%>
 <!--<spring:url value="/resources/frameworks/bootstrap-5.0.0/css/bootstrap.css" var="bootstrapCSS" />
 <spring:url value="/resources/frameworks/bootstrap-5.0.0/css/bootstrap-grid.css" var="bootstrapGrindCSS" />
