@@ -2355,6 +2355,7 @@ public class Empresas360 {
             "tipo_area":""
         }
          */
+        System.out.println(json);
         JSONObject respuesta = respuesta(false, "Algo ocurrio");
         if (Query.insert(Query.createQueryInsert("registro_llamadas", json)) > 0) {
             respuesta = respuesta(true, "Registro de llamada realizado correctamente.");
