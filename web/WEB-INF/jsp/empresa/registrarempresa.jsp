@@ -41,6 +41,9 @@
                                         </svg>
                                         <!-- <i class="fas fa-image"></i> -->
                                     </div>
+                                    <div class="col-sm-12 d-flex align-items-center justify-content-center mt-5">
+                                        <input type="button" id="subir_img" class="btn btn-danger m-0" value="Sube una imagen" style="font-size: 1rem; min-width: 160px; padding: 5px; border-radius: 15px; font: bold 1.1rem arial;">
+                                    </div>
                                     <span style="font: normal 1rem Arial; text-align: center;">
                                         Agrega un archivo jpg o png de un peso menor a 3 MB
                                     </span>
