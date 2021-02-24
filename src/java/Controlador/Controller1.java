@@ -250,13 +250,31 @@ public class Controller1 {
                         "LEFT JOIN " +
                         "    proyectos_empresas pm ON pm.id_proyecto = ar.id_proyecto " +
                         "WHERE " +
-                        "    ((id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1) ";
+                        "    if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 ";
         
+        //FILTRAR POR DESTINATARIO O REMITENTE
+        if( json.get("sinFiltros").equals("true") ){
+            //Todos
+            query +=    " AND (id360 = '"+json.get("id360")+"' OR to_id360 = '"+json.get("id360")+"') ";
+        }else if( json.containsKey("id360") && json.containsKey("to_id360") && json.containsKey("conversacion") ){
+            //Conversacion definida
+            query +=    " AND (id360 = '"+json.get("id360")+"' AND to_id360 = '"+json.get("to_id360")+"') ";
+        }else if( json.containsKey("id360") && !json.containsKey("to_id360") ){
+            //Enviados
+            query +=    " AND (id360 = '"+json.get("id360")+"') ";
+        }else{
+            //Recibidos
+            query +=    " AND (to_id360 = '"+json.get("to_id360")+"') ";
+        }
+        
+        //FILTRAR POR PROYECTO
         if( json.containsKey( "proyecto" ) ){
             query +=    " AND (ar.id_proyecto = "+json.get("proyecto")+") ";
         }
         
         query +=        " GROUP BY agrupador ";
+        
+        System.out.println(query);
         
         return Query.execute( query );
         
