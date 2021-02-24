@@ -316,6 +316,8 @@ public class ControllerComunicacion {
         JSONObject json = (JSONObject) parser.parse(string);
         JSONObject respuesta = respuesta(false, "Informacion no almacenada");
         
+        if( json.get("message").equals("") ) return respuesta;
+        
         /* CAMBIAR EL COTEJAMIENTO DE LA DB */
         Query.update("SET NAMES 'utf8mb4'");
         
