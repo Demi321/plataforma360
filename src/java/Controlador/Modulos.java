@@ -1633,6 +1633,9 @@ public class Modulos {
         } else {
             //Actualizar información
             id = Integer.parseInt(registro.get("id").toString());
+            if(registro.get("contadorDesconexion")==null){
+               registro.put("contadorDesconexion","2");//es 2 por que se supone que ya hay un registro mas el que se esta actualizando 
+            }
             int contadorDesconexion = Integer.parseInt(registro.get("contadorDesconexion").toString());
             contadorDesconexion++;
             json.put("contadorDesconexion", contadorDesconexion);
