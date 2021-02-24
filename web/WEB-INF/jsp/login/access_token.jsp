@@ -146,10 +146,11 @@
                         if (institucion.url === window.location.protocol + "//" + window.location.host + '/' + DEPENDENCIA + '/') {
                             plataforma360 = true;
                             count_plataforma360++;
-                            if (count_plataforma360 === 1) {
+                            if (/*count_plataforma360 === 1*/ i === 0) {
                                 frst_id = institucion.id;
                             }
                             listar_institucion(institucion);
+                            $("#institucions_listado" + frst_id).click();
                         }
                     }
                     if (plataforma360) {
