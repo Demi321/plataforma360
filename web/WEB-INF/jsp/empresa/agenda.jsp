@@ -62,7 +62,7 @@
 				        			<input class="form-control" type="number" id="supervisor_id">
 				        		</div> -->
 				        		<!-- PARTICIPANTES -->
-                                                        <div class="col-12 col-md-4 mt-5" id="event_new">
+                                                        <div class="col-12 mt-5" id="event_new">
 				        			<label for="participantes_id[]">Participantes</label>
                                                                  <multiselect
                             v-model="value"
@@ -288,7 +288,7 @@
 				        			<input class="form-control" type="text" id="update_supervisor_id">
 				        		</div> -->
 				        		<!-- PARTICIPANTES -->
-                                                        <div class="col-12 col-md-4 mt-5" id="update_event">
+                                                        <div class="col-12 mt-5" id="update_event">
 				        			<label for="update_participantes_id[]">Participantes</label>
                                                                 <multiselect
                                                                     v-model="value"
