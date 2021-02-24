@@ -99,7 +99,7 @@
                          <div id="chart_div_edades" class="chart"></div> 
                     </div>
                     <div class="DatosGraficaEdades">
-                        <h2 style="text-align: center">Lsita de Edades</h2>
+                        <h2 style="text-align: center">Lista de Edades</h2>
                         <table class="table1">
                         <tbody>
                             <tr>                             
@@ -108,27 +108,27 @@
                             </tr>
                             <tr>                                                            
                                 <td>1. De 18 a 25 años</td>
-                                <td class="td2">30</td>
+                                <td id="18-25" class="td2">30</td>
                             </tr>
                             <tr>
                               <td>2. De 26 a 35</td>
-                              <td class="td2">60</td>                              
+                              <td id="26-35" class="td2">60</td>                              
                             </tr>
                             <tr>
                               <td>3. De 36 a 45</td>
-                              <td class="td2">40</td>                              
+                              <td id="36-45" class="td2">40</td>                              
                             </tr>
                             <tr>
                               <td>4. De 46 a 55</td>
-                              <td class="td2">10</td>                              
+                              <td id="46-55" class="td2">10</td>                              
                             </tr>
                             <tr>
                               <td>5. Mayores de 60</td>
-                              <td class="td2">10</td>                              
+                              <td id="mas_60" class="td2">10</td>                              
                             </tr>
                             <tr>
                               <td>6. Sin fecha de nacimiento</td>
-                              <td class="td2">10</td>                              
+                              <td id="sin_fecha_nac" class="td2">10</td>                              
                             </tr>
                           </tbody>
                         </table>
@@ -151,17 +151,17 @@
                             <tr>                             
                                 <td style="padding: 0.75rem;">Sexo</td>                              
                                 <td>No. Empleados</td>
-                                <td>Procentaje</td>
+                                <td >Procentaje</td>
                             </tr>
                             <tr>                                                            
                                 <td>Hombres</td>
-                                <td class="td2">100</td>
-                                <td class="td2">64%</td>
+                                <td id="cantidad_hombres" class="td2">100</td>
+                                <td id="porcentaje_hombres" class="td2">64%</td>
                             </tr>
                             <tr>
                               <td>Mujeres</td>
-                              <td class="td2">50</td>
-                              <td class="td2">33%</td>
+                              <td id="cantidad_mujeres" class="td2">50</td>
+                              <td id="porcentaje_mujeres" class="td2">33%</td>
                             </tr>                            
                           </tbody>
                         </table>
@@ -178,7 +178,7 @@
                         <div id="chart_div_sucursales" class="chart"></div>
                     </div>
                     <div class="DatosGraficaEdades">
-                        <h2 style="text-align: center">Lsita de sucursales</h2>
+                        <h2 style="text-align: center">Lista de Sucursales</h2>
                         <table class="table1">
                         <tbody>
                             <tr>                             
