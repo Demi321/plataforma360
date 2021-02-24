@@ -216,11 +216,13 @@ public class Controller1 {
        
        if(insert >= 0){
             
-            json.put("id_archivos_empresas_conversacion", insert);
+            json.put("id_archivo_conversacion", insert);
+            json.put("date_created", json.get("fecha").toString());
+            json.put("time_created", json.get("hora").toString());
             respuesta = respuesta(true, "Respuesta enviada");
             respuesta.putAll(json);
             
-            json.put("nueva_respuesta_de_arrchivo", true);
+            json.put("nueva_respuesta_de_archivo", true);
            
             String queryParticipantes = "select to_id360 from archivos_empresas where id_archivo = "+json.get("id_archivo")+";";
             JSONArray participantes = Query.execute(queryParticipantes);
