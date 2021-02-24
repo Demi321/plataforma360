@@ -177,9 +177,12 @@ public class Controller1 {
             aux.remove("destinatarios");
             
             jsonParaInsert.add(x,aux);
+            System.out.println(aux);
             
         }
         
+        System.out.println("A insertar");
+        System.out.println(jsonParaInsert);
         int insert = Query.insert( Query.createQueryInsertWithColumnsMultiple("archivos_empresas", jsonParaInsert) );
         
         if( insert >= 0 ){
