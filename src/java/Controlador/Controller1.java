@@ -397,5 +397,23 @@ public class Controller1 {
         return Query.execute( query );
         
     }
+    
+    @RequestMapping(value = "/API/empresas360/consultar_conversacion_archivo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_conversacion_archivo(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    * " +
+                        "FROM " +
+                        "    archivos_empresas_conversacion " +
+                        "WHERE " +
+                        "    agrupador_archivo = '"+json.get("agrupador")+"';";
+        
+        return Query.execute( query );
+        
+    }
 
 }
