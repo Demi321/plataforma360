@@ -574,7 +574,7 @@
                                     </div>
                                 </div>                                
                             </div>
-                            <div class="col-12 col-lg-2">
+                            <div class="col-12 col-lg-2 p-0">
                                 <p class="pb-3"><strong>Resumen General</strong></p>
                                 <div class="row">
                                     <div class="col-7 pr-0">
