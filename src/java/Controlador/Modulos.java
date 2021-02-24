@@ -1558,12 +1558,20 @@ public class Modulos {
                     }
 
                     //obtenemos el numero de retardos y faltas
+                    //Fecha1 = fecha y hora del registro del usuario
                     fecha1 = format.parse(registro.get("date_created") + " " + registro.get("time_created"));
+                    //Fecha2 = fecha y hora de la tolerancia del registro 
                     fecha2 = format.parse(registro.get("date_created") + " " + Query.getHora(perfil.get("horario_entrada").toString(), 15));
+                    //Fecha3 = fecha y hora de entrada del usuario 
                     Date fecha3 = format.parse(registro.get("date_created") + " " + perfil.get("horario_entrada").toString());
-                    if (fecha1.before(fecha2) && fecha1.after(fecha3)) {
+                    Date fecha4 = format.parse(registro.get("date_created") + " " + perfil.get("horario_salida").toString());
+                    // f1 = 19:20:01
+                    // f2 = 09:15:00
+                    // f3 = 09:00:00
+                    // f4 = 19:00:00
+                    if (!fecha1.before(fecha2) && fecha1.before(fecha4)) {
                         total_retardos += 1;
-                    } else if (fecha1.after(fecha2)) {
+                    } else if (fecha1.after(fecha4)) {
                         total_faltas += 1;
                     }
                     //Agregamos las horas trabajadas en el dia y si tuvo una falta o un retardo
@@ -1571,9 +1579,9 @@ public class Modulos {
                     fecha_diaria.put("horas_trabajadas", total_horas);
                     fecha_diaria.put("retardo", false);
                     fecha_diaria.put("falta", false);
-                    if (fecha1.before(fecha2) && fecha1.after(fecha3)) {
+                    if (!fecha1.before(fecha2) && fecha1.before(fecha4)) {
                         fecha_diaria.put("retardo", true);
-                    } else if (fecha1.after(fecha2)) {
+                    } else if (fecha1.after(fecha4)) {
                         fecha_diaria.put("falta", true);
                     }
                     usr.put(registro.get("date_created"), fecha_diaria);
