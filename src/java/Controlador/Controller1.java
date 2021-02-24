@@ -203,6 +203,43 @@ public class Controller1 {
         
     }
     
+    /*Guardar archivo enviado*/
+    @RequestMapping(value = "/API/empresas360/guardar_archivo_empresas_respuesta", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject empresas360_guardar_archivo_respuesta(@RequestBody String string) throws IOException, ParseException{
+       
+       JSONParser parser = new JSONParser();
+       JSONObject json = (JSONObject) parser.parse(string); 
+       JSONObject respuesta = respuesta(false,"Error al agregar la respuesta");
+       
+       int insert = Query.insert( Query.createQueryInsertWithColumns("archivos_empresas_conversacion", json) );  
+       
+       if(insert >= 0){
+            
+            json.put("id_archivos_empresas_conversacion", insert);
+            respuesta = respuesta(true, "Respuesta enviada");
+            respuesta.putAll(json);
+            
+            json.put("nueva_respuesta_de_arrchivo", true);
+           
+            String queryParticipantes = "select to_id360 from archivos_empresas where id_archivo = "+json.get("id_archivo")+";";
+            JSONArray participantes = Query.execute(queryParticipantes);
+            int cantidadParticipantes = participantes.size();
+
+            for (int x = 0; x < cantidadParticipantes; x++) {
+                JSONObject p = (JSONObject) participantes.get(x);
+
+                SocketEndPoint.EnviarNotificacio_id360(json, p.get("to_id360").toString());
+            }
+            
+            SocketEndPoint.EnviarNotificacio_id360(json,json.get("id360").toString());
+           
+       }
+       
+       return respuesta;
+        
+    }
+    
     /*Consultar archivo enviado*/
     @RequestMapping(value = "/API/empresas360/consultar_archivos_empresas", method = RequestMethod.POST)
     @ResponseBody
@@ -393,6 +430,24 @@ public class Controller1 {
                         "WHERE " +
                         "    (to_id360 = '"+json.get("id360")+"' AND id360 = '"+json.get("to_id360")+"') AND if(id360 = '"+json.get("id360")+"', activo_id360, activo_to_id360) = 1 " +
                         "GROUP BY agrupador";
+        
+        return Query.execute( query );
+        
+    }
+    
+    @RequestMapping(value = "/API/empresas360/consultar_conversacion_archivo", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONArray consultar_conversacion_archivo(@RequestBody String string) throws IOException, ParseException {
+        
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(string);
+        
+        String query = "SELECT " +
+                        "    * " +
+                        "FROM " +
+                        "    archivos_empresas_conversacion " +
+                        "WHERE " +
+                        "    id_archivo = "+json.get("id_archivo")+";";
         
         return Query.execute( query );
         
