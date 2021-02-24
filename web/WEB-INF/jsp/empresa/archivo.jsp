@@ -4,7 +4,24 @@
 
 <div class="row col-12 m-0 p-3 h-100 archivo d-block bg-white" id="base_modulo_${id}">
     
+    <%-- LOADER DEL MODULO --%>
     <div id="loaderArchivos" class="d-none"></div>
+    
+    <%-- TITULO DE MODULO --%>
+    <div class="row col-12 m-0 p-2 mb-3">
+        <h3 class="tituloModuloArchivos">Gestión de archivos</h3>
+        <%-- TOGGLE DE VISTA --%>
+        <div class="ml-3 contenedorTiposVista">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" checked name="tVista" type="radio" id="vCorreo" value="0">
+                <label class="form-check-label" for="vCorreo">Vista de Correos</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="tVista" type="radio" id="vArchivos" value="1">
+                <label class="form-check-label" for="vArchivos">Vista de Archivos</label>
+            </div>
+        </div>
+    </div>
     
     <%-- BOTON PARA ENVIAR NUEVO ARCHIVO --%>
     <div class="row col-12 m-0 p-2">
@@ -55,7 +72,7 @@
             
             <div class="form-group">
                 <div class="file-loading">
-                    <input id="archivos_envio" name="archivos_envio[]" type="file">
+                    <input id="archivos_envio" name="archivos_envio[]" type="file" multiple="true">
                 </div>
             </div>
 
@@ -65,11 +82,13 @@
     </div>
     
     <%-- VISTA DE CORREO --%>
-    <div id="padreArchivosVistaCorreo">
-        <div id="archivosVistaCorreo" class="row w-100 m-0 p-0">
+    <div id="padreArchivosVistaCorreo" class="h-100">
+        <div id="archivosVistaCorreo" class="row w-100 m-0 p-0 h-100">
         
-            <div class="listadoDeProyectos">
-                <h5 class="text-center">Seleccionar proyecto</h5>
+            <div class="listadoDeProyectos h-100">
+                
+                
+                <h6 class="mt-3">Seleccionar proyecto</h6>
                 <form class="formulario-lista">
                     <div class="radio-proyectos">
                         <!-- CARGA DINÁMICA -->
@@ -81,21 +100,21 @@
                 </form>
             </div>
 
-            <div class="listadoDeArchivos">
+            <div class="listadoDeArchivos h-100">
                 <h5 class="text-center">Lista de archvios</h5>
                 <div class="listadoArchivosVistaCorreo">
 
                 </div>
             </div>
 
-            <div class="detalleArchivo p-3"></div>
+            <div class="detalleArchivo p-3 h-100"></div>
 
         </div>
     </div>
     
-    <%-- DESPLIEGUE DE PRODUCTOS --%>
-    <div id="padreArchivosVistaArchivos">
-        <div id="archivosVistaArchivos" class="row w-100 m-0 p-0">
+    <%-- VISTA DE ARCHIVOS --%>
+    <div id="padreArchivosVistaArchivos" class="h-100">
+        <div id="archivosVistaArchivos" class="row w-100 m-0 p-0 h-100 pb-5 overflow-auto">
         
             <%-- SECCION DE FILTROS PARA BUSQUEDA DE ARCHIVOS --%>
             <div class="col-12 m-0 p-0 mb-4">
@@ -134,7 +153,7 @@
             </div>
 
             <%-- TABLA DE ARCHIVOS --%>
-            <div id="contentArchivos" class="col-12 m-0 p-0 d-none">
+            <div id="contentArchivos" class="col-12 m-0 p-0 d-none h-100">
                 <table class="text-center" id="tablaArchivos"></table>
             </div>
 
