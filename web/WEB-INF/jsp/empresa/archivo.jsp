@@ -11,7 +11,7 @@
     <div class="row col-12 m-0 p-2 mb-3">
         <h3 class="tituloModuloArchivos">Gestión de archivos</h3>
         <%-- TOGGLE DE VISTA --%>
-        <div class="ml-3 contenedorTiposVista">
+        <div class="ml-3 contenedorTiposVista d-none">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" checked name="tVista" type="radio" id="vCorreo" value="0">
                 <label class="form-check-label" for="vCorreo">Vista de Correos</label>
