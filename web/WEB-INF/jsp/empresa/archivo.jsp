@@ -86,7 +86,35 @@
         <div id="archivosVistaCorreo" class="row w-100 m-0 p-0 h-100">
         
             <div class="listadoDeProyectos h-100">
+                <h5 class="text-center">Seleccionar filtros</h5>
                 
+                <h6 class="mt-3">Seleccionar origen</h6>
+                <form class="formulario-lista">
+                    <div class="radio-origen">
+                        <div class="form-group">
+                            <input value="0" type="radio" name="origenSeleccionado" id="origenTodos" checked="checked">
+                            <label for="origenTodos">Todos</label>
+                        </div>
+                        <div class="form-group">
+                            <input value="1" type="radio" name="origenSeleccionado" id="origenAMi">
+                            <label for="origenAMi">Recibidos</label>
+                        </div>
+                        <div class="form-group">
+                            <input value="2" type="radio" name="origenSeleccionado" id="origenDeMi">
+                            <label for="origenDeMi">Enviados</label>
+                        </div>
+                    </div>
+                </form>
+                
+                <div id="remitenteVistaCorreos" class="w-100 d-none">
+                    <h6 class="mt-3">Seleccionar remitente</h6>
+                    <select name="remitenteVistaCorreos" id="remitenteVistaCorreosValor" class="custom-select select2"></select>
+                </div>
+                
+                <div id="destinatarioVistaCorreos" class="w-100 d-none">
+                    <h6 class="mt-3">Seleccionar destinatario</h6>
+                    <select name="destinatarioVistaCorreos" id="destinatarioVistaCorreosValor" class="custom-select select2"></select>
+                </div>
                 
                 <h6 class="mt-3">Seleccionar proyecto</h6>
                 <form class="formulario-lista">
