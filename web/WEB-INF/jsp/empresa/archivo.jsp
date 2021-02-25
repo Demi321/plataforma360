@@ -1,6 +1,14 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<div id="contenedor-sonidos-notificaciones-correos">
+    
+    <audio muted id="sonidoCorreos">
+        <spring:url value="${pathRecursos}/Audio/sonido_correo.mp3" var="sonidoCorreos" />
+        <source src="${sonidoCorreos}" type="audio/mpeg">
+    </audio>
+    
+</div>
 
 <div class="row col-12 m-0 p-3 h-100 archivo d-block bg-white" id="base_modulo_${id}">
     
