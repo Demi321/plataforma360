@@ -71,27 +71,27 @@
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="iconoDiasLaboralesEmpleadoMisReportes"></i>
                             <p>Dias laborales</p>
-                            <h5 class="p-0 d-flex justify-content-center" id="diasLaboralesSemanaEmpleadoMisReportes"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center" id="diasLaboralesSemanaEmpleadoMisReportes"></h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="iconoHorasLaboralesEmpleadoMisReportes"></i>
                             <p>Horas laborales</p>
-                            <h5 class="p-0 d-flex justify-content-center" id="horasLaboralesSemanaEmpleadoMisReportes"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center" id="horasLaboralesSemanaEmpleadoMisReportes"></h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="far fa-smile fa-lg" style="color:#97BA38"></i>
                             <p>Proyectos atendidos</p>
-                            <h5 class="p-0 d-flex justify-content-center"> - </h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center"> - </h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="colorIconoRetardosMisReportes"></i>
                             <p>Retardos</p>
-                            <h5 class="p-0 d-flex justify-content-center mt-4" id="retardosSemanaEmpleadoMisReportes"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center mt-4" id="retardosSemanaEmpleadoMisReportes"></h5>
                         </div>
                         <div class="col-6 col-lg-1 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="iconoFaltasLaboralesEmpleadoMisReportes"></i>
                             <p>Faltas</p>
-                            <h5 class="p-0 d-flex justify-content-center mt-4" id="faltasSemanaEmpleadoMisReportes"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center mt-4" id="faltasSemanaEmpleadoMisReportes"></h5>
                         </div>
                     </div>
                 </div>

@@ -360,27 +360,27 @@
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="iconoDiasLaboralesEmpleado"></i>
                             <p>Dias laborales</p>
-                            <h5 class="p-0 d-flex justify-content-center" id="diasLaboralesSemanaEmpleado"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center" id="diasLaboralesSemanaEmpleado"></h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="iconoHorasLaboralesEmpleado"></i>
                             <p>Horas laborales</p>
-                            <h5 class="p-0 d-flex justify-content-center" id="horasLaboralesSemanaEmpleado"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center" id="horasLaboralesSemanaEmpleado"></h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="far fa-smile fa-lg" style="color:#97BA38"></i>
                             <p>Proyectos atendidos</p>
-                            <h5 class="p-0 d-flex justify-content-center"> - </h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center"> - </h5>
                         </div>
                         <div class="col-6 col-lg-2 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="colorIconoRetardos"></i>
                             <p>Retardos</p>
-                            <h5 class="p-0 d-flex justify-content-center mt-4" id="retardosSemanaEmpleado"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center mt-4" id="retardosSemanaEmpleado"></h5>
                         </div>
                         <div class="col-6 col-lg-1 p-0 text-center">
                             <i class="text-success far fa-smile fa-lg" id="iconoFaltasLaboralesEmpleado"></i>
                             <p>Faltas</p>
-                            <h5 class="p-0 d-flex justify-content-center mt-4" id="faltasSemanaEmpleado"></h5>
+                            <h5 class="h1 p-0 d-flex justify-content-center mt-4" id="faltasSemanaEmpleado"></h5>
                         </div>
                     </div>
                 </div>
