@@ -110,12 +110,12 @@ public class Home {
                 
                 if (menu.get("url").toString().equals(config.getPATH()+config.getDEPENDENCIA()+"/")) {
                     //solicitar vista
-                    model.addAttribute("modulos",model.asMap().get("modulos") + request.POST("https://empresas.claro360.com/plataforma360_dev_moises/"+Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
+                    model.addAttribute("modulos",model.asMap().get("modulos") + request.POST("https://empresas.claro360.com/plataforma360/"+Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
 
                     //System.out.println(Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase());
                 } else {
                     //agregar menu externo 
-                    model.addAttribute("modulos",model.asMap().get("modulos") + request.POST("https://empresas.claro360.com/plataforma360_dev_moises/modulo_vacio", menu.toString()));
+                    model.addAttribute("modulos",model.asMap().get("modulos") + request.POST("https://empresas.claro360.com/plataforma360/modulo_vacio", menu.toString()));
 
                 }
                 
@@ -123,7 +123,7 @@ public class Home {
             //return solicitud_menus.toString();
 
             //JSONObject modulo = new JSONObject();
-            //model.addAttribute("modulo_0", request.POST("https://empresas.claro360.com/plataforma360_dev_moises/Mi Perfil", modulo.toString()));
+            //model.addAttribute("modulo_0", request.POST("https://empresas.claro360.com/plataforma360/Mi Perfil", modulo.toString()));
             return "Home2/home";
         }
 

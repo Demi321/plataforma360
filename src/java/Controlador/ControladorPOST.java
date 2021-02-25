@@ -1247,8 +1247,10 @@ public class ControladorPOST {
         /*Cambios fernando*/
         JSONArray app360 = (JSONArray) usuario.get("perfil");
         JSONObject app = (JSONObject) app360.get(0);
-        if (app.get("img") != null) {
-            usuario.put("img_perfil", app.get("img"));
+         if (!app360.isEmpty()) {
+            if (app.get("img") != null) {
+                usuario.put("img_perfil", app.get("img"));
+            }
         }
         /**
          * ***************

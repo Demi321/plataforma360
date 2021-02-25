@@ -45,7 +45,7 @@
 
             var lottieAnimation_blockpage = bodymovin.loadAnimation({
                 container: lottieLoader_blockpage, // ID del div
-                path: "https://empresas.claro360.com/p360_v4_dev_moises/json/Rayas rojo.json", // Ruta fichero .json de la animación
+                path: "https://empresas.claro360.com/p360_v4/json/Rayas rojo.json", // Ruta fichero .json de la animación
                 renderer: 'svg', // Requerido
                 loop: true, // Opcional
                 autoplay: true, // Opcional

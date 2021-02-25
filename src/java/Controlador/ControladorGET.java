@@ -315,10 +315,8 @@ public class ControladorGET {
                 System.out.println(c.getName());
             }
             System.out.println("****************");
-        } else {
-            System.out.println("Proyecto no inicializado");
-            return "plantilla/sinInicializar";
-        }
+        } 
+        
         return "plantilla/plantilla2";
     }
 

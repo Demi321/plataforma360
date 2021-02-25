@@ -96,7 +96,7 @@ public class Modulos {
             }
 
 //            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.gJSONObjectetPATH() + config.getDEPENDENCIA()+"/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
-//            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA()+"_dev_moises/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
+//            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA()+"/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
             JSONObject estatus_jornada = null;
             if (perfil.get("horario_salida") != null && perfil.get("horario_salida") != "") {
                 estatus_jornada = empresas360_get_status_horario_laboral(id360.get("id360").toString(), perfil.get("horario_salida").toString());
@@ -115,7 +115,7 @@ public class Modulos {
             model.addAttribute("reportes_usuario", reportes_realizados);
 
             //recuperar los menus del usuario 
-            JSONObject solicitud_menus = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/get/menu", id360);
+            JSONObject solicitud_menus = request.POST(config.getURL_CONTROLADOR() + "API/cuenta360/get/menu/oficial", id360);
 //            JSONObject solicitud_menus = (JSONObject) parser.parse("{  \"success\": true,  \"failure\": false,  \"mensaje\": \"Menus escontrados.\",  \"menus\": [    {      \"icono\": \"<i class=\\\"fas fa-house-user\\\"></i>\",      \"id_menu\": \"39\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": null,      \"nombre\": \"Home Empleado\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Home\",      \"id\": \"39\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"108\"    },    {      \"icono\": \"<i class=\\\"fas fa-user-circle\\\"></i>\",      \"id_menu\": \"1\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Trabajo\",      \"nombre\": \"Mi Perfil\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Mi Perfil\",      \"id\": \"1\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"100\"    },    {      \"icono\": \"<i class=\\\"fas fa-id-card-alt\\\"></i>\",      \"id_menu\": \"4\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Trabajo\",      \"nombre\": \"Entrada y Salida\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Entrada y Salida\",      \"id\": \"4\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"103\"    },        {      \"icono\": \"<i class=\\\"fas fa-clipboard-list\\\"></i>\",      \"id_menu\": \"40\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Reportes\",      \"nombre\": \"Reporte Sintomas\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Reporte de Sintomas\",      \"id\": \"40\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"109\"    },    {      \"icono\": \"<i class=\\\"fas fa-clipboard-list\\\"></i>\",      \"id_menu\": \"41\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Reportes\",      \"nombre\": \"Reporte Proteccion Personal\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Reporte de Equipo de Proteccion Personal\",      \"id\": \"41\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"110\"    },    {      \"icono\": \"<i class=\\\"fas fa-clipboard-list\\\"></i>\",      \"id_menu\": \"42\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Reportes\",      \"nombre\": \"Reporte Actividades\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Reporte de Actividades\",      \"id\": \"42\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"111\"    },    {      \"icono\": \"<i class=\\\"fas fa-clipboard-list\\\"></i>\",      \"id_menu\": \"45\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Reportes\",      \"nombre\": \"Reporte Evento Incidente\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Reporte de Eventos o Incedentes\",      \"id\": \"45\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"112\"    },    {      \"icono\": \"<i class=\\\"fas fa-clipboard-list\\\"></i>\",      \"id_menu\": \"46\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Reportes\",      \"nombre\": \"Cuestionario Tamizaje\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Cuestionario de Tamizaje\",      \"id\": \"46\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"113\"    },    {      \"icono\": \"<i class=\\\"fas fa-clipboard-list\\\"></i>\",      \"id_menu\": \"51\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Reportes\",      \"nombre\": \"Reporte Seguridad Sanitaria\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"463\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Reporte de de Seguridad Sanitaria\",      \"id\": \"51\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"114\"    },    {      \"icono\": \"<i class=\\\"fas fa-comments\\\"></i>\",      \"id_menu\": \"5\",      \"date_updated\": null,      \"visible\": \"1\",      \"date_created\": \"2021-01-15\",      \"categoria\": \"Trabajo\",      \"nombre\": \"Comunicación\",      \"time_updated\": null,      \"url\": \"https://empresas.claro360.com/plataforma360/\",      \"tipo_area\": \"0\",      \"id_usuario\": \"9991336774\",      \"time_created\": \"18:13:11\",      \"alias\": \"Comunicación\",      \"id\": \"39\",      \"orden\": null,      \"tipo_usuario\": \"124\",      \"tipo_servicio\": \"3064\",      \"activo\": \"1\",      \"order\": \"104\"    }  ]}");
             if ((Boolean) solicitud_menus.get("success")) {
 
@@ -127,12 +127,12 @@ public class Modulos {
                     if (menu.get("url").toString().equals(config.getPATH() + config.getDEPENDENCIA() + "/")) {
                         //solicitar vista
                         menu.remove("url");
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
 
                         //System.out.println(Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase());
                     } else {
                         //agregar menu externo 
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/modulo_vacio", menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360/modulo_vacio", menu.toString()));
 
                     }
 
@@ -140,7 +140,7 @@ public class Modulos {
                 //return solicitud_menus.toString();
 
                 //JSONObject modulo = new JSONObject();
-                //model.addAttribute("modulo_0", request.POST("https://empresas.claro360.com/plataforma360_dev_moises/Mi Perfil", modulo.toString()));
+                //model.addAttribute("modulo_0", request.POST("https://empresas.claro360.com/plataforma360/Mi Perfil", modulo.toString()));
                 return "Home/home";
             }
             //El usuario no tiene menus generados posiblemente necesite volver a iniciar sesion para generarlos
@@ -187,7 +187,7 @@ public class Modulos {
 
             //cargar informacion de las sucursales
 //            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.gJSONObjectetPATH() + config.getDEPENDENCIA()+"/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
-//            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA()+"_dev_moises/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
+//            JSONObject estatus_jornada  = (JSONObject)parser.parse(request.GET(config.getPATH() + config.getDEPENDENCIA()+"/API/lineamientos/listado_sucursales/"+the_sesion.get("tipo_usuario")));
             JSONObject estatus_jornada = null;
             if (perfil.get("horario_salida") != null && perfil.get("horario_salida") != "") {
                 estatus_jornada = empresas360_get_status_horario_laboral(id360.get("id360").toString(), perfil.get("horario_salida").toString());
@@ -226,12 +226,12 @@ public class Modulos {
 
                     if (menu.get("url").toString().equals(config.getPATH() + config.getDEPENDENCIA() + "/")) {
                         //solicitar vista
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360/" + Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase(), menu.toString()));
 
                         //System.out.println(Normalizer.normalize(menu.get("nombre").toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").replace(" ", "").toLowerCase());
                     } else {
                         //agregar menu externo 
-                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360_dev_moises/modulo_vacio", menu.toString()));
+                        model.addAttribute("modulos", model.asMap().get("modulos") + request.POST_vista(config.getPATH() + "plataforma360/modulo_vacio", menu.toString()));
 
                     }
 
@@ -239,7 +239,7 @@ public class Modulos {
                 //return solicitud_menus.toString();
 
                 //JSONObject modulo = new JSONObject();
-                //model.addAttribute("modulo_0", request.POST("https://empresas.claro360.com/plataforma360_dev_moises/Mi Perfil", modulo.toString()));
+                //model.addAttribute("modulo_0", request.POST("https://empresas.claro360.com/plataforma360/Mi Perfil", modulo.toString()));
                 return "Home/home";
             }
             //El usuario no tiene menus generados posiblemente necesite volver a iniciar sesion para generarlos

@@ -29,7 +29,7 @@ public class config {
     private static boolean LISTA_BLANCA = false;
 
     //private static String SECRETKEY = null;
-//    private static String SECRETKEY = "plataforma360_dev84159c9f-b6d1-4d89-8ff7-06aeb0430128";
+//    private static String SECRETKEY = "plataforma36084159c9f-b6d1-4d89-8ff7-06aeb0430128";
     private static String SECRETKEY = "CONTROLADOR84159c9f-b6d1-4d89-8ff7-06aeb0430128";
     private static String TOKEN_INCIDENTES = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiYzU5YTE3MmNhZGUwMDQwMjgwYmFjN2UzYjAxNDNiYjNjMzBhN2FlNjNkMzgyYmQzZjZiNTAyZDI4ZTczNmI3OWE3ZDVmOWM3MzRkZDEwZjQiLCJpYXQiOjE1OTM0NDkzMzMsIm5iZiI6MTU5MzQ0OTMzMywiZXhwIjoxNjI0OTg1MzMzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.pqzP8GJ4ov2-3oIqLGjOOZR70EFpYIcNcA464b-Nen88Qe_C8MJ_Zvm-ZSi8TixW1uaEEWmGMsOb7rrO6mPP1u5M9JnqawqR6l-MLBkWXbEJC8P6rMhKvUyLs5v5MLh5OhxbfwO8H0pgu8M2EL4tKRblvHEHsXU0JI0R0g7xn6TCl--kOZFwWtEJou7v2S37DgyO1JHtfR4JP7P5rHHyH5CqUO7pvlbGgIVME6IX7RgddZvQVl3KRwZgbdA6bSK-GyntcHnAoyIi9WqdDE24fnzi9zjephrNQKm9gse8rv5kPdvM9ISCFifTEGj3nsI2PsiBKPcHWFZFTzE8t6eCM7hcSzDqrDMATi2MdZ1j4QhDMk14NKMahHPPvsPYijpPApJKn5FxFVezVu-QWsY2qNLX7Zv6kTiWvFmijLbPpthHeZQzMSWA8m4WK69IH7jbIN61-sY575XQEFEJYZ4UepoXyiQWM9jHFb2tVcBSyE1PY9Qee9bUhjz8KWBaWGDg4dcvboTbN0TmJYq9ikNYjSP2Sy9vO0aMT9JF6he3nP3TQoijMP7g9nVTnDIzrp0c7LTeix54Vks9QXK5-pMcb1XUOtaZWqjVV3ZAf0tKw1nDIFQ7nvKoEPBwS7bGxm5rOfNouZdJsjwdVBo-Ftj9JMVoaTHOBUa2jTtBS_hJdXs";
 //    private static String URL_Incidentes = "https://incidentes.ml/api/incidentes";
@@ -52,7 +52,7 @@ public class config {
     
     private static  String urlSuperior=null;
     private static int time = 2;
-    private static String SESION = "username_v3.2_plataforma360_dev_moises";
+    private static String SESION = "username_v3.2_plataforma360";
     public static boolean initialize() {
         System.out.println("initialize");
         
