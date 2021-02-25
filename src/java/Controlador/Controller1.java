@@ -60,7 +60,7 @@ public class Controller1 {
                         "    *, " +
                         "    ( " +
                         "       SELECT " +
-                        "           count(*) " +
+                        "           COUNT(DISTINCT(agrupador)) " +
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE " +
@@ -71,7 +71,14 @@ public class Controller1 {
                         "FROM " +
                         "    proyectos_empresas p " +
                         "WHERE " +
-                        "    tipo_usuario = '"+json.get("tipo_usuario")+"'";
+                        "   tipo_usuario = '"+json.get("tipo_usuario")+"' AND " +
+                        "   p.id_proyecto IN (SELECT " +
+                        "            a.id_proyecto " +
+                        "        FROM " +
+                        "            archivos_empresas a " +
+                        "        WHERE " +
+                        "            a.id_proyecto = p.id_proyecto " +
+                        "                AND a.id360 = '"+json.get("id360")+"')";
         
         return Query.execute(query);
 
@@ -164,7 +171,6 @@ public class Controller1 {
         
         json.put("id_proyecto", id_proyecto);
         json.put("agrupador", uniqueID);
-        json.remove("proyecto");
         
         JSONArray destinatarios = (JSONArray) json.get("destinatarios");
         JSONArray jsonParaInsert = new JSONArray();
@@ -187,6 +193,9 @@ public class Controller1 {
         
         if( insert >= 0 ){
             
+            json.put("date_created", json.get("fecha").toString());
+            json.put("time_created", json.get("hora").toString());
+            json.put("cantidadRespuestas", "0");
             respuesta = respuesta(true, "Archivos guardados");
             respuesta.putAll(json);
             json.put("archivo_recibido", true);
@@ -258,7 +267,7 @@ public class Controller1 {
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE a.agrupador = ar.agrupador " +
-                        "    ) as destinatarios " +
+                        "    ) as destinatarios, (SELECT COUNT(*) FROM archivos_empresas_conversacion arc WHERE ar.id_archivo = arc.id_archivo) as cantidadRespuestas  " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
@@ -286,7 +295,7 @@ public class Controller1 {
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE a.agrupador = ar.agrupador " +
-                        "    ) as destinatarios " +
+                        "    ) as destinatarios, (SELECT COUNT(*) FROM archivos_empresas_conversacion arc WHERE ar.id_archivo = arc.id_archivo) as cantidadRespuestas " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
@@ -338,7 +347,7 @@ public class Controller1 {
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE a.agrupador = ar.agrupador " +
-                        "    ) as destinatarios " +
+                        "    ) as destinatarios, (SELECT COUNT(*) FROM archivos_empresas_conversacion arc WHERE ar.id_archivo = arc.id_archivo) as cantidadRespuestas  " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
@@ -367,7 +376,7 @@ public class Controller1 {
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE a.agrupador = ar.agrupador " +
-                        "    ) as destinatarios " +
+                        "    ) as destinatarios, (SELECT COUNT(*) FROM archivos_empresas_conversacion arc WHERE ar.id_archivo = arc.id_archivo) as cantidadRespuestas  " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
@@ -396,7 +405,7 @@ public class Controller1 {
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE a.agrupador = ar.agrupador " +
-                        "    ) as destinatarios " +
+                        "    ) as destinatarios, (SELECT COUNT(*) FROM archivos_empresas_conversacion arc WHERE ar.id_archivo = arc.id_archivo) as cantidadRespuestas  " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
@@ -424,7 +433,7 @@ public class Controller1 {
                         "	FROM " +
                         "           archivos_empresas a " +
                         "	WHERE a.agrupador = ar.agrupador " +
-                        "    ) as destinatarios " +
+                        "    ) as destinatarios, (SELECT COUNT(*) FROM archivos_empresas_conversacion arc WHERE ar.id_archivo = arc.id_archivo) as cantidadRespuestas  " +
                         "FROM " +
                         "    archivos_empresas ar " +
                         "LEFT JOIN " +
