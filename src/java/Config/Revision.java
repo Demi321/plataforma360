@@ -39,7 +39,7 @@ public class Revision {
             if (cookies != null) {
                 for (Cookie c : cookies) {
                     System.out.println(c.getName());
-                    if (c.getName().equals("username_v3.1_plataforma360_dev")) {
+                    if (c.getName().equals("username_v3.2_plataforma360_dev_moises")) {
                         JSONParser parser = new JSONParser();
                         try {
                             String value = new String(Base64.decodeBase64(c.getValue()));
@@ -95,7 +95,7 @@ public class Revision {
             Cookie[] cookies = sesion.getCookies();
             if (cookies != null) {
                 for (Cookie c : cookies) {
-                    if (c.getName().equals("username_v3.1_plataforma360_dev")) {
+                    if (c.getName().equals("username_v3.2_plataforma360_dev_moises")) {
                         JSONParser parser = new JSONParser();
                         try {
                             String value = new String(Base64.decodeBase64(c.getValue()));

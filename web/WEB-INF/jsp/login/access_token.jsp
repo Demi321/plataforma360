@@ -349,7 +349,7 @@
             console.log(sesion_cookie);
             sesion_cookie.modulo_principal = "agregar_perfil";
             sesion_cookie.modulos = "";
-            setCookie("username_v3.1_" + DEPENDENCIA, JSON.stringify(sesion_cookie), 1000);
+            setCookie("username_v3.2_" + DEPENDENCIA, JSON.stringify(sesion_cookie), 1000);
         }
         function plataformas_activas(estados) {//XD
             $("#estados").empty();

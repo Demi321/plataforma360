@@ -306,7 +306,7 @@ public class ControladorGET {
             System.out.println("Cookies");
             System.out.println(Arrays.toString(sesion.getCookies()));
             for (Cookie c : sesion.getCookies()) {
-                if (c.getName().equals("username_v3.1_" + config.getDEPENDENCIA())) {
+                if (c.getName().equals("username_v3.2_" + config.getDEPENDENCIA())) {
                     System.out.println(c.getValue());
                     byte[] decodedBytes = Base64.getDecoder().decode(c.getValue());
                     String decodedString = new String(decodedBytes);

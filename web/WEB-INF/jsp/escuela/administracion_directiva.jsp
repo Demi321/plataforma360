@@ -372,7 +372,7 @@
     var perfiles_personal = null;
     consulta_listado_profesores();
     function consulta_listado_profesores() {
-        RequestGET("/API/GET/listado_personal/" + JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_usuario + "/" + JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio).then(function (response) {
+        RequestGET("/API/GET/listado_personal/" + JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_usuario + "/" + JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio).then(function (response) {
             perfiles_personal = response;
             listado_docente("Perfil");
             colocar_grupos();
@@ -426,7 +426,7 @@
         if ($("#nombre_grupo").val() !== "") {
             //crear el grupo
             let json = {
-                id_institucion_academica: JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio,
+                id_institucion_academica: JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio,
                 nombre: $("#nombre_grupo").val(),
                 profesores_asignados: profesores_grupo
             };
@@ -515,7 +515,7 @@
     }
 
     function colocar_grupos() {
-        RequestGET("/API/GET/listado_grupos/" + JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio).then(function (response) {
+        RequestGET("/API/GET/listado_grupos/" + JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio).then(function (response) {
             console.log(response);
             let grupos = response;
             $.each(grupos, function (i) {
@@ -546,7 +546,7 @@
     var datosInstitucion = {};
     function datos_institucion(nombre) {
         let json = {
-            id: JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio
+            id: JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio
         };
         RequestPOST("/API/escuela/servicio/info_escuela", json).then(function (response) {
             console.log(response);
@@ -555,7 +555,7 @@
 
                 perfil_docente("Perfil");
 
-                $("#" + nombre.replace(/\s/g, "") + "_codigo").text(JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio + "-" + response.token);
+                $("#" + nombre.replace(/\s/g, "") + "_codigo").text(JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio + "-" + response.token);
                 $("#" + nombre.replace(/\s/g, "") + "_nombre").text(response.nombre);
                 $("#" + nombre.replace(/\s/g, "") + "_direccion").text(response.direccion);
                 $("#" + nombre.replace(/\s/g, "") + "_nombre_director").text(response.nombre_director + " " + response.apellido_paterno_director + " " + response.apellido_materno_director);
@@ -595,7 +595,7 @@
 
     function perfil_docente(nombre) {
 
-        let session = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA));
+        let session = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA));
 
         let div_contenedor = document.createElement("div");
         div_contenedor.className = "row col-12 m-0 p-0";
@@ -858,8 +858,8 @@
                 json[key] = json[keys[i]];
                 delete json[keys[i]];
             }
-            json.tipo_usuario = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_usuario;
-            json.tipo_servicio = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio;
+            json.tipo_usuario = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_usuario;
+            json.tipo_servicio = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio;
             RequestPOST("/API/escuela360/registro_personal", json).then(function (response) {
                 console.log(response);
                 Swal.fire({
@@ -916,9 +916,9 @@
                                 }
                             });
                             json.alias = alias;
-                            json.tipo_usuario = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_usuario;
-                            json.tipo_servicio = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).tipo_servicio;
-                            json.id360 = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA)).id_usuario;
+                            json.tipo_usuario = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_usuario;
+                            json.tipo_servicio = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).tipo_servicio;
+                            json.id360 = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA)).id_usuario;
                             info_completa_hoja.push(json);
                         });
                         info_completa.push(info_completa_hoja);

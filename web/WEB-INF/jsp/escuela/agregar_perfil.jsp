@@ -425,7 +425,7 @@
             }
         }
         // RELLENAR VALORES
-        var cookie = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA));
+        var cookie = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA));
         $("#registro_institucion_nombre_director").val(cookie.nombre);
         $("#registro_institucion_apellido_paterno_director").val(cookie.apellido_p);
         $("#registro_institucion_apellido_materno_director").val(cookie.apellido_m);
@@ -516,13 +516,13 @@
                     text: response.mensaje
                 }).then(function () {
                     if (response.success) {
-                        let sesion = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA));
+                        let sesion = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA));
                         sesion.modulo_principal = "planeacion_docente";
                         sesion.modulos = "403,401";
                         sesion.nombre_institucion = response.nombre_institucion;
                         sesion.tipo_usuario = response.tipo_usuario;
                         sesion.tipo_servicio = response.tipo_servicio;
-                        setCookie("username_v3.1_" + DEPENDENCIA, JSON.stringify(sesion), 1000);
+                        setCookie("username_v3.2_" + DEPENDENCIA, JSON.stringify(sesion), 1000);
                         let hostdir = window.location.protocol + "//" + window.location.host;
                         let path = hostdir + "/" + DEPENDENCIA + "/planeacion_docente";
                         window.location.replace(path);
@@ -563,13 +563,13 @@
                     text: response.mensaje
                 }).then(function () {
                     if (response.success) {
-                        let sesion = JSON.parse(getCookie("username_v3.1_" + DEPENDENCIA));
+                        let sesion = JSON.parse(getCookie("username_v3.2_" + DEPENDENCIA));
                         sesion.modulo_principal = "administracion_directiva";
                         sesion.modulos = "403,400";
                         sesion.nombre_institucion = response.nombre_institucion;
                         sesion.tipo_usuario = response.tipo_usuario;
                         sesion.tipo_servicio = response.tipo_servicio;
-                        setCookie("username_v3.1_" + DEPENDENCIA, JSON.stringify(sesion), 1000);
+                        setCookie("username_v3.2_" + DEPENDENCIA, JSON.stringify(sesion), 1000);
                         let hostdir = window.location.protocol + "//" + window.location.host;
                         let path = hostdir + "/" + DEPENDENCIA + "/administracion_directiva";
                         window.location.replace(path);

@@ -148,7 +148,7 @@ function continuar_institucion_seleccionada() {
     delete sesion_cookie.telemedicina_paciente;
     delete sesion_cookie.videovigilancia;
     console.log("colocando cookie");
-    setCookie("username_v3.1_" + "plataforma360", JSON.stringify(sesion_cookie), 1000);
+    setCookie("username_v3.2_" + "plataforma360", JSON.stringify(sesion_cookie), 1000);
 
 }
 
@@ -160,7 +160,7 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 
-    var user = JSON.parse(getCookie("username_v3.1_" + "plataforma360"));
+    var user = JSON.parse(getCookie("username_v3.2_" + "plataforma360"));
     console.log(user);
     //alert(user);
     if (user !== "") {

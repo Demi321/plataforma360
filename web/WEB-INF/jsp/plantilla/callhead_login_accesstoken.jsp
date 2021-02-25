@@ -30,10 +30,10 @@
         return "";
     }
     console.log("/***************Sesion esn script access token ****************/");
-    var user = getCookie("username_v3.1_" + DEPENDENCIA);
+    var user = getCookie("username_v3.2_" + DEPENDENCIA);
     console.log(user);
     if (user !== "") {
-        deleteCookie("username_v3.1_" + DEPENDENCIA);
+        deleteCookie("username_v3.2_" + DEPENDENCIA);
     }
 </script>
 
