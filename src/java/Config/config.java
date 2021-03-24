@@ -37,7 +37,7 @@ public class config {
 
     private static String PATH = null;
     //private static String MYSQL_BD = null;
-    private static String MYSQL_BD = "empresas";
+    private static String MYSQL_BD = "cursos";
     private static String MYSQL_login = "usrdesarrollo";
     //private static String MYSQL_login = "root";
     private static String MYSQL_password = "@D3sarroll0123";

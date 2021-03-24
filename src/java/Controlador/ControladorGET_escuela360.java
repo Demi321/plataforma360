@@ -37,6 +37,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -146,7 +147,16 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-    @RequestMapping(value = "/alumnoPerfil", method = RequestMethod.GET)
+    @RequestMapping(value = "/inicio_alumno", method = RequestMethod.GET)
+    private String inicio_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_alumno/plantilla_alumno");
+        //return "Login";
+    }
+    @RequestMapping(value = "/perfil_alumno", method = RequestMethod.GET)
     private String perfil_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
@@ -155,7 +165,7 @@ public class ControladorGET_escuela360 {
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_alumno/perfil");
         //return "Login";
     }
-    @RequestMapping(value = "/tareasAlumnos", method = RequestMethod.GET)
+    @RequestMapping(value = "/tarea_alumno", method = RequestMethod.GET)
     private String tarea_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
@@ -165,7 +175,7 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-    @RequestMapping(value = "/evaluacionAlumnos", method = RequestMethod.GET)
+    @RequestMapping(value = "/evaluacion_alumno", method = RequestMethod.GET)
     private String evaluacion_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
@@ -175,7 +185,7 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-    @RequestMapping(value = "/horarioAlumnos", method = RequestMethod.GET)
+    @RequestMapping(value = "/horario_alumno", method = RequestMethod.GET)
     private String horario_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
@@ -185,7 +195,27 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-    @RequestMapping(value = "/horarioProfesor", method = RequestMethod.GET)
+    @RequestMapping(value = "/inicio_profesor", method = RequestMethod.GET)
+    private String inicio_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/plantilla_profesor");
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/perfil_profesor", method = RequestMethod.GET)
+    private String perfil_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/perfil");
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/horario_profesor", method = RequestMethod.GET)
     private String horario_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
@@ -195,7 +225,8 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-    @RequestMapping(value = "/evaluacionProfesor", method = RequestMethod.GET)
+    
+    @RequestMapping(value = "/evaluacion_profesor", method = RequestMethod.GET)
     private String evaluacion_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
@@ -205,13 +236,61 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-    @RequestMapping(value = "/tareasProfesor", method = RequestMethod.GET)
+    @RequestMapping(value = "/tareas_profesor", method = RequestMethod.GET)
     private String tarea_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
         if (autorizacion != null) {
             return autorizacion;
         }
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/tareas");
+        //return "Login";
+    }
+    
+     @RequestMapping(value = "/registro_institucion", method = RequestMethod.GET)
+    private String registro_institucion(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "administracion_cursos/registro_institucion";
+        //return "Login";
+    }
+    @RequestMapping(value = "/registro_sucursal", method = RequestMethod.GET)
+    private String registro_sucursal(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "administracion_cursos/registro_sucursal";
+        //return "Login";
+    }
+    @RequestMapping(value = "/inicio_institucion", method = RequestMethod.GET)
+    private String inicio_institucion(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "administracion_cursos/plantilla_admin";
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/registro_institucion", method = RequestMethod.GET)
+    @ResponseBody
+    private String api_registro_institucion(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "{\"nombre\":\"administracion_cursos/registro_institucion\"}";
+        //return "Login";
+    }
+    @RequestMapping(value = "/API/registro_institucion", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_institucion_post(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        JSONObject respuesta=respuesta(true, "informacion recibida");
+        respuesta.put("json", json);
+        return respuesta;
         //return "Login";
     }
 }

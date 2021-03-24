@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 miperfil" id="base_modulo_${id}">
+<div class="row col-12 m-0 p-0 miperfil text-dark" id="base_modulo_${id}">
 
     <div class="row col-12 m-0 p-2 pt-3">
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 p-0 d-flex align-items-center justify-content-center" style="

@@ -1,5 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div class="row col-12 m-0 p-0 miperfil" id="base_modulo_${id}">
+<div class="row col-12 m-0 p-0 miperfil text-dark" id="base_modulo_${id}">
 
     <div class="row col-12 m-0 p-2 pt-3">
         <div class="col-12 col-sm-12 col-md-4 col-lg-3 p-0 d-flex align-items-center justify-content-center" style="
@@ -11,24 +11,21 @@
             <h4>Mi Perfil</h4>
             <h5 class="nombre_completo">-</h5>
             <div class="form-group row m-0 p-2">
-                <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Empresa:</label>
+                <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Instituto</label>
                 <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="nombre_empresa" placeholder="Empresa" /></div>
             </div>
             <div class="form-group row m-0 p-2">
                 <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Sucursal:</label>
                 <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="nombre_sucursal" placeholder="Sucursal" /></div>
             </div>
-            <div class="form-group row m-0 p-2">
-                <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Área:</label>
-                <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="nombre_area" placeholder="Área" /></div>
-            </div>
+           
             <div class="form-group row m-0 p-2">
                 <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Puesto:</label>
                 <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="puesto" placeholder="Puesto" /></div>
             </div>
             <div class="form-group row m-0 p-2">
-                <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Número de empleado:</label>
-                <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="num_empleado" placeholder="Número de empleado" /></div>
+                <label class="col-sm-2 col-form-label d-flex justify-content-start align-items-center">Número de estudiante</label>
+                <div class="col-sm-10"><input type="text" class="form-control-plaintext input" id="num_empleado" placeholder="Número de estudiante" /></div>
             </div>
 
             <div class="form-group row m-0 p-2">
@@ -44,14 +41,6 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group row m-0 p-2">
-                <label class="col-12 col-md-12 col-lg-2 col-form-label d-flex justify-content-start align-items-center">Jornada:</label>
-                <label class="col-12 col-md-4 col-lg-2 col-form-label d-flex justify-content-center align-items-center">Entrada:</label>
-                <div class="col-12 col-md-8 col-lg-3"><input type="time" class="form-control-plaintext input" id="horario_entrada" placeholder="Entrada" /></div>
-                <label class="col-12 col-md-4 col-lg-2 col-form-label d-flex justify-content-center align-items-center">Salida</label>
-                <div class="col-12 col-md-8 col-lg-3"><input type="time" class="form-control-plaintext input" id="horario_salida" placeholder="Salida" /></div>
-            </div>
-
         </div>
         <div class="col-12 col-sm-12" style="
              min-height: 30px;

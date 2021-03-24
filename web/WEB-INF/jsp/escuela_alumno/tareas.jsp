@@ -1,91 +1,84 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<div class="row col-12 m-0 p-0 reporte_seguridad_sanitaria" id="base_modulo_${id}">
-    <div class="row col-12 m-0 px-2 pt-3 pb-0" >
-        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 mx-auto container shadow p-3 mb-5 bg-white p-2">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <span class="title">
-                        Tareas
-                    </span>
-                </div>
-                <div class="card-body pt-0">
-                    <div class="row m-0 p-1 col-12">
-                        <hr>
-                        <form id="reporte_seguridad_form" class="p-1">
+<div class="row col-12 m-0 p-0 reporte_seguridad_sanitaria text-dark" id="base_modulo_${id}">
+    <div class="row col-12 m-0 p-2 pt-3 text-dark" id="base_modulo_RegistrarSucursal">
+        <div class="registro_institucion row m-0 p-2">
+            <div class="col-12 content text-dark" id="formulario_institucion">
+                <div class="caja row m-0 p-0 col-12">
+                    <div class="col-12"><h3 class="text-dark p-3 m-0">Tareas</h3></div>
+                    <div class="col-12 row m-0 p-2">
+                        <div class="col-12 col-sm-12 col-md-9 col-lg-10">
+                            <div class="row m-0 col-12">
+                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+                                    <label class="" for="registro_patronal">Grupo:</label>
+                                    <select class="form-control" name="sector" id="Materia_tipo_sector" placeholder="Seleccione uno" required="">
+                                        <option disabled="" selected="" value="">Selecciona una opción</option>
 
-                            <div class="row col-12 m-0 p-1">
-                                <div class="col-12 col-md-6 m-0 p-0">
-                                    <div class="row col-12 m-0 p-1 text_small mt-2">
-                                        <strong>Materias:</strong>
-                                    </div>
-                                    <div class="col-12 col-md-8 col-lg-3">
-                                        <select class="form-control" name="materia" id="materia" placeholder="Seleccione un valor" required="">
-                                            <option disabled="true" selected="true" value="">Seleccione un valor</option>
-                                            <option value="1">Materia1</option>
-                                            <option value="2">Materia2</option>
-                                        </select>
-                                    </div>
+                                        <option value="1">Grupo 1</option>
+                                        <option value="2">Grupo 2</option>
+                                        <option value="3">Grupo 3</option>
+                                    </select>
                                 </div>
-                                <div class="col-12 col-md-6 m-0 p-0">
-                                    <div class="row col-12 m-0 p-1 text_small mt-2">
-                                        <strong>Evaluacion:</strong>
-                                    </div>
-                                    <div class="col-12 col-md-8 col-lg-3">
-                                        <select class="form-control" name="evaluacion" id="evaluacion" placeholder="Seleccione un valor" required="">
-                                            <option disabled="true" selected="true" value="">Seleccione un valor</option>
-                                            <option value="Examen">Examen</option>
-                                            <option value="Tarea">Tarea</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row col-12 m-0 p-1">
-                                <div class="row col-12 m-0 p-1 text_small mt-2">
-                                    <strong>Tarea Anteriores</strong>
-                                </div>
-                                <div class="row col-12 m-0 p-1">
-                                    <table style="width:50%">
-                                        <tr>
-                                          <th>Tareas</th>
-                                          <th>Acciones</th> 
-                                        </tr>
-                                        <tr>
-                                          <td>Tarea n</td>
-                                          <td>                                           
-                                            <button type="button" class="btn btn-info">Ver</button>
-                                            <button type="button" class="btn btn-info">Entregar</button>
-                                          </td>
-                                        </tr>
-                                    </table>                                    
-                                </div>
-                            </div>
-                            <div class="row col-12 m-0 p-1">
-                                <div class="row col-12 m-0 p-1 text_small mt-2">
-                                    <strong>Tarea por Entregar</strong>
-                                </div>
-                                <div class="row col-12 m-0 p-1">
-                                    <table style="width:50%">
-                                        <tr>
-                                          <th>Tareas</th>
-                                          <th>Acciones</th> 
-                                        </tr>
-                                        <tr>
-                                          <td>Tarea n</td>
-                                          <td>                                           
-                                            <button type="button" class="btn btn-info">Ver</button>
-                                            <button type="button" class="btn btn-info">Entregar</button>
-                                          </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </form>
+                                <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+                                    <label class="" for="razon_social">Materia:</label>
+                                    <select class="form-control" name="sector" id="Materia_tipo_sector" placeholder="Seleccione uno" required="">
+                                        <option disabled="" selected="" value="">Selecciona una opción</option>
 
+                                        <option value="1">Materia 1</option>
+                                        <option value="2">Materia 2</option>
+                                        <option value="3">Materia 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>            
+            </div>
+            <div class="col-12 content text-dark" id="formulario_institucion">
+                <h3>Tareas Entregadas</h3>
+                <table style="width:100%" class="table table-hover">
+                   <thead>
+                       <tr>
+                         <th scope="col">Tarea</th>
+                         <th scope="col">Acciones</th> 
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                         <td scope="row">Materia n</td>
+
+                         <td scope="row">                                           
+                           <button class="btn btn-secondary" title="ver" data-toggle="modal" data-target="#tareaModal"><span>Ver</span></button>
+                           <button class="btn btn-success" title="Entregar" data-toggle="modal" data-target="#entregaModal"><span>Entregar</span></button>
+                           <button class="btn btn-info" title="Contacto"><span>Contacto</span></button>
+                         </td>
+                       </tr>
+                   </tbody>
+               </table>   
+            </div>
+            <hr>
+            <div class="col-12 content text-dark" id="formulario_institucion">
+                <h3>Tareas por Entregar</h3>
+                <table style="width:100%" class="table table-hover">
+                   <thead>
+                       <tr>
+                         <th scope="col">Tarea</th>
+                         <th scope="col">Acciones</th> 
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                         <td scope="row">Materia n</td>
+
+                         <td scope="row">                                           
+                           <button class="btn btn-secondary" title="ver" data-toggle="modal" data-target="#tareaModal"><span>Ver</span></button>
+                           <button class="btn btn-success" title="Entregar" data-toggle="modal" data-target="#entregaModal"><span>Entregar</span></button>
+                           <button class="btn btn-info" title="Contacto"><span>Contacto</span></button>
+                         </td>
+                       </tr>
+                   </tbody>
+               </table>   
+            </div>
         </div>
     </div>
     
@@ -222,3 +215,11 @@
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.js" var="modulo_misreportesJS" />
 <link href="${modulo_misreportesCSS}" rel="stylesheet"/>
 <script src="${modulo_misreportesJS}" ></script>
+<script>
+    function modalInfo(){
+        
+    }
+    function modalEntrega(){
+        
+    }
+</script>

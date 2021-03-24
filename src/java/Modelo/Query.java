@@ -64,7 +64,7 @@ public class Query {
             System.out.println(e);
         }
         System.out.println("Respuesta JSONArray en execute query");
-        System.out.println(jsonArray);
+        //System.out.println(jsonArray);
         return jsonArray;
     }
 
@@ -104,7 +104,7 @@ public class Query {
             System.out.println(e);
         }
         System.out.println("Respuesta JSONArray en execute query");
-        System.out.println(jsonArray);
+        //System.out.println(jsonArray);
         if (!jsonArray.isEmpty()) {
             return (JSONObject) jsonArray.get(0);
         } else {

@@ -63,7 +63,8 @@ public class InicializacionLocal {
         personalizacion.put("ph3", null);
         personalizacion.put("socket", "wss://empresas.claro360.com/plataforma360/SocketNotifications");
         personalizacion.put("ph2", "165");
-        personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4");
+//        personalizacion.put("recursos", "https://empresas.claro360.com/p360_v4");
+        personalizacion.put("recursos", "http://localhost:8080/p360");
         personalizacion.put("t1", "Empresas");
         personalizacion.put("logo_modal", "https://empresas.claro360.com/p360_v4/Img/Logos/Claro%20360.png");
         personalizacion.put("t2", "Empresas360");
@@ -71,10 +72,11 @@ public class InicializacionLocal {
         personalizacion.put("t3", "");
 
         JSONObject server = new JSONObject();
-        server.put("bd", "empresas");
+        server.put("bd", "cursos");
         server.put("dep_base", false);
         server.put("lista_blanca", false);
-        server.put("recursos", "https://empresas.claro360.com/p360_v4");
+//        server.put("recursos", "https://empresas.claro360.com/p360_v4");
+        server.put("recursos", "http://localhost:8080/p360");
         server.put("validar_ip", false);
 
         json.put("inferiores", inferiores);

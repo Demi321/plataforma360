@@ -1,50 +1,45 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<div class="row col-12 m-0 p-0 reporte_seguridad_sanitaria" id="base_modulo_${id}">
+<div class="row col-12 m-0 p-0 reporte_seguridad_sanitaria text-dark" id="base_modulo_${id}">
     <div class="row col-12 m-0 px-2 pt-3 pb-0" >
-        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-7 mx-auto container shadow p-3 mb-5 bg-white p-2">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <span class="title">
-                        Horario
-                    </span>
+        <div class="card col-12">
+            <div class="card-body pt-0">
+                <span class="title">
+                    Horario
+                </span>
+                <div class="row col-12 m-0 p-1">
+
+                    <table style="width:100%" class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th scope="col">Materia</th>
+                              <th scope="col">Grupo</th> 
+                              <th scope="col">Lunes</th> 
+                              <th scope="col">Martes</th> 
+                              <th scope="col">Miercoles</th> 
+                              <th scope="col">Jueves</th> 
+                              <th scope="col">Viernes</th> 
+                              <th scope="col">Acciones</th> 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              <td scope="row">Materia n</td>
+                              <td scope="row">Gruopo n</td>
+                              <td scope="row">Hora n</td>
+                              <td scope="row">Hora n</td>
+                              <td scope="row">Hora n</td>
+                              <td scope="row">Hora n</td>
+                              <td scope="row">Hora n</td>
+                              <td scope="row">                                           
+                                <button type="button" class="btn btn-info">Unirse</button>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>                                    
                 </div>
-                <div class="card-body pt-0">
-                    <div class="row m-0 p-1 col-12">
-                        <hr>
-                            <div class="row col-12 m-0 p-1">
-                                
-                                <div class="row col-12 m-0 p-1">
-                                    <table style="width:50%">
-                                        <tr>
-                                          <th>Materia</th>
-                                          <th>Grupo</th> 
-                                          <th>Lunes</th> 
-                                          <th>Martes</th> 
-                                          <th>Miercoles</th> 
-                                          <th>Jueves</th> 
-                                          <th>Viernes</th> 
-                                          <th>Acciones</th> 
-                                        </tr>
-                                        <tr>
-                                          <td>Materia n</td>
-                                          <td>Gruopo n</td>
-                                          <td>Hora n</td>
-                                          <td>Hora n</td>
-                                          <td>Hora n</td>
-                                          <td>Hora n</td>
-                                          <td>Hora n</td>
-                                          <td>                                           
-                                            <button type="button" class="btn btn-info">Unirse</button>
-                                          </td>
-                                        </tr>
-                                    </table>                                    
-                                </div>
-                            </div>
-                       </div>
-                </div>
-            </div>            
-        </div>
+            </div>
+        </div>            
     </div>
 </div>
 

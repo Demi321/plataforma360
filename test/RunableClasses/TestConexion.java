@@ -8,6 +8,7 @@ package RunableClasses;
 import Config.config;
 import Encriptacion.Encriptar;
 import Modelo.Conexion;
+import Modelo.Query;
 import com.opentok.exception.OpenTokException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,8 +28,32 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class TestConexion {
 
     public static void main(String[] args) throws OpenTokException, InterruptedException, Exception {
-      String query="Select * from proyecto";
-        System.out.println(consultaQuery(query));
+      String query="UPDATE tipo_usuario set institucion='Demo_update' where id=100;";
+        System.out.println(Query.update(query));
+        JSONObject json = new JSONObject();
+         json.put("institucion", "demo update 2");
+         json.put("columna1", "10");
+         json.put("columna2", "20");
+         json.put("columna3", "30");
+         JSONObject where = new JSONObject();
+         where.put("id", "2");
+         System.out.println(Query.update(Query.createQueryUpdateANDwithColumns("tipo_usuario", json, where)));
+                 
+      //usar metodo de insert
+       /* query="INSERT INTO `cursos`.`tipo_usuario` (`institucion`) VALUES ('demo3');";
+        
+        System.out.println(Query.insert(query));
+         query="Select * from tipo_usuario;";
+         JSONObject json = new JSONObject();
+         json.put("institucion", "demo 10");
+         json.put("columna1", "1");
+         json.put("columna2", "2");
+         
+         System.out.println(Query.insert(Query.createQueryInsertWithColumns("tipo_usuario", json)));
+      // System.out.println(consultaQuery(query));
+        System.out.println(Query.select(query));
+        System.out.println(Query.execute(query));*/
+        
     }
     
     
