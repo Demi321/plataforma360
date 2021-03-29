@@ -273,6 +273,33 @@ public class ControladorGET_escuela360 {
         return "administracion_cursos/plantilla_admin";
         //return "Login";
     }
+    @RequestMapping(value = "/registro_grupo", method = RequestMethod.GET)
+    private String registro_grupo(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "administracion_cursos/grupo";
+        //return "Login";
+    }
+    @RequestMapping(value = "/registro_materia", method = RequestMethod.GET)
+    private String registro_materia(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "administracion_cursos/materia";
+        //return "Login";
+    }
+    @RequestMapping(value = "/registro_alumno", method = RequestMethod.GET)
+    private String registro_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        return "administracion_cursos/registro_alumno";
+        //return "Login";
+    }
     
     @RequestMapping(value = "/API/registro_institucion", method = RequestMethod.GET)
     @ResponseBody
@@ -291,6 +318,101 @@ public class ControladorGET_escuela360 {
         JSONObject respuesta=respuesta(true, "informacion recibida");
         respuesta.put("json", json);
         return respuesta;
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/registro/materia", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_materia(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        String table = "materia";
+        String query = "INSERT INTO materia (nombre_materia,id_sucursal,id_usuario) VALUES ('"+json.get("Registrar_materia")+"',"+json.get("Registrar_sucursal")+","+json.get("Registrar_profesor")+");"; 
+        
+        Query.insert(query);
+        
+        JSONObject respuesta=respuesta(true, "Materia Creada");
+        respuesta.put("json", json);
+        return respuesta;
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/registro/grupo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_grupo(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        String table = "materia";
+        String query = "INSERT INTO grupo (nombre_grupo,id_sucursal) VALUES ('"+json.get("Registrar_materia")+"',"+json.get("Registrar_sucursal")+");"; 
+        
+        int id = Query.insert(query);
+        
+        JSONObject respuesta=respuesta(true, "Grupo Creado");
+        respuesta.put("json", json);        
+        respuesta.put("id", id);
+
+        return respuesta;
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/registro/grupo_horario", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_grupo_horario(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        //String table = "materia";
+        String query = "INSERT INTO profesor_horario (id_usuario,id_grupo,id_materia) "
+                + "VALUES ("+json.get("profesor_grupo")+","+json.get("grupo_escuela")+","+json.get("materia_grupo")+");"; 
+        
+        int id = Query.insert(query);
+        
+        String lunes = (String) json.get("hora_lunes");
+        String martes = (String) json.get("hora_martes");
+        String miercoles = (String) json.get("hora_miercoles");
+        String jueves = (String) json.get("hora_jueves");
+        String viernes = (String) json.get("hora_viernes");
+
+         if (!lunes.isEmpty()){
+             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
+                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_lunes")+",1);"; 
+            Query.insert(query);
+         }
+          if (!martes.isEmpty()){
+             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
+                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_martes")+",2);"; 
+            Query.insert(query);
+         }
+           if (!miercoles.isEmpty()){
+             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
+                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_miercoles")+",3);"; 
+            Query.insert(query);
+         }
+            if (!jueves.isEmpty()){
+             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
+                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_jueves")+",4);"; 
+            Query.insert(query);
+         }
+             if (!viernes.isEmpty()){
+             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
+                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_viernes")+",5);"; 
+            Query.insert(query);
+         }
+        
+        JSONObject respuesta=respuesta(true, "Grupo Creado");
+        respuesta.put("json", json);        
+        //respuesta.put("id", id);
+
+        return respuesta;
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/registro_grupo_horario", method = RequestMethod.GET)
+    private String registro_grupo_horario(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        int grupo = Integer.parseInt(sesion.getParameter("indice"));
+        model.addAttribute("id_grupo", grupo);
+        return "administracion_cursos/registro_grupo_horario";
         //return "Login";
     }
 }

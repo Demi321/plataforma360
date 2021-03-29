@@ -38,9 +38,10 @@ public class config {
     private static String PATH = null;
     //private static String MYSQL_BD = null;
     private static String MYSQL_BD = "cursos";
-    private static String MYSQL_login = "usrdesarrollo";
-    //private static String MYSQL_login = "root";
-    private static String MYSQL_password = "@D3sarroll0123";
+   // private static String MYSQL_login = "usrdesarrollo";
+    private static String MYSQL_login = "prueba";
+    //private static String MYSQL_password = "@D3sarroll0123";
+    private static String MYSQL_password = "prueba147";
     //private static String MYSQL_password = "prueba12345";
     private static String URL_CONTROLADOR = "https://plataforma911.ml/CONTROLADOR/";
     //private static String URL_CONTROLADOR = "http://localhost:8080/CONTROLADOR/";

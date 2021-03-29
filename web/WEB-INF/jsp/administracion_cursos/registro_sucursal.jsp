@@ -166,10 +166,9 @@
                                     Sucursal en linea
                                     <input
                                         type="radio"
-                                        name="1"
-                                        value="patron_primario"
-                                        id="RegistrarSucursal_radio_patron_primario"
-                                        onchange="document.getElementById('RegistrarSucursal_patron_primario').value = $('#RegistrarSucursal_radio_patron_primario').is(':checked');document.getElementById('RegistrarSucursal_proveedor').value = $('#RegistrarSucursal_radio_proveedor').is(':checked');"
+                                        name="tipoescuela"
+                                        value="modo_linea"
+                                        id="RegistrarSucursal_radio_linea"
                                         />
                                 </label>
                             </div>
@@ -181,19 +180,18 @@
                                     Sucursal escolarizada
                                     <input
                                         type="radio"
-                                        name="1"
-                                        value="patron_primario"
-                                        id="RegistrarSucursal_radio_patron_primario"
-                                        onchange="document.getElementById('RegistrarSucursal_patron_primario').value = $('#RegistrarSucursal_radio_patron_primario').is(':checked');document.getElementById('RegistrarSucursal_proveedor').value = $('#RegistrarSucursal_radio_proveedor').is(':checked');"
+                                        name="tipoescuela"
+                                        value="modo_escolarizada"
+                                        id="RegistrarSucursal_radio_escolarizada"
                                         />
                                 </label>
                             </div>
                             <input type="hidden" name="patron_primario" id="RegistrarSucursal_patron_primario" value="false" required="" />
                         </div>
 
-                        <div class="col-12 text-left mt-1"><h7 class="text-dark">Dirección</h7></div>
+                        <div class="col-12 text-left mt-1 DireccionSucursal"><h7 class="text-dark">Dirección</h7></div>
 
-                        <div class="form-group row m-0 p-2 pt-4">
+                        <div class="form-group row m-0 p-2 pt-4 DireccionSucursal" >
                             <div class="row m-0 col-sm-12 col-md-8 p-0">
                                 <label class="col-sm-12 col-md-12 col-form-label d-flex align-items-center">Dirección:</label>
                                 <div class="col-sm-12 col-md-12 d-flex align-items-center">
@@ -284,6 +282,21 @@
             </form>
         </div>
     </div>
-
-
 </div>
+
+<script>
+    $('.DireccionSucursal').hide();
+    
+    $("input[name='tipoescuela']:radio").change(function(){
+        if($(this).val() == 'modo_escolarizada')
+        {
+          $('.DireccionSucursal').show()
+        }
+        else 
+        {
+            $('.DireccionSucursal').hide()
+        }
+
+    });
+    
+</script>

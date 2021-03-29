@@ -28,8 +28,19 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class TestConexion {
 
     public static void main(String[] args) throws OpenTokException, InterruptedException, Exception {
-      String query="UPDATE tipo_usuario set institucion='Demo_update' where id=100;";
-        System.out.println(Query.update(query));
+      String query="";
+      //query = "INSERT INTO `cursos`.`materia` (`nombre_materia`,`id_sucursal`,`id_usuario`) VALUES ('Matematicas',1,1);";
+      //System.out.println(Query.insert(query));
+      query="SELECT * FROM materia;";
+        System.out.println(Query.select(query));
+        System.out.println(consultaQuery(query));
+        
+        //String table = "materia";
+        query = "INSERT INTO grupo (nombre_grupo,id_sucursal) VALUES ('prueba2',1);"; 
+        
+        System.out.println(Query.insert(query));
+
+        /*System.out.println(Query.update(query));
         JSONObject json = new JSONObject();
          json.put("institucion", "demo update 2");
          json.put("columna1", "10");
@@ -38,6 +49,7 @@ public class TestConexion {
          JSONObject where = new JSONObject();
          where.put("id", "2");
          System.out.println(Query.update(Query.createQueryUpdateANDwithColumns("tipo_usuario", json, where)));
+        */
                  
       //usar metodo de insert
        /* query="INSERT INTO `cursos`.`tipo_usuario` (`institucion`) VALUES ('demo3');";
