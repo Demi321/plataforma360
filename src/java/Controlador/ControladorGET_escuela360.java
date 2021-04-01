@@ -279,6 +279,12 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        String query="SELECT * FROM grupo;";
+         
+         JSONArray jsonArray = new JSONArray();
+         jsonArray = Query.consultaQuery(query);
+         model.addAttribute("grupos", jsonArray);
+         System.out.println(jsonArray.get(0));
         return "administracion_cursos/grupo";
         //return "Login";
     }
@@ -288,6 +294,14 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        String query="SELECT * FROM materia;";
+         
+         JSONArray jsonArray = new JSONArray();
+         jsonArray = Query.consultaQuery(query);
+         model.addAttribute("materias", jsonArray);
+         System.out.println(jsonArray.get(0));
+         //model.addAttribute("numeroMaterias", jsonArray.size());
+
         return "administracion_cursos/materia";
         //return "Login";
     }
@@ -297,7 +311,59 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        String query="SELECT * FROM grupo;";
+         
+         JSONArray jsonArray = new JSONArray();
+         jsonArray = Query.consultaQuery(query);
+         
+          query="select g.nombre_grupo, c.* from cursos.registro_alumno c \n" +
+        "inner join  cursos.grupo g on c.id_grupo = g.id_grupo;";
+          JSONArray alumno = new JSONArray();
+         alumno = Query.consultaQuery(query);
+          
+         model.addAttribute("grupo", jsonArray);
+         model.addAttribute("alumno", alumno);
         return "administracion_cursos/registro_alumno";
+        //return "Login";
+    }
+    @RequestMapping(value = "/API/registro/alumno_grupo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_alumno_grupo(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        //int bandera = (int) json.get("bandera");
+        //String table = "materia";
+        String query = "INSERT INTO registro_alumno (id_usuario,id_grupo) "
+                + "VALUES ("+json.get("registra_alumno")+","+json.get("registra_grupo")+");"; 
+        
+        int id = Query.insert(query);
+        
+       
+        
+        JSONObject respuesta=respuesta(true, "Alumno Inscrito");
+        respuesta.put("json", json);        
+        //respuesta.put("id", id);
+
+        return respuesta;
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/elimina/alumno_horario", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_elimina_alumno_horario(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        int id_alumnno = (int) json.get("id_alumno");
+        //String table = "materia";
+        String query = "DELETE FROM registro_alumno WHERE (id_usuario = "+id_alumnno+");"; 
+        
+        Query.update(query);
+       
+        JSONObject respuesta=respuesta(true, "Alumno No Inscrito");
+        respuesta.put("id", id_alumnno);        
+        //respuesta.put("id", id);
+
+        return respuesta;
         //return "Login";
     }
     
@@ -341,7 +407,8 @@ public class ControladorGET_escuela360 {
     private JSONObject api_registro_grupo(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println(json);
         String table = "materia";
-        String query = "INSERT INTO grupo (nombre_grupo,id_sucursal) VALUES ('"+json.get("Registrar_materia")+"',"+json.get("Registrar_sucursal")+");"; 
+        String query = "INSERT INTO grupo (nombre_grupo,id_sucursal,nivel) VALUES"
+                + " ('"+json.get("Registrar_materia")+"',"+json.get("Registrar_sucursal")+","+json.get("nivel_grupo")+");"; 
         
         int id = Query.insert(query);
         
@@ -358,50 +425,117 @@ public class ControladorGET_escuela360 {
     private JSONObject api_registro_grupo_horario(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println(json);
         
+        int bandera = (int) json.get("bandera");
         //String table = "materia";
-        String query = "INSERT INTO profesor_horario (id_usuario,id_grupo,id_materia) "
-                + "VALUES ("+json.get("profesor_grupo")+","+json.get("grupo_escuela")+","+json.get("materia_grupo")+");"; 
+        String query = "INSERT INTO grupo_horario (id_usuario,id_grupo,id_materia,lunes,martes,miercoles,jueves,viernes) "
+                + "VALUES ("+json.get("profesorhorario"+bandera)+","+json.get("id_grupo")+","+json.get("materia_horario"+bandera)+",'"
+                +json.get("lunes_horario"+bandera)+"','"+json.get("martes_horario"+bandera)+"','"+json.get("miercoles_horario"+bandera)+"','"
+                +json.get("jueves_horario"+bandera)+"','"+json.get("viernes_horario"+bandera)+"');"; 
         
         int id = Query.insert(query);
         
-        String lunes = (String) json.get("hora_lunes");
-        String martes = (String) json.get("hora_martes");
-        String miercoles = (String) json.get("hora_miercoles");
-        String jueves = (String) json.get("hora_jueves");
-        String viernes = (String) json.get("hora_viernes");
-
-         if (!lunes.isEmpty()){
-             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
-                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_lunes")+",1);"; 
-            Query.insert(query);
-         }
-          if (!martes.isEmpty()){
-             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
-                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_martes")+",2);"; 
-            Query.insert(query);
-         }
-           if (!miercoles.isEmpty()){
-             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
-                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_miercoles")+",3);"; 
-            Query.insert(query);
-         }
-            if (!jueves.isEmpty()){
-             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
-                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_jueves")+",4);"; 
-            Query.insert(query);
-         }
-             if (!viernes.isEmpty()){
-             query = "INSERT INTO grupo_horario (id_grupo,id_materia,id_horario,id_dia) "
-                + "VALUES ("+json.get("grupo_escuela")+","+json.get("materia_grupo")+","+json.get("hora_viernes")+",5);"; 
-            Query.insert(query);
-         }
+       
         
-        JSONObject respuesta=respuesta(true, "Grupo Creado");
+        JSONObject respuesta=respuesta(true, "Horario Creado");
         respuesta.put("json", json);        
         //respuesta.put("id", id);
 
         return respuesta;
         //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/elimina/grupo_horario", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_elimina_grupo_horario(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        int id_grupo = (int) json.get("id_grupo");
+        //String table = "materia";
+        String query = "DELETE FROM grupo_horario WHERE (id_grupo_horario = "+id_grupo+");"; 
+        
+        Query.update(query);
+       
+        JSONObject respuesta=respuesta(true, "Horario Eliminado");
+        respuesta.put("id", id_grupo);        
+        //respuesta.put("id", id);
+
+        return respuesta;
+        //return "Login";
+    }
+    
+     @RequestMapping(value = "/API/elimina/grupo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_elimina_grupo(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        int id_grupo = (int) json.get("id_grupo");
+        //String table = "materia";
+        String query = "SELECT count(id_grupo) FROM grupo_horario WHERE (id_grupo = "+id_grupo+");"; 
+        
+        
+        JSONObject jason = new JSONObject();
+        jason = Query.select(query);
+        
+        //int indice = (int) jason.get("count(id_grupo)");
+       
+        System.out.println( jason.get("count(id_grupo)")+"hola");
+        JSONObject respuesta = new JSONObject();
+        
+        if( jason.get("count(id_grupo)").equals("0")){
+            query = "DELETE FROM grupo WHERE (id_grupo = "+id_grupo+");";
+            Query.update(query);
+                   
+             respuesta=respuesta(true, "Horario Eliminado");
+            respuesta.put("id", id_grupo);        
+            //respuesta.put("id", id);
+            return respuesta;
+           
+        }else{
+             respuesta=respuesta(true, "Horario No Eliminado, revise que que no contenga horario");
+            respuesta.put("id", id_grupo);        
+            //respuesta.put("id", id);
+
+            return respuesta;
+            
+
+        }
+    }
+    @RequestMapping(value = "/API/elimina/materia", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_elimina_materia(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        int id_materia = (int) json.get("id_materia");
+        //String table = "materia";
+        String query = "SELECT count(id_materia) FROM grupo_horario WHERE (id_materia = "+id_materia+");"; 
+        
+        
+        JSONObject jason = new JSONObject();
+        jason = Query.select(query);
+        
+        //int indice = (int) jason.get("count(id_grupo)");
+       
+        //System.out.println( jason.get("count(id_grupo)")+"hola");
+        JSONObject respuesta = new JSONObject();
+        
+        if( jason.get("count(id_materia)").equals("0")){
+            query = "DELETE FROM materia WHERE (id_materia = "+id_materia+");";
+            Query.update(query);
+                   
+             respuesta=respuesta(true, "Materia Eliminada");
+            respuesta.put("id", id_materia);        
+            //respuesta.put("id", id);
+            return respuesta;
+           
+        }else{
+             respuesta=respuesta(true, "Materia No Eliminada, revise que que no contenga horario");
+            respuesta.put("id", id_materia);        
+            //respuesta.put("id", id);
+
+            return respuesta;
+            
+
+        }
     }
     
     @RequestMapping(value = "/registro_grupo_horario", method = RequestMethod.GET)
@@ -411,7 +545,28 @@ public class ControladorGET_escuela360 {
             return autorizacion;
         }
         int grupo = Integer.parseInt(sesion.getParameter("indice"));
-        model.addAttribute("id_grupo", grupo);
+        String query="SELECT id_grupo, nombre_grupo FROM grupo where id_grupo = "+grupo+";";
+        JSONArray jsonO = new JSONArray();
+        jsonO = Query.selectArray(query);
+        
+        query="select g.nombre_grupo, m.nombre_materia, c.* from cursos.grupo_horario c \n" +
+        "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+        "inner join  cursos.materia m on c.id_materia = m.id_materia\n" +
+        "where c.id_grupo = "+grupo+";";
+        JSONArray horario = new JSONArray();
+        horario = Query.selectArray(query);
+        
+        query="SELECT * FROM materia;";
+        JSONArray materias = new JSONArray();
+        materias = Query.selectArray(query);
+        
+       
+        System.out.println(horario);
+
+        model.addAttribute("grupo", jsonO);
+        model.addAttribute("materias", materias);
+        model.addAttribute("horario", horario);
+         
         return "administracion_cursos/registro_grupo_horario";
         //return "Login";
     }

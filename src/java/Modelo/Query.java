@@ -113,6 +113,51 @@ public class Query {
         return null;
     }
 
+    static public JSONArray selectArray(String query) {
+        JSONArray jsonArray = new JSONArray();
+        try {
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+
+            if (con != null) {
+                //System.out.println(con);
+                Statement st;
+                st = con.createStatement();
+
+                //System.out.println("esperando....");
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    //String name = rsmd.getColumnLabel(1);
+                    //System.out.println(name);
+                    int count = rsmd.getColumnCount();
+                    //System.out.println(count);
+                    JSONObject json = new JSONObject();
+                    for (int i = 1; i <= count; i++) {
+                        json.put(rsmd.getColumnLabel(i), rs.getString(i));
+                    }
+                    jsonArray.add(json);
+                    //System.out.println(json);
+                }
+
+                //System.out.println(jsonArray);
+                st.close();
+            }
+            conn.cerrarConexion();
+        } catch (SQLException e) {
+            System.out.println(query);
+            System.out.println(e);
+        }
+        System.out.println("Respuesta JSONArray en execute query");
+        //System.out.println(jsonArray);
+        if (!jsonArray.isEmpty()) {
+            return jsonArray;
+        } else {
+            System.out.println(query);
+        }
+        return null;
+    }
+    
     public static boolean update(String query) {
         System.out.println(query);
         boolean actualizado = false;
@@ -885,5 +930,42 @@ public class Query {
         
         return hourFormat.format(date);
         
+    }
+    
+    static public JSONArray consultaQuery(String query){
+        JSONArray jsonArray = new JSONArray();
+        try {
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+
+            if (con != null) {
+                System.out.println(con);
+                Statement st;
+                st = con.createStatement();
+
+                System.out.println("esperando....");
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()) {
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    String name = rsmd.getColumnName(1);
+                    //System.out.println(name);
+                    int count = rsmd.getColumnCount();
+                    //System.out.println(count);
+                    JSONObject json = new JSONObject();
+                    for(int i=1;i<=count;i++){
+                        json.put(rsmd.getColumnName(i),rs.getString(i));
+                    }
+                    jsonArray.add(json);
+                    //System.out.println(json);
+                }
+                
+                //System.out.println(jsonArray);
+                st.close();
+            }
+            conn.cerrarConexion();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return jsonArray;
     }
 }

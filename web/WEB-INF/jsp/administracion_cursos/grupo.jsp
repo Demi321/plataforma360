@@ -5,6 +5,8 @@
 --%>
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="row col-12 m-0 p-2 pt-3 text-dark" id="base_modulo_Registrarcurso">
     <!--    <h3>Registra y activa una empresa</h3>-->
     <div class="registro_institucion row m-0 p-2">
@@ -21,6 +23,10 @@
                                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
                                         <label class="" for="materia_nombre">Nombre Grupo:</label>
                                         <input type="text" name="materia_nombre" class="form-control" id="Registrar_materia" placeholder="Nombre de Materia" required="" />
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
+                                        <label class="" for="materia_nombre">Nivel o Grado Grupo:</label>
+                                        <input type="number" class="form-control" id="nivel_grupo" placeholder="Nombre de Materia" required="" />
                                     </div>
                                    
                                     <div class="col-12 col-md-6 col-lg-6 col-xl-6 mt-2">
@@ -39,9 +45,61 @@
                 </div>
                 
             </form>
+              <div class="col-12 content text-dark" id="formulario_institucion">
+                <h3>Grupos Creados: ${materias.size()}</h3>
+                
+                <table style="width:100%" class="table table-hover">
+                   <thead>
+                       <tr>
+                            <th scope="col">Grupo</th>
+                            <th scope="col">Nivel</th>
+                            <th scope="col">Sucursal</th>
+                            <th scope="col">Acciones</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <c:forEach items="${grupos}" var="grupo" varStatus="loop">
+                            <tr>
+                                <td scope="row">${grupo.nombre_grupo} </td>
+                                <td scope="row">${grupo.nivel}</td>
+                                <td scope="row">${grupo.id_sucursal}</td>
+
+                                <td scope="row">                                           
+                                    <button class="btn btn-secondary" title="editar grupo" onclick="editarGrupo(${grupo.id_grupo})"><span>Editar</span></button>
+                                    <button class="btn btn-danger" title="eliminar grupo" onclick="eliminarGrupo(${grupo.id_grupo})"><span>Eliminar</span></button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                       
+                   </tbody>
+               </table> 
+            </div>
         </div>
     </div>
 </div>
 
 <spring:url value="${pathRecursos}/escuelas/registrargrupo/registrargrupo.js" var="modulo_registrargrupoJS" />
 <script src="${modulo_registrargrupoJS}" ></script>
+<script>
+    function eliminarGrupo(indice){
+    
+        let json = {};
+        json.id_grupo = indice;
+        
+        console.log(json);
+       RequestPOST("/API/elimina/grupo", json).then((response) => {
+            console.log(response);
+            swal.fire({
+                text: response.mensaje
+            }).then(() => {
+                //recargar por access token 
+                if (response.success) {
+                    var id = response.id
+                    $('#base_modulo_Registrarcurso').load('registro_grupo')
+                    /*let url = window.location.protocol + "//" + window.location.host + "/" + DEPENDENCIA + "/";
+                    acceso_externo(url);*/
+                }
+            });
+        });
+    }
+</script>

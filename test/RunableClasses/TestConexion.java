@@ -36,9 +36,9 @@ public class TestConexion {
         System.out.println(consultaQuery(query));
         
         //String table = "materia";
-        query = "INSERT INTO grupo (nombre_grupo,id_sucursal) VALUES ('prueba2',1);"; 
+       // query = "INSERT INTO grupo (nombre_grupo,id_sucursal) VALUES ('prueba2',1);"; 
         
-        System.out.println(Query.insert(query));
+        //System.out.println(Query.insert(query));
 
         /*System.out.println(Query.update(query));
         JSONObject json = new JSONObject();
@@ -52,7 +52,7 @@ public class TestConexion {
         */
                  
       //usar metodo de insert
-       /* query="INSERT INTO `cursos`.`tipo_usuario` (`institucion`) VALUES ('demo3');";
+       /*query="INSERT INTO `cursos`.`tipo_usuario` (`institucion`) VALUES ('demo3');";
         
         System.out.println(Query.insert(query));
          query="Select * from tipo_usuario;";

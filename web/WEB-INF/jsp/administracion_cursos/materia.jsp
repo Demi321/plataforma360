@@ -5,6 +5,7 @@
 --%>
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="row col-12 m-0 p-2 pt-3 text-dark" id="base_modulo_RegistrarSucursal">
     <!--    <h3>Registra y activa una empresa</h3>-->
     <div class="registro_institucion row m-0 p-2">
@@ -48,9 +49,60 @@
                 </div>
                 
             </form>
+            <div class="col-12 content text-dark" id="formulario_institucion">
+                <h3>Materias Creadas: ${materias.size()}</h3>
+                
+                <table style="width:100%" class="table table-hover">
+                   <thead>
+                       <tr>
+                         <th scope="col">Materia</th>
+                         <th scope="col">Profesor Encargado</th>
+                         <th scope="col">Sucursal</th>
+                         <th scope="col">Acciones</th> 
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <c:forEach items="${materias}" var="materia">
+                            <tr>
+                                <td scope="row">${materia.nombre_materia}</td>
+                                <td scope="row">${materia.id_usuario}</td>
+                                <td scope="row">${materia.id_sucursal}</td>
+
+                                <td scope="row">                                           
+                                    <button class="btn btn-danger" title="eliminar grupo" onclick="eliminarMateria(${materia.id_materia})"><span>Eliminar</span></button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                       
+                   </tbody>
+               </table> 
+            </div>
         </div>
     </div>
 </div>
 
 <spring:url value="${pathRecursos}/escuelas/registrarmateria/registrarmateria.js" var="modulo_registrarmateriaJS" />
 <script src="${modulo_registrarmateriaJS}" ></script>
+<script>
+    function eliminarMateria(indice){
+    
+        let json = {};
+        json.id_materia = indice;
+        
+        console.log(json);
+       RequestPOST("/API/elimina/materia", json).then((response) => {
+            console.log(response);
+            swal.fire({
+                text: response.mensaje
+            }).then(() => {
+                //recargar por access token 
+                if (response.success) {
+                    var id = response.id
+                    $('#base_modulo_RegistrarSucursal').load('registro_materia')
+                    /*let url = window.location.protocol + "//" + window.location.host + "/" + DEPENDENCIA + "/";
+                    acceso_externo(url);*/
+                }
+            });
+        });
+    }
+</script>
