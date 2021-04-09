@@ -58,7 +58,7 @@ public class SocketEndPoint {
     @OnOpen
     public void handleOpen(Session userSession) throws IOException {
         chatroomUsers.add(userSession);
-        //System.out.println("Alguien se conecto al webSocket");
+        System.out.println("Alguien se conecto al webSocket");
         JSONObject json = new JSONObject();
         json.put("inicializacionSG", true);
         json.put("idSocket", userSession.getId());

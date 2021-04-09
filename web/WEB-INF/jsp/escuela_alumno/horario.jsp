@@ -1,4 +1,5 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row col-12 m-0 p-0 reporte_seguridad_sanitaria text-dark" id="base_modulo_${id}">
     <div class="row col-12 m-0 px-2 pt-3 pb-0" >
@@ -7,36 +8,39 @@
                 <span class="title">
                     Horario
                 </span>
-                <div class="row col-12 m-0 p-1">
+                <div class="row col-12 m-0 p-1 text-body">
+                    <table style="width:100%" class="table table-hover" id="tablaHorario">
+                       <thead>
+                           <tr>
+                                <th scope="col">Grupo</th>
+                                <th scope="col">Materia</th>
+                                <th scope="col">Lunes</th>
+                                <th scope="col">Martes</th>
+                                <th scope="col">Miercoles</th>
+                                <th scope="col">Jueves</th>
+                                <th scope="col">Viernes</th>
+                                <th scope="col">Acciones</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <c:forEach items="${horario}" var="h" >
+                               <tr>
+                                   <td>${h.nombre_grupo}</td>
+                                   <td>${h.nombre_materia}</td>
+                                   <td>${h.lunes}</td>
+                                   <td>${h.martes}</td>
+                                   <td>${h.miercoles}</td>
+                                   <td>${h.jueves}</td>
+                                   <td>${h.viernes}</td>
+                                   <td>
+                                       <button class="btn btn-primary"><span>Unirse</span></button>
+                                   </td>
+                                </tr>
+                           </c:forEach>
 
-                    <table style="width:100%" class="table table-hover">
-                        <thead>
-                            <tr>
-                              <th scope="col">Materia</th>
-                              <th scope="col">Grupo</th> 
-                              <th scope="col">Lunes</th> 
-                              <th scope="col">Martes</th> 
-                              <th scope="col">Miercoles</th> 
-                              <th scope="col">Jueves</th> 
-                              <th scope="col">Viernes</th> 
-                              <th scope="col">Acciones</th> 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                              <td scope="row">Materia n</td>
-                              <td scope="row">Gruopo n</td>
-                              <td scope="row">Hora n</td>
-                              <td scope="row">Hora n</td>
-                              <td scope="row">Hora n</td>
-                              <td scope="row">Hora n</td>
-                              <td scope="row">Hora n</td>
-                              <td scope="row">                                           
-                                <button type="button" class="btn btn-info">Unirse</button>
-                              </td>
-                            </tr>
-                        </tbody>
-                    </table>                                    
+
+                       </tbody>
+                   </table>                                     
                 </div>
             </div>
         </div>            

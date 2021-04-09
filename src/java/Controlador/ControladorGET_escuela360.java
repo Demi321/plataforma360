@@ -171,6 +171,19 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        String query=null;
+        query="SELECT  e.id_evaluacion, e.titulo_evaluacion, e.descripcion, g.nombre_grupo, m.nombre_materia, t.descripcion as tipo, e.fecha_entrega FROM cursos.registro_alumno a\n" +
+                "inner join cursos.evaluacion e on a.id_grupo = e.id_grupo\n" +
+                "inner join cursos.grupo g on e.id_grupo = g.id_grupo\n" +
+                "inner join cursos.materia m on e.id_materia = m.id_materia\n" +
+                "inner join cursos.tipoevaluacion t on e.id_tipo_evaluacion = t.id_tipo_evaluacion\n" +
+                "where a.id_usuario = 12;";
+        JSONArray tareas = new JSONArray();
+        tareas = Query.selectArray(query);
+        
+        System.out.println(tareas);
+
+        model.addAttribute("tareas", tareas);
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_alumno/tareas");
         //return "Login";
     }
@@ -181,6 +194,8 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        
+        
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_alumno/evaluacion");
         //return "Login";
     }
@@ -191,6 +206,18 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+         String query=null;
+        query="select g.nombre_grupo, m.nombre_materia, gh.* from cursos.registro_alumno c\n" +
+                "inner join cursos.grupo_horario gh on gh.id_grupo = c.id_grupo\n" +
+                "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+                "inner join  cursos.materia m on gh.id_materia = m.id_materia\n" +
+                "where c.id_usuario = 12;";
+        JSONArray horario = new JSONArray();
+        horario = Query.selectArray(query);
+        
+        System.out.println(horario);
+
+        model.addAttribute("horario", horario);
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_alumno/horario");
         //return "Login";
     }
@@ -221,6 +248,18 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        String query=null;
+                
+        query="select g.nombre_grupo, m.nombre_materia, c.* from cursos.grupo_horario c \n" +
+        "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+        "inner join  cursos.materia m on c.id_materia = m.id_materia\n" +
+        "where c.id_usuario = 1;";
+        JSONArray horario = new JSONArray();
+        horario = Query.selectArray(query);
+        
+        System.out.println(horario);
+
+        model.addAttribute("horario", horario);
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/horario");
         //return "Login";
     }
@@ -242,6 +281,32 @@ public class ControladorGET_escuela360 {
         if (autorizacion != null) {
             return autorizacion;
         }
+        
+         String query=null;
+                
+        query="select g.nombre_grupo, c.id_grupo from cursos.grupo_horario c \n" +
+        "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+        "where c.id_usuario = 1;";
+        JSONArray grupo = new JSONArray();
+        grupo = Query.selectArray(query);
+        
+        query="select * from tipoevaluacion;";
+        JSONArray tipo_evaluacion = new JSONArray();
+        tipo_evaluacion = Query.selectArray(query);
+        
+        query="select e.id_evaluacion, e.titulo_evaluacion, e.descripcion, g.nombre_grupo, m.nombre_materia, t.descripcion as tipo, e.fecha_entrega from cursos.evaluacion e\n" +
+                "inner join cursos.grupo g on e.id_grupo = g.id_grupo\n" +
+                "inner join cursos.materia m on e.id_materia = m.id_materia\n" +
+                "inner join cursos.tipoevaluacion t on e.id_tipo_evaluacion = t.id_tipo_evaluacion\n" +
+                "where e.id_usuario = 1;";
+        JSONArray tareas = new JSONArray();
+        tareas = Query.selectArray(query);
+        
+        System.out.println(tareas);
+
+        model.addAttribute("grupo", grupo);
+        model.addAttribute("tareas", tareas);
+        model.addAttribute("tipo_evaluacion", tipo_evaluacion);
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/tareas");
         //return "Login";
     }
@@ -402,6 +467,22 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
+     @RequestMapping(value = "/API/registro/tarea", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_tarea(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        String table = "materia";
+        String query = "INSERT INTO evaluacion (titulo_evaluacion,descripcion,id_grupo,id_materia,id_tipo_evaluacion,fecha_entrega,id_usuario) "
+                + "VALUES ('"+json.get("titulo_tarea")+"','"+json.get("nombre_tarea")+"','"+json.get("grupo_tarea")+"','"+json.get("materia_tarea")+"','"+json.get("tipo_tarea")+"','"+json.get("fecha_entrega")+"',1);"; 
+        
+        Query.insert(query);
+        
+        JSONObject respuesta=respuesta(true, "Tarea Creada");
+        respuesta.put("json", json);
+        return respuesta;
+        //return "Login";
+    }
+    
     @RequestMapping(value = "/API/registro/grupo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
     @ResponseBody
     private JSONObject api_registro_grupo(@RequestBody JSONObject json) throws ParseException, IOException {
@@ -463,7 +544,7 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
-     @RequestMapping(value = "/API/elimina/grupo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/API/elimina/grupo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
     @ResponseBody
     private JSONObject api_elimina_grupo(@RequestBody JSONObject json) throws ParseException, IOException {
         System.out.println(json);
@@ -568,6 +649,25 @@ public class ControladorGET_escuela360 {
         model.addAttribute("horario", horario);
          
         return "administracion_cursos/registro_grupo_horario";
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/API/consulta/materia", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_consulta_materia(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        String query="select c.id_materia, m.nombre_materia from cursos.grupo_horario c \n" +
+        "inner join  cursos.materia m on c.id_materia = m.id_materia\n" +
+        "where c.id_grupo = "+json.get("id_grupo")+" and c.id_usuario = "+json.get("id_usuario")+" ;";
+        JSONArray materia = new JSONArray();
+        materia = Query.selectArray(query);
+        
+        JSONObject respuesta=respuesta(true, "materias obtenidas");
+        respuesta.put("json", json);        
+        respuesta.put("materia", materia);
+
+        return respuesta;
         //return "Login";
     }
 }
