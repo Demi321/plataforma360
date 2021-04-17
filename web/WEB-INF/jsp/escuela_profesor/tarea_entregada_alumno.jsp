@@ -24,7 +24,7 @@
                         <td scope="row">${tarea.titulo_evaluacion}</td>
                         <td scope="row">${tarea.descripcion}</td>
                         <td scope="row">${tarea.fecha_entrega}</td>
-                        <td scope="row">${tarea.calificacion}</td>
+                        <td scope="row"> ${tarea.calificacion}</td>
                     </tr>
                 </c:forEach>
 
@@ -46,8 +46,8 @@
 
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.css" var="modulo_misreportesCSS" />
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.js" var="modulo_misreportesJS" />
-<spring:url value="${pathRecursos}/escuelas/alumno/evaluacion.js" var="modulo_evaluacionJS" />
-<script src="${modulo_evaluacionJS}" ></script>
+<spring:url value="${pathRecursos}/escuelas/profesor/tareas.js" var="modulo_tareasJS" />
+<script src="${modulo_tareasJS}" ></script>
 <link href="${modulo_misreportesCSS}" rel="stylesheet"/>
 <script src="${modulo_misreportesJS}" ></script>
 

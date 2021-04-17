@@ -85,7 +85,7 @@
                                 <td scope="row">${tarea.fecha_entrega}</td>
 
                                 <td scope="row">                                           
-                                    <button class="btn btn-success" title="Calificar evaluación"><span>Calificar</span></button>
+                                    <button class="btn btn-success" title="Calificar evaluación" onclick="calificar_tarea(${tarea.id_evaluacion},${tarea.id_grupo})"><span>Calificar</span></button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -111,46 +111,10 @@
 
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.css" var="modulo_misreportesCSS" />
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.js" var="modulo_misreportesJS" />
+<spring:url value="${pathRecursos}/escuelas/profesor/tareas.js" var="modulo_tareasJS" />
+<script src="${modulo_tareasJS}" ></script>
 <link href="${modulo_misreportesCSS}" rel="stylesheet"/>
 <script src="${modulo_misreportesJS}" ></script>
 <script>
-    $("#form_RegistrarTarea").submit((e) => {
-        e.preventDefault();
-
-        let json = buildJSON_Section("form_RegistrarTarea");
-        json.fecha_entrega = $("#fecha_tarea").val(); 
-       // json.logotipo = json.upFile_logo_nueva_empresa_logotipo;
-        //json.id360 = sesion_cookie.id_usuario;
-        console.log(json);
-        RequestPOST("/API/registro/tarea", json).then((response) => {
-            console.log(response);
-            swal.fire({
-                text: response.mensaje
-            }).then(() => {
-                //recargar por access token 
-                if (response.success) {
-                    $('#base_modulo_tareas').load('tareas_profesor')
-                }
-            });
-        });
-    });
     
-    function materia_grupo(id){
-         let json = {};
-        json.id_grupo = id;
-        json.id_usuario = 1;
-
-        $(".celdamateria").remove();
-        RequestPOST("/API/consulta/materia", json).then((response) => {
-            console.log(response);
-            
-            //recargar por access token 
-            if (response.success) {
-                console.log(response.materia.length)
-                for(var i = 0;i < response.materia.length  ;i++){
-                    $("#materia_tarea").append("<option class='celdamateria' value="+response.materia[i].id_materia+">"+response.materia[i].nombre_materia+"</option>");
-                }
-            }
-        });
-    }
 </script>

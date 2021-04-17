@@ -83,26 +83,3 @@
 
 <spring:url value="${pathRecursos}/escuelas/registrarmateria/registrarmateria.js" var="modulo_registrarmateriaJS" />
 <script src="${modulo_registrarmateriaJS}" ></script>
-<script>
-    function eliminarMateria(indice){
-    
-        let json = {};
-        json.id_materia = indice;
-        
-        console.log(json);
-       RequestPOST("/API/elimina/materia", json).then((response) => {
-            console.log(response);
-            swal.fire({
-                text: response.mensaje
-            }).then(() => {
-                //recargar por access token 
-                if (response.success) {
-                    var id = response.id
-                    $('#base_modulo_RegistrarSucursal').load('registro_materia')
-                    /*let url = window.location.protocol + "//" + window.location.host + "/" + DEPENDENCIA + "/";
-                    acceso_externo(url);*/
-                }
-            });
-        });
-    }
-</script>

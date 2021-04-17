@@ -25,7 +25,7 @@
                                         <select class="form-control" name="sector" id="registra_alumno" placeholder="Seleccione sucursal" required="">
                                             <option disabled="" selected="" value="">Selecciona una opción</option>
                                             <option value="12">Alumno 12</option>
-                                            <option value="13">Alumno 13</option>
+                                            <option value="17">Alumno 17</option>
                                         </select>
                                     </div>
                                     
@@ -77,51 +77,8 @@
     </div>
 </div>
 
-<spring:url value="${pathRecursos}/escuelas/registrarmateria/registrarmateria.js" var="modulo_registrarmateriaJS" />
-<script src="${modulo_registrarmateriaJS}" ></script>
+<spring:url value="${pathRecursos}/escuelas/registraralumno/registraralumno.js" var="modulo_registraralumnoJS" />
+<script src="${modulo_registraralumnoJS}" ></script>
 <script>
-    $("#form_RegistrarAlumno").submit((e) => {
-    e.preventDefault();
-
-    let json = buildJSON_Section("form_RegistrarAlumno");
-   // json.logotipo = json.upFile_logo_nueva_empresa_logotipo;
-    //json.id360 = sesion_cookie.id_usuario;
-    console.log(json);
-    RequestPOST("/API/registro/alumno_grupo", json).then((response) => {
-        console.log(response);
-        swal.fire({
-            text: response.mensaje
-        }).then(() => {
-            //recargar por access token 
-            if (response.success) {
-                var id = response.id
-                $('#base_modulo_RegistrarSucursal').load('registro_alumno')
-                /*let url = window.location.protocol + "//" + window.location.host + "/" + DEPENDENCIA + "/";
-                acceso_externo(url);*/
-            }
-        });
-    });
-});
-
-function eliminarAlumno(alumno){
     
-        let json = {};
-        json.id_alumno = alumno;
-        
-        console.log(json);
-       RequestPOST("/API/elimina/alumno_horario", json).then((response) => {
-            console.log(response);
-            swal.fire({
-                text: response.mensaje
-            }).then(() => {
-                //recargar por access token 
-                if (response.success) {
-                    var id = response.id
-                    $('#base_modulo_RegistrarSucursal').load('registro_alumno')
-                    /*let url = window.location.protocol + "//" + window.location.host + "/" + DEPENDENCIA + "/";
-                    acceso_externo(url);*/
-                }
-            });
-        });
-    }
 </script>

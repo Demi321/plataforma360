@@ -60,5 +60,7 @@
 
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.css" var="modulo_misreportesCSS" />
 <spring:url value="${pathRecursos}/empresas360/misreportes/misreportes.js" var="modulo_misreportesJS" />
+<spring:url value="${pathRecursos}/escuelas/alumno/horario.js" var="modulo_horarioJS" />
+<script src="${modulo_horarioJS}" ></script>
 <link href="${modulo_misreportesCSS}" rel="stylesheet"/>
 <script src="${modulo_misreportesJS}" ></script>
