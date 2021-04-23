@@ -8,6 +8,7 @@
 <input type="button" value="Horario" class="btn btn-secondary col-12" onclick="horario()">
 <input type="button" value="Tareas" class="btn btn-secondary col-12" onclick="tareas()">
 <input type="button" value="Evaluacion" class="btn btn-secondary col-12" onclick="evaluacion()">
+<input type="button" value="Calificación" class="btn btn-secondary col-12" onclick="calificacion()">
 
 <script>
     function perfil(){
@@ -24,6 +25,10 @@
     }
     function evaluacion(){
         $('#contenidoSection').load('evaluacion_profesor')
+        //$('#contenidoSection').append('<h1>HOLA MUNDO</h1>')
+    }
+    function calificacion(){
+        $('#contenidoSection').load('calificacion_profesor')
         //$('#contenidoSection').append('<h1>HOLA MUNDO</h1>')
     }
 </script>

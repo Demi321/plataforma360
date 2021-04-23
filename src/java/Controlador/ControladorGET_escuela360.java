@@ -374,6 +374,27 @@ public class ControladorGET_escuela360 {
         //return "Login";
     }
     
+    @RequestMapping(value = "/calificacion_profesor", method = RequestMethod.GET)
+    private String calificacion_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        System.out.println(sesion.getParameter("id_grupo"));
+        String query=null;
+                
+        query="select distinct c.id_grupo,g.nombre_grupo from cursos.grupo_horario c \n" +
+        "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+        "where c.id_usuario = 1;";
+        JSONArray grupo = new JSONArray();
+        grupo = Query.selectArray(query);
+        System.out.println(grupo);
+         model.addAttribute("grupo", grupo);
+         model.addAttribute("id_evaluacion", sesion.getParameter("id_evaluacion"));
+        return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/calificacion");
+        //return "Login";
+    }
+    
     @RequestMapping(value = "/tareas_profesor", method = RequestMethod.GET)
     private String tarea_profesor(HttpServletRequest sesion, Model model) throws ParseException, IOException {
         String autorizacion = Revision.autorizacion(sesion, model, null);
@@ -428,6 +449,43 @@ public class ControladorGET_escuela360 {
          model.addAttribute("id_evaluacion", sesion.getParameter("id_evaluacion"));
          
         return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/calificar_tarea");
+        //return "Login";
+    }
+    
+    @RequestMapping(value = "/calificar_alumno", method = RequestMethod.GET)
+    private String calificar_alumno(HttpServletRequest sesion, Model model) throws ParseException, IOException {
+        String autorizacion = Revision.autorizacion(sesion, model, null);
+        if (autorizacion != null) {
+            return autorizacion;
+        }
+        
+        System.out.println(sesion.getParameter("id_grupo"));
+        String query=null;
+                
+        query="select * from materia where id_materia = "+sesion.getParameter("id_materia")+";";
+        JSONArray materia = new JSONArray();
+        materia = Query.selectArray(query);
+         model.addAttribute("materia", materia);
+         
+         query="select * from grupo where id_grupo = "+sesion.getParameter("id_grupo")+";";
+        JSONArray grupo = new JSONArray();
+        grupo = Query.selectArray(query);
+         model.addAttribute("grupo", grupo);
+         model.addAttribute("id_usuario", sesion.getParameter("id_usuario"));
+         
+         query="select * from calificacion_alumno where id_materia = "+sesion.getParameter("id_materia")+" and id_grupo = "+sesion.getParameter("id_grupo")+" and id_usuario = "+sesion.getParameter("id_usuario")+";";
+        JSONArray calificacion = new JSONArray();
+        calificacion = Query.selectArray(query);
+        if(calificacion != null){
+            JSONObject calif = new JSONObject();
+            calif = (JSONObject) calificacion.get(0);
+            System.out.println(calificacion);
+            model.addAttribute("calificacion", calif.get("calificacion"));
+        }else{
+            model.addAttribute("calificacion", 0);
+        }
+         
+        return ValidarIP.Validacion_ip_publica(sesion, model, "escuela_profesor/calificacion_alumno");
         //return "Login";
     }
     
@@ -666,6 +724,27 @@ public class ControladorGET_escuela360 {
         return respuesta;
         //return "Login";
     }
+    @RequestMapping(value = "/API/registro/calificacion_alumnos", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registro_calificacion_alumnos(@RequestBody JSONObject json) throws ParseException, IOException {
+        System.out.println(json);
+        
+        //int bandera = (int) json.get("bandera");
+        //String table = "materia";
+        String query = "INSERT INTO calificacion_alumno (id_usuario,id_grupo,id_materia,calificacion) "
+                + "VALUES ("+json.get("id_usuario")+","+json.get("id_grupo")+","+json.get("id_materia")+",'"+json.get("calificacion")+"');"; 
+        
+        int id = Query.insert(query);
+        
+       
+        
+        JSONObject respuesta=respuesta(true, "Alumno Calificado");
+        respuesta.put("json", json);        
+        //respuesta.put("id", id);
+
+        return respuesta;
+        //return "Login";
+    }
     
     @RequestMapping(value = "/API/calificar/tarea", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
     @ResponseBody
@@ -890,6 +969,63 @@ public class ControladorGET_escuela360 {
         JSONObject respuesta=respuesta(true, "Alumnos inscritos");
         respuesta.put("json", json); 
         respuesta.put("alumnos", alumnos); 
+        
+        return respuesta;
+        
+        //return "Login";
+    }
+     @RequestMapping(value = "/API/consulta/calificacion_alumnos", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_consulta_calificacion_alumnos(@RequestBody JSONObject json) throws ParseException, IOException {
+        
+        System.out.println(json);
+        
+        String query=null;
+                
+        query="select c.id_grupo,g.nombre_grupo, c.id_usuario from cursos.registro_alumno c \n" +
+        "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+        "where c.id_grupo = "+json.get("id_grupo")+";";
+        
+        query = "select c.id_grupo,g.nombre_grupo, c.id_usuario, h.id_materia, m.nombre_materia  from cursos.registro_alumno c \n" +
+                "inner join  cursos.grupo_horario h on c.id_grupo = h.id_grupo\n" +
+                "inner join  cursos.materia m on h.id_materia = m.id_materia\n" +
+                "inner join  cursos.grupo g on c.id_grupo = g.id_grupo\n" +
+                "where c.id_grupo = "+json.get("id_grupo")+" and h.id_materia = "+json.get("id_materia")+";";
+        
+        JSONArray alumnos = new JSONArray();
+        alumnos = Query.selectArray(query);
+        
+        JSONObject respuesta=respuesta(true, "Alumnos inscritos");
+        respuesta.put("json", json); 
+        respuesta.put("alumnos", alumnos); 
+        
+        return respuesta;
+        
+        //return "Login";
+    }
+    
+     @RequestMapping(value = "/API/registra/calificacion_alumnos", method = RequestMethod.POST, produces = "application/json;charset=UTF-8", consumes = "application/json;charset=UTF-8")
+    @ResponseBody
+    private JSONObject api_registra_calificacion_alumnos(@RequestBody JSONObject json) throws ParseException, IOException {
+        
+        System.out.println(json);
+        
+        String query=null;
+                
+       query="select * from calificacion_alumno where id_materia = "+json.get("id_materia")+" and id_grupo = "+json.get("id_grupo")+" and id_usuario = "+json.get("id_usuario")+";";
+        
+       JSONArray calificacion = new JSONArray();
+        calificacion = Query.selectArray(query);
+        if(calificacion == null){
+            query ="INSERT INTO calificacion_alumno (id_usuario, id_grupo, id_materia, calificacion) "
+                    + "VALUES ('"+json.get("id_usuario")+"', '"+json.get("id_grupo")+"', '"+json.get("id_materia")+"', '"+json.get("calificacion")+"');";
+        }else{
+            query="UPDATE calificacion_alumno SET calificacion = '"+json.get("calificacion")+"' WHERE id_materia = "+json.get("id_materia")+" and id_grupo = "+json.get("id_grupo")+" and id_usuario = "+json.get("id_usuario")+";";
+        }
+        
+        JSONObject respuesta=respuesta(true, "Alumno Calificado");
+        respuesta.put("json", json); 
+        //respuesta.put("alumnos", alumnos); 
         
         return respuesta;
         
